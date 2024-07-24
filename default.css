@@ -1,0 +1,291 @@
+:root {
+  color-scheme: light dark;
+}
+
+body,
+html {
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.5;
+  font-family: serif;
+}
+
+a {
+  color: currentcolor;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Partially stolen from @csswizardry on Twitter (ahem, I meant X ofc) */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 0.75em;
+  user-select: none;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  text-decoration: none !important;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  border-bottom: 1px solid;
+  border-color: inherit;
+  padding-bottom: 5px;
+}
+
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+}
+
+h4 + p,
+h5 + p,
+h6 + p {
+  margin-top: 0;
+}
+
+hgroup h1 {
+  margin-bottom: 0;
+}
+
+hgroup p {
+  margin-top: 0;
+}
+
+hgroup {
+  margin-bottom: 1em;
+}
+
+pre {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre:has(code:not([class="language-mermaid"])) {
+  background: black;
+  color: white;
+  padding: 0.5em;
+  border-radius: 8px;
+}
+
+kbd {
+  border: 1px solid gray;
+  background: white;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-family: sans-serif;
+  color: #111121;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 100%;
+  width: 100%;
+}
+
+td,
+th {
+  padding: 0.2em;
+  text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid;
+  border-color: inherit;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: 1em;
+}
+
+figure img {
+  border: 1px solid;
+  border-color: inherit;
+}
+
+figcaption,
+table caption {
+  color: #666;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 2px solid;
+  padding-left: 1.2em;
+  margin: auto 0;
+  color: #666;
+  border-color: inherit;
+}
+
+ins {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+code {
+  font-size: 0.8em;
+}
+
+/* Site-specific */
+
+body, html {
+  height: 100%;
+}
+
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 7px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px auto 70px;
+  gap: 20px;
+  grid-template-areas: 
+    "header aside"
+    "main main"
+    "footer footer";
+}
+
+body > header {
+  grid-area: header;
+
+  & hgroup p {
+    opacity: .7;
+  }
+}
+
+body > main {
+  grid-area: main;
+  height: 100%;
+}
+
+body > aside {
+  grid-area: aside;
+}
+
+body > footer {
+  grid-area: footer;
+  text-align: center;
+  font-size: .85em;
+  opacity: .85;
+
+  & p {
+    margin: .3em;
+  }
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+
+  & li:not(:last-child)::after {
+    content:  "·";
+    margin: 0 .3em;
+  }
+}
+
+article {
+  display: grid;
+  align-items: end;
+  margin-left: .7em;
+  grid-template-columns: 65px 83px auto;
+  grid-template-areas:
+    "h-card dt title"
+    "nothing content content";
+
+  .h-card {
+    grid-area: h-card;
+    float: left;
+    
+    .p-name {
+      display: none;
+    }
+
+    .u-photo {
+      max-width: 65px;
+      margin-left: -0.7em;
+      margin-bottom: -40px;
+      border-radius: 6px;
+    }
+  }
+
+  time {
+    grid-area: dt;
+
+    a {
+      text-decoration: none;
+    }
+
+    &::after {
+      content:  "·";
+    }
+  }
+
+ h2 {
+    grid-area: title;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  h2, time {
+    color: #555;
+  }
+
+  .e-content {
+    grid-area: content;
+    font-size: 1.15em;
+
+    p:first-child {
+      margin-top: 0;
+      padding-top: .3em;
+      border-top: 1px dotted #ccc;
+    }
+  }
+}
