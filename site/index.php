@@ -1,8 +1,10 @@
 <?php
 // Public facing rendering engine.
 
-require_once __DIR__ . "../core.php";
-require_once __DIR__ . "../router.php";
+require_once __DIR__ . "/../core.php";
+require_once __DIR__ . "/../router.php";
+
+include __DIR__ . "/headers.php";
 
 $not_found = false;
 

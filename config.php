@@ -21,7 +21,8 @@ required('site.description');
 optional('site.copyright');
 
 fallback('force-https', false);
-fallback('canonical', (FORCE_HTTPS ? "https" : "http") . "://" . HOST);
+fallback('prefered-proto', FORCE_HTTPS ? "https" : "http");
+fallback('canonical', PREFERED_PROTO . "://" . HOST);
 
 required('author.name');
 optional('author.email');
@@ -39,6 +40,14 @@ fallback('token-endpoint', "https://tokens.indieauth.com/token");
 fallback('pingback-endpoint',
   "https://webmention.io/webmention?forward=" . WEBMENTION_ENDPOINT);
 
+fallback('cms.host', "cms." . HOST);
+fallback('cms.canonical', PREFERED_PROTO . "://" . CMS_HOST);
+
+resolute('issuer', CANONICAL . "/");
+resolute('client-id', ISSUER);
+resolute('redirect-uri', CMS_CANONICAL . "/auth");
+resolute('supported-scopes', ["create", "update", "delete", "media"]);
+
 // Helpers
 
 function required($key) {
@@ -53,6 +62,16 @@ function fallback($key, $value) {
   
   if(!defined($key)) {
     $_DEFAULTS[$key] = $value;
+    define($key, $value);
+  }
+}
+
+function resolute($key, $value) {
+  $key = normalize_key($key);
+  
+  if(defined($key)) {
+    die("Resolute key '$key' cannot be manually assigned.");
+  } else {
     define($key, $value);
   }
 }

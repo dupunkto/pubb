@@ -61,6 +61,15 @@ function random_string($length = 12) {
   return substr(str_shuffle(str_repeat($x, ceil($length/strlen($x)))), 1, $length);
 }
 
+function host($url) {
+  return strtolower(parse_url($url, PHP_URL_HOST));
+}
+
+function is_url($str) {
+  return str_starts_with($str, "http://") 
+  	or str_starts_with($str, "https://");
+}
+
 // URL safe base64 encoding per 
 // https://tools.ietf.org/html/rfc7515#appendix-C
 

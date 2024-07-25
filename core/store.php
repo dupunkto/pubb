@@ -15,14 +15,14 @@ define('DBH', establish_connection());
 define('TYPES', ["markdown", "html", "photo", "code"]);
 
 function put_page(
-  $slug, 
-  $type, 
-  $volume, 
-  $title, 
-  $published, 
-  $path, 
-  $updated = null, 
-  $caption = null, 
+  $slug,
+  $type,
+  $volume,
+  $title,
+  $published,
+  $path,
+  $updated = null,
+  $caption = null,
   $reply_to = null,
 ) {
   in_array($type, TYPES) or die("$type does not exist");
@@ -127,17 +127,51 @@ function last_updated() {
   return new DateTime($latest_page['updated']);
 }
 
-// Mentions
+// Contacts
 
-function put_mention($page_id, $source) {
-  get_page($page_id) or die("page with ID $page_id does not exist");
-
-  return exec_query('INSERT INTO `mentions` (`page_id`, `source`) VALUES (?, ?)', 
-    [$page_id, $source]);
+function put_contact($handle, $domain, $email) {
+  return exec_query('INSERT INTO `contacts` (`handle`, `domain`, `email`) 
+    VALUES (?, ?, ?)', [$handle, $domain, $email]);
 }
 
-function list_mentions($page_id) {
-  return all('SELECT * FROM `mentions` WHERE `page_id` = ?', [$page_id]);
+function get_contact($id) {
+  return one('SELECT * FROM `contacts` WHERE `id` = ?', [$id]);
+}
+
+function get_contact_by_handle($handle) {
+  return one('SELECT * FROM `contacts` WHERE `handle` = ?', [$handle]);
+}
+
+function get_contact_by_domain($domain) {
+  return one('SELECT * FROM `contacts` WHERE `domain` = ?', [$domain]);
+}
+
+function get_contact_by_email($email) {
+  return one('SELECT * FROM `contacts` WHERE `email` = ?', [$email]);
+}
+
+// Mentions
+
+define('ORIGINS', ["incoming", "outgoing"]);
+
+function put_mention($origin, $contact_id, $page_id, $source) {
+  in_array($origin, ORIGINS) or die("$origin does not exist");
+  get_page($page_id)         or die("page with ID $page_id does not exist");
+  get_contact($contact_id)   or die("contact with ID $contact_id does not exist");
+
+  return exec_query('INSERT INTO `mentions` (`origin`, `contact_id`, `page_id`, `source`) 
+    VALUES (?, ?, ?, ?)', [$origin, $contact_id, $page_id, $source]);
+}
+
+function list_mentions($origin, $page_id) { 
+  return all('SELECT * FROM `mentions` WHERE 
+    `page_id` = ? AND `origin` = ?', [$page_id, $origin]);
+}
+
+function get_mention($origin, $page_id, $contact_id) {
+  return one('SELECT * FROM `mentions` WHERE
+    `origin` = ? AND `page_id` = ? AND `contact_id` = ?',
+    [$origin, $page_id, $contact_id]);
 }
 
 // Views
@@ -215,7 +249,7 @@ function exec_query($sql, $params) {
 }
 
 function migrate() {
-  $migrations = __DIR__ . "/migrations.sql";
+  $migrations = __DIR__ . "/store/migrations.sql";
 
   $sql = file_get_contents($migrations);
   $queries = explode(';', $sql);
