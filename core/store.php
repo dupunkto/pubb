@@ -60,7 +60,7 @@ function get_page_by_slug($slug) {
   return one('SELECT * FROM `pages` WHERE `slug` = ?', [$slug]);
 }
 
-function list_pages($volume) {
+function list_pages() {
   return all('SELECT 
     pages.id,
     pages.slug,
@@ -86,7 +86,7 @@ function list_pages($volume) {
     volumes.id DESC,
     pages.updated DESC,
     pages.id ASC
-  ');
+  ', []);
 }
 
 function list_pages_by_type($type) {
@@ -176,12 +176,10 @@ function get_mention($origin, $page_id, $contact_id) {
 
 // Views
 
-function put_view($page_id, $referer, $agent, $datetime) {
-  get_page($page_id) or die("page with ID $page_id does not exist");
-  
+function put_view($path, $referer, $agent, $datetime) { 
   return exec_query('INSERT INTO `views` 
-    (`page_id`, `referer`, `agent`, `datetime`) VALUES (?, ?)',
-    [$page_id, $referer, $agent, $datetime]);
+    (`path`, `referer`, `agent`, `datetime`) VALUES (?, ?, ?, ?)',
+    [$path, $referer, $agent, $datetime]);
 }
 
 function list_views($year, $month) {
@@ -242,18 +240,6 @@ function exec_query($sql, $params) {
   $query = DBH->prepare($sql);
   $query->execute($params);
   return $query;
-}
-
-function migrate() {
-  $migrations = __DIR__ . "/store/migrations.sql";
-
-  $sql = file_get_contents($migrations);
-  $queries = explode(';', $sql);
-
-  foreach ($queries as $query) {
-    $query = trim($query);
-    if (!empty($query)) DBH->exec($query);
-  }
 }
 
 // Run migrations on the connected SQL database.

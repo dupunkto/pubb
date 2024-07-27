@@ -27,3 +27,15 @@ function establish_connection() {
     die("Database connection failed: " . $e->getMessage());
   }
 }
+
+function migrate() {
+  $migrations = __DIR__ . "/migrations.sql";
+
+  $sql = file_get_contents($migrations);
+  $queries = explode(';', $sql);
+
+  foreach ($queries as $query) {
+    $query = trim($query);
+    if (!empty($query)) DBH->exec($query);
+  }
+}

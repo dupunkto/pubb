@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `reply_to` text DEFAULT NULL,
   `path` text NOT NULL,
   `caption` text DEFAULT NULL,
-  `published` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated` datetime NOT NULL DEFAULT current_timestamp(),
+  `published` datetime NOT NULL DEFAULT current_timestamp,
+  `updated` datetime NOT NULL DEFAULT current_timestamp,
   UNIQUE (`slug`),
   PRIMARY KEY (`id`)
 );
@@ -17,20 +17,20 @@ CREATE TABLE IF NOT EXISTS `volumes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(90) NOT NULL,
   `title` text DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `created_at` DATETIME NOT NULL DEFAULT current_timestamp(),
+  `description` TEXT DEFAULT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `mentions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
 
-  /* 'outgoing' or 'incoming' */
+  -- 'outgoing' or 'incoming'
   `type` text NOT NULL,
 
-  /* only applicable on 'outgoing' mentions, or
-     'incoming' mentions where source includes a
-     domain known to be owned by a contact */
+  -- only applicable on 'outgoing' mentions, or
+  -- 'incoming' mentions where source includes a
+  -- domain known to be owned by a contact
   `contact_id` int(11) DEFAULT NULL,
   `page_id` int(11) NOT NULL,
   `source` text NOT NULL,
@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 
 CREATE TABLE IF NOT EXISTS `views` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `page_id` int(11) NOT NULL,
-  `referer` text NOT NULL,
+  `path` text NOT NULL,
+  `referer` text DEFAULT NULL,
   `agent` text NOT NULL,
-  `datetime` datetime NOT NULL DEFAULT current_timestamp(),
+  `datetime` datetime NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`)
 );

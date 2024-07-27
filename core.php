@@ -11,6 +11,7 @@ require_once __DIR__ . "/core/store.php";
 require_once __DIR__ . "/core/http.php";
 require_once __DIR__ . "/core/crypto.php";
 require_once __DIR__ . "/core/mailer.php";
+require_once __DIR__ . "/core/stats.php";
 require_once __DIR__ . "/core/renderer.php";
 require_once __DIR__ . "/core/urls.php";
 require_once __DIR__ . "/core/langs.php";

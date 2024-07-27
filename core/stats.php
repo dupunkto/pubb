@@ -4,10 +4,10 @@
 
 namespace stats;
 
-function record_view($page) {
+function record_view($path) {
   \store\put_view(
-    page_id: $page['id'], 
-    referer: $_SERVER['HTTP_REFERER'],
+    path: $path, 
+    referer: @$_SERVER['HTTP_REFERER'],
     agent: $_SERVER['HTTP_USER_AGENT'],
     datetime: date("Y-m-d H:i:s")
   );

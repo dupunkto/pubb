@@ -19,6 +19,12 @@ function render_success($message) {
   render_message("success", $message);
 }
 
+function render_message($kind, $message) {
+  ?>
+    <p class="<?= $kind ?>"><?= $message ?></p>
+  <?php
+}
+
 function render_pages($pages) {
   $current_volume = null;
 
@@ -39,7 +45,7 @@ function render_page($page, $level = 2) {
   ?>
     <article class="h-entry">
       <?php if($page['title']) {
-        echo "<h$level class='p-name'>${page['title']}</h$level>";
+        echo "<h$level class='p-name'>{$page['title']}</h$level>";
       } ?>
 
       <div class="p-summary e-content">
@@ -97,11 +103,11 @@ function render_comment_section($page) {
 
 function render_page_content($page) {
   match($page['type']) {
-    "photo" => render_photo($page);
-    "code" => render_code($page);
-    "markdown" => render_mdn($page);
-    "html" => render_html($page);
-  }
+    "photo" => render_photo($page),
+    "code" => render_code($page),
+    "markdown" => render_mdn($page),
+    "html" => render_html($page),
+  };
 }
 
 function render_photo($page) {
