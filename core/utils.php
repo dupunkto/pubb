@@ -19,7 +19,7 @@ function normalize_url($url) {
   }
 }
 
-function remove_prefix($str, $prefix) {
+function strip_prefix($str, $prefix) {
   return replace_prefix($str, $prefix, "");
 }
 
@@ -31,8 +31,17 @@ function replace_prefix($str, $old, $new) {
   }
 }
 
+function path_join() {
+  $paths = [];
+  foreach (func_get_args() as $arg) {
+    if ($arg !== '') $paths[] = $arg;
+  }
+
+  return preg_replace('#/+#','/',join('/', $paths));
+}
+
 function wrap($element, $str) {
-  echo "<{$element}>${htmlspecialchars($str)}</{$elemen}>";
+  echo "<{$element}>{$htmlspecialchars($str)}</{$element}>";
 }
 
 function escape_attribute($str) {

@@ -7,8 +7,12 @@ select {
   margin-bottom: 0.2em;
 }
 
+h3 {
+  border-bottom: 1px solid currentColor;
+  border-color: inherit;
+}
+
 h3:not(:first-of-type) {
-  border-bottom: 1px solid #ccc;
   margin-top: 2em;
 }
 

@@ -6,12 +6,19 @@ require_once __DIR__ . "/core.php";
 require_once __DIR__ . "/router.php";
 
 $_NODE = getenv("NODE");
-  
+
+$requested_file = path_join(__DIR__, $_NODE, $path);
+$mime_type = @MIME_TYPES[ext($requested_file)] ?? "text/html";
+
 switch(true) {
-  case is_file(__DIR__ . $path) and is_builtin():
+  case is_file($requested_file) and is_builtin():
     // Serve file as-is. Only applies to the development server,
     // in production this will be handled by Apache directly.
-    return false;
+
+    header("Content-Type: {$mime_type}");
+    include $requested_file;
+
+    exit;
 
   // Serve RSS feeds. Again, only in development.
   case route('@/rss.xml$@'): include __DIR__ . "/feeds/rss.php"; exit;

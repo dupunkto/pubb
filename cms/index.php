@@ -8,15 +8,16 @@ require_once __DIR__ . "/../router.php";
 include __DIR__ . "/auth.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
-if($path == "") $path = "home";
+$slug = strip_prefix($path, "/");
+if($slug == "") $slug = "home";
 
 // This is dangerous. But the user has already been
 // authenticated at this point, so technically we can trust them.
 // So let's leave it in. I like living on the edge.
 
-$view = __DIR__ . "/views/$path.php";
-$controller = __DIR__ . "/controllers/$path.php";
-$stylesheet = __DIR__ . "/css/$path.css";
+$view = __DIR__ . "/views/$slug.php";
+$controller = __DIR__ . "/controllers/$slug.php";
+$stylesheet = __DIR__ . "/css/$slug.css";
 
 include __DIR__ . "/mvc.php";
 
