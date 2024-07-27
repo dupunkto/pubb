@@ -27,6 +27,6 @@ function fail($message) {
 
 function complete() {
   global $path;
-  header("Location: " . CANONICAL.CMS.$path);
+  header("Location: " . CMS_CANONICAL.$path);
   exit;
 }

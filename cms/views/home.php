@@ -9,9 +9,9 @@
 <h3>Quick actions</h3>
 
 <ul>
-  <li><a href="<?= CANONICAL.CMS . "/pages" ?>">Pages</a></li>
-  <li><a href="<?= CANONICAL.CMS . "/assets" ?>">Media</a></li>
-  <li><a href="<?= CANONICAL.CMS . "/code" ?>">Gists</a></li>
-  <li><a href="<?= CANONICAL.CMS . "/comments" ?>">Comments</a></li>
-  <li><a href="<?= CANONICAL.CMS . "/stats" ?>">Statistics</a></li>
+  <li><a href="<?= CMS_CANONICAL . "/pages" ?>">Pages</a></li>
+  <li><a href="<?= CMS_CANONICAL . "/assets" ?>">Media</a></li>
+  <li><a href="<?= CMS_CANONICAL . "/code" ?>">Gists</a></li>
+  <li><a href="<?= CMS_CANONICAL . "/comments" ?>">Comments</a></li>
+  <li><a href="<?= CMS_CANONICAL . "/stats" ?>">Statistics</a></li>
 </ul>
