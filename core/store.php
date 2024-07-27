@@ -200,24 +200,24 @@ function write_file($contents, $ext) {
 
   $path = path_from_datetime($ext);
   file_put_contents($path, $content);
-  return $path;
+  return relative_to($path, STORE);
 }
 
 function copy_file($source, $dest) {
   // Determine the destination filename in the store based
   // on the md5 hash of the file contents. If the file already
   // exists, return that one. Otherwise, write it.
-  $path = path_from_hash($source);
+  $path = path_from_hash($source, ext($source));
 
   if(file_exists($path) or move_uploaded_file($tmp_file, $path)) {
-    return $path;
+    return relative_to($path, STORE);
   } else {
     return false;
   }
 }
 
 function contents($path) {
-  return file_get_contents($path);
+  return file_get_contents(STORE . $path);
 }
 
 function path_from_datetime($ext) {
@@ -226,10 +226,6 @@ function path_from_datetime($ext) {
 
 function path_from_hash($source, $ext) {
   return STORE . "/uploads/" . hash_file("md5", $source) . $ext;
-}
-
-function ext($filename) {
-  return "." . strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 }
 
 // SQL helpers

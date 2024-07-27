@@ -70,6 +70,21 @@ function is_url($str) {
   	or str_starts_with($str, "https://");
 }
 
+function relative_to($path, $parent) {
+  $absolute = realpath($path);
+  $parent = realpath($parent);
+
+  if (strpos($absolute, $parent) !== 0) return false;
+
+  $relative = substr($absolute, strlen($parent));
+  $relative = ltrim($relativePath, DIRECTORY_SEPARATOR);
+  return $relative;
+}
+
+function ext($path) {
+  return "." . strtolower(pathinfo($path, PATHINFO_EXTENSION));
+}
+
 // URL safe base64 encoding per 
 // https://tools.ietf.org/html/rfc7515#appendix-C
 

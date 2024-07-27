@@ -1,0 +1,315 @@
+:root {
+  color-scheme: light dark;
+}
+
+body,
+html {
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  * {
+    border-color: #ccc;
+    text-decoration-color: #aaa;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    border-color: #444;
+    text-decoration-color: #888;
+  }
+}
+
+a {
+  color: currentColor;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+img {
+  max-width: 100%;
+  user-select: none;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  text-decoration: none !important;
+}
+
+h2 {
+  border-bottom: 1px solid;
+  border-color: inherit;
+  padding-bottom: 5px;
+}
+
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+}
+
+hgroup h1 {
+  margin-bottom: 0;
+}
+
+hgroup p {
+  margin-top: 0;
+}
+
+hgroup {
+  margin-bottom: 1em;
+}
+
+pre {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre:has(code:not([class="language-mermaid"])) {
+  background: black;
+  color: white;
+  padding: 0.5em;
+  border-radius: 8px;
+}
+
+kbd {
+  border: 1px solid gray;
+  background: white;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-family: sans-serif;
+  color: #111121;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 100%;
+  width: 100%;
+}
+
+td,
+th {
+  padding: 0.2em;
+  text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid;
+  border-color: inherit;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 2px solid;
+  padding-left: 1.2em;
+  margin: auto 0;
+  color: gray;
+  border-color: inherit;
+}
+
+ins {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Site-specific */
+
+button,
+input[type="submit"],
+input[type="button"],
+.button {
+  background: black;
+  color: white;
+  border: none;
+  font-size: 0.8em;
+  line-height: 1.5;
+  padding: 0.5em 1em;
+  text-transform: lowercase;
+  text-decoration: none;
+
+  /* Hack center vertically in link (a) elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  opacity: 0.8;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.2em 0.4em;
+  font-size: 1em;
+}
+
+/* Flash messages */
+
+.success, 
+.error,
+.warn,
+.info {
+  padding: 0.2em 0.4em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  border: 1px solid currentColor;
+}
+
+.success {
+  background: #a7f3d0;
+  color: #022c22;
+  border-color: #6ee7b7;
+}
+
+.error {
+  background: #fecdd3;
+  color: #4c0519;
+  border-color: #fda4af;
+}
+
+.info {
+  background: #bfdbfe;
+  color: #172554;
+  border-color: #93c5fd;
+}
+
+.warn {
+  background: #fed7aa;
+  color: #431407;
+  border-color: #fdba74;
+}
+
+/* Dashboard */
+
+body {
+  margin: 0;
+}
+
+body > header {
+  text-transform: lowercase;
+  background: black;
+  color: white;
+  padding: 0.7em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body > header h1 {
+  margin: 0;
+  font-size: 1em;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 3em;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.bar h2,
+.bar h3 {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul a {
+  display: block;
+  padding: 0.7em 1em;
+  margin-bottom: 0.25em;
+  text-decoration: none;
+  background: #f1f1f1;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+  margin: 0;
+}
+
+.placeholder-text {
+  text-align: center;
+  opacity: 0.65;
+  margin-top: 8em;
+}
+
+/* Forms */
+
+input,
+textarea,
+select {
+  border: 1px solid #dedede;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #bbb;
+}
+
+input:user-invalid {
+  border-color: red;
+}
+
+input[name="title"] {
+  font-size: 1.3em;
+}
+
+input[name="slug"] {
+  font-size: 1em;
+  margin-bottom: 0.2em;
+}
+
+textarea {
+  padding: 0.6em;
+  width: 100%;
+  height: 100%;
+  height: 650px;
+  resize: none;
+  font-size: 1em;
+}

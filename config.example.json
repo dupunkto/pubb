@@ -5,12 +5,9 @@
 	"site.description": "Verified (€15/year for the domain)",
 	"site.copyright": "Copying is an act of love; please copy <3",
 	"author.name": "Robin (axcelott)",
-	"author.email": "you@example.com",
+	"author.email": "axcelott@roblog.nl",
 	"author.picture": "https://fastly.picsum.photos/id/621/200/200.jpg?hmac=nKMlm18QmBAMa_wHA70nsMBpYKk0pU0C832236i2oMM",
-	"force-https": false,
-	"notifications.admin": "you@example.com",
-	"notifications.sender": "noreply@example.com",
-	"notifications.webmention": true,
+	"notifications.admin": "axcelott@roblog.nl",
 	"encryption_key": "317f48e381d6eed8765a0418723ad64f6ac6de528433d2d758ef39750557f6e9",
 	"hashed_passphrase": "f5ac0102a91979ded2570f85804d854c"
 }

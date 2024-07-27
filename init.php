@@ -16,10 +16,6 @@ if(!is_dir(STORE)) {
   mkdir(STORE);
   mkdir(STORE . "/content");
   mkdir(STORE . "/uploads");
-
-  if(!file_exists(STORE . "/main.css")) {
-    copy(__DIR__ . "/default.css", STORE . "/main.css");
-  }
 }
 
 // Error for mismatches between CANONICAL and FORCE_HTTPS.

@@ -1,0 +1,28 @@
+input[type="text"], 
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+}
+
+h3:not(:first-of-type) {
+  border-bottom: 1px solid #ccc;
+  margin-top: 2em;
+}
+
+label:not(:has(input)) {
+  font-weight: bold;
+}
+
+p label + span {
+  display: block;
+  font-size: 0.9em;
+  color: #777;
+}
+
+input[type="submit"] {
+  float: right;
+  margin-bottom: 3em;
+}

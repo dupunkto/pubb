@@ -27,6 +27,7 @@ fallback('canonical', PREFERED_PROTO . "://" . HOST);
 required('author.name');
 optional('author.email');
 optional('author.picture');
+fallback('author.site', CANONICAL);
 
 optional('notifications.admin');
 fallback('notifications.sender', "noreply@" . HOST);
