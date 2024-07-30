@@ -66,6 +66,8 @@ function group_by($items, $prefix) {
     
     $grouped[$id]['items'][] = $item;
   }
+
+  return $grouped;
 }
 
 function unprefix_keys($array, $prefix) {

@@ -163,6 +163,36 @@ function put_mention($origin, $contact_id, $page_id, $source) {
     VALUES (?, ?, ?, ?)', [$origin, $contact_id, $page_id, $source]);
 }
 
+function list_all_mentions($origin) {
+  return all('SELECT 
+    mention.id AS mention_id,
+    mention.type AS mention_type,
+    mention.contact_id,
+    mention.page_id,
+    mention.source,
+    page.slug AS page_slug,
+    page.type AS page_type,
+    page.title AS page_title,
+    page.reply_to AS page_reply_to,
+    page.published AS page_published,
+    page.updated AS page_updated,
+    contact.handle AS contact_handle,
+    contact.domain AS contact_domain,
+    contact.email AS contact_email,
+    contact.notify AS contact_notify
+  FROM 
+    mentions mention
+  JOIN
+    pages page ON mention.page_id = page.id
+  LEFT JOIN 
+    contacts contact ON mention.contact_id = contact.id
+  WHERE
+    mention.type = ?
+  ORDER BY 
+    page.title, mention.id
+  ', [$origin]);
+}
+
 function list_mentions($origin, $page_id) { 
   return all('SELECT * FROM `mentions` WHERE 
     `page_id` = ? AND `origin` = ?', [$page_id, $origin]);

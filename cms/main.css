@@ -268,7 +268,7 @@ ul a {
 .placeholder-text {
   text-align: center;
   opacity: 0.65;
-  margin-top: 8em;
+  margin: 8em 0;
 }
 
 /* Forms */

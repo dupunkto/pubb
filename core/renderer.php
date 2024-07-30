@@ -26,18 +26,20 @@ function render_message($kind, $message) {
 }
 
 function render_pages($pages) {
-  $current_volume = null;
+  $volumes = group_by($pages, 'volume');
 
-  foreach ($pages as $page) {
-    if ($page['volume_id'] !== $current_volume) {
-      if($current_volume) echo '</section>';
-      $current_volume = $page['volume_id'];
+  foreach ($volumes as $volume) {
+    ?>
+      <section class="volume">
+        <h2 id="<?= $volume['slug'] ?>">
+          <?= $volume['title'] ?>
+        </h2>
 
-      echo '<section class="volume">';
-      echo "<h2>{$page['volume_title']}</h2>";
-    }
-
-    render_page($page, level: 3);
+        <?php foreach ($volume['items'] as $page) {
+          render_page($page, level: 3);
+        } ?>
+      </section>
+    <?php
   }
 }
 
