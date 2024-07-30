@@ -8,7 +8,7 @@ require_once __DIR__ . "/router.php";
 $_NODE = getenv("NODE");
 
 $requested_file = path_join(__DIR__, $_NODE, $path);
-$mime_type = @MIME_TYPES[ext($requested_file)] ?? "text/html";
+$mime_type = parse_mime_type($requested_file) ?? "text/html";
 
 switch(true) {
   case is_file($requested_file) and is_builtin():
