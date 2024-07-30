@@ -4,19 +4,10 @@
 // Basically a dumping-ground for function I'd wish were
 // just in the PHP standard library.
 
+// String utilities
+
 function is_whitespace($c) {
   return in_array($c, array(" ", "\t", "\n", "\r", "\0", "\x0B"));
-}
-
-function normalize_url($url) {
-  $url = replace_prefix($url, "http://", "https://");
-  $url = strtolower($url);
-  
-  if(!str_ends_with($url, "/")) {
-    return $url .= "/";
-  } else {
-    return $url;
-  }
 }
 
 function strip_prefix($str, $prefix) {
@@ -31,14 +22,7 @@ function replace_prefix($str, $old, $new) {
   }
 }
 
-function path_join() {
-  $paths = [];
-  foreach (func_get_args() as $arg) {
-    if ($arg !== '') $paths[] = $arg;
-  }
-
-  return preg_replace('#/+#','/',join('/', $paths));
-}
+// HTML utilities
 
 function wrap($element, $str) {
   echo "<{$element}>{$htmlspecialchars($str)}</{$element}>";
@@ -56,6 +40,8 @@ function strip_comments($body) {
   return preg_replace('/<!--(.*)-->/Us', "", $body);
 }
 
+// Array utilities
+
 function flatten($separator, $array) {
   $keys = array_keys($array);
   $values = array_values($array);
@@ -65,18 +51,64 @@ function flatten($separator, $array) {
   }, $keys, $values);
 }
 
-function random_string($length = 12) {
-  $x = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  return substr(str_shuffle(str_repeat($x, ceil($length/strlen($x)))), 1, $length);
+function group_by($items, $prefix) {
+  $grouped = [];
+  
+  foreach ($items as $item) {
+    $id = $item[$prefix . "_id"];
+
+    if (!isset($grouped[$id])) {
+      $grouped[$id] = array_merge(
+          unprefix_keys($item, $prefix),
+          ['items' => []]
+      );
+    }
+    
+    $grouped[$id]['items'][] = $item;
+  }
 }
 
-function host($url) {
-  return strtolower(parse_url($url, PHP_URL_HOST));
+function unprefix_keys($array, $prefix) {
+  $filtered = [];
+  $prefix = $prefix."_";
+  $len = strlen($prefix);
+
+  foreach ($array as $key => $value) {
+    if (strpos($key, $prefix) === 0) {
+      $filtered[substr($key, $len)] = $value; 
+    }
+  }
+
+  return $filtered;
+}
+
+// URL utilities
+
+function normalize_url($url) {
+  $url = replace_prefix($url, "http://", "https://");
+  $url = strtolower($url);
+  
+  if(!str_ends_with($url, "/")) {
+    return $url .= "/";
+  } else {
+    return $url;
+  }
 }
 
 function is_url($str) {
   return str_starts_with($str, "http://") 
   	or str_starts_with($str, "https://");
+}
+
+// Path utilities
+
+function path_join() {
+  $paths = [];
+  foreach (func_get_args() as $arg) {
+    if ($arg !== '') $paths[] = $arg;
+  }
+
+  return preg_replace('#/+#','/',join('/', $paths));
 }
 
 function relative_to($path, $parent) {
@@ -90,8 +122,26 @@ function relative_to($path, $parent) {
   return $relative;
 }
 
-function ext($path) {
+// Getters
+
+function parse_host($url) {
+  return strtolower(parse_url($url, PHP_URL_HOST));
+}
+
+function parse_mime_type($path) {
+  $ext = strip_prefix(parse_ext($path), ".");
+  return @MIME_TYPES[$ext];
+}
+
+function parse_ext($path) {
   return "." . strtolower(pathinfo($path, PATHINFO_EXTENSION));
+}
+
+// Crypto
+
+function random_string($length = 12) {
+  $x = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  return substr(str_shuffle(str_repeat($x, ceil($length/strlen($x)))), 1, $length);
 }
 
 // URL safe base64 encoding per 

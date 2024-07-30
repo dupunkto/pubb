@@ -205,7 +205,7 @@ function copy_file($source, $dest) {
   // Determine the destination filename in the store based
   // on the md5 hash of the file contents. If the file already
   // exists, return that one. Otherwise, write it.
-  $path = path_from_hash($source, ext($source));
+  $path = path_from_hash($source, parse_ext($source));
 
   if(file_exists($path) or move_uploaded_file($tmp_file, $path)) {
     return relative_to($path, STORE);

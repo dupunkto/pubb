@@ -14,7 +14,7 @@ function get_page_by_url($url) {
 // @mentions
 
 function record_mention($page, $source) { 
-  $domain = host($source);
+  $domain = parse_host($source);
   $contact = \store\get_contact_by_domain($domain);
 
   \store\put_mention(
