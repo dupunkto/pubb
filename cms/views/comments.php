@@ -34,7 +34,7 @@
           <?php } ?>
 
           <span class="actions">
-            <a href="<?= CMS_CANONICAL . "/new" ?>?type=reply&to=<?= urlencode($url) ?>">
+            <a href="<?= CMS_CANONICAL ?>/new?type=reply&to=<?= urlencode($url) ?>">
               Reply
             </a>
           </span>

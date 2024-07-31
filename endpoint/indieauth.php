@@ -4,7 +4,6 @@
 // Based on Inklings-io/selfauth, which is
 // dual-licensed CC0 and MIT.
 
-require_once __DIR__ . "/../config.php";
 require_once __DIR__ . "/../core.php";
 
 if(isset($_GET['metadata'])) {

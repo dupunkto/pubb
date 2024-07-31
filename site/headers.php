@@ -4,7 +4,6 @@
 
 header("Referrer-Policy: no-referrer");
 header("X-Content-Type-Options: nosniff");
-header("X-Content-Type-Options: nosniff");
 header("X-Frame-Options: deny");
 header("Cross-Origin-Opener-Policy: same-origin");
 

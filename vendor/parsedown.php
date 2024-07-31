@@ -5,6 +5,7 @@
 namespace renderer;
 
 // Vendored because I hate PHP package management.
+// Sorry!
 
 class Parsedown
 {
