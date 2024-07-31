@@ -28,7 +28,7 @@ include __DIR__ . "/mvc.php";
     <title>Pebble</title>
     <style><?php include $stylesheet ?></style>
   </head>
-  <body>
+  <body data-instant-intensity="mousedown">
     <?php include __DIR__ . "/partials/header.php" ?>
     <main>
       <?php render_flash(); ?>
@@ -48,5 +48,7 @@ include __DIR__ . "/mvc.php";
         }
       ?>
     </main>
+
+    <script src="/vendor/instant.page.min.js" type="module"></script> 
   </body>
 </html>
