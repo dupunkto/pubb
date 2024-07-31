@@ -147,6 +147,7 @@ input[type="button"],
   padding: 0.5em 1em;
   text-transform: lowercase;
   text-decoration: none;
+  cursor: default;
 
   /* Hack center vertically in link (a) elements */
   display: flex;
@@ -230,6 +231,10 @@ main {
   margin-top: 3em;
 }
 
+main > header:not(:first-child) {
+  margin-top: 1.5em;
+}
+
 .bar {
   display: flex;
   flex-direction: row;
@@ -294,6 +299,17 @@ input:user-invalid {
   border-color: red;
 }
 
+input[type="text"], 
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+}
+
+label:not(:has(input)) {
+  font-weight: bold;
+}
+
 input[name="title"] {
   font-size: 1.3em;
 }
@@ -310,4 +326,10 @@ textarea {
   height: 650px;
   resize: none;
   font-size: 1em;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
 }
