@@ -113,11 +113,15 @@
   </p>
 
   <p>
+    <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
+    <input type="hidden" name="notifications.webmention" value="false" />
+
     <label>
       <input 
         type="checkbox"
         name="notifications.webmention"
         <?php if(NOTIFICATIONS_WEBMENTION) echo "checked" ?>
+        value="true"
       >
       <span>Send me an email when someone mentions one of my pages.</span>
     </label>
@@ -143,11 +147,15 @@
   </p>
   
   <p>
+    <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
+    <input type="hidden" name="force-https" value="false" />
+
     <label>
       <input 
         type="checkbox"
         name="force-https"
         <?php if(FORCE_HTTPS) echo "checked" ?>
+        value="true"
       >
       <span>Force HTTP to HTTPS redirect.</span>
     </label>

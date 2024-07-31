@@ -21,7 +21,7 @@ if(isset($_POST['save'])) {
   // and change the password.
   if(isset($changes['passphrase'])) {
     if($changes['passphrase'] !== @$changes['confirm'])
-      fail("The passphrase did not match the confirmation.", 400);
+      fail("The passphrase did not match the confirmation.");
 
     $passphrase = $changes['passphrase'];
     $hashed = \auth\hash_passphrase($passphrase);
@@ -43,8 +43,7 @@ if(isset($_POST['save'])) {
   file_put_contents(CONFIG, json_encode($new)) 
     or fail("Failed to save settings.");
 
-  put_flash("success", "Saved.");
-  complete();
+  complete("Saved.");
 }
 
 function value($key) {

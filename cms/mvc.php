@@ -20,13 +20,23 @@ function render_flash() {
   }
 }
 
-function fail($message) {
+function fail($message, $to = false) {
+  global $path;
+  if(!$to) $to = $path;
+
   put_flash("error", $message);
-  complete();
+  redirect($to);
 }
 
-function complete() {
+function complete($message, $to = false) {
   global $path;
-  header("Location: " . CMS_CANONICAL.$path);
+  if(!$to) $to = $path;
+
+  put_flash("success", $message);
+  redirect($to);
+}
+
+function redirect($path) {
+  header("Location: " . CMS_CANONICAL . $path);
   exit;
 }

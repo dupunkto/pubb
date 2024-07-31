@@ -139,6 +139,15 @@ function parse_ext($path) {
   return "." . strtolower(pathinfo($path, PATHINFO_EXTENSION));
 }
 
+// Casters
+
+function cast_boolean($value) {
+  return match ($value) {
+    "true" => true,
+    "false" => false,
+  };
+}
+
 // Crypto
 
 function random_string($length = 12) {

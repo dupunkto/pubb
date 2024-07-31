@@ -129,9 +129,14 @@ function last_updated() {
 
 // Contacts
 
-function put_contact($handle, $domain, $email) {
-  return exec_query('INSERT INTO `contacts` (`handle`, `domain`, `email`) 
-    VALUES (?, ?, ?)', [$handle, $domain, $email]);
+function put_contact($handle, $domain, $email, $notify) {
+  return exec_query('INSERT INTO `contacts` (`handle`, `domain`, `email`, `notify`) 
+    VALUES (?, ?, ?, ?)', [$handle, $domain, $email, $notify]);
+}
+
+function update_contact($id, $handle, $domain, $email, $notify) {
+  return exec_query('UPDATE `contacts` SET `handle` = ?, `domain` = ?, `email` = ?, `notify` = ? 
+    WHERE `id` = ?', [$handle, $domain, $email, $notify, $id]);
 }
 
 function get_contact($id) {
@@ -148,6 +153,14 @@ function get_contact_by_domain($domain) {
 
 function get_contact_by_email($email) {
   return one('SELECT * FROM `contacts` WHERE `email` = ?', [$email]);
+}
+
+function delete_contact($id) {
+  return exec_query('DELETE FROM `contacts` WHERE id = ? ', [$id]);
+}
+
+function list_contacts() {
+  return all('SELECT * FROM `contacts`', []);
 }
 
 // Mentions
@@ -267,9 +280,14 @@ function all($sql, $params) {
 }
 
 function exec_query($sql, $params) {
-  $query = DBH->prepare($sql);
-  $query->execute($params);
-  return $query;
+  try {
+    $query = DBH->prepare($sql);
+    $query->execute($params);
+    return $query;
+  }
+  catch(\PDOException $e) {
+    return false;
+  }
 }
 
 // Run migrations on the connected SQL database.
