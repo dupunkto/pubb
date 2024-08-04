@@ -3,8 +3,10 @@
   <a href="<?= CMS_CANONICAL ?>/contacts/add" class="button">Add contact</a>
 </header>
 
+<?php $contacts = \store\list_contacts() ?>
+
 <ul>
-  <?php foreach(\store\list_contacts() as $contact) { ?>
+  <?php foreach($contacts as $contact) { ?>
     <li>
       <a href="//<?= $contact['domain'] ?>">@<?= $contact['handle'] ?></a>
 
@@ -19,3 +21,9 @@
     </li>
   <?php } ?>
 </ul>
+
+<?php if(count($contacts) <= 0) {
+  ?>
+    <p class="placeholder-text">No contacts yet.</p>
+  <?php
+} ?>

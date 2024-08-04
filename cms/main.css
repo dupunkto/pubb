@@ -240,6 +240,7 @@ main > header:not(:first-child) {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1em;
+  gap: 0.25em;
 }
 
 .bar h2,
