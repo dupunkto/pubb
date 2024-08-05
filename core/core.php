@@ -28,6 +28,23 @@ function new_page($slug, $type, $title, $prose, $draft = false, $reply_to = null
   );
 }
 
+function edit_page($id, $slug, $type, $title, $prose, $draft = false, $reply_to = null) {
+  $now = date("Y-m-d H:i:s");
+  $path = \store\write_file($prose, ".".$type);
+
+  return \store\update_page(
+    id: $id,
+    slug: $slug,
+    type: $type,
+    title: $title,
+    updated: $now,
+    path: $path,
+    draft: $draft,
+    reply_to: $reply_to,
+    caption: null,
+  );
+}
+
 // @mentions
 
 function record_mention($page, $source) { 

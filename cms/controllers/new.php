@@ -1,12 +1,6 @@
 <?php
 // Editor for new posts.
 
-$draft = true;
-
-if(isset($_GET['reply'])) {
-  $reply = $_GET['reply'];
-}
-
 if(isset($_POST['save']) || isset($_POST['publish'])) {
   $draft = isset($_POST['save']);
 
@@ -28,6 +22,12 @@ if(isset($_POST['save']) || isset($_POST['publish'])) {
   
   if($saved) complete("Saved page.", to: "/pages");
   else fail("Failed to save page.", to: "/new");
+}
+
+$draft = true;
+
+if(isset($_GET['reply'])) {
+  $reply = $_GET['reply'];
 }
 
 include path_join($views, "edit.php");

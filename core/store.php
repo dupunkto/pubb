@@ -51,6 +51,42 @@ function put_page(
   ]);
 }
 
+function update_page(
+  $id,
+  $slug,
+  $type,
+  $title,
+  $path,
+  $draft,
+  $updated,
+  $caption,
+  $reply_to,
+) {
+  in_array($type, TYPES) or die("$type does not exist");
+  in_store($path)        or die("$path does not exist");
+
+  return exec_query('UPDATE `pages` SET
+    `slug` = ?,
+    `type` = ?,
+    `title` = ?,
+    `reply_to` = ?,
+    `path` = ?,
+    `draft` = ?,
+    `caption` = ?,
+    `updated` = ?
+  WHERE id = ?', [
+    $slug,
+    $type,
+    $title,
+    $reply_to,
+    $path,
+    $draft,
+    $caption,
+    $updated,
+    $id
+  ]);
+}
+
 function get_page($id) {
   return one('SELECT * FROM `pages` WHERE `id` = ?', [$id]);
 }

@@ -23,11 +23,6 @@
       >
 
       <p class="button-group">
-        <?php if(isset($id)) { ?>
-          <input name="id" value="<?= $id ?>" type="hidden">
-          <a href="<?= CMS_CANONICAL ?>/delete?id=<?= $id ?>" class="button">Delete</a>
-        <?php } ?>
-
         <input 
           type="submit"
           name="save"
@@ -79,11 +74,17 @@
     placeholder="Write anything. Write everything." 
     name="prose"><?php if(isset($prose)) echo $prose ?></textarea>
 
-  <label class="type">
-    Render as: 
+  <p class="type">
+    <?php if(isset($id)) { ?>
+      <input name="id" value="<?= $id ?>" type="hidden">
+      <a href="<?= CMS_CANONICAL ?>/delete?id=<?= $id ?>" class="button">Delete</a>
+    <?php } ?>
+
+    <label for="type">Render as:</label>
+
     <select name="type">
       <option value="md">Markdown</option>
       <option value="html">HTML</option>
-    </select>
-  </label>
+    </select>    
+  </p>
 </form>
