@@ -15,11 +15,11 @@ if($slug == "") $slug = "home";
 // authenticated at this point, so technically we can trust them.
 // So let's leave it in. I like living on the edge.
 
-$view = __DIR__ . "/views/$slug.php";
-$controller = __DIR__ . "/controllers/$slug.php";
-$stylesheet = __DIR__ . "/css/$slug.css";
-
 include __DIR__ . "/mvc.php";
+
+$view = path_join($views, "$slug.php");
+$controller = path_join($controllers, "$slug.php");
+$stylesheet = path_join($styles, "$slug.css");
 
 ?><!DOCTYPE html>
 <html lang="en">

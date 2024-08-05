@@ -2,6 +2,10 @@
 // Shitty infrastructure that is only loosely based 
 // on the MVC-pattern.
 
+$controllers = path_join(__DIR__, "controllers");
+$views = path_join(__DIR__, "views");
+$styles = path_join(__DIR__, "css");
+
 function put_flash($level, $message) {
   $_SESSION['flash'] = [$level, $message];
 }

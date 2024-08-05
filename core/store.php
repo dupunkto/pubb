@@ -12,7 +12,7 @@ define('DBH', establish_connection());
 
 // A page type defines the content type for the 
 // referenced file in the `type` column.
-define('TYPES', ["markdown", "html", "photo", "code"]);
+define('TYPES', ["md", "html", "photo", "code"]);
 
 function put_page(
   $slug,
@@ -21,9 +21,10 @@ function put_page(
   $title,
   $published,
   $path,
-  $updated = null,
-  $caption = null,
-  $reply_to = null,
+  $draft,
+  $updated,
+  $caption,
+  $reply_to,
 ) {
   in_array($type, TYPES) or die("$type does not exist");
   file_exists($path)     or die("$path does not exist");
@@ -36,19 +37,21 @@ function put_page(
     `title`,
     `reply_to`,
     `path`,
+    `draft`
     `caption`,
     `published`,
     `updated`
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     $slug,
     $type,
     $volume,
     $title,
     $reply_to,
     $path,
+    $draft,
     $caption,
     $published,
-    $updated ?? $published
+    $updated
   ]);
 }
 
@@ -60,8 +63,12 @@ function get_page_by_slug($slug) {
   return one('SELECT * FROM `pages` WHERE `slug` = ?', [$slug]);
 }
 
-function list_pages() {
-  return all('SELECT 
+function delete_page($id) {
+  return exec_query('DELETE FROM `pages` WHERE id = ? ', [$id]);
+}
+
+function list_pages($include_drafts = false) {
+  return all("SELECT 
     pages.id,
     pages.slug,
     pages.type,
@@ -69,6 +76,7 @@ function list_pages() {
     pages.title,
     pages.reply_to,
     pages.path,
+    pages.draft,
     pages.caption,
     pages.published,
     pages.updated,
@@ -81,12 +89,16 @@ function list_pages() {
     pages
   JOIN 
     volumes ON pages.volume_id = volumes.id
+  " . ($include_drafts ? 
+    "WHERE pages.draft > 0" : 
+    "WHERE pages.draft = 0"
+  ) . "
   ORDER BY 
     volumes.created_at DESC,
     volumes.id DESC,
     pages.updated DESC,
     pages.id ASC
-  ', []);
+  ", []);
 }
 
 function list_pages_by_type($type) {
@@ -106,8 +118,8 @@ function list_pages_by_type($type) {
     volumes.id AS volume_id,
     volumes.slug AS volume_slug,
     volumes.title AS volume_title,
-    volumes.description,
-    volumes.created_at
+    volumes.description AS volume_description,
+    volumes.created_at AS volume_created_at
   FROM 
     pages
   JOIN
@@ -123,8 +135,34 @@ function list_pages_by_type($type) {
 }
 
 function last_updated() {
-  $latest_page = one('SELECT `updated` FROM `pages` ORDER BY `updated` DESC');
+  $latest_page = one('SELECT `updated` FROM `pages` ORDER BY `updated` DESC', []);
   return new DateTime($latest_page['updated']);
+}
+
+// Volumes
+
+function put_volume($slug, $title, $description, $created_at) {  
+  return exec_query('INSERT INTO `volumes`
+    (`slug`, `title`, `description`, `created_at`)
+    VALUES (?, ?, ?, ?)', [$slug, $title, $description, $created_at]);
+}
+
+function update_volume($slug, $title, $description, $created_at) {  
+  return exec_query('UPDATE `volumes` 
+    SET `slug` = ?, `title` = ?, `description` = ?, `created_at` = ?
+    WHERE `id` = ?', [$slug, $title, $description, $created_at, $id]);
+}
+
+function get_volume($id) {  
+  return one('SELECT * FROM `volumes` WHERE `id` = ?', [$id]);
+}
+
+function get_volume_by_slug($slug) {
+  return one('SELECT * FROM `volumes` WHERE `slug` = ?', [$slug]);
+}
+
+function latest_volume() {
+  return one('SELECT * FROM `volumes` ORDER BY `created_at` DESC', []);
 }
 
 // Contacts
@@ -286,6 +324,7 @@ function exec_query($sql, $params) {
     return $query;
   }
   catch(\PDOException $e) {
+    trigger_error($e, E_USER_WARNING);
     return false;
   }
 }

@@ -4,6 +4,13 @@
 // Basically a dumping-ground for function I'd wish were
 // just in the PHP standard library.
 
+// Elixir fanboy :>
+
+function dbg($input) {
+  var_dump($input);
+  return $input;
+}
+
 // String utilities
 
 function is_whitespace($c) {

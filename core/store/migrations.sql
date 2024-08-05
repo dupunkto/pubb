@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `title` text DEFAULT NULL,
   `reply_to` text DEFAULT NULL,
   `path` text NOT NULL,
+  `draft` int(11) NOT NULL,
   `caption` text DEFAULT NULL,
   `published` datetime NOT NULL DEFAULT current_timestamp,
   `updated` datetime NOT NULL DEFAULT current_timestamp,
