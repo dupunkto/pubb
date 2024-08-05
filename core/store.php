@@ -26,7 +26,7 @@ function put_page(
   $reply_to,
 ) {
   in_array($type, TYPES) or die("$type does not exist");
-  file_exists($path)     or die("$path does not exist");
+  in_store($path)        or die("$path does not exist");
 
   return exec_query('INSERT INTO `pages` (
     `slug`, 
@@ -34,7 +34,7 @@ function put_page(
     `title`,
     `reply_to`,
     `path`,
-    `draft`
+    `draft`,
     `caption`,
     `published`,
     `updated`
@@ -275,7 +275,7 @@ function write_file($contents, $ext) {
   // file with the given extension.
 
   $path = path_from_datetime($ext);
-  file_put_contents($path, $content);
+  file_put_contents($path, $contents);
   return relative_to($path, STORE);
 }
 
@@ -292,8 +292,12 @@ function copy_file($source, $dest) {
   }
 }
 
+function in_store($path) {
+  return file_exists(path_join(STORE, $path));
+}
+
 function contents($path) {
-  return file_get_contents(STORE . $path);
+  return file_get_contents(path_join(STORE, $path));
 }
 
 function path_from_datetime($ext) {

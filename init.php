@@ -13,9 +13,9 @@ if(!defined('PHP_VERSION_ID') or PHP_VERSION_ID < 80000) {
 
 // Initialize data store if it doesn't exist yet.
 if(!is_dir(STORE)) {
-  mkdir(STORE);
-  mkdir(STORE . "/content");
-  mkdir(STORE . "/uploads");
+  mkdir(STORE) or die("Failed to initialize data store.");
+  mkdir(STORE . "/content") or die("Failed to initialize file store.");
+  mkdir(STORE . "/uploads") or die("Failed to initialize upload store.");
 }
 
 // Error for mismatches between CANONICAL and FORCE_HTTPS.

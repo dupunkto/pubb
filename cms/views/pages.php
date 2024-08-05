@@ -10,7 +10,7 @@
     <li>
       <a href="<?= CMS_CANONICAL ?>/edit?id=<?= $page['id'] ?>">
         <?= $page['title'] ?>
-        <span class="font-size: 0.75em">(<?= $page['published'] ?>)<span>
+        <?php if($page['draft']) echo wrap("small", "— draft") ?>
       </a>
     </li>
   <?php } ?>

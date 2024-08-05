@@ -27,7 +27,7 @@ if(isset($_POST['save']) || isset($_POST['publish'])) {
   } 
   
   if($saved) complete("Saved page.", to: "/pages");
-  else complete("Failed to save page.", to: "/new");
+  else fail("Failed to save page.", to: "/new");
 }
 
 include path_join($views, "edit.php");

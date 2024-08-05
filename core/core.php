@@ -11,14 +11,13 @@ function get_page_by_url($url) {
   if($slug) return \store\get_page_by_slug($slug);
 }
 
-function new_page($slug, $type, $volume, $title, $prose, $draft = false, $reply_to = null) {
+function new_page($slug, $type, $title, $prose, $draft = false, $reply_to = null) {
   $now = date("Y-m-d H:i:s");
-  $path = \store\write_file($prose, $type);
+  $path = \store\write_file($prose, ".".$type);
 
   return \store\put_page(
     slug: $slug,
     type: $type,
-    volume: $volume,
     title: $title,
     published: $now,
     updated: $now,

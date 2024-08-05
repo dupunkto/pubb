@@ -32,7 +32,8 @@ function replace_prefix($str, $old, $new) {
 // HTML utilities
 
 function wrap($element, $str) {
-  echo "<{$element}>{$htmlspecialchars($str)}</{$element}>";
+  $escaped = htmlspecialchars($str);
+  echo "<{$element}>{$escaped}</{$element}>";
 }
 
 function escape_attribute($str) {
@@ -127,7 +128,7 @@ function relative_to($path, $parent) {
   if (strpos($absolute, $parent) !== 0) return false;
 
   $relative = substr($absolute, strlen($parent));
-  $relative = ltrim($relativePath, DIRECTORY_SEPARATOR);
+  $relative = ltrim($relative, DIRECTORY_SEPARATOR);
   return $relative;
 }
 
