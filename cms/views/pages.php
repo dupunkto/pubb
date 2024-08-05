@@ -10,7 +10,7 @@
     <li>
       <a href="<?= CMS_CANONICAL ?>/edit?id=<?= $page['id'] ?>">
         <?= $page['title'] ?>
-        <small>(<?= $page['published'] ?>)<small>
+        <span class="font-size: 0.75em">(<?= $page['published'] ?>)<span>
       </a>
     </li>
   <?php } ?>

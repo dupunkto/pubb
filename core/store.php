@@ -17,7 +17,6 @@ define('TYPES', ["md", "html", "photo", "code"]);
 function put_page(
   $slug,
   $type,
-  $volume,
   $title,
   $published,
   $path,
@@ -28,12 +27,10 @@ function put_page(
 ) {
   in_array($type, TYPES) or die("$type does not exist");
   file_exists($path)     or die("$path does not exist");
-  get_volume($volume)    or die("volume with ID $volume does not exist");
 
   return exec_query('INSERT INTO `pages` (
     `slug`, 
     `type`,
-    `volume_id`,
     `title`,
     `reply_to`,
     `path`,
@@ -41,10 +38,9 @@ function put_page(
     `caption`,
     `published`,
     `updated`
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     $slug,
     $type,
-    $volume,
     $title,
     $reply_to,
     $path,
@@ -68,11 +64,10 @@ function delete_page($id) {
 }
 
 function list_pages($include_drafts = false) {
-  return all("SELECT 
+  return all('SELECT
     pages.id,
     pages.slug,
     pages.type,
-    pages.volume_id,
     pages.title,
     pages.reply_to,
     pages.path,
@@ -83,35 +78,34 @@ function list_pages($include_drafts = false) {
     volumes.id AS volume_id,
     volumes.slug AS volume_slug,
     volumes.title AS volume_title,
-    volumes.description,
-    volumes.created_at
+    volumes.description AS volume_description,
+    volumes.start_at AS volume_end_at,
+    volumes.end_at AS volume_start_at
   FROM 
     pages
-  JOIN 
-    volumes ON pages.volume_id = volumes.id
-  " . ($include_drafts ? 
-    "WHERE pages.draft > 0" : 
-    "WHERE pages.draft = 0"
-  ) . "
+  LEFT JOIN
+    volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
+  ' . ($include_drafts ? 
+    'WHERE pages.draft > 0' :
+    'WHERE pages.draft = 0'
+  ) . '
   ORDER BY 
-    volumes.created_at DESC,
-    volumes.id DESC,
-    pages.updated DESC,
-    pages.id ASC
-  ", []);
+    pages.published DESC,
+    pages.id
+  ', []);
 }
 
-function list_pages_by_type($type) {
+function list_pages_by_type($type, $include_drafts = false) {
   in_array($type, TYPES) or die("$type does not exist");
 
   return all('SELECT 
     pages.id,
     pages.slug,
     pages.type,
-    pages.volume_id,
     pages.title,
     pages.reply_to,
     pages.path,
+    pages.draft,
     pages.caption,
     pages.published,
     pages.updated,
@@ -119,18 +113,21 @@ function list_pages_by_type($type) {
     volumes.slug AS volume_slug,
     volumes.title AS volume_title,
     volumes.description AS volume_description,
-    volumes.created_at AS volume_created_at
+    volumes.start_at AS volume_end_at,
+    volumes.end_at AS volume_start_at
   FROM 
     pages
-  JOIN
-    volumes ON pages.volume_id = volumes.id
-  WHERE
+  LEFT JOIN
+    volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
+  ' . ($include_drafts ? 
+    "WHERE pages.draft > 0" : 
+    "WHERE pages.draft = 0"
+  ) . '
+  AND
     pages.type = ?
   ORDER BY 
-    volumes.created_at DESC,
-    volumes.id DESC,
-    pages.updated DESC,
-    pages.id ASC
+    pages.published DESC,
+    pages.id
   ', [$type]);
 }
 
@@ -141,16 +138,16 @@ function last_updated() {
 
 // Volumes
 
-function put_volume($slug, $title, $description, $created_at) {  
+function put_volume($slug, $title, $description, $start, $end) {  
   return exec_query('INSERT INTO `volumes`
-    (`slug`, `title`, `description`, `created_at`)
-    VALUES (?, ?, ?, ?)', [$slug, $title, $description, $created_at]);
+    (`slug`, `title`, `description`, `start_at`, `end_at`)
+    VALUES (?, ?, ?, ?, ?)', [$slug, $title, $description, $start, $end]);
 }
 
-function update_volume($slug, $title, $description, $created_at) {  
+function update_volume($slug, $title, $description, $start, $end) {  
   return exec_query('UPDATE `volumes` 
-    SET `slug` = ?, `title` = ?, `description` = ?, `created_at` = ?
-    WHERE `id` = ?', [$slug, $title, $description, $created_at, $id]);
+    SET `slug` = ?, `title` = ?, `description` = ?, `start_at` = ?, `end_at` = ?
+    WHERE `id` = ?', [$slug, $title, $description, $start, $end, $id]);
 }
 
 function get_volume($id) {  
@@ -162,7 +159,7 @@ function get_volume_by_slug($slug) {
 }
 
 function latest_volume() {
-  return one('SELECT * FROM `volumes` ORDER BY `created_at` DESC', []);
+  return one('SELECT * FROM `volumes` ORDER BY `until` DESC', []);
 }
 
 // Contacts

@@ -1,0 +1,18 @@
+.type {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  font-weight: normal;
+  gap: 1em;
+  margin-top: 0.25em;
+  margin-bottom: 1.5em;
+}
+
+.type select {
+  width: auto;
+  flex-grow: 1;
+}
+
+.reply {
+  font-weight: bold;
+}

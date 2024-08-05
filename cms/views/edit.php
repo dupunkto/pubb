@@ -4,7 +4,9 @@
       type="text"
       name="slug"
       placeholder="Slug"
-      value="<?= @$slug ?>"
+      <?php if(isset($slug)) { ?>
+        value="<?= $slug ?>"
+      <?php } ?>
       pattern="[a-z0-9](-?[a-z0-9])*"
       required
     >
@@ -14,7 +16,9 @@
         type="text"
         name="title"
         placeholder="Title"
-        value="<?= @$title ?>"
+        <?php if(isset($title)) { ?>
+          value="<?= $title ?>"
+        <?php } ?>
         required
       >
 
@@ -27,7 +31,7 @@
         <input 
           type="submit"
           name="save"
-          <?php if($draft) { ?>
+          <?php if(isset($draft) && $draft) { ?>
             value="Save"
             title="Save as draft"
           <?php } else { ?>
@@ -42,7 +46,7 @@
         <input
           type="submit"
           name="publish"
-          <?php if($draft) { ?>
+          <?php if(isset($draft) && $draft) { ?>
             value="Publish"
             data-confirm="Are you sure? This will publicly publish your
             page, and notify all contacts that you've tagged."
@@ -53,13 +57,15 @@
       </p>
     </div>
 
-    <?php if(@$reply) { ?>
+    <?php if(isset($reply) && $reply) { ?>
+      <input type="hidden" name="reply" value="<?= $reply ?>">
+
       <p>
-        In reply to 
+        In reply to
         <a 
           href="<?= $reply ?>"
           target="_blank"
-          style="font-weight: bold"
+          class="reply"
         >
           <?= parse_host($reply) ?>
         </a>
@@ -71,5 +77,13 @@
     autofocus 
     required 
     placeholder="Write anything. Write everything." 
-    name="prose"><?= @$prose ?></textarea>
+    name="prose"><?php if(isset($prose)) echo $prose ?></textarea>
+
+  <label class="type">
+    Render as: 
+    <select name="type">
+      <option value="md">Markdown</option>
+      <option value="html">HTML</option>
+    </select>
+  </label>
 </form>

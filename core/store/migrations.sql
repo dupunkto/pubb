@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(90) NOT NULL,
   `type` text NOT NULL,
-  `volume_id` int(11) NOT NULL,
   `title` text DEFAULT NULL,
   `reply_to` text DEFAULT NULL,
   `path` text NOT NULL,
@@ -19,7 +18,8 @@ CREATE TABLE IF NOT EXISTS `volumes` (
   `slug` varchar(90) NOT NULL,
   `title` text DEFAULT NULL,
   `description` TEXT DEFAULT NULL,
-  `created_at` DATETIME NOT NULL DEFAULT current_timestamp,
+  `start_at` DATETIME NOT NULL,
+  `end_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
 );
 

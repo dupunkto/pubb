@@ -21,11 +21,13 @@ $view = path_join($views, "$slug.php");
 $controller = path_join($controllers, "$slug.php");
 $stylesheet = path_join($styles, "$slug.css");
 
+unset($slug);
+
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
     <?php include __DIR__ . "/partials/head.php" ?>
-    <title>Pebble</title>
+    <title>pebble</title>
     <style><?php include $stylesheet ?></style>
   </head>
   <body data-instant-intensity="mousedown">
