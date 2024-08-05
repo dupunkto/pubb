@@ -4,6 +4,14 @@
 define('STORE', __DIR__ . "/data");
 define('CONFIG', STORE . "/config.json");
 
+// Initialize data store if it doesn't exist yet.
+if(!is_dir(STORE)) {
+  mkdir(STORE) or die("Failed to initialize data store.");
+  mkdir(STORE . "/content") or die("Failed to initialize file store.");
+  mkdir(STORE . "/uploads") or die("Failed to initialize upload store.");
+  copy(__DIR__ . "/config.example.json", CONFIG);
+}
+
 $_DEFAULTS = [];
 
 if($json = @json_decode(file_get_contents(CONFIG))) {
