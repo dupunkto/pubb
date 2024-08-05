@@ -139,12 +139,41 @@ function render_code($page) {
 }
 
 function render_mdn($page) {
-  $parser = new Parsedown();
-  $content = \store\contents($page['path']);
+  $contents = \store\contents($page['path']);
+  $fancy = render_shortcodes($contents);
 
-  echo $parser->text($content);
+  $parser = new Parsedown();
+  echo $parser->text($fancy);
 }
 
 function render_html($page) {
-  echo \store\contents($page['path']);
+  $contents = \store\contents($page['path']);
+  echo render_shortcodes($contents);
+}
+
+function render_shortcodes($prose) { 
+  $shorts = [
+    '/--/' => "—",
+    '/\.\.\./' => "…",
+    '/\(TM\)/' => '™',
+    '/\(c\)/' => '©',
+    '/:back:/' => '←',
+    '/:go:/' => '→',
+    '/:x:/' => '×',
+    '/:love:/' => '♡',
+    '/:hot:/' => '🔥',
+    '/:sparkles:/' => '✨',
+    '/:rocket:/' => '🚀',
+    '/:email:/' => '✉️',
+    '/:video:/' => '📺',
+    '/:audio:/' => '🎙️',
+    '/:shrug:/' => '¯\\\\_(ツ)\\\\_/¯',
+    '/:dancing:/' => 'ᕕ( ᐛ )ᕗ',
+    '/:fight:/' => '(ง\'̀-\'́)ง',
+    '/:flex:/' => 'ᕦ(•̀‿•́ )ᕤ',
+    '/:happy:/' => '(✿◠‿◠)',
+    '/:cute:/' => '٩(｡•́‿•̀｡)۶',
+  ];
+
+  return preg_replace(array_keys($shorts), array_values($shorts), $prose);
 }
