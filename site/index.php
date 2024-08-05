@@ -58,7 +58,7 @@ if($not_found) {
     <header>
       <?php include "partials/header.php" ?>
     </header>
-    <main <?php if(isset($posts)) echo 'class="h-feed"' ?>>
+    <main <?php if(isset($pages)) echo 'class="h-feed"' ?>>
       <?php
 
         switch(true) {
@@ -67,8 +67,8 @@ if($not_found) {
             break;
 
           case isset($page):
-            \renderer\render_page($post);
-            \renderer\render_comment_section($post);
+            \renderer\render_page($page);
+            \renderer\render_comment_section($page);
             
             break;
 

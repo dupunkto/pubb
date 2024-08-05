@@ -31,9 +31,11 @@ function render_pages($pages) {
   foreach ($volumes as $volume) {
     ?>
       <section class="volume">
-        <h2 id="<?= $volume['slug'] ?>">
-          <?= $volume['title'] ?>
-        </h2>
+        <?php if($volume['id']) { ?>
+          <h2 id="<?= $volume['slug'] ?>">
+            <?= $volume['title'] ?>
+          </h2>
+        <?php } ?>
 
         <?php foreach ($volume['items'] as $page) {
           render_page($page, level: 3);
@@ -83,7 +85,7 @@ function render_comment_section($page) {
       <h2>Webmentions</h2>
 
       <ul>
-        <?php foreach(\store\list_mentions($page['id']) as $mention) { ?>
+        <?php foreach(\store\list_mentions("incoming", $page['id']) as $mention) { ?>
           <?php $url = $mention['source'] ?>
           <li><a href="<?= $url ?>"><?= parse_url($url, PHP_URL_HOST) ?></a></li>
         <?php } ?>

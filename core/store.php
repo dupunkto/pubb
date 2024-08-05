@@ -277,12 +277,12 @@ function list_all_mentions($origin) {
 
 function list_mentions($origin, $page_id) { 
   return all('SELECT * FROM `mentions` WHERE 
-    `page_id` = ? AND `origin` = ?', [$page_id, $origin]);
+    `page_id` = ? AND `type` = ?', [$page_id, $origin]);
 }
 
 function get_mention($origin, $page_id, $contact_id) {
   return one('SELECT * FROM `mentions` WHERE
-    `origin` = ? AND `page_id` = ? AND `contact_id` = ?',
+    `type` = ? AND `page_id` = ? AND `contact_id` = ?',
     [$origin, $page_id, $contact_id]);
 }
 
