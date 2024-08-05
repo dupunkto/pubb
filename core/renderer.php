@@ -107,7 +107,7 @@ function render_page_content($page) {
   match($page['type']) {
     "photo" => render_photo($page),
     "code" => render_code($page),
-    "markdown" => render_mdn($page),
+    "md" => render_mdn($page),
     "html" => render_html($page),
   };
 }

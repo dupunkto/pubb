@@ -1,6 +1,8 @@
 <?php
 // Generates site URLs.
 
+namespace urls;
+
 function page_url($page) {
   return CANONICAL . "/" . $page['slug'];
 }

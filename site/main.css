@@ -204,9 +204,10 @@ body > aside {
 body > footer {
   grid-area: footer;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
   text-align: center;
-  align-items: end;
   font-size: .9em;
   opacity: .85;
 
@@ -242,7 +243,7 @@ article {
   display: grid;
   align-items: end;
   margin-left: .7em;
-  grid-template-columns: 65px 83px auto;
+  grid-template-columns: 65px 107px auto;
   grid-template-areas:
     "h-card dt title"
     "nothing content content";
@@ -275,7 +276,7 @@ article {
     }
   }
 
- h2 {
+ .p-name {
     grid-area: title;
     font-size: 1em;
     font-weight: normal;
@@ -285,7 +286,7 @@ article {
     border: none;
   }
 
-  h2, time {
+  .p-name, time {
     color: #555;
   }
 
