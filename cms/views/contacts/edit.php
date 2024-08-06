@@ -42,8 +42,6 @@
     <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
     <input type="hidden" name="notify" value="false" />
 
-    <?php var_dump($contact['notify']) ?>
-
     <label>
       <input
         type="checkbox"

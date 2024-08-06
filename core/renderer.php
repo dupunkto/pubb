@@ -140,7 +140,7 @@ function render_code($page) {
 
 function render_mdn($page) {
   $contents = \store\contents($page['path']);
-  $fancy = render_shortcodes($contents);
+  $fancy = prerender_text($contents);
 
   $parser = new Parsedown();
   echo $parser->text($fancy);
@@ -148,7 +148,31 @@ function render_mdn($page) {
 
 function render_html($page) {
   $contents = \store\contents($page['path']);
-  echo render_shortcodes($contents);
+  echo prerender_text($contents);
+}
+
+function prerender_text($prose) {
+  $prose = render_tagged_contacts($prose);
+  $prose = render_shortcodes($prose);
+
+  return $prose;
+}
+
+function render_tagged_contacts($prose) {
+  $pattern = '/@([a-zA-Z0-9]+)/';
+  $replacement = '<a href="$1" class="mention">$1</a>';
+
+  $callback = function($matches) {
+    $contact = \store\get_contact_by_handle($matches[1]);
+
+    if($contact) {
+      return "<a href='//{$contact['domain']}' class='mention'>@{$contact['handle']}</a>";
+    } else {
+      return "@" . $matches[1];
+    }
+  };
+
+  return preg_replace_callback($pattern, $callback, $prose);
 }
 
 function render_shortcodes($prose) { 
