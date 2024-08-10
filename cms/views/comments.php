@@ -28,7 +28,7 @@
           <a href="<?= $url ?>"><?= parse_host($url) ?></a>
 
           <?php if($mention['contact_id']) { ?>
-            <a href="<?= $mention['contact_domain'] ?>">
+            <a href="//<?= $mention['contact_domain'] ?>">
               @<?= $mention['contact_handle'] ?>
             </a>
           <?php } ?>
@@ -60,7 +60,7 @@
     <li>
       <span>
         <?php if($mention['contact_id']) { ?>
-          <a href="<?= $mention['contact_domain'] ?>">
+          <a href="//<?= $mention['contact_domain'] ?>">
             @<?= $mention['contact_handle'] ?>
           </a>
         <?php } else { ?>
