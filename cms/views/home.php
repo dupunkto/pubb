@@ -10,7 +10,7 @@
 
 <ul>
   <li><a href="<?= CMS_CANONICAL ?>/pages">Pages</a></li>
-  <li><a href="<?= CMS_CANONICAL ?>/assets">Media</a></li>
+  <li><a href="<?= CMS_CANONICAL ?>/media">Media</a></li>
   <li><a href="<?= CMS_CANONICAL ?>/code">Gists</a></li>
   <li><a href="<?= CMS_CANONICAL ?>/comments">Comments</a></li>
   <li><a href="<?= CMS_CANONICAL ?>/contacts">Contacts</a></li>

@@ -26,6 +26,15 @@ CREATE TABLE IF NOT EXISTS `volumes` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `assets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `slug` varchar(90) NOT NULL,
+  `path` text NOT NULL,
+  `uploaded_at` datetime NOT NULL DEFAULT current_timestamp,
+  UNIQUE (`slug`),
+  PRIMARY KEY (`id`)
+);
+
 CREATE TABLE IF NOT EXISTS `mentions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
 

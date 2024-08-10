@@ -197,6 +197,29 @@ function last_updated() {
   return strtotime($latest_page['updated']);
 }
 
+// Assets
+
+function put_asset($slug, $path, $uploaded_at) {
+  return exec_query('INSERT INTO `assets` (`slug`, `path`, `uploaded_at`) 
+    VALUES (?, ?, ?)', [$slug, $path, $uploaded_at]);
+}
+
+function get_asset($id) {
+  return one('SELECT * FROM `assets` WHERE `id` = ?', [$id]);
+}
+
+function get_asset_by_slug($slug) {
+  return one('SELECT * FROM `assets` WHERE `slug` = ?', [$slug]);
+}
+
+function delete_asset($id) {
+  return exec_query('DELETE FROM `assets` WHERE id = ?', [$id]);
+}
+
+function list_assets() {
+  return all('SELECT * FROM `assets` ORDER BY `uploaded_at` DESC');
+}
+
 // Volumes
 
 function put_volume($slug, $title, $description, $start, $end) {  
@@ -220,7 +243,7 @@ function get_volume_by_slug($slug) {
 }
 
 function delete_volume($id) {
-  return exec_query('DELETE FROM `volumes` WHERE id = ? ', [$id]);
+  return exec_query('DELETE FROM `volumes` WHERE id = ?', [$id]);
 }
 
 function list_volumes() {

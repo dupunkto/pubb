@@ -1,0 +1,45 @@
+<header class="bar">
+  <h2>Media</h2>
+  <p class="button-group">
+    <a href="<?= CMS_CANONICAL ?>/media/upload" class="button">Upload asset</a>
+    <a href="<?= CMS_CANONICAL ?>/media/new" class="button">New post</a>
+  </p>
+</header>
+
+<?php $posts = \store\list_pages_by_type("photo", include_drafts: true) ?>
+
+<h3>Posts</h3>
+
+<ul>
+  <?php foreach($posts as $post) { ?>
+    <li>
+      <a href="<?= CMS_CANONICAL ?>/media/edit?id=<?= $post['id'] ?>">
+        <img src="<?= photo_url($asset) ?>" alt="#<?= asset['id'] ?>">
+      </a>
+    </li>
+  <?php } ?>
+</ul>
+
+<?php if(count($posts) <= 0) {
+  ?>
+    <p class="placeholder-text">No posts yet.</p>
+  <?php
+} ?>
+
+<?php $assets = \store\list_assets() ?>
+
+<h3>Assets</h3>
+
+<ul>
+  <?php foreach($assets as $asset) { ?>
+    <li href="<?= CMS_CANONICAL ?>/media/detail?id=<?= $post['id'] ?>">
+      <img src="<?= \urls\photo_url($asset) ?>" alt="#<?= $asset['id'] ?>">
+    </li>
+  <?php } ?>
+</ul>
+
+<?php if(count($assets) <= 0) {
+  ?>
+    <p class="placeholder-text">No assets yet.</p>
+  <?php
+} ?>

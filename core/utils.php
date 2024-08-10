@@ -168,13 +168,20 @@ function parse_ext($path) {
   return "." . strtolower(pathinfo($path, PATHINFO_EXTENSION));
 }
 
-// Casters
+// File handling
 
-function cast_boolean($value) {
-  return match ($value) {
-    "true" => true,
-    "false" => false,
-  };
+function restructure_files($data) {
+  $restructured = array();
+  $count = count($data['name']);
+  $keys = array_keys($data);
+
+  for ($i = 0; $i < $count; $i++)
+    foreach ($keys as $key) 
+      $restructured[$i][$key] = $data[$key][$i];
+
+  return $restructured;
+}
+
 }
 
 // Crypto
