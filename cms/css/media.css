@@ -1,0 +1,17 @@
+ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.2em;
+}
+
+img {
+  aspect-ratio: 1;
+  transition: filter 100ms;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
