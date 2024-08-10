@@ -192,6 +192,10 @@ function get_volume_by_slug($slug) {
   return one('SELECT * FROM `volumes` WHERE `slug` = ?', [$slug]);
 }
 
+function list_volumes() {
+  return all("SELECT * FROM `volumes` ORDER BY `start_at`");
+}
+
 function latest_volume() {
   return one('SELECT * FROM `volumes` ORDER BY `until` DESC', []);
 }

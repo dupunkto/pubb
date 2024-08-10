@@ -256,12 +256,36 @@ ul {
   list-style: none;
 }
 
-ul a {
+ul li:has(.actions),
+ul li:not(:has(.actions)) a {
   display: block;
+  text-decoration: none;
   padding: 0.7em 1em;
   margin-bottom: 0.25em;
-  text-decoration: none;
   background: light-dark(#f1f1f1, #2b2b33);
+}
+
+ul li:has(.actions) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0.7em;
+}
+
+ul li .actions a {
+  background: black;
+  color: white;
+  padding: 0.5em 0.75em;
+  margin-left: 0.25em;
+  font-size: 0.8em;
+  line-height: 1.5;
+  text-transform: lowercase;
+  text-decoration: none;
+  cursor: default;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .button-group {
@@ -311,22 +335,15 @@ label:not(:has(input)) {
   font-weight: bold;
 }
 
-input[name="title"] {
-  font-size: 1.3em;
-}
-
-input[name="slug"] {
-  font-size: 1em;
-  margin-bottom: 0.2em;
+input[type="date"] {
+  margin-left: 1em;
 }
 
 textarea {
-  padding: 0.6em;
+  padding-inline: 7px;
   width: 100%;
-  height: 100%;
-  height: 650px;
-  resize: none;
-  font-size: 1em;
+  resize: vertical;
+  font: inherit;
 }
 
 .button-group {
