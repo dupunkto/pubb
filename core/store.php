@@ -178,7 +178,7 @@ function put_volume($slug, $title, $description, $start, $end) {
     VALUES (?, ?, ?, ?, ?)', [$slug, $title, $description, $start, $end]);
 }
 
-function update_volume($slug, $title, $description, $start, $end) {  
+function update_volume($id, $slug, $title, $description, $start, $end) {  
   return exec_query('UPDATE `volumes` 
     SET `slug` = ?, `title` = ?, `description` = ?, `start_at` = ?, `end_at` = ?
     WHERE `id` = ?', [$slug, $title, $description, $start, $end, $id]);
@@ -190,6 +190,10 @@ function get_volume($id) {
 
 function get_volume_by_slug($slug) {
   return one('SELECT * FROM `volumes` WHERE `slug` = ?', [$slug]);
+}
+
+function delete_volume($id) {
+  return exec_query('DELETE FROM `volumes` WHERE id = ? ', [$id]);
 }
 
 function list_volumes() {

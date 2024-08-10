@@ -10,9 +10,6 @@ if(isset($_POST['edit'])) {
   $handle = strip_prefix($_POST['handle'], "@");
   $notify = cast_boolean($_POST['notify']);
 
-  var_dump($_POST['notify']);
-  var_dump($notify);
-
   \store\update_contact(
     id: $_POST['id'],
     handle: $handle,
