@@ -11,18 +11,22 @@ $_NODE = match($_SERVER['HTTP_HOST']) {
   default => die("Unknown host!")
 };
 
+function serve_file($path) {
+  $mime_type = parse_mime_type($path) ?? "text/html";
+
+  header("Content-Type: {$mime_type}");
+  include $path;
+  exit;
+}
+
 $requested_file = path_join(__DIR__, $_NODE, $path);
-$mime_type = parse_mime_type($requested_file) ?? "text/html";
 
 switch(true) {
   case is_file($requested_file) and is_builtin():
     // Serve file as-is. Only applies to the development server,
     // in production this will be handled by Apache directly.
 
-    header("Content-Type: {$mime_type}");
-    include $requested_file;
-
-    exit;
+    serve_file($requested_file);
 
   // Serve RSS feeds. Again, only in development.
   case route('@/rss.xml$@'): include __DIR__ . "/feeds/rss.php"; exit;
@@ -36,6 +40,13 @@ switch(true) {
   
     include __DIR__ . "/endpoint/{$params[1]}.php";
     exit;
+
+  case route('@/uploads/(.*)$@'):
+    // Serve (image) file as-is. Only applies to the development server,
+    // in production this will be handled by Apache directly.
+
+    ['path' => $path] = \store\get_asset_by_slug($params[1]);
+    serve_file(path_join(STORE, $path));
 
   default:
     // Depending on the environment, run either the 

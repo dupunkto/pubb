@@ -7,8 +7,8 @@ function page_url($page) {
   return CANONICAL . "/" . $page['slug'];
 }
 
-function photo_url($page) {
-  return page_url($page);
+function photo_url($post) {
+  return CANONICAL . "/uploads/" . $post['slug'];
 }
 
 function type_url($type) {
