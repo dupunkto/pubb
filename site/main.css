@@ -83,7 +83,7 @@ article {
   display: grid;
   align-items: end;
   margin-left: .7em;
-  grid-template-columns: 65px 107px auto;
+  grid-template-columns: 65px 10.75ch auto;
   grid-template-areas:
     "h-card dt title"
     "nothing content content";
