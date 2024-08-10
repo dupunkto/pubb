@@ -16,7 +16,7 @@ textarea {
   resize: none;
 }
 
-.type {
+.options {
   display: flex;
   align-items: center;
   font-size: 0.9em;
@@ -26,7 +26,7 @@ textarea {
   margin-bottom: 1.5em;
 }
 
-.type select {
+.options select {
   width: auto;
   flex-grow: 1;
 }

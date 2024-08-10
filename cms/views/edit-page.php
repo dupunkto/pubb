@@ -73,22 +73,25 @@
     placeholder="Write anything. Write everything." 
     name="prose"><?php if(isset($prose)) echo $prose ?></textarea>
 
-  <p class="type">
+  <p class="options">
     <?php if(isset($id)) { ?>
       <input name="id" value="<?= $id ?>" type="hidden">
       <a href="<?= CMS_CANONICAL ?>/delete?id=<?= $id ?>" class="button">Delete</a>
     <?php } ?>
 
+    <label for="type">Visibility:</label>
+
+    <?php \forms\options("visibility", [
+      "public" => "Public", 
+      "rss-only" => "RSS-only", 
+      "email-only" => "Email-only"
+    ], @$visibility) ?>
+
     <label for="type">Render as:</label>
 
-    <?php $types = ["md" => "Markdown", "html" => "HTML"] ?>
-
-    <select name="type">
-      <?php foreach($types as $value => $label) { ?>
-        <option value="<?= $value ?>" <?php if(isset($type) && $type == $value) echo "selected" ?>>
-          <?= $label ?>
-        </option>
-      <?php } ?>
-    </select>    
+    <?php \forms\options("type", [
+      "md" => "Markdown", 
+      "html" => "HTML"
+    ], @$type) ?>
   </p>
 </form>
