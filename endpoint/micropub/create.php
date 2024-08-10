@@ -20,6 +20,7 @@ if(isset($_FILES['photo'])) {
   if(isset($_POST['photo']))
     syslog(LOG_WARN, "Micropub: you provided both a photo upload and URL. The URL will be ignored.");
 
+  $client_name = $_FILES['photo']['name'];
   $tmp_file = $_FILES['photo']['tmp_name'];
 
   // This checks if someone isn't maliciously trying
@@ -27,7 +28,7 @@ if(isset($_FILES['photo'])) {
   if(!is_uploaded_file($tmp_file) or !getimagesize($tmp_file)) 
     json_error(400, "Bad photo upload. Try again.");
  
-  $slug = uniqid("IMG_");
+  $slug = \store\unique_slug('assets', slugify($client_name));
   $path = \store\copy_file($tmp_file) 
     or json_error(500, "Something went wrong while saving your photo.");
 
@@ -54,7 +55,7 @@ if(isset($_FILES['photo'])) {
     $url = $_POST['photo'];
   }
 
-  $slug = uniqid("IMG_");
+  $slug = \store\unique_slug('assets', 'external');
 
   \store\put_page(
     slug: $slug,
@@ -73,7 +74,9 @@ if(isset($_FILES['photo'])) {
 } else {
   if(!$content) json_error(400, "Missing 'content' or 'summary' value in post payload.");
 
-  $slug = uniqid();
+  if($title) $slug = \store\unique_slug('assets', slugify($title));
+  else $slug = uniqid();
+
   $path = \store\write_file($content, "md");
 
   \store\put_page(

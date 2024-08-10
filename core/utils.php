@@ -182,6 +182,18 @@ function restructure_files($data) {
   return $restructured;
 }
 
+function slugify($text, $length = false) {
+  $text = strtr($text, UNICODE_TABLE);
+  $text = preg_replace('~[^\pL\d.]+~u', '-', $text);
+  $text = preg_replace('~[^-\w.]+~', '-', $text);
+  $text = trim($text, '-');
+  $text = preg_replace('~-+~', '-', $text);
+  $text = strtolower($text);
+
+  if (isset($length) && $length < strlen($text))
+    $text = rtrim(substr($text, 0, $length), '-');
+
+  return $text;
 }
 
 // Crypto

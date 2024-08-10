@@ -364,6 +364,19 @@ function list_all_views() {
   return all('SELECT * FROM `views` ORDER BY `datetime` DESC');
 }
 
+// Uniqueness
+
+function unique_slug($table, $slug) {
+  $num = 1;
+  $try = $slug;
+  while(slug_taken($try)) $try = $slug . "-" . $num++;
+  return $try;
+}
+
+function slug_taken($table, $slug) {
+  return exec_query('SELECT slug FROM $table WHERE slug = ?', [$slug]) != false;
+}
+
 // File-based storage
 
 function write_file($contents, $ext) {
