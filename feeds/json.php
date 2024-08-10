@@ -2,8 +2,8 @@
 // JSON feed, because. it. is. so. much. simpler.
 // (Who tf thought XML was a good idea?!?)
 
-include __DIR__ . "/../core.php";
-include __DIR__ . "/caching.php";
+require_once __DIR__ . "/../core.php";
+require_once __DIR__ . "/caching.php";
 
 header("Content-Type: application/feed+json; charset=UTF-8");
 

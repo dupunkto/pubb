@@ -1,8 +1,8 @@
 <?php
 // RSS feed, because I <3 RSS :)
 
-include __DIR__ . "/../core.php";
-include __DIR__ . "/caching.php";
+require_once __DIR__ . "/../core.php";
+require_once __DIR__ . "/caching.php";
 
 header("Content-Type: application/rss+xml; charset=UTF-8");
 echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';

@@ -167,7 +167,7 @@ function list_pages_by_type($type, $include_drafts = false) {
 
 function last_updated() {
   $latest_page = one('SELECT `updated` FROM `pages` ORDER BY `updated` DESC', []);
-  return new DateTime($latest_page['updated']);
+  return strtotime($latest_page['updated']);
 }
 
 // Volumes
