@@ -49,6 +49,40 @@
   <?php
 } ?>
 
+<?php
+  $mentions = \store\list_all_mentions('outgoing');
+?>
+
 <h3>Outgoing</h3>
 
-<p class="placeholder-text">Not implemented yet.</p>
+<ul>
+  <?php foreach($mentions as $mention) { ?>
+    <li>
+      <span>
+        <?php if($mention['contact_id']) { ?>
+          <a href="<?= $mention['contact_domain'] ?>">
+            @<?= $mention['contact_handle'] ?>
+          </a>
+        <?php } else { ?>
+          <a href="<?= escape_attribute($mention['source']) ?>">
+            <?= parse_host($mention['source']) ?>
+          </a>
+        <?php } ?>
+
+        in <cite><?= $mention['page_title'] ?></cite>
+      </span>
+
+      <span class="actions">
+        <a href="<?= CMS_CANONICAL . "/edit?id=" . $mention['page_id'] ?>">
+          Edit page
+        </a>
+      </span>
+    </li>
+  <?php } ?>
+</ul>
+
+<?php if(count($mentions) <= 0) {
+  ?>
+    <p class="placeholder-text">No comments yet.</p>
+  <?php
+} ?>
