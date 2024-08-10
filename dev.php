@@ -5,7 +5,11 @@
 require_once __DIR__ . "/core.php";
 require_once __DIR__ . "/router.php";
 
-$_NODE = getenv("NODE");
+$_NODE = match($_SERVER['HTTP_HOST']) {
+  CMS_HOST => "cms",
+  HOST => "site",
+  default => die("Unknown host!")
+};
 
 $requested_file = path_join(__DIR__, $_NODE, $path);
 $mime_type = parse_mime_type($requested_file) ?? "text/html";

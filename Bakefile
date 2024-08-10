@@ -2,19 +2,11 @@
 
 PORT=4000
 ENTRYPOINT="dev.php"
-SERVE="php -S 0.0.0.0:$PORT $ENTRYPOINT"
 
 # Configure the PHP server to start two
 # concurrent threads.
 export PHP_CLI_SERVER_WORKERS=2
 
 serve() {
-  echo "This project can either run a site node or a CMS node."
-  echo "These are supposed to run on separate domains in production."
-  echo
-  echo "Run either 'bake cms' or 'bake site'."
-  exit 1
+  php -S 0.0.0.0:$PORT $ENTRYPOINT
 }
-
-cms() { NODE="cms" $SERVE ; }
-site() { NODE="site" $SERVE ; }
