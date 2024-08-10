@@ -4,6 +4,8 @@
 require_once __DIR__ . "/../core.php";
 require_once __DIR__ . "/../router.php";
 
+
+include __DIR__ . "/caching.php";
 include __DIR__ . "/headers.php";
 
 $not_found = false;

@@ -6,6 +6,7 @@ require_once __DIR__ . "/../core.php";
 require_once __DIR__ . "/../router.php";
 
 include __DIR__ . "/auth.php";
+require __DIR__ . "/mvc.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $slug = strip_prefix($path, "/");
@@ -14,8 +15,6 @@ if($slug == "") $slug = "home";
 // This is dangerous. But the user has already been
 // authenticated at this point, so technically we can trust them.
 // So let's leave it in. I like living on the edge.
-
-include __DIR__ . "/mvc.php";
 
 $view = path_join($views, "$slug.php");
 $controller = path_join($controllers, "$slug.php");

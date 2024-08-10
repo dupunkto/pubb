@@ -3,8 +3,8 @@
 
 namespace store;
 
-require_once __DIR__ . "/store/sqlite.php";
-#require_once __DIR__ . "/store/mysql.php";
+require __DIR__ . "/store/sqlite.php";
+#require __DIR__ . "/store/mysql.php";
 
 define('DBH', establish_connection());
 
@@ -23,10 +23,10 @@ function put_page(
   $type,
   $title,
   $published,
+  $updated,
   $path,
   $draft,
   $visibility,
-  $updated,
   $caption,
   $reply_to
 ) {
@@ -352,13 +352,13 @@ function write_file($contents, $ext) {
   return relative_to($path, STORE);
 }
 
-function copy_file($source, $dest) {
+function copy_file($source) {
   // Determine the destination filename in the store based
   // on the md5 hash of the file contents. If the file already
   // exists, return that one. Otherwise, write it.
   $path = path_from_hash($source, parse_ext($source));
 
-  if(file_exists($path) or move_uploaded_file($tmp_file, $path)) {
+  if(file_exists($path) or move_uploaded_file($source, $path)) {
     return relative_to($path, STORE);
   } else {
     return false;
