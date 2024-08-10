@@ -25,7 +25,7 @@
       <p class="button-group">
         <?php if(isset($id)) { ?>
           <input name="id" value="<?= $id ?>" type="hidden">
-          <a href="<?= CMS_CANONICAL ?>/delete?id=<?= $id ?>" class="button">Delete</a>
+          <a href="<?= CMS_CANONICAL ?>/code/delete?id=<?= $id ?>" class="button">rm&nbsp;&#8209;rf</a>
         <?php } ?>
 
         <input type="submit" name="save" value=":wq">
