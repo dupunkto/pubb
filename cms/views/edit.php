@@ -82,9 +82,14 @@
 
     <label for="type">Render as:</label>
 
+    <?php $types = ["md" => "Markdown", "html" => "HTML"] ?>
+
     <select name="type">
-      <option value="md">Markdown</option>
-      <option value="html">HTML</option>
+      <?php foreach($types as $value => $label) { ?>
+        <option value="<?= $value ?>" <?php if(isset($type) && $type == $value) echo "selected" ?>>
+          <?= $label ?>
+        </option>
+      <?php } ?>
     </select>    
   </p>
 </form>

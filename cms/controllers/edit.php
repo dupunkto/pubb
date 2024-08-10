@@ -32,6 +32,7 @@ $id = $_GET['id'];
 $page = \store\get_page($id) or redirect("/pages");
 
 $slug = $page['slug'];
+$type = $page['type'];
 $title = $page['title'];
 $prose = \store\contents($page['path']);
 $draft = $page['draft'];
