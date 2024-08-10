@@ -26,7 +26,7 @@ switch(true) {
 
   case route('@/(photos|code)$@'):
     $type = $page_types[$params[1]];
-    $pages = \store\list_pages_by_type($type);
+    $pages = \store\list_pages_by_type($type, visibility: 'public');
 
     break;
 

@@ -11,8 +11,12 @@ define('DBH', establish_connection());
 // Pages
 
 // A page type defines the content type for the 
-// referenced file in the `type` column.
+// referenced file in the `path` column.
 define('TYPES', ["md", "html", "photo", "code"]);
+
+// The visibility of a page determines where
+// it'll be rendered.
+define('VISIBILITY', ["public", "rss-only"]);
 
 function put_page(
   $slug,
@@ -21,12 +25,14 @@ function put_page(
   $published,
   $path,
   $draft,
+  $visibility,
   $updated,
   $caption,
-  $reply_to,
+  $reply_to
 ) {
   in_array($type, TYPES) or die("$type does not exist");
-  in_store($path)        or die("$path does not exist");
+  in_array($visibility, VISIBILITY) or die("$visibility does not exist");
+  in_store($path) or die("$path does not exist");
 
   return exec_query('INSERT INTO `pages` (
     `slug`, 
@@ -35,16 +41,18 @@ function put_page(
     `reply_to`,
     `path`,
     `draft`,
+    `visibility`,
     `caption`,
     `published`,
     `updated`
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     $slug,
     $type,
     $title,
     $reply_to,
     $path,
     $draft,
+    $visibility,
     $caption,
     $published,
     $updated
@@ -58,12 +66,14 @@ function update_page(
   $title,
   $path,
   $draft,
+  $visibility,
   $updated,
   $caption,
   $reply_to,
 ) {
   in_array($type, TYPES) or die("$type does not exist");
-  in_store($path)        or die("$path does not exist");
+  in_array($visibility, VISIBILITY) or die("$visibility does not exist");
+  in_store($path) or die("$path does not exist");
 
   return exec_query('UPDATE `pages` SET
     `slug` = ?,
@@ -72,6 +82,7 @@ function update_page(
     `reply_to` = ?,
     `path` = ?,
     `draft` = ?,
+    `visibility` = ?,
     `caption` = ?,
     `updated` = ?
   WHERE id = ?', [
@@ -81,6 +92,7 @@ function update_page(
     $reply_to,
     $path,
     $draft,
+    $visibility,
     $caption,
     $updated,
     $id
@@ -99,7 +111,15 @@ function delete_page($id) {
   return exec_query('DELETE FROM `pages` WHERE id = ? ', [$id]);
 }
 
-function list_pages($include_drafts = false) {
+function list_pages($visibility = 'all', $include_drafts = false) {
+  (in_array($visibility, VISIBILITY) || $visibility == 'all') 
+    or die("$visibility does not exist");
+
+  $condition = implode(" AND ", drop_empty([
+    ($include_drafts ? '' : 'pages.draft != 1'),
+    ($visibility == 'all' ? '' : "pages.visibility == '$visibility'")
+  ]));
+
   return all('SELECT
     pages.id,
     pages.slug,
@@ -121,16 +141,14 @@ function list_pages($include_drafts = false) {
     pages
   LEFT JOIN
     volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
-  ' . ($include_drafts ? '' :
-    'WHERE pages.draft != 1'
-  ) . '
+  ' . ($condition == "" ? '' : "WHERE $condition") . '
   ORDER BY 
     pages.published DESC,
     pages.id
   ');
 }
 
-function list_pages_by_type($types, $include_drafts = false) {
+function list_pages_by_type($types, $visibility = 'all', $include_drafts = false) {
   if(is_string($types)) $types = [$types];
   is_array($types) or die("not an array");
 
@@ -139,6 +157,12 @@ function list_pages_by_type($types, $include_drafts = false) {
   }
 
   $placeholders = implode(',', array_fill(0, count($types), '?'));
+
+  $condition = implode(" AND ", drop_empty([
+    "pages.type IN ($placeholders)",
+    ($include_drafts ? null : 'pages.draft != 1'),
+    ($visibility == 'all' ? null : "pages.visibility == '$visibility'")
+  ]));
 
   return all('SELECT 
     pages.id,
@@ -161,10 +185,7 @@ function list_pages_by_type($types, $include_drafts = false) {
     pages
   LEFT JOIN
     volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
-  WHERE
-    pages.type IN (' . $placeholders . ') ' . ($include_drafts ? '' : 
-    'AND pages.draft != 1'
-  ) . '
+  WHERE ' . $condition . '
   ORDER BY 
     pages.published DESC,
     pages.id

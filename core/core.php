@@ -11,7 +11,7 @@ function get_page_by_url($url) {
   if($slug) return \store\get_page_by_slug($slug);
 }
 
-function new_page($slug, $type, $title, $prose, $draft = false, $reply_to = null) {
+function new_page($slug, $type, $title, $prose, $visibility, $draft = false, $reply_to = null) {
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($prose, ".".$type);
 
@@ -23,12 +23,13 @@ function new_page($slug, $type, $title, $prose, $draft = false, $reply_to = null
     updated: $now,
     path: $path,
     draft: $draft,
+    visibility:  $visibility,
     reply_to: $reply_to,
     caption: null,
   );
 }
 
-function edit_page($id, $slug, $type, $title, $prose, $draft = false, $reply_to = null) {
+function edit_page($id, $slug, $type, $title, $prose, $visibility, $draft = false, $reply_to = null) {
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($prose, ".".$type);
 
@@ -40,6 +41,7 @@ function edit_page($id, $slug, $type, $title, $prose, $draft = false, $reply_to 
     updated: $now,
     path: $path,
     draft: $draft,
+    visibility: $visibility,
     reply_to: $reply_to,
     caption: null,
   );
@@ -58,7 +60,8 @@ function new_gist($filename, $code, $caption) {
     published: $now,
     updated: $now,
     path: $path,
-    draft: false,
+    draft: 0,
+    visibility: 'public',
     reply_to: null,
     caption: $caption,
   );
@@ -75,7 +78,8 @@ function edit_gist($id, $filename, $code, $caption) {
     title: null,
     updated: $now,
     path: $path,
-    draft: false,
+    draft: 0,
+    visibility: 'public',
     reply_to: null,
     caption: $caption,
   );

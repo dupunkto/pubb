@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `reply_to` text DEFAULT NULL,
   `path` text NOT NULL,
   `draft` int(1) NOT NULL DEFAULT 0,
-  -- 'public', 'rss-only', 'email-only'
+  -- 'public', 'rss-only'
   `visibility` text NOT NULL,
   `caption` text DEFAULT NULL,
   `published` datetime NOT NULL DEFAULT current_timestamp,

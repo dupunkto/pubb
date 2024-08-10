@@ -103,6 +103,12 @@ function unprefix_keys($array, $prefix) {
   return $filtered;
 }
 
+function drop_empty($array) {
+  return array_filter($array, function($value) {
+    return !in_array($value, ["", null, false]);
+  });
+}
+
 // URL utilities
 
 function normalize_url($url) {
