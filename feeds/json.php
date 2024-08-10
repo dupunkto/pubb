@@ -11,14 +11,18 @@ $pages = \store\list_pages();
 $entries = [];
 
 foreach($pages as $page) {
-  $entries[] = array(
+  $entry = [
     "id" => $page['id'],
     "url" => \urls\page_url($page),
-    "title" => $page['title'],
     "content_html" => render_to_str($page),
     "date_published" => $page['published'] . "Z",
     "date_modified" => $page['updated'] . "Z"
-  );
+  ];
+
+  if($page['title']) $entry['title'] = $page['title'];
+  elseif($page['type'] == "code") $entry['title'] = $page['slug'];
+
+  $entries[] = $entry;
 }
 
 function render_to_str($page) {

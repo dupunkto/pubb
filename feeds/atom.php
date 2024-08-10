@@ -36,7 +36,10 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
     foreach($pages as $page) {
       ?>
         <entry>
-          <title><?= $page['title'] ?></title>
+          <?php 
+            if($page['title']) wrap("title", $page['title']);
+            elseif($page['type'] == "code") wrap("title", $page['slug']);
+          ?>
           <id><?= $page['id'] ?></id>
           <updated><?= $page['updated'] ?>Z</updated>
           <link rel="alternate" href="<?= \urls\page_url($page) ?>"/>

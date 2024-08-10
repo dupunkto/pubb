@@ -35,7 +35,10 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
       foreach($pages as $page) {
         ?>
           <item>
-            <title><?= $page['title'] ?></title>
+            <?php 
+              if($page['title']) wrap("title", $page['title']);
+              elseif($page['type'] == "code") wrap("title", $page['slug']);
+            ?>
             <guid><?= $page['id'] ?></guid>
             <pubDate><?= date("r", strtotime($page['published'])) ?></pubDate>
             <link><?= \urls\page_url($page) ?></link>
