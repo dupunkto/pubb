@@ -32,9 +32,7 @@
           <?php } else { ?>
             value="Save as draft"
             title="Convert to draft and save changes"
-            data-confirm="Are you sure? This will unpublish your page and 
-            save any changes you made as draft. All links to this page will
-            stop working too."
+            data-confirm="Are you sure? This will unpublish your page and save any changes you made as draft. All links to this page will stop working too."
           <?php } ?>
         >
 
@@ -43,8 +41,7 @@
           name="publish"
           <?php if(isset($draft) && $draft) { ?>
             value="Publish"
-            data-confirm="Are you sure? This will publicly publish your
-            page, and notify all contacts that you've tagged."
+            data-confirm="Are you sure? This will publicly publish your page, and notify all contacts that you've tagged."
           <?php } else { ?>
             value="Save"
           <?php } ?>

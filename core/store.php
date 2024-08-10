@@ -249,7 +249,7 @@ function put_mention($origin, $contact_id, $page_id, $source) {
   get_page($page_id)         or die("page with ID $page_id does not exist");
   get_contact($contact_id)   or die("contact with ID $contact_id does not exist");
 
-  return exec_query('INSERT INTO `mentions` (`origin`, `contact_id`, `page_id`, `source`) 
+  return exec_query('INSERT INTO `mentions` (`type`, `contact_id`, `page_id`, `source`) 
     VALUES (?, ?, ?, ?)', [$origin, $contact_id, $page_id, $source]);
 }
 

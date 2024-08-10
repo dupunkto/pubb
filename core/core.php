@@ -70,7 +70,7 @@ function send_mentions($page) {
   
   if (preg_match_all($pattern, $content, $handles)) {
     foreach($handles[1] as $handle) 
-      send_mention($slug, $handle);
+      send_mention($page, $handle);
   }
 }
 
@@ -80,13 +80,13 @@ function send_mention($page, $handle) {
   if(!$contact) return false;
   if(get_sent_mention($page, $contact)) return true;
 
-  if(\mailer\send_mention($page, $contact)) {
+  if(\mailer\send_mention($page, $contact)) { 
     \store\put_mention(
       origin: 'outgoing',
       page_id: $page['id'],
       contact_id: $contact['id'],
       source: \urls\page_url($page),
-    );
+    ) or die("Something went wrong."); 
   }
 }
 
