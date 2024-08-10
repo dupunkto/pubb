@@ -45,6 +45,42 @@ function edit_page($id, $slug, $type, $title, $prose, $draft = false, $reply_to 
   );
 }
 
+// Gists
+
+function new_gist($filename, $code, $caption) {
+  $now = date("Y-m-d H:i:s");
+  $path = \store\write_file($code, $filename);
+
+  return \store\put_page(
+    slug: $filename,
+    type: 'code',
+    title: null,
+    published: $now,
+    updated: $now,
+    path: $path,
+    draft: false,
+    reply_to: null,
+    caption: $caption,
+  );
+}
+
+function edit_gist($id, $filename, $code, $caption) {
+  $now = date("Y-m-d H:i:s");
+  $path = \store\write_file($code, $filename);
+
+  return \store\update_page(
+    id: $id,
+    slug: $filename,
+    type: 'code',
+    title: null,
+    updated: $now,
+    path: $path,
+    draft: false,
+    reply_to: null,
+    caption: $caption,
+  );
+}
+
 // @mentions
 
 function record_mention($page, $source) { 

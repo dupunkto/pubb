@@ -37,4 +37,4 @@ $prose = \store\contents($page['path']);
 $draft = $page['draft'];
 $reply = $page['reply_to'];
 
-include path_join($views, "edit.php");
+include path_join($views, "edit-page.php");

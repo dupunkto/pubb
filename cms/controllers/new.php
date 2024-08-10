@@ -21,7 +21,7 @@ if(isset($_POST['save'])) {
   }
   
   if($saved) complete("Saved page.", to: "/pages");
-  else fail("Failed to save page.", to: "/new");
+  else fail("Failed to save page.");
 }
 
 $draft = true;
@@ -30,4 +30,4 @@ if(isset($_GET['reply'])) {
   $reply = $_GET['reply'];
 }
 
-include path_join($views, "edit.php");
+include path_join($views, "edit-page.php");
