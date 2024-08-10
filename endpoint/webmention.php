@@ -1,6 +1,7 @@
 <?php
 // Webmention endpoint for cross-site commenting.
 
+require_once __DIR__ . "/common.php";
 require_once __DIR__ . "/../core.php";
 
 if(!isset($_POST['source'])) {

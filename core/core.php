@@ -138,6 +138,26 @@ function get_sent_mention($page, $contact) {
   );
 }
 
+// Webmentions & pingbacks
+
+function send_webmentions($page) {
+  $source_url = page_url($page);
+  $targets = []; // TODO(robin): get all URLs from page.
+
+  foreach($targets as $target_url) {
+    \webmentions\send_webmention($source_url, $target_url);
+  }
+}
+
+function send_pingbacks($page) {
+  $source_url = page_url($page);
+  $targets = []; // TODO(robin): get all URLs from page.
+
+  foreach($targets as $target_url) {
+    \pingbacks\send_pingback($source_url, $target_url);
+  }
+}
+
 // Method to debug the micropub endpoint. It crashes the 
 // endpoint and logs the request to log.json
 function debug_endpoint() {

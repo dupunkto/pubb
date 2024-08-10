@@ -4,6 +4,7 @@
 // Based on Inklings-io/selfauth, which is
 // dual-licensed CC0 and MIT.
 
+require_once __DIR__ . "/common.php";
 require_once __DIR__ . "/../core.php";
 
 if(isset($_GET['metadata'])) {
@@ -13,8 +14,6 @@ if(isset($_GET['metadata'])) {
     "token_endpoint" => TOKEN_ENDPOINT,
     "scopes_supported" => SUPPORTED_SCOPES,
   ]);
-
-  exit;
 }
 
 if(!defined('ENCRYPTION_KEY') or !defined('HASHED_PASSPHRASE')) {

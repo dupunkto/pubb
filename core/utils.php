@@ -4,11 +4,15 @@
 // Basically a dumping-ground for function I'd wish were
 // just in the PHP standard library.
 
-// Elixir fanboy :>
+// Elixir+Rust fanboy :>
 
 function dbg($input) {
   var_dump($input);
   return $input;
+}
+
+function todo($msg) {
+  die("TODO: $msg");
 }
 
 // String utilities

@@ -18,6 +18,8 @@ if(isset($_POST['save'])) {
    $page = \store\get_page_by_slug($_POST['slug']) 
       or die("Inserting post into database went wrong; couldn't lookup by slug.");
 
+    \core\send_pingbacks($page);
+    \core\send_webmentions($page);
     \core\send_mentions($page);
   }
   
