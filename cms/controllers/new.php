@@ -1,8 +1,8 @@
 <?php
 // Editor for new posts.
 
-if(isset($_POST['save']) || isset($_POST['publish'])) {
-  $draft = isset($_POST['save']);
+if(isset($_POST['save'])) {
+  $draft = isset($_GET['draft']);
 
   $saved = \core\new_page(
     slug: $_POST['slug'],
@@ -18,7 +18,7 @@ if(isset($_POST['save']) || isset($_POST['publish'])) {
       or die("Inserting post into database went wrong; couldn't lookup by slug.");
 
     \core\send_mentions($page);
-  } 
+  }
   
   if($saved) complete("Saved page.", to: "/pages");
   else fail("Failed to save page.", to: "/new");

@@ -1,9 +1,8 @@
 <?php
 // Editor for existing posts.
 
-if(isset($_POST['save']) || isset($_POST['publish'])) {
-  $was_draft = \store\get_page($_POST['id'])['draft'];
-  $draft = isset($_POST['save']);
+if(isset($_POST['save'])) {
+  $draft = isset($_GET['draft']);
 
   $updated = \core\edit_page(
     id: $_POST['id'],
@@ -15,7 +14,7 @@ if(isset($_POST['save']) || isset($_POST['publish'])) {
     reply_to: @$_POST['reply']
   );
 
-  if($updated && $was_draft && !$draft) { 
+  if($updated && !$draft) { 
    $page = \store\get_page_by_slug($_POST['slug']) 
       or die("Inserting and/or updating post in the database went wrong; couldn't lookup by slug.");
 

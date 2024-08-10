@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form method="post">
   <header>
     <input
       type="text"
@@ -23,9 +23,10 @@
       >
 
       <p class="button-group">
-        <input 
+        <input
           type="submit"
           name="save"
+          formaction="?draft"
           <?php if(isset($draft) && $draft) { ?>
             value="Save"
             title="Save as draft"
@@ -38,7 +39,8 @@
 
         <input
           type="submit"
-          name="publish"
+          name="save"
+          formaction="?publish"
           <?php if(isset($draft) && $draft) { ?>
             value="Publish"
             data-confirm="Are you sure? This will publicly publish your page, and notify all contacts that you've tagged."
