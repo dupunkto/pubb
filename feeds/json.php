@@ -23,7 +23,7 @@ foreach($pages as $page) {
 
 function render_to_str($page) {
   ob_start();
-  \renderer\render_page_content($page);
+  \html\render_page_content($page);
   return ob_get_clean();
 }
 

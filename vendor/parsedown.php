@@ -2,7 +2,7 @@
 // Parsedown <http://parsedown.org>
 // Written by Emanuil Rusev, MIT licensed.
 
-namespace renderer;
+namespace html;
 
 // Vendored because I hate PHP package management.
 // Sorry!

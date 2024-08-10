@@ -41,7 +41,7 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
           <updated><?= $page['updated'] ?>Z</updated>
           <link rel="alternate" href="<?= \urls\page_url($page) ?>"/>
           <content>
-            <![CDATA[ <?php \renderer\render_page_content($page); ?> ]]>
+            <![CDATA[ <?php \html\render_page_content($page); ?> ]]>
           </content>
         </entry>
       <?php

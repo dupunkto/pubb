@@ -67,17 +67,17 @@ if($not_found) {
             break;
 
           case isset($page):
-            \renderer\render_page($page);
-            \renderer\render_comment_section($page);
+            \html\render_page($page);
+            \html\render_comment_section($page);
             
             break;
 
           case isset($pages) and count($pages) > 0:
-            \renderer\render_pages($pages);
+            \html\render_pages($pages);
             break;
 
           default:
-            \renderer\render_info("Nothing here. (anymore?)");
+            \html\render_info("Nothing here. (anymore?)");
             break;
         }
         

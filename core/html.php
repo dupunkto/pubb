@@ -1,7 +1,7 @@
 <?php
 // Renders pages to HTML.
 
-namespace renderer;
+namespace html;
 
 function render_info($message) {
   render_message("info", $message);
