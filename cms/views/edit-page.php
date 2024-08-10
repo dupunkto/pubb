@@ -19,7 +19,6 @@
         <?php if(isset($title)) { ?>
           value="<?= $title ?>"
         <?php } ?>
-        required
       >
 
       <p class="button-group">
@@ -83,8 +82,7 @@
 
     <?php \forms\options("visibility", [
       "public" => "Public", 
-      "rss-only" => "RSS-only", 
-      "email-only" => "Email-only"
+      "rss-only" => "RSS-only"
     ], @$visibility) ?>
 
     <label for="type">Render as:</label>

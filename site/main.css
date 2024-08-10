@@ -110,10 +110,10 @@ article {
     a {
       text-decoration: none;
     }
+  }
 
-    &::after {
-      content:  "·";
-    }
+  &:has(.p-name) time::after {
+    content:  "·";
   }
 
  .p-name {
