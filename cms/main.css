@@ -21,18 +21,9 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-@media (prefers-color-scheme: light) {
-  * {
-    border-color: #ccc;
-    text-decoration-color: #aaa;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  * {
-    border-color: #444;
-    text-decoration-color: #888;
-  }
+* {
+  border-color: light-dark(#ccc, #444);
+  text-decoration-color: light-dark(#aaa, #888);
 }
 
 a {
@@ -166,6 +157,10 @@ input[type="email"],
 input[type="password"] {
   padding: 0.2em 0.4em;
   font-size: 1em;
+}
+
+input[type="file"] {
+  border: none;
 }
 
 /* Flash messages */
