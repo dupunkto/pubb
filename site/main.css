@@ -141,3 +141,8 @@ article {
     }
   }
 }
+
+.mention {
+  font-weight: bold;
+  text-decoration: none;
+}
