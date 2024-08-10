@@ -24,6 +24,15 @@ function render_flash() {
   }
 }
 
+function cast($value) {
+  return match($value) {
+    "true" => 1,
+    "false" => 0,
+    "" => null,
+    default => $value
+  };
+}
+
 function fail($message, $to = false) {
   global $path;
   if(!$to) $to = $path;

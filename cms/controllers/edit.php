@@ -5,13 +5,14 @@ if(isset($_POST['save'])) {
   $draft = isset($_GET['draft']);
 
   $updated = \core\edit_page(
-    id: $_POST['id'],
-    type: $_POST['type'],
-    slug: $_POST['slug'],
-    title: $_POST['title'],
-    prose: $_POST['prose'],
+    id: cast($_POST['id']),
+    type: cast($_POST['type']),
+    slug: cast($_POST['slug']),
+    title: cast($_POST['title']),
+    prose: cast($_POST['prose']),
     draft: $draft,
-    reply_to: @$_POST['reply']
+    visibility: cast($_POST['visibility']),
+    reply_to: cast(@$_POST['reply'])
   );
 
   if($updated && !$draft) { 
@@ -35,6 +36,7 @@ $type = $page['type'];
 $title = $page['title'];
 $prose = \store\contents($page['path']);
 $draft = $page['draft'];
+$visibility = $page['visibility'];
 $reply = $page['reply_to'];
 
 include path_join($views, "edit-page.php");

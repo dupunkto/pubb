@@ -5,12 +5,13 @@ if(isset($_POST['save'])) {
   $draft = isset($_GET['draft']);
 
   $saved = \core\new_page(
-    slug: $_POST['slug'],
-    type: $_POST['type'],
-    title: $_POST['title'],
-    prose: $_POST['prose'],
+    slug: cast($_POST['slug']),
+    type: cast($_POST['type']),
+    title: cast($_POST['title']),
+    prose: cast($_POST['prose']),
     draft: $draft,
-    reply_to: @$_POST['reply']
+    visibility: cast($_POST['visibility']),
+    reply_to: cast(@$_POST['reply'])
   );
   
   if($saved && !$draft) {

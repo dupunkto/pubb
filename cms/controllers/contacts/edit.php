@@ -8,14 +8,13 @@ $contact = \store\get_contact($id) or redirect("/contacts");
 
 if(isset($_POST['edit'])) {
   $handle = strip_prefix($_POST['handle'], "@");
-  $notify = cast_boolean($_POST['notify']);
 
   \store\update_contact(
-    id: $_POST['id'],
-    handle: $handle,
-    domain: $_POST['domain'],
-    email: $_POST['email'],
-    notify: $notify,
+    id: cast($_POST['id']),
+    handle: cast($handle),
+    domain: cast($_POST['domain']),
+    email: cast($_POST['email']),
+    notify: cast($_POST['notify']),
   ) or fail("Couldn't update contact.");
 
   complete("Updated '@" . $handle . "'.", to: "/contacts");

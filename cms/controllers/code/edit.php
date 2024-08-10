@@ -3,10 +3,10 @@
 
 if(isset($_POST['save'])) {
   $saved = \core\edit_gist(
-    id: $_POST['id'],
-    caption: $_POST['caption'],
-    filename: $_POST['filename'],
-    code: $_POST['code']
+    id: cast($_POST['id']),
+    caption: cast($_POST['caption']),
+    filename: cast($_POST['filename']),
+    code: cast($_POST['code'])
   );
   
   if($saved) complete("Saved gist.", to: "/code");
