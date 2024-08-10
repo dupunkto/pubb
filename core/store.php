@@ -154,11 +154,10 @@ function list_pages_by_type($type, $include_drafts = false) {
     pages
   LEFT JOIN
     volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
-  ' . ($include_drafts ? '' : 
-    'WHERE pages.draft != 1'
+  WHERE
+    pages.type = ? ' . ($include_drafts ? '' : 
+    'AND pages.draft != 1'
   ) . '
-  AND
-    pages.type = ?
   ORDER BY 
     pages.published DESC,
     pages.id
