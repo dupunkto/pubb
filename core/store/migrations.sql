@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `volumes` (
   `description` TEXT DEFAULT NULL,
   `start_at` DATETIME NOT NULL,
   `end_at` DATETIME NOT NULL,
+  UNIQUE (`slug`),
   PRIMARY KEY (`id`)
 );
 
