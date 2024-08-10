@@ -127,7 +127,7 @@ function list_pages($include_drafts = false) {
   ORDER BY 
     pages.published DESC,
     pages.id
-  ', []);
+  ');
 }
 
 function list_pages_by_type($type, $include_drafts = false) {
@@ -229,7 +229,7 @@ function delete_contact($id) {
 }
 
 function list_contacts() {
-  return all('SELECT * FROM `contacts`', []);
+  return all('SELECT * FROM `contacts`');
 }
 
 // Mentions
@@ -302,6 +302,10 @@ function list_views($year, $month) {
     [$start, $end]);
 }
 
+function list_all_views() {
+  return all('SELECT * FROM `views` ORDER BY `datetime` DESC');
+}
+
 // File-based storage
 
 function write_file($contents, $ext) {
@@ -348,7 +352,7 @@ function one($sql, $params) {
   return exec_query("$sql LIMIT 1", $params)->fetch();
 }
 
-function all($sql, $params) {
+function all($sql, $params = []) {
   return exec_query($sql, $params)->fetchAll();
 }
 

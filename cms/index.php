@@ -51,6 +51,6 @@ unset($slug);
       ?>
     </main>
 
-    <script src="/vendor/instant.page.min.js" type="module"></script> 
+    <script src="<?= CMS_CANONICAL ?>/vendor/instant.page.min.js" type="module"></script> 
   </body>
 </html>

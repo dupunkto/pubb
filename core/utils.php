@@ -59,6 +59,17 @@ function flatten($separator, $array) {
   }, $keys, $values);
 }
 
+function count_by($array, $key) {
+  $keys = array_column($array, $key);
+
+  return array_reduce($keys, function($acc, $key) {
+    if (isset($acc[$key])) $acc[$key]++;
+    else $acc[$key] = 1;
+
+    return $acc;
+  }, []);
+}
+
 function group_by($items, $prefix) {
   $grouped = [];
   
