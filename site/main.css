@@ -139,6 +139,10 @@ article {
       padding-top: .3em;
       border-top: 1px dotted #ccc;
     }
+
+    & > pre:first-child {
+      margin-top: 0.3em;
+    }
   }
 }
 
@@ -146,3 +150,16 @@ article {
   font-weight: bold;
   text-decoration: none;
 }
+
+.code {
+  margin-bottom: .5em;
+}
+
+.caption, figcaption {
+  opacity: 0.7;
+  font-size: 0.8em;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0;
+}
+

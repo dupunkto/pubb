@@ -50,6 +50,8 @@ function render_page($page, $level = 2) {
     <article class="h-entry">
       <?php if($page['title']) {
         echo "<h$level class='p-name'>{$page['title']}</h$level>";
+      } else if($page['type'] == "code") {
+        echo "<h$level class='p-name'><code>{$page['slug']}</code></h$level>";
       } ?>
 
       <div class="p-summary e-content">
@@ -119,7 +121,7 @@ function render_photo($page) {
   $url = is_url($path) ? $path : \urls\photo_url($path);
   
   $parser = new Parsedown();
-  $caption = $parser->text($post['caption']);
+  $caption = $parser->text($page['caption']);
 
   ?>
     <figure>
@@ -135,7 +137,12 @@ function render_photo($page) {
 
 function render_code($page) {
   $code = \store\contents($page['path']);
-  echo '<pre><code>' . htmlspecialchars($code) . '</code></pre>';
+
+  $parser = new Parsedown();
+  $caption = $parser->line($page['caption']);
+
+  echo '<pre class="code"><code>' . htmlspecialchars($code) . '</code></pre>';
+  echo '<p class="caption">'. $caption . '</p>';
 }
 
 function render_mdn($page) {
