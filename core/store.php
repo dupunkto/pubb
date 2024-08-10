@@ -130,8 +130,15 @@ function list_pages($include_drafts = false) {
   ');
 }
 
-function list_pages_by_type($type, $include_drafts = false) {
-  in_array($type, TYPES) or die("$type does not exist");
+function list_pages_by_type($types, $include_drafts = false) {
+  if(is_string($types)) $types = [$types];
+  is_array($types) or die("not an array");
+
+  foreach ($types as $type) {
+    in_array($type, TYPES) or die("$type does not exist");
+  }
+
+  $placeholders = implode(',', array_fill(0, count($types), '?'));
 
   return all('SELECT 
     pages.id,
@@ -155,13 +162,13 @@ function list_pages_by_type($type, $include_drafts = false) {
   LEFT JOIN
     volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
   WHERE
-    pages.type = ? ' . ($include_drafts ? '' : 
+    pages.type IN (' . $placeholders . ') ' . ($include_drafts ? '' : 
     'AND pages.draft != 1'
   ) . '
   ORDER BY 
     pages.published DESC,
     pages.id
-  ', [$type]);
+  ', $types);
 }
 
 function last_updated() {
