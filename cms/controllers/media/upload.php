@@ -9,6 +9,8 @@ if(isset($_POST['upload'])) {
 
   foreach($uploads as $upload) {
     $slug = \store\unique_slug('assets', $upload['name']);
+
+    $ext = parse_ext($upload['name'], "jpg");
     $tmp_file = $upload['tmp_name'];
 
     if($upload['error'] != UPLOAD_ERR_OK) {
@@ -29,7 +31,7 @@ if(isset($_POST['upload'])) {
     if(!is_uploaded_file($tmp_file) or !getimagesize($tmp_file)) 
       fail("Bad photo upload. Try again.");
 
-    $stored_at = \store\copy_file($tmp_file) 
+    $stored_at = \store\copy_file($tmp_file, $ext) 
       or fail("Copying '{$upload['name']}' over to data store failed.");
 
     \store\put_asset(

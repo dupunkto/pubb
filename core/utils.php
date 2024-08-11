@@ -153,6 +153,10 @@ function relative_to($path, $parent) {
   return $relative;
 }
 
+function filename($path) {
+  return pathinfo($path, PATHINFO_FILENAME);
+}
+
 // Getters
 
 function parse_host($url) {
@@ -160,12 +164,11 @@ function parse_host($url) {
 }
 
 function parse_mime_type($path) {
-  $ext = strip_prefix(parse_ext($path), ".");
-  return @MIME_TYPES[$ext];
+  return @MIME_TYPES[parse_ext($path)];
 }
 
-function parse_ext($path) {
-  return "." . strtolower(pathinfo($path, PATHINFO_EXTENSION));
+function parse_ext($path, $fallback = null) {
+  return strtolower(pathinfo($path, PATHINFO_EXTENSION) ?: $fallback);
 }
 
 // File handling

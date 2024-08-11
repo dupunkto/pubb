@@ -373,11 +373,11 @@ function write_file($contents, $ext) {
   return relative_to($path, STORE);
 }
 
-function copy_file($source) {
+function copy_file($source, $ext = null) {
   // Determine the destination filename in the store based
   // on the md5 hash of the file contents. If the file already
   // exists, return that one. Otherwise, write it.
-  $path = path_from_hash($source, parse_ext($source));
+  $path = path_from_hash($source, $ext ?? parse_ext($source));
 
   if(file_exists($path) or move_uploaded_file($source, $path)) {
     return relative_to($path, STORE);
@@ -395,11 +395,11 @@ function contents($path) {
 }
 
 function path_from_datetime($ext) {
-  return STORE . "/content/" . date("Y-m-dTH:i:s") . $ext;
+  return STORE . "/content/" . date("Y-m-dTH:i:s") . "." . $ext;
 }
 
 function path_from_hash($source, $ext) {
-  return STORE . "/uploads/" . hash_file("md5", $source) . $ext;
+  return STORE . "/uploads/" . hash_file("md5", $source) . "." . $ext;
 }
 
 // SQL helpers
