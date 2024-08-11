@@ -3,6 +3,11 @@
 
 namespace html;
 
+function page_title($page) {
+  if($page['title']) return $page['title'];
+  else return $page['slug'];
+}
+
 function render_info($message) {
   render_message("info", $message);
 }
@@ -113,6 +118,7 @@ function render_page_content($page) {
     "code" => render_code($page),
     "md" => render_mdn($page),
     "html" => render_html($page),
+    "txt" => render_plain($page),
   };
 }
 
@@ -156,6 +162,11 @@ function render_mdn($page) {
 function render_html($page) {
   $contents = \store\contents($page['path']);
   echo prerender_text($contents);
+}
+
+function render_plain($page) {
+  $contents = \store\contents($page['path']);
+  echo render_shortcodes($contents);
 }
 
 function prerender_text($prose) {

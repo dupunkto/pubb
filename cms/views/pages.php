@@ -9,7 +9,7 @@
   <?php foreach($pages as $page) { ?>
     <li>
       <a href="<?= CMS_CANONICAL ?>/edit?id=<?= $page['id'] ?>">
-        <?= $page['title'] ?? $page['slug'] ?>
+        <?= \html\page_title($page) ?>
         <?php if($page['draft']) echo wrap("small", "— draft") ?>
       </a>
     </li>

@@ -23,30 +23,36 @@ switch(true) {
   
   case $path == "/":
     $pages = \store\list_pages();
+    $title = SITE_TITLE;
+
     break;
 
   case route('@/(photos|code)$@'):
     $type = $page_types[$params[1]];
     $pages = \store\list_pages_by_type($type, visibility: 'public');
+    $title = ucfirst($params[1]);
 
     break;
 
   case route('@/(.*)$@'):
     $slug = $params[1];
     $page = \store\get_page_by_slug($slug);
+    $title = \html\page_title($page);
 
     if(!$page) $not_found = true;
     break;
 
   default:
     $not_found = true;
+    $title = "Whoops, a 404!";
+
     break;
 }
 
 if($not_found) {
   http_response_code(404);
 } else {
-  \stats\record_view($path);
+  // \stats\record_view($path);
 }
 
 if(isset($page) and $page['type'] == 'txt') {
@@ -59,7 +65,7 @@ if(isset($page) and $page['type'] == 'txt') {
 <html lang="<?= SITE_LANG ?>">
   <head>
     <?php include "partials/head.php" ?>
-    <title><?= SITE_TITLE ?></title>
+    <title><?= $title ?></title>
   </head>
   <body>
     <header>
