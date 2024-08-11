@@ -14,7 +14,7 @@ function new_webmention($source, $target) {
 
 function send_mention($page, $contact) {
   $subject = "I mentioned you!";
-  $title = \html\page_title($page);
+  $title = \core\get_page_title($page);
   $url = \urls\page_url($page);
 
   $message  = "Hello, {$contact['handle']}!\n\n";

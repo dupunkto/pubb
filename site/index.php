@@ -38,7 +38,7 @@ switch(true) {
     $page = \store\get_page_by_slug($slug);
 
     if($page) {
-      $title = \html\page_title($page);
+      $title = \core\get_page_title($page);
       break;
     }
 
@@ -54,7 +54,7 @@ switch(true) {
 
 if(@$page['type'] == 'txt') {
   header("Content-Type: text/plain; charset=UTF-8");
-  echo \html\render_plain($page);
+  echo \renderer\plain_text($page);
   exit;
 }
 
@@ -64,7 +64,7 @@ if(@$page['type'] == 'txt') {
     <?php include "partials/head.php" ?>
     <title><?= $title ?></title>
   </head>
-  <body>
+  <body class="twitter-like">
     <header>
       <?php include "partials/header.php" ?>
     </header>
@@ -77,25 +77,28 @@ if(@$page['type'] == 'txt') {
             break;
 
           case isset($page):
-            \html\render_page($page);
-            \html\render_comment_section($page);
+            \partials\page($page);
+            \partials\comment_section($page);
             
             break;
 
           case isset($pages) and count($pages) > 0:
-            \html\render_pages($pages);
+            \partials\listing($pages);
             break;
 
           default:
-            \html\render_info("Nothing here. (anymore?)");
+            \renderer\info("Nothing here. (anymore?)");
             break;
         }
         
       ?>
     </main>
-    <aside>
-      <?php include "partials/menu.php" ?>
-    </aside>
+    <nav>
+      <details open>
+        <summary>Menu</summary>
+        <?php include "partials/menu.php" ?>
+      </details>
+    </nav>
     <footer>
       <?php include "partials/footer.php" ?>
     </footer>

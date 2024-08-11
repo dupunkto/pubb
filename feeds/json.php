@@ -28,7 +28,7 @@ foreach($pages as $page) {
 
 function render_to_str($page) {
   ob_start();
-  \html\render_page_content($page);
+  \renderer\page_content($page);
   return ob_get_clean();
 }
 

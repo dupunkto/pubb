@@ -10,5 +10,5 @@ $id = $_GET['id'];
 $page = \store\get_page($id) or fail(ucfirst($type) . " doesn't exist.", to: $return);
 \store\delete_page($id) or fail("Couldn't delete $type.", to: $return);
 
-$title = \html\page_title($page);
+$title = \core\get_page_title($page);
 complete("Deleted '{$title}'.", to: $return);

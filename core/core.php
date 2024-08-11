@@ -8,6 +8,13 @@ use Exception;
 
 // Pages
 
+function get_page_title($page) {
+  if($page['title']) return $page['title'];
+  else if($page['type'] == 'code') return $page['slug'];
+  else if($page['caption']) return $page['caption'];
+  else return ucfirst($page['slug']);
+}
+
 function get_page_by_url($url) {
   $slug = \urls\parse($url);
   if($slug) return \store\get_page_by_slug($slug);

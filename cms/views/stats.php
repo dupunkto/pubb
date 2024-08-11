@@ -120,7 +120,7 @@
 
   <ul>
     <?php foreach($pages as $id => $page) { ?>
-      <li><?= \html\page_title($page) ?> <span><?= $page['views'] ?></span></li>
+      <li><?= \core\get_page_title($page) ?> <span><?= $page['views'] ?></span></li>
     <?php } ?>
   </ul>
 <?php } ?>

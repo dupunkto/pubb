@@ -43,7 +43,7 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
             <pubDate><?= date("r", strtotime($page['published'])) ?></pubDate>
             <link><?= \urls\page_url($page) ?></link>
             <content:encoded>
-              <![CDATA[ <?php \html\render_page_content($page); ?> ]]>
+              <![CDATA[ <?php \renderer\page_content($page); ?> ]]>
             </content:encoded>
           </item>
         <?php
