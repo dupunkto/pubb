@@ -20,12 +20,10 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
   <author>
     <name><?= AUTHOR_NAME ?></name>
     <uri><?= CANONICAL ?></uri>
-    <?php if(defined('AUTHOR_EMAIL')) 
-            echo wrap("email", AUTHOR_EMAIL); ?>
+    <?php if(defined('AUTHOR_EMAIL')) echo wrap("email", AUTHOR_EMAIL); ?>
   </author>
 
-  <?php if(defined('SITE_COPYRIGHT')) 
-          echo wrap("rights", SITE_COPYRIGHT) ?>
+  <?php if(defined('SITE_COPYRIGHT')) echo wrap("rights", SITE_COPYRIGHT) ?>
 
   <generator uri="https://dupunkto.org/pubb" version="<?= PUBB_VERSION ?>">
     Pubb

@@ -11,7 +11,7 @@
       type="text" 
       name="slug" 
       placeholder="superficial-awesomeness"
-      value="<?= escape_attribute($volume['slug']) ?>"
+      value="<?= esc_attr($volume['slug']) ?>"
       required
     >
   </p>
@@ -22,7 +22,7 @@
       type="text" 
       name="title" 
       placeholder="Superficial Awesomeness"
-      value="<?= escape_attribute($volume['title']) ?>"
+      value="<?= esc_attr($volume['title']) ?>"
       required
     >
   </p>
@@ -40,7 +40,7 @@
     <input
       type="date" 
       name="start_at"
-      value="<?= escape_attribute($volume['start_at']) ?>"
+      value="<?= esc_attr($volume['start_at']) ?>"
       required
     >
   </p>
@@ -50,7 +50,7 @@
     <input
       type="date" 
       name="end_at"
-      value="<?= escape_attribute($volume['end_at']) ?>"
+      value="<?= esc_attr($volume['end_at']) ?>"
       required
     >
   </p>

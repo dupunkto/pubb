@@ -64,7 +64,7 @@
             @<?= $mention['contact_handle'] ?>
           </a>
         <?php } else { ?>
-          <a href="<?= escape_attribute($mention['source']) ?>">
+          <a href="<?= esc_attr($mention['source']) ?>">
             <?= parse_host($mention['source']) ?>
           </a>
         <?php } ?>

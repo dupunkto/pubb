@@ -77,7 +77,7 @@
     <span>The website that will be printed on your profile, in feeds and in your contact details. (leave empty to use this site)</span>
 
     <input 
-      type="text" 
+      type="url" 
       name="author.site"
       placeholder="https://example.com"
       value="<?= canonical_value("author.site") ?>"
@@ -89,7 +89,7 @@
   <p>
     <label for="notifications.admin">Receiving address</label>
     <span>
-      The email address to which notifiations will be sent.
+      The email address to which incoming notifications will be sent.
     </span>
 
     <input 
@@ -102,7 +102,7 @@
 
   <p>
     <label for="notifications.sender">Sending address</label>
-    <span>The email address from which email notifications should be sent.</span>
+    <span>The email address from which outgoing notifications should be sent.</span>
 
     <input 
       type="email" 
@@ -125,6 +125,65 @@
       >
       <span>Send me an email when someone mentions one of my pages.</span>
     </label>
+  </p>
+
+  <h3>Blocking</h3>
+
+  <p>
+    <label for="noncommercial">Non-commercial</label>
+    <span>Blocks big corporations from profiting of of the contents of this site.</span>
+
+    <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
+    <input type="hidden" name="noncommercial" value="false" />
+    <input type="hidden" name="nonai" value="false" />
+  </p>
+
+  <p>
+    <label>
+      <input 
+        type="checkbox"
+        name="noncommercial"
+        <?php if(NONCOMMERCIAL) echo "checked" ?>
+        value="true"
+      >
+      <span>Block big corporations from crawling this site.</span>
+    </label><br>
+
+    <label>
+      <input 
+        type="checkbox"
+        name="nonai"
+        <?php if(NONAI) echo "checked" ?>
+        value="true"
+      >
+      <span>Block unwanted AI bots from accessing this site.</span>
+    </label>
+  </p>
+
+  <h3>License</h3>
+
+  <p>
+    <label for="license">License</label>
+    <span>If you've licensed your work under (for example) a Creative Commons license.</span>
+
+    <input 
+      type="text" 
+      name="license"
+      placeholder="CC0 1.0"
+      value="<?= canonical_value("license") ?>"
+    >
+  </p>
+
+  <p>
+    <label for="license.uri">License URI</label>
+    <span>A stable reference documenting the license terms.</span>
+
+    <input 
+      type="url" 
+      name="license.uri"
+      placeholder="https://creativecommons.org/publicdomain/zero/1.0/"
+      value="<?= canonical_value("license.uri") ?>"
+    >
   </p>
 
   <h3>Security</h3>

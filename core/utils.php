@@ -40,7 +40,7 @@ function wrap($element, $str) {
   echo "<{$element}>{$escaped}</{$element}>";
 }
 
-function escape_attribute($str) {
+function esc_attr($str) {
   return htmlspecialchars(
     string: $str, 
     flags: ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5,

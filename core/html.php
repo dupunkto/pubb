@@ -128,7 +128,7 @@ function render_photo($page) {
       <img 
         class="u-photo" 
         src="<?= $url ?>" 
-        alt="<?= escape_attribute($caption) ?>"
+        alt="<?= esc_attr($caption) ?>"
       />
       <figcaption><?= $caption ?></figcaption>
     </figure> 

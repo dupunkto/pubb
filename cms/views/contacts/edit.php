@@ -11,7 +11,7 @@
       type="text" 
       name="handle" 
       placeholder="@dreamwastaken"
-      value="<?= escape_attribute($contact['handle']) ?>"
+      value="<?= esc_attr($contact['handle']) ?>"
       required
     >
   </p>
@@ -22,7 +22,7 @@
       type="text" 
       name="domain" 
       placeholder="example.com"
-      value="<?= escape_attribute($contact['domain']) ?>"
+      value="<?= esc_attr($contact['domain']) ?>"
       required
     >
   </p>
@@ -33,7 +33,7 @@
       type="text" 
       name="email" 
       placeholder="dream@example.com"
-      value="<?= escape_attribute($contact['email']) ?>"
+      value="<?= esc_attr($contact['email']) ?>"
       required
     >
   </p>

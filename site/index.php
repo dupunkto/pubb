@@ -47,7 +47,7 @@ switch(true) {
 if($not_found) {
   http_response_code(404);
 } else {
-  \stats\record_view($path);
+  // \stats\record_view($path);
 }
 
 ?><!DOCTYPE html>

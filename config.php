@@ -37,6 +37,11 @@ optional('author.email');
 optional('author.picture');
 fallback('author.site', CANONICAL);
 
+optional('license');
+optional('license.uri');
+fallback('nonai', false);
+fallback('noncommercial', false);
+
 optional('notifications.admin');
 fallback('notifications.sender', "noreply@" . HOST);
 fallback('notifications.webmention', true);
