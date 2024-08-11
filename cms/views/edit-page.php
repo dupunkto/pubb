@@ -89,7 +89,8 @@
 
     <?php \forms\options("type", [
       "md" => "Markdown", 
-      "html" => "HTML"
+      "html" => "HTML",
+      "txt" => "Plain text"
     ], @$type) ?>
   </p>
 </form>

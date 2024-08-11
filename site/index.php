@@ -4,7 +4,6 @@
 require_once __DIR__ . "/../core.php";
 require_once __DIR__ . "/../router.php";
 
-
 include __DIR__ . "/caching.php";
 include __DIR__ . "/headers.php";
 
@@ -47,7 +46,13 @@ switch(true) {
 if($not_found) {
   http_response_code(404);
 } else {
-  // \stats\record_view($path);
+  \stats\record_view($path);
+}
+
+if(isset($page) and $page['type'] == 'txt') {
+  header("Content-Type: text/plain; charset=UTF-8");
+  echo \html\render_plain($page);
+  exit;
 }
 
 ?><!DOCTYPE html>

@@ -12,7 +12,7 @@ define('DBH', establish_connection());
 
 // A page type defines the content type for the 
 // referenced file in the `path` column.
-define('TYPES', ["md", "html", "photo", "code"]);
+define('TYPES', ["md", "html", "txt", "photo", "code"]);
 
 // The visibility of a page determines where
 // it'll be rendered.
