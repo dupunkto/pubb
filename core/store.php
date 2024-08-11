@@ -346,15 +346,16 @@ function list_all_views() {
 
 // Uniqueness
 
-function unique_slug($table, $slug) {
+function unique_slug($table, $seed) {
+  $slug = slugify($seed);
   $num = 1;
   $try = $slug;
-  while(slug_taken($try)) $try = $slug . "-" . $num++;
-  return $try;
+  while(slug_taken($table, $try)) $try = $slug . "-" . $num++;
+  return dbg($try);
 }
 
 function slug_taken($table, $slug) {
-  return exec_query('SELECT slug FROM $table WHERE slug = ?', [$slug]) != false;
+  return !!one("SELECT slug FROM `$table` WHERE slug = ?", [$slug]);
 }
 
 // File-based storage

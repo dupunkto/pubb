@@ -182,7 +182,7 @@ function restructure_files($data) {
   return $restructured;
 }
 
-function slugify($text, $length = false) {
+function slugify($text, $length = null) {
   $text = strtr($text, UNICODE_TABLE);
   $text = preg_replace('~[^\pL\d.]+~u', '-', $text);
   $text = preg_replace('~[^-\w.]+~', '-', $text);
