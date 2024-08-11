@@ -19,6 +19,15 @@ td:last-child {
   opacity: 0.8;
 }
 
+td a {
+  text-decoration: none;
+
+  cite {
+    font-style: normal;
+    font-weight: bold;
+  }
+}
+
 td a:not(:last-of-type)::after {
   content: ", ";
 }

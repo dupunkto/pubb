@@ -15,5 +15,7 @@ if(!isset($_GET['id'])) redirect("/media");
 $id = $_GET['id'];
 $asset = \store\get_asset($id) or redirect("/media");
 $linked = \store\linked_pages($asset);
+$duplicates = \store\duplicates($asset);
+$duplicate = \store\duplicate_of($asset);
 
 include $view;

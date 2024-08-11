@@ -200,6 +200,16 @@ function list_assets() {
   return all('SELECT * FROM `assets` ORDER BY `uploaded_at` DESC');
 }
 
+function duplicate_of($asset) {
+  return one('SELECT * FROM `assets` WHERE `path` = ? AND `id` < ? ORDER BY `id`', 
+    [$asset['path'], $asset['id']]);
+}
+
+function duplicates($asset) {
+  return all('SELECT * FROM `assets` WHERE `path` = ? AND `id` != ? ORDER BY `id`', 
+    [$asset['path'], $asset['id']]);
+}
+
 function linked_pages($asset) {
   return all('SELECT * FROM `pages` WHERE `path` = ?', [$asset['path']]);
 }

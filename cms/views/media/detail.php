@@ -41,7 +41,27 @@
         <td>Uploaded at</td>
         <td><?= $asset['uploaded_at'] ?></td>
       </tr>
-      <?php if(count($linked) != 0) { ?>
+      <?php if($duplicate) { ?>
+        <tr>
+          <td>Duplicate of</td>
+          <td>
+            <a href="<?= CMS_CANONICAL ?>/media/detail?id=<?= $duplicate['id'] ?>">
+              <cite>#<?= $duplicate['id'] ?></cite>
+            </a>
+          </td>
+        </tr>
+      <?php } elseif(count($duplicates) > 0) { ?>
+        <tr>
+          <td>Duplicates</td>
+          <td>
+            <?php foreach($duplicates as $duplicate) { ?>
+              <a href="<?= CMS_CANONICAL ?>/media/detail?id=<?= $duplicate['id'] ?>">
+                <cite>#<?= $duplicate['id'] ?></cite>
+              </a>
+            <?php } ?>
+          </td>
+        </tr>
+      <?php } if(count($linked) != 0) { ?>
         <tr>
           <td>Linked posts</td>
           <td>
@@ -57,7 +77,17 @@
   </table>
 
   <div class="bar">
-    <a class="button" href="/media/delete?id=<?= $asset['id'] ?>">Delete</a>
+    <a 
+      class="button" 
+      href="/media/delete?id=<?= $asset['id'] ?>"
+      <?php if(count($duplicates) > 0) { ?>
+        data-confirm="Please note that deleting this asset will not stop existing links to the image from working, as there are duplicates."
+      <?php } else { ?>
+        data-confirm="Are you sure? All links to this asset will stop working, immediately. This action cannot be reversed."
+      <?php } ?>
+    >
+      Delete
+    </a>
     <input type="submit" name="save" value="Save">
   </div>
 </form>
