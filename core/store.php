@@ -175,9 +175,9 @@ function last_updated() {
 
 // Assets
 
-function put_asset($slug, $path, $uploaded_at) {
-  return exec_query('INSERT INTO `assets` (`slug`, `path`, `uploaded_at`) 
-    VALUES (?, ?, ?)', [$slug, $path, $uploaded_at]);
+function put_asset($slug, $path, $uploaded_as, $uploaded_at) {
+  return exec_query('INSERT INTO `assets` (`slug`, `path`, `uploaded_as`, `uploaded_at`) 
+    VALUES (?, ?, ?, ?)', [$slug, $path, $uploaded_as, $uploaded_at]);
 }
 
 function update_asset($id, $slug) {
@@ -198,6 +198,10 @@ function delete_asset($id) {
 
 function list_assets() {
   return all('SELECT * FROM `assets` ORDER BY `uploaded_at` DESC');
+}
+
+function linked_pages($asset) {
+  return all('SELECT * FROM `pages` WHERE `path` = ?', [$asset['path']]);
 }
 
 // Volumes
