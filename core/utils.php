@@ -190,7 +190,7 @@ function slugify($text, $length = false) {
   $text = preg_replace('~-+~', '-', $text);
   $text = strtolower($text);
 
-  if (isset($length) && $length < strlen($text))
+  if (isset($length) and $length < strlen($text))
     $text = rtrim(substr($text, 0, $length), '-');
 
   return $text;

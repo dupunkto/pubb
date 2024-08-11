@@ -9,12 +9,6 @@ include __DIR__ . "/headers.php";
 
 $not_found = false;
 
-// Maps URL type -> page type
-$page_types = array(
-  "photos" => "photo",
-  "code" => "code"
-);
-
 switch(true) {
   case !is_https() and FORCE_HTTPS:
     http_response_code(301);
@@ -42,25 +36,23 @@ switch(true) {
   case route('@/(.*)$@'):
     $slug = $params[1];
     $page = \store\get_page_by_slug($slug);
-    $title = \html\page_title($page);
 
-    if(!$page) $not_found = true;
-    break;
+    if($page) {
+      $title = \html\page_title($page);
+      break;
+    }
 
   default:
-    $not_found = true;
+    http_response_code(404);
     $title = "Whoops, a 404!";
+    $not_found = true;
 
     break;
 }
 
-if($not_found) {
-  http_response_code(404);
-} else {
-  // \stats\record_view($path);
-}
+// \stats\record_view($path);
 
-if(isset($page) and $page['type'] == 'txt') {
+if(@$page['type'] == 'txt') {
   header("Content-Type: text/plain; charset=UTF-8");
   echo \html\render_plain($page);
   exit;

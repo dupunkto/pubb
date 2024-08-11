@@ -14,7 +14,7 @@ if(isset($_POST['save'])) {
     reply_to: cast(@$_POST['reply'])
   );
   
-  if($saved && !$draft) {
+  if($saved and !$draft) {
    $page = \store\get_page_by_slug($_POST['slug']) 
       or die("Inserting post into database went wrong; couldn't lookup by slug.");
 

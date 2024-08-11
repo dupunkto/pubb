@@ -26,7 +26,7 @@
           type="submit"
           name="save"
           formaction="?draft"
-          <?php if(isset($draft) && $draft) { ?>
+          <?php if(isset($draft) and $draft) { ?>
             value="Save"
             title="Save as draft"
           <?php } else { ?>
@@ -40,7 +40,7 @@
           type="submit"
           name="save"
           formaction="?publish"
-          <?php if(isset($draft) && $draft) { ?>
+          <?php if(isset($draft) and $draft) { ?>
             value="Publish"
             data-confirm="Are you sure? This will publicly publish your page, and notify all contacts that you've tagged."
           <?php } else { ?>
@@ -50,7 +50,7 @@
       </p>
     </div>
 
-    <?php if(isset($reply) && $reply) { ?>
+    <?php if(isset($reply) and $reply) { ?>
       <input type="hidden" name="reply" value="<?= $reply ?>">
 
       <p>

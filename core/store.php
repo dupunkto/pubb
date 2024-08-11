@@ -396,11 +396,11 @@ function path_from_hash($source, $ext) {
 // SQL helpers
 
 function one($sql, $params) {
-  return exec_query("$sql LIMIT 1", $params)->fetch();
+  return exec_query("$sql LIMIT 1", $params)?->fetch();
 }
 
 function all($sql, $params = []) {
-  return exec_query($sql, $params)->fetchAll();
+  return exec_query($sql, $params)?->fetchAll();
 }
 
 function exec_query($sql, $params) {

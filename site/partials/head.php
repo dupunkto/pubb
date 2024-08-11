@@ -23,7 +23,7 @@
 <!-- Google, please don't mess with my lovingly handcrafted HTML -->
 <meta name="googlebot" content="notranslate" />
 
-<?php $hidden = isset($page) and $page['visibility'] == 'hidden' ?>
+<?php $hidden = @$page['visibility'] == 'hidden' ?>
 
 <?php if(NONCOMMERCIAL or $hidden) { ?>
 <!-- Block commercial scrapers -->
