@@ -118,16 +118,14 @@ function render_page_content($page) {
     "code" => render_code($page),
     "md" => render_mdn($page),
     "html" => render_html($page),
-    "txt" => render_plain($page),
+    "txt" => render_text($page),
   };
 }
 
 function render_photo($page) {
   $path = $page['path'];
-  $url = is_url($path) ? $path : \urls\photo_url($path);
-  
-  $parser = new Parsedown();
-  $caption = $parser->text($page['caption']);
+  $url = is_url($path) ? $path : \urls\photo_url($page);
+  $caption = render_caption($page['caption']);
 
   ?>
     <figure>
@@ -143,17 +141,21 @@ function render_photo($page) {
 
 function render_code($page) {
   $code = \store\contents($page['path']);
-
-  $parser = new Parsedown();
-  $caption = $parser->line($page['caption']);
+  $caption = render_caption($page['caption']);
 
   echo '<pre class="code"><code>' . htmlspecialchars($code) . '</code></pre>';
   echo '<p class="caption">'. $caption . '</p>';
 }
 
+function render_caption($caption) {
+  $parser = new Parsedown();
+  $caption = rendering_pipeline($caption);
+  return $parser->line($caption);
+}
+
 function render_mdn($page) {
   $contents = \store\contents($page['path']);
-  $fancy = prerender_text($contents);
+  $fancy = rendering_pipeline($contents);
 
   $parser = new Parsedown();
   echo $parser->text($fancy);
@@ -161,19 +163,32 @@ function render_mdn($page) {
 
 function render_html($page) {
   $contents = \store\contents($page['path']);
-  echo prerender_text($contents);
+  echo rendering_pipeline($contents);
+}
+
+function render_text($page) {
+  $contents = \store\contents($page['path']);
+  echo '<pre>' . htmlspecialchars(render_shortcodes($contents)) . '</pre>';
 }
 
 function render_plain($page) {
   $contents = \store\contents($page['path']);
-  echo render_shortcodes($contents);
+  return prerender_text($contents);
+}
+
+function rendering_pipeline($prose) {
+  $prose = prerender_html($prose);
+  $prose = prerender_text($prose);
+
+  return $prose;
+}
+
+function prerender_html($prose) {
+  return render_tagged_contacts($prose);
 }
 
 function prerender_text($prose) {
-  $prose = render_tagged_contacts($prose);
-  $prose = render_shortcodes($prose);
-
-  return $prose;
+  return render_shortcodes($prose);
 }
 
 function render_tagged_contacts($prose) {

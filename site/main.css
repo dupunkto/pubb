@@ -112,11 +112,11 @@ article {
     }
   }
 
-  &:has(.p-name) time::after {
+  &:has(> .p-name) time::after {
     content:  "·";
   }
 
- .p-name {
+ & > .p-name {
     grid-area: title;
     font-size: 1em;
     font-weight: normal;
@@ -126,7 +126,7 @@ article {
     border: none;
   }
 
-  .p-name, time {
+  & > .p-name, time {
     color: #555;
   }
 
@@ -151,7 +151,7 @@ article {
   text-decoration: none;
 }
 
-.code {
+.code, figure img {
   margin-bottom: .5em;
 }
 
