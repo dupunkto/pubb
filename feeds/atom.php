@@ -30,7 +30,7 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
   </generator>
 
   <?php
-    $pages = \store\list_pages();
+    $pages = \store\list_rss_pages();
 
     foreach($pages as $page) {
       ?>

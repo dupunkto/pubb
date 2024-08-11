@@ -3,7 +3,7 @@
   <a href="<?= CMS_CANONICAL ?>/new" class="button">New page</a>
 </header>
 
-<?php $pages = \store\list_pages_by_type(["md", "html", "txt"], include_drafts: true) ?>
+<?php $pages = \store\list_regular_pages() ?>
 
 <ul>
   <?php foreach($pages as $page) { ?>

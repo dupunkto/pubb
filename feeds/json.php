@@ -8,7 +8,7 @@ include __DIR__ . "/caching.php";
 
 header("Content-Type: application/feed+json; charset=UTF-8");
 
-$pages = \store\list_pages();
+$pages = \store\list_rss_pages();
 $entries = [];
 
 foreach($pages as $page) {

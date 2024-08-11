@@ -22,15 +22,20 @@ switch(true) {
     exit;
   
   case $path == "/":
-    $pages = \store\list_pages();
+    $pages = \store\list_public_pages();
     $title = SITE_TITLE;
 
     break;
 
-  case route('@/(photos|code)$@'):
-    $type = $page_types[$params[1]];
-    $pages = \store\list_pages_by_type($type, visibility: 'public');
-    $title = ucfirst($params[1]);
+  case $path == "/code":
+    $pages = \store\list_gists();
+    $title = "Code";
+
+    break;
+
+  case $path == "/photos":
+    $pages = \store\list_photos();
+    $title = "Photos";
 
     break;
 

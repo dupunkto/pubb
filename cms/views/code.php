@@ -3,7 +3,7 @@
   <a href="<?= CMS_CANONICAL ?>/code/new" class="button">New gist</a>
 </header>
 
-<?php $pages = \store\list_pages_by_type("code", include_drafts: true) ?>
+<?php $pages = \store\list_gists() ?>
 
 <ul>
   <?php foreach($pages as $page) { ?>

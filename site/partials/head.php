@@ -23,7 +23,9 @@
 <!-- Google, please don't mess with my lovingly handcrafted HTML -->
 <meta name="googlebot" content="notranslate" />
 
-<?php if(NONCOMMERCIAL) { ?>
+<?php $hidden = isset($page) and $page['visibility'] == 'hidden' ?>
+
+<?php if(NONCOMMERCIAL or $hidden) { ?>
 <!-- Block commercial scrapers -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="pinterest" content="nopin">

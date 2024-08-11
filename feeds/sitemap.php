@@ -7,7 +7,7 @@ include_once __DIR__ . "/caching.php";
 header("Content-Type: application/xml; charset=UTF-8");
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 
-$pages = \store\list_pages();
+$pages = \store\list_public_pages();
 
 ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

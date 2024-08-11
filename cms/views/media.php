@@ -6,7 +6,7 @@
   </p>
 </header>
 
-<?php $posts = \store\list_pages_by_type("photo", include_drafts: true) ?>
+<?php $posts = \store\list_photos() ?>
 
 <h3>Posts</h3>
 

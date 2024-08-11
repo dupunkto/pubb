@@ -37,7 +37,7 @@
 
   <hgroup>
     <h3>Pages</h3>
-    <p><?= count(\store\list_pages()) ?></p>
+    <p><?= count(\store\list_all_pages()) ?></p>
   </hgroup>
 
   <hgroup>

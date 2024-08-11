@@ -1,5 +1,5 @@
 <?php
-// MySQL-based store.
+// SQL-based store.
 
 namespace store;
 
@@ -14,9 +14,8 @@ define('DBH', establish_connection());
 // referenced file in the `path` column.
 define('TYPES', ["md", "html", "txt", "photo", "code"]);
 
-// The visibility of a page determines where
-// it'll be rendered.
-define('VISIBILITY', ["public", "rss-only"]);
+// The visibility of a page determines where it'll be rendered.
+define('VISIBILITY', ["public", "rss-only", "hidden"]);
 
 function put_page(
   $slug,
@@ -111,16 +110,8 @@ function delete_page($id) {
   return exec_query('DELETE FROM `pages` WHERE id = ? ', [$id]);
 }
 
-function list_pages($visibility = 'all', $include_drafts = false) {
-  (in_array($visibility, VISIBILITY) || $visibility == 'all') 
-    or die("$visibility does not exist");
-
-  $condition = implode(" AND ", drop_empty([
-    ($include_drafts ? '' : 'pages.draft != 1'),
-    ($visibility == 'all' ? '' : "pages.visibility == '$visibility'")
-  ]));
-
-  return all('SELECT
+function pages_query() {
+  return 'SELECT
     pages.id,
     pages.slug,
     pages.type,
@@ -128,6 +119,7 @@ function list_pages($visibility = 'all', $include_drafts = false) {
     pages.reply_to,
     pages.path,
     pages.draft,
+    pages.visibility,
     pages.caption,
     pages.published,
     pages.updated,
@@ -135,61 +127,45 @@ function list_pages($visibility = 'all', $include_drafts = false) {
     volumes.slug AS volume_slug,
     volumes.title AS volume_title,
     volumes.description AS volume_description,
-    volumes.start_at AS volume_end_at,
-    volumes.end_at AS volume_start_at
+    volumes.start_at AS volume_start_at,
+    volumes.end_at AS volume_end_at
   FROM 
     pages
   LEFT JOIN
     volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
-  ' . ($condition == "" ? '' : "WHERE $condition") . '
   ORDER BY 
-    pages.published DESC,
+    pages.updated DESC,
     pages.id
-  ');
+  ';
 }
 
-function list_pages_by_type($types, $visibility = 'all', $include_drafts = false) {
-  if(is_string($types)) $types = [$types];
-  is_array($types) or die("not an array");
+function list_all_pages() {
+  return all(pages_query());
+}
 
-  foreach ($types as $type) {
-    in_array($type, TYPES) or die("$type does not exist");
-  }
+function list_public_pages() {
+  $pages = pages_query();
+  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` = 'public'");
+}
 
-  $placeholders = implode(',', array_fill(0, count($types), '?'));
+function list_rss_pages() {
+  $pages = pages_query();
+  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` != 'hidden'");
+}
 
-  $condition = implode(" AND ", drop_empty([
-    "pages.type IN ($placeholders)",
-    ($include_drafts ? null : 'pages.draft != 1'),
-    ($visibility == 'all' ? null : "pages.visibility == '$visibility'")
-  ]));
+function list_regular_pages() {
+  $pages = pages_query();
+  return all("SELECT * FROM ($pages) WHERE `type` IN ('md', 'html', 'txt')");
+}
 
-  return all('SELECT 
-    pages.id,
-    pages.slug,
-    pages.type,
-    pages.title,
-    pages.reply_to,
-    pages.path,
-    pages.draft,
-    pages.caption,
-    pages.published,
-    pages.updated,
-    volumes.id AS volume_id,
-    volumes.slug AS volume_slug,
-    volumes.title AS volume_title,
-    volumes.description AS volume_description,
-    volumes.start_at AS volume_end_at,
-    volumes.end_at AS volume_start_at
-  FROM 
-    pages
-  LEFT JOIN
-    volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
-  WHERE ' . $condition . '
-  ORDER BY 
-    pages.published DESC,
-    pages.id
-  ', $types);
+function list_gists() {
+  $pages = pages_query();
+  return all("SELECT * FROM ($pages) WHERE `type` = 'code'");
+}
+
+function list_photos() {
+  $pages = pages_query();
+  return all("SELECT * FROM ($pages) WHERE `type` = 'photo'");
 }
 
 function last_updated() {
