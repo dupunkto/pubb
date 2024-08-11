@@ -1,0 +1,28 @@
+img {
+  border-radius: 7px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  width: min(450px, 100%);
+}
+
+table {
+  margin-bottom: 1em;
+}
+
+td:first-child {
+  font-weight: 500;
+  width:0.1%;
+  white-space: nowrap;
+  padding-right: 1em;
+}
+
+td:last-child {
+  opacity: 0.8;
+}
+
+input[name="slug"] {
+  padding: 0;
+}
+
+.missing {
+  opacity: 0.6;
+}

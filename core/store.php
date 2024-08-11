@@ -180,6 +180,10 @@ function put_asset($slug, $path, $uploaded_at) {
     VALUES (?, ?, ?)', [$slug, $path, $uploaded_at]);
 }
 
+function update_asset($id, $slug) {
+  return exec_query('UPDATE `assets` SET `slug` = ? WHERE id = ?', [$slug, $id]);
+}
+
 function get_asset($id) {
   return one('SELECT * FROM `assets` WHERE `id` = ?', [$id]);
 }

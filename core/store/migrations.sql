@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `assets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(90) NOT NULL,
   `path` text NOT NULL,
+  `uploaded_as` text DEFAULT NULL,
   `uploaded_at` datetime NOT NULL DEFAULT current_timestamp,
   UNIQUE (`slug`),
   PRIMARY KEY (`id`)

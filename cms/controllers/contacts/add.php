@@ -11,7 +11,7 @@ if(isset($_POST['add'])) {
     notify: cast($_POST['notify']),
   ) or fail("Couldn't add contact.");
 
-  complete("Added '@" . $handle . "'.", to: "/contacts");
+  complete("Added @{$handle}.", to: "/contacts");
 }
 
 include $view;

@@ -10,7 +10,7 @@ if(isset($_POST['add'])) {
     end: cast($_POST['end_at'])
   ) or fail("Couldn't add volume.");
 
-  complete("Added '" . $_POST['title'] . "'.", to: "/volumes");
+  complete("Added '{$_POST['title']}.", to: "/volumes");
 }
 
 include $view;

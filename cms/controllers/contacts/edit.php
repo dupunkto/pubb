@@ -17,7 +17,7 @@ if(isset($_POST['edit'])) {
     notify: cast($_POST['notify']),
   ) or fail("Couldn't update contact.");
 
-  complete("Updated '@" . $handle . "'.", to: "/contacts");
+  complete("Updated @{$handle}.", to: "/contacts");
 }
 
 include $view;

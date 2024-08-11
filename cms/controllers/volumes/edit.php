@@ -16,7 +16,7 @@ if(isset($_POST['edit'])) {
     end: cast($_POST['end_at'])
   ) or fail("Couldn't add volume.");
 
-  complete("Updated '" . $_POST['title'] . "'.", to: "/volumes");
+  complete("Updated '{$_POST['title']}'.", to: "/volumes");
 }
 
 include $view;

@@ -32,8 +32,10 @@
 
 <ul>
   <?php foreach($assets as $asset) { ?>
-    <li href="<?= CMS_CANONICAL ?>/media/detail?id=<?= $post['id'] ?>">
-      <img src="<?= \urls\photo_url($asset) ?>" alt="#<?= $asset['id'] ?>">
+    <li>
+      <a href="<?= CMS_CANONICAL ?>/media/detail?id=<?= $asset['id'] ?>">
+        <img src="<?= \urls\photo_url($asset) ?>" alt="#<?= $asset['id'] ?>" title="#<?= $asset['id'] ?>">
+      </a>
     </li>
   <?php } ?>
 </ul>

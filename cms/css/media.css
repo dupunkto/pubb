@@ -4,6 +4,20 @@ ul {
   gap: 0.2em;
 }
 
+ul li {
+  padding: 0;
+}
+
+ul a {
+  text-decoration: none !important;
+  cursor: default !important;
+  padding: 0 !important;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 img {
   aspect-ratio: 1;
   transition: filter 100ms;
