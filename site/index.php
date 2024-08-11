@@ -50,7 +50,7 @@ switch(true) {
     break;
 }
 
-// \stats\record_view($path);
+\stats\record_view($path);
 
 if(@$page['type'] == 'txt') {
   header("Content-Type: text/plain; charset=UTF-8");
