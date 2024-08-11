@@ -33,17 +33,17 @@ function cast($value) {
   };
 }
 
-function fail($message, $to = false) {
+function fail($message, $to = null) {
   global $path;
-  if(!$to) $to = $path;
+  if(!isset($to)) $to = $path;
 
   put_flash("error", $message);
   redirect($to);
 }
 
-function complete($message, $to = false) {
+function complete($message, $to = null) {
   global $path;
-  if(!$to) $to = $path;
+  if(!isset($to)) $to = $path;
 
   put_flash("success", $message);
   redirect($to);
