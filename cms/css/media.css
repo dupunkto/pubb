@@ -9,8 +9,10 @@ ul li {
 }
 
 ul a {
+  display: flex !important;
   text-decoration: none !important;
   cursor: default !important;
+  margin: 0 !important;
   padding: 0 !important;
 
   &:hover {
