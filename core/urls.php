@@ -12,15 +12,7 @@ function photo_url($asset) {
   return CANONICAL . "/" . $asset['path'];
 }
 
-function type_url($type) {
-  return CANONICAL . match($type) {
-    "photo" => "/photos",
-    "code" => "/code",
-    default => "/",
-  };
-}
-
 function parse($url) {
   $path = parse_url($url, PHP_URL_PATH);
-  return in_array($path, ["/", "/photos", "/code"]) ? false : $path;
+  return in_array($path, ["/", "/all", "/photos", "/code"]) ? false : $path;
 }

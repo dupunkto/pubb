@@ -16,8 +16,13 @@ switch(true) {
     exit;
   
   case $path == "/":
+    http_response_code(301);
+    header("Location: " . CANONICAL . "/all");
+    exit;
+
+  case $path == "/all":
     $pages = \store\list_public_pages();
-    $title = SITE_TITLE;
+    $title = "All pages";
 
     break;
 
