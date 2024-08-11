@@ -386,6 +386,12 @@ function copy_file($source, $ext = null) {
   }
 }
 
+function delete_file($path) {
+  if(in_store($path)) {
+    return unlink(path_join(STORE, $path));
+  }
+}
+
 function in_store($path) {
   return file_exists(path_join(STORE, $path));
 }
