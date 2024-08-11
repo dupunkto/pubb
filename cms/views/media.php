@@ -14,7 +14,7 @@
   <?php foreach($posts as $post) { ?>
     <li>
       <a href="<?= CMS_CANONICAL ?>/media/edit?id=<?= $post['id'] ?>">
-        <img src="<?= photo_url($asset) ?>" alt="#<?= asset['id'] ?>" loading="lazy">
+        <img src="<?= \urls\photo_url($post) ?>" alt="#<?= esc_attr($post['caption']) ?>" loading="lazy">
       </a>
     </li>
   <?php } ?>
