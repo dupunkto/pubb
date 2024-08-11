@@ -20,6 +20,7 @@ function serve_file($path) {
 }
 
 $requested_file = path_join(__DIR__, $_NODE, $path);
+$requested_upload = path_join(STORE, $path);
 
 switch(true) {
   case is_file($requested_file) and is_builtin():
@@ -27,6 +28,12 @@ switch(true) {
     // in production this will be handled by Apache directly.
 
     serve_file($requested_file);
+
+  case is_file($requested_upload) and is_builtin():
+    // Serve (image) file as-is. Only applies to the development server,
+    // in production this will be handled by Apache directly.
+
+    serve_file($requested_upload);
 
   // Serve RSS feeds. Again, only in development.
   case route('@/rss.xml$@'): include __DIR__ . "/feeds/rss.php"; exit;
@@ -42,13 +49,6 @@ switch(true) {
   
     include __DIR__ . "/endpoint/{$params[1]}.php";
     exit;
-
-  case route('@/uploads/(.*)$@'):
-    // Serve (image) file as-is. Only applies to the development server,
-    // in production this will be handled by Apache directly.
-
-    ['path' => $path] = \store\get_asset_by_slug($params[1]);
-    serve_file(path_join(STORE, $path));
 
   default:
     // Depending on the environment, run either the 

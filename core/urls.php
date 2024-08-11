@@ -8,7 +8,8 @@ function page_url($page) {
 }
 
 function photo_url($asset) {
-  return CANONICAL . "/uploads/" . $asset['slug'];
+  str_starts_with($asset['path'], "uploads") or die("Illegal store path for asset.");
+  return CANONICAL . "/" . $asset['path'];
 }
 
 function type_url($type) {
