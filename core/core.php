@@ -141,7 +141,7 @@ function get_sent_mention($page, $contact) {
 // Webmentions & pingbacks
 
 function send_webmentions($page) {
-  $source_url = page_url($page);
+  $source_url = \urls\page_url($page);
   $targets = []; // TODO(robin): get all URLs from page.
 
   foreach($targets as $target_url) {
@@ -150,7 +150,7 @@ function send_webmentions($page) {
 }
 
 function send_pingbacks($page) {
-  $source_url = page_url($page);
+  $source_url = \urls\page_url($page);
   $targets = []; // TODO(robin): get all URLs from page.
 
   foreach($targets as $target_url) {
