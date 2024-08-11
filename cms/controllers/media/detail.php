@@ -1,5 +1,5 @@
 <?php
-// Asset details
+// Preview and edit asset.
 
 if(isset($_POST['save'])) {
   \store\update_asset(

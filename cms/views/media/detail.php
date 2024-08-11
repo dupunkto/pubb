@@ -67,7 +67,7 @@
           <td>
             <?php foreach($linked as $post) { ?>
               <a href="<?= CMS_CANONICAL ?>/media/edit?id=<?= $post['id'] ?>">
-                <cite>#<?= $post['id'] ?></cite>
+                <cite>*<?= $post['slug'] ?></cite>
               </a>
             <?php } ?>
           </td>

@@ -8,38 +8,19 @@ if(isset($_POST['upload'])) {
   $uploads = restructure_files($_FILES['assets']);
 
   foreach($uploads as $upload) {
-    $slug = \store\unique_slug('assets', $upload['name']);
+    try {
+      $slug = \store\unique_slug('assets', $upload['name']);
+      $stored_at = \core\upload_photo($upload);
 
-    $ext = parse_ext($upload['name'], "jpg");
-    $tmp_file = $upload['tmp_name'];
-
-    if($upload['error'] != UPLOAD_ERR_OK) {
-      $error = match($upload['error']) {
-        UPLOAD_ERR_INI_SIZE => "Upload too large.",
-        UPLOAD_ERR_PARTIAL => "Upload only partially uploaded.",
-        UPLOAD_ERR_NO_FILE => "No file was uploaded.",
-        UPLOAD_ERR_NO_TMP_DIR => "Temporary folder to write to was missing.",
-        UPLOAD_ERR_CANT_WRITE => "Couldn't write to disk.",
-        UPLOAD_ERR_EXTENSION => "The upload was stopped by a PHP extension."
-      };
-
-      fail("'{$upload['name']}' failed: $error");
+      \store\put_asset(
+        slug: $slug,
+        path: $stored_at,
+        uploaded_as: $upload['name'],
+        uploaded_at: $now,
+      ) or fail("Saving '{$upload['name']}' to the database failed.");
+    } catch(Exception $e) {
+      fail($e->getMessage());
     }
-
-    // This checks if someone isn't maliciously trying
-    // to overwrite /etc/passwd or something.
-    if(!is_uploaded_file($tmp_file) or !getimagesize($tmp_file)) 
-      fail("Bad photo upload. Try again.");
-
-    $stored_at = \store\copy_file($tmp_file, $ext) 
-      or fail("Copying '{$upload['name']}' over to data store failed.");
-
-    \store\put_asset(
-      slug: $slug,
-      path: $stored_at,
-      uploaded_as: $upload['name'],
-      uploaded_at: $now,
-    ) or fail("Saving '{$upload['name']}' to the database failed.");
   }
 
   $count = count($uploads);

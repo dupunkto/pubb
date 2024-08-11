@@ -4,6 +4,8 @@
 
 namespace core;
 
+use Exception;
+
 // Pages
 
 function get_page_by_url($url) {
@@ -83,6 +85,70 @@ function edit_gist($id, $filename, $code, $caption) {
     reply_to: null,
     caption: $caption,
   );
+}
+
+// Assets
+
+function new_photo($slug, $caption, $path) {
+  $now = date("Y-m-d H:i:s");
+
+  return \store\put_page(
+    slug: $slug,
+    type: 'photo',
+    title: null,
+    published: $now,
+    updated: $now,
+    path: $path,
+    draft: 0,
+    visibility: 'public',
+    reply_to: null,
+    caption: $caption,
+  );
+}
+
+function update_photo($id, $slug, $caption, $path) {
+  $now = date("Y-m-d H:i:s");
+
+  return \store\update_page(
+    id: $id,
+    slug: $slug,
+    type: 'photo',
+    title: null,
+    updated: $now,
+    path: $path,
+    draft: 0,
+    visibility: 'public',
+    reply_to: null,
+    caption: $caption,
+  );
+}
+
+function upload_photo($upload) {
+  $ext = parse_ext($upload['name'], "jpg");
+  $tmp_file = $upload['tmp_name'];
+
+  if($upload['error'] != UPLOAD_ERR_OK) {
+    $error = match($upload['error']) {
+      UPLOAD_ERR_INI_SIZE => "Upload too large.",
+      UPLOAD_ERR_PARTIAL => "Upload only partially uploaded.",
+      UPLOAD_ERR_NO_FILE => "No file was uploaded.",
+      UPLOAD_ERR_NO_TMP_DIR => "Temporary folder to write to was missing.",
+      UPLOAD_ERR_CANT_WRITE => "Couldn't write to disk.",
+      UPLOAD_ERR_EXTENSION => "The upload was stopped by a PHP extension."
+    };
+
+    throw new Exception("'{$upload['name']}' failed: $error");
+  }
+
+  // This checks if someone isn't maliciously trying
+  // to overwrite /etc/passwd or something.
+  if(!is_uploaded_file($tmp_file) or !getimagesize($tmp_file))
+    throw new Exception("Bad photo upload. Try again.");
+
+  $path = \store\copy_file($tmp_file, $ext) 
+    or throw new Exception("Copying '{$upload['name']}' over to data store failed.");
+
+  return $path;
 }
 
 // @mentions

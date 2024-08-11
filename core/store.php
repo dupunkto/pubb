@@ -29,9 +29,9 @@ function put_page(
   $caption,
   $reply_to
 ) {
-  in_array($type, TYPES) or die("$type does not exist");
-  in_array($visibility, VISIBILITY) or die("$visibility does not exist");
-  in_store($path) or die("$path does not exist");
+  in_array($type, TYPES) or die("type $type does not exist");
+  in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
+  in_store($path) or die("path $path not in store");
 
   return exec_query('INSERT INTO `pages` (
     `slug`, 
@@ -70,9 +70,9 @@ function update_page(
   $caption,
   $reply_to,
 ) {
-  in_array($type, TYPES) or die("$type does not exist");
-  in_array($visibility, VISIBILITY) or die("$visibility does not exist");
-  in_store($path) or die("$path does not exist");
+  in_array($type, TYPES) or die("type $type does not exist");
+  in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
+  in_store($path) or die("path $path not in store");
 
   return exec_query('UPDATE `pages` SET
     `slug` = ?,
@@ -289,7 +289,7 @@ function list_contacts() {
 define('ORIGINS', ["incoming", "outgoing"]);
 
 function put_mention($origin, $contact_id, $page_id, $source) {
-  in_array($origin, ORIGINS) or die("$origin does not exist");
+  in_array($origin, ORIGINS) or die("type $origin does not exist");
   get_page($page_id)         or die("page with ID $page_id does not exist");
   get_contact($contact_id)   or die("contact with ID $contact_id does not exist");
 
