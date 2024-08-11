@@ -120,7 +120,7 @@
 
   <ul>
     <?php foreach($pages as $id => $page) { ?>
-      <li><?= $page['title'] ?> <span><?= $page['views'] ?></span></li>
+      <li><?= $page['title'] ?? $page['slug'] ?> <span><?= $page['views'] ?></span></li>
     <?php } ?>
   </ul>
 <?php } ?>
