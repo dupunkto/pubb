@@ -32,9 +32,27 @@
         </td>
       </tr>
       <tr>
+        <td>Internal reference</td>
+        <td>
+          <code><?= filename($asset['path']) ?></code>
+        </td>
+      </tr>
+      <tr>
         <td>Uploaded at</td>
         <td><?= $asset['uploaded_at'] ?></td>
       </tr>
+      <?php if(count($linked) != 0) { ?>
+        <tr>
+          <td>Linked posts</td>
+          <td>
+            <?php foreach($linked as $post) { ?>
+              <a href="<?= CMS_CANONICAL ?>/media/edit?id=<?= $post['id'] ?>">
+                <cite>#<?= $post['id'] ?></cite>
+              </a>
+            <?php } ?>
+          </td>
+        </tr>
+      <?php } ?>
     </tbody>
   </table>
 

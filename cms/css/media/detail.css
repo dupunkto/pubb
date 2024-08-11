@@ -19,6 +19,10 @@ td:last-child {
   opacity: 0.8;
 }
 
+td a:not(:last-of-type)::after {
+  content: ", ";
+}
+
 input[name="slug"] {
   padding: 0;
 }
