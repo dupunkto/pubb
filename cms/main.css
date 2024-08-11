@@ -93,6 +93,10 @@ kbd {
   color: #111121;
 }
 
+code {
+  font-size: 0.98em;
+}
+
 table {
   border-collapse: collapse;
   max-width: 100%;
