@@ -2,6 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+<!-- Sitemap, because kinda nice -->
+<link rel="sitemap" type="application/xml" title="Sitemap" href="<?= CANONICAL ?>/sitemap.xml">
+
 <!-- RSS, because it's amazing -->
 <link rel="alternate" type="application/rss+xml" title="<?= SITE_TITLE ?> (RSS)" href="<?= CANONICAL . "/rss.xml" ?>">
 <link rel="alternate" type="application/atom+xml" title="<?= SITE_TITLE ?> (Atom)" href="<?= CANONICAL . "/atom.xml" ?>">

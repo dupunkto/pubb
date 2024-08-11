@@ -32,6 +32,7 @@ switch(true) {
   case route('@/rss.xml$@'): include __DIR__ . "/feeds/rss.php"; exit;
   case route('@/atom.xml$@'): include __DIR__ . "/feeds/atom.php"; exit;
   case route('@/feed.json$@'): include __DIR__ . "/feeds/json.php"; exit;
+  case route('@/sitemap.xml$@'): include __DIR__ . "/feeds/sitemap.php"; exit;
 
   case route('@/endpoint/(\w+)$@'):
     // Here be dragons.
