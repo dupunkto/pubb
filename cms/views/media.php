@@ -14,7 +14,7 @@
   <?php foreach($posts as $post) { ?>
     <li>
       <a href="<?= CMS_CANONICAL ?>/media/edit?id=<?= $post['id'] ?>">
-        <img src="<?= photo_url($asset) ?>" alt="#<?= asset['id'] ?>">
+        <img src="<?= photo_url($asset) ?>" alt="#<?= asset['id'] ?>" loading="lazy">
       </a>
     </li>
   <?php } ?>
@@ -34,7 +34,7 @@
   <?php foreach($assets as $asset) { ?>
     <li>
       <a href="<?= CMS_CANONICAL ?>/media/detail?id=<?= $asset['id'] ?>">
-        <img src="<?= \urls\photo_url($asset) ?>" alt="#<?= $asset['id'] ?>" title="#<?= $asset['id'] ?>">
+        <img src="<?= \urls\photo_url($asset) ?>" alt="#<?= $asset['id'] ?>" title="#<?= $asset['id'] ?>"  loading="lazy">
       </a>
     </li>
   <?php } ?>
