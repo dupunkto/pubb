@@ -17,6 +17,7 @@ require __DIR__ . "/core/renderer.php";
 require __DIR__ . "/core/urls.php";
 require __DIR__ . "/core/mimes.php";
 require __DIR__ . "/core/langs.php";
+require __DIR__ . "/core/agents.php";
 require __DIR__ . "/core/utf8.php";
 require __DIR__ . "/core/utils.php";
 

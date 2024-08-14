@@ -63,6 +63,14 @@ if(@$page['type'] == 'txt') {
   exit;
 }
 
+if(\agents\is_blocked()) {
+  http_response_code(418);
+  echo "I do not like you. I asked you to leave me alone nicely in /robots.txt, 
+  but you're clearly not interested in anything resembling ethical behaviour; 
+  that's exactly why you're now blocked. Fuck you and your techno-capitalist mindset.";
+  exit;
+}
+
 ?><!DOCTYPE html>
 <html lang="<?= SITE_LANG ?>">
   <head>
