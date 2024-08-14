@@ -20,7 +20,7 @@
 <link rel="alternate" type="application/atom+xml" title="<?= esc_attr(SITE_TITLE) ?> (Atom)" href="<?= CANONICAL ?>/atom.xml">
 <link rel="alternate" type="application/feed+json" title="<?= esc_attr(SITE_TITLE) ?> (JSON)" href="<?= CANONICAL ?>/feed.json">
 
-<!-- Google, please don't mess with my lovingly handcrafted HTML -->
+<!-- Google, please don't mess with my lovingly crafted HTML -->
 <meta name="googlebot" content="notranslate" />
 
 <?php $hidden = @$page['visibility'] == 'hidden' ?>

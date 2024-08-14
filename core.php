@@ -14,7 +14,6 @@ require __DIR__ . "/core/mailer.php";
 require __DIR__ . "/core/stats.php";
 require __DIR__ . "/core/forms.php";
 require __DIR__ . "/core/renderer.php";
-require __DIR__ . "/core/partials.php";
 require __DIR__ . "/core/urls.php";
 require __DIR__ . "/core/mimes.php";
 require __DIR__ . "/core/langs.php";

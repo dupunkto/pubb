@@ -82,13 +82,12 @@ if(@$page['type'] == 'txt') {
             break;
 
           case isset($page):
-            \partials\page($page);
-            \partials\comment_section($page);
-            
+            \renderer\page($page);
+            \renderer\comment_section($page);
             break;
 
           case isset($pages) and count($pages) > 0:
-            \partials\listing($pages);
+            \renderer\listing($pages);
             break;
 
           default:
