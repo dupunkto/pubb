@@ -71,3 +71,22 @@ CREATE TABLE IF NOT EXISTS `views` (
   `datetime` datetime NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  -- 'page', 'external', 'listing'
+  `type` varchar(90) NOT NULL,
+  `label` text NOT NULL,
+  `page_id` int(11) DEFAULT NULL,
+  `ref` text DEFAULT NULL,
+  `order` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `menu_section` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` text NOT NULL,
+  `order` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+);
