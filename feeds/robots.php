@@ -9,9 +9,8 @@ Sitemap: <?= CANONICAL ?>/sitemap.xml
 <?php if(NONCOMMERCIAL) { ?>
 # This site is non-commercial and doesn't want anything
 # to do with the Corporate Web.
-
 <?php foreach(CORPORATE_AGENTS as $agent) {
-  echo "User-agent: $agent";
+  echo "\nUser-agent: $agent";
 } ?>
 Disallow: /
 <?php } ?>
@@ -20,9 +19,8 @@ Disallow: /
 # This site is opposed to the unrequested, unwanted and
 # unethical scraping of the Personal Web in order to "train"
 # Carbon-hungry highschoolers.
-
 <?php foreach(AI_AGENTS as $agent) {
-  echo "User-agent: $agent";
+  echo "\nUser-agent: $agent";
 } ?>
 Disallow: /
 <?php } ?>
