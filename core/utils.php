@@ -126,6 +126,12 @@ function normalize_url($url) {
   }
 }
 
+// TODO(robin): decide of canonical URL form
+// and implement this API.
+function canonicalize_url($url) {
+  return $url;
+}
+
 function is_url($str) {
   return str_starts_with($str, "http://") 
   	or str_starts_with($str, "https://");

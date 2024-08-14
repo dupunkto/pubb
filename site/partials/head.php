@@ -2,7 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="canonical" href="<?= normalize_url(CANONICAL . $path) ?>">
+<?php if(!$not_found) { ?>
+<link rel="canonical" href="<?= canonicalize_url(CANONICAL . $path) ?>">
+<?php } ?>
 <link rel="stylesheet" type="text/css" href="<?= CANONICAL . "/main.css" ?>">
 
 <meta name="author" content="<?= esc_attr(AUTHOR_NAME) ?>">
