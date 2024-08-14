@@ -4,7 +4,7 @@
   <header class="bar">
     <h2><?= $title ?></h2>
 
-    <div class="button-group">
+    <div class="group">
       <?php if(isset($id)) { ?>
         <input name="id" value="<?= $id ?>" type="hidden">
         <a href="<?= CMS_CANONICAL ?>/delete?type=post&return=/media&id=<?= $id ?>" class="button">delete</a>

@@ -43,7 +43,7 @@
     </label>
   </p>
 
-  <div class="button-group">
+  <div class="group">
     <a href="<?= CMS_CANONICAL ?>/contacts" class="button">Cancel</a>
     <input type="submit" name="add" value="Add">
   </div>

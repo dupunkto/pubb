@@ -55,7 +55,7 @@
 
   <div class="bar">
     <a href="<?= CMS_CANONICAL ?>/contacts/delete?id=<?= $id ?>" class="button">Delete</a>
-    <div class="button-group">
+    <div class="group">
       <a href="<?= CMS_CANONICAL ?>/contacts" class="button">Cancel</a>
       <input type="submit" name="edit" value="Save">
     </div>

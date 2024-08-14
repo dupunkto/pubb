@@ -1,6 +1,6 @@
 <header class="bar">
   <h2>Media</h2>
-  <p class="button-group">
+  <p class="group">
     <a href="<?= CMS_CANONICAL ?>/media/upload" class="button">Upload asset</a>
     <a href="<?= CMS_CANONICAL ?>/media/new" class="button">New post</a>
   </p>

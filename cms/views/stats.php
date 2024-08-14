@@ -10,7 +10,7 @@
     </small>
   </h2>
 
-  <div class="button-group">
+  <div class="group">
     <?php if($span == "monthly") { ?>
       <a href="<?= $prev ?>" class="button">
         Prev

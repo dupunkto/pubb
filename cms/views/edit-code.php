@@ -22,7 +22,7 @@
         required
       >
 
-      <p class="button-group">
+      <p class="group">
         <?php if(isset($id)) { ?>
           <input name="id" value="<?= $id ?>" type="hidden">
           <a href="<?= CMS_CANONICAL ?>/delete?type=code&return=/code&id=<?= $id ?>" class="button">rm&nbsp;&#8209;rf</a>

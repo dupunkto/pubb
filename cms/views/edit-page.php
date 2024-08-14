@@ -21,7 +21,7 @@
         <?php } ?>
       >
 
-      <p class="button-group">
+      <p class="group">
         <input
           type="submit"
           name="save"

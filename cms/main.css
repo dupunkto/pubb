@@ -60,16 +60,10 @@ h6 {
   margin-bottom: 0;
 }
 
-hgroup h1 {
-  margin-bottom: 0;
-}
-
-hgroup p {
-  margin-top: 0;
-}
-
 hgroup {
   margin-bottom: 1em;
+  h1 { margin-bottom: 0; }
+  p { margin-top: 0; }
 }
 
 pre {
@@ -112,60 +106,6 @@ th {
 tr {
   border-bottom: 1px solid;
   border-color: inherit;
-}
-
-blockquote {
-  font-style: italic;
-  border-left: 2px solid;
-  padding-left: 1.2em;
-  margin: auto 0;
-  color: gray;
-  border-color: inherit;
-}
-
-ins {
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* Site-specific */
-
-button,
-input[type="submit"],
-input[type="button"],
-.button {
-  background: black;
-  color: white;
-  border: none;
-  font-size: 0.8em;
-  line-height: 1.5;
-  padding: 0.5em 1em;
-  text-transform: lowercase;
-  text-decoration: none;
-  cursor: default;
-
-  /* Hack center vertically in link (a) elements */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover {
-  opacity: 0.8;
-}
-
-input[type="url"],
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  padding: 0.2em 0.4em;
-  font-size: 1em;
-}
-
-input[type="file"] {
-  border: none;
 }
 
 /* Flash messages */
@@ -251,6 +191,12 @@ main > header:not(:first-child) {
   border: none;
 }
 
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25em;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -289,9 +235,10 @@ ul li .actions a {
   }
 }
 
-.button-group {
+.group {
   display: flex;
   flex-direction: row;
+  justify-content: end;
   gap: 0.25em;
   margin: 0;
 }
@@ -303,6 +250,40 @@ ul li .actions a {
 }
 
 /* Forms */
+
+button,
+input[type="submit"],
+input[type="button"],
+.button {
+  background: black;
+  color: white;
+  border: none;
+  font-size: 0.8em;
+  line-height: 1.5;
+  padding: 0.5em 1em;
+  text-transform: lowercase;
+  text-decoration: none;
+  cursor: default;
+
+  /* Hack center vertically in link (a) elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  opacity: 0.8;
+}
+
+input[type="url"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 0.2em 0.4em;
+  font-size: 1em;
+}
 
 input,
 textarea,
@@ -335,6 +316,7 @@ select {
 
 input[type="file"] {
   display: block;
+  border: none;
   padding: 110px 1em;
   background: light-dark(#f1f1f1, #2b2b33);
   border: 2px dashed currentColor;
@@ -361,8 +343,15 @@ textarea {
   font: inherit;
 }
 
-.button-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
+[onclick="copy(event)"] {
+  cursor: pointer;
+}
+
+.copied {
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 3.5em;
+  left: 0;
 }
