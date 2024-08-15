@@ -1,6 +1,14 @@
 <?php
 // Preview and edit asset.
 
+if(!isset($_GET['id'])) redirect("/media");
+
+$id = $_GET['id'];
+$asset = \store\get_asset($id) or redirect("/media");
+$linked = \store\linked_pages($asset);
+$duplicates = \store\duplicates($asset);
+$duplicate = \store\duplicate_of($asset);
+
 if(isset($_POST['save'])) {
   \store\update_asset(
     id: cast($_POST['id']), 
@@ -9,13 +17,5 @@ if(isset($_POST['save'])) {
 
   complete("Updated #{$_POST['id']}.", to: "/media");
 }
-
-if(!isset($_GET['id'])) redirect("/media");
-
-$id = $_GET['id'];
-$asset = \store\get_asset($id) or redirect("/media");
-$linked = \store\linked_pages($asset);
-$duplicates = \store\duplicates($asset);
-$duplicate = \store\duplicate_of($asset);
 
 include $view;

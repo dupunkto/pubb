@@ -1,6 +1,16 @@
 <?php
 // Edit photo post.
 
+if(!isset($_GET['id'])) redirect("/media");
+
+$id = $_GET['id'];
+$post = \store\get_page($id) or redirect("/media");
+
+$title = "Edit post";
+$slug = $post['slug'];
+$caption = $post['caption'];
+$store_path = $post['path'];
+
 if(isset($_POST['save'])) {
   \core\update_photo(
     id: cast($_POST['id']),
@@ -11,15 +21,5 @@ if(isset($_POST['save'])) {
 
   complete("Saved post.", to: "/media");
 }
-
-if(!isset($_GET['id'])) redirect("/media");
-
-$id = $_GET['id'];
-$post = \store\get_page($id) or redirect("/media");
-
-$title = "Edit post";
-$slug = $post['slug'];
-$caption = $post['caption'];
-$store_path = $post['path'];
 
 include path_join($views, "edit-photo.php");

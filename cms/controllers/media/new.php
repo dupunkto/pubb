@@ -1,6 +1,13 @@
 <?php
 // Create photo post.
 
+$title = "New post";
+
+if(isset($_GET['from'])) {
+  $asset = \store\get_asset($_GET['from']) or redirect("/media");
+  $store_path = $asset['path'];
+}
+
 if(isset($_POST['save'])) {
   if(isset($_POST['path'])) {
     $stored_at = cast(dbg($_POST['path']));
@@ -24,13 +31,6 @@ if(isset($_POST['save'])) {
   ) or fail("Failed to save post.");
 
   complete("Saved post.", to: "/media");
-}
-
-$title = "New post";
-
-if(isset($_GET['from'])) {
-  $asset = \store\get_asset($_GET['from']) or redirect("/media");
-  $store_path = $asset['path'];
 }
 
 include path_join($views, "edit-photo.php");
