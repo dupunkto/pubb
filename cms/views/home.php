@@ -15,5 +15,6 @@
   <li><a href="<?= CMS_CANONICAL ?>/comments">Comments</a></li>
   <li><a href="<?= CMS_CANONICAL ?>/contacts">Contacts</a></li>
   <li><a href="<?= CMS_CANONICAL ?>/volumes">Volumes</a></li>
+  <li><a href="<?= CMS_CANONICAL ?>/menu">Menu</a></li>
   <li><a href="<?= CMS_CANONICAL ?>/stats">Statistics</a></li>
 </ul>

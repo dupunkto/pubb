@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `views` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `menu` (
+CREATE TABLE IF NOT EXISTS `menu_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   -- 'page', 'external', 'listing'
   `type` varchar(90) NOT NULL,
@@ -80,11 +80,11 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `page_id` int(11) DEFAULT NULL,
   `ref` text DEFAULT NULL,
   `order` int(11) NOT NULL,
-  `section_id` int(11) NOT NULL,
+  `section_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `menu_section` (
+CREATE TABLE IF NOT EXISTS `menu_sections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` text NOT NULL,
   `order` int(11) NOT NULL,

@@ -219,19 +219,29 @@ ul li:has(.actions) {
   padding-right: 0.7em;
 }
 
-ul li .actions a {
-  background: black;
-  color: white;
-  padding: 0.5em 0.75em;
-  margin-left: 0.25em;
-  font-size: 0.8em;
-  line-height: 1.5;
-  text-transform: lowercase;
-  text-decoration: none;
-  cursor: default;
+ul li .actions {
+  display: flex;
+  gap: 0.2em;
 
-  &:hover {
-    opacity: 0.8;
+  a {
+    background: black;
+    color: white;
+    padding: 0.5em 0.75em;
+    margin-left: 0.25em;
+    font-size: 0.8em;
+    line-height: 1.5;
+    text-transform: lowercase;
+    text-decoration: none;
+    cursor: default;
+  
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  input, select {
+    max-width: min-content;
+    flex-shrink: 1;
   }
 }
 
@@ -280,6 +290,7 @@ input[type="button"]:hover {
 input[type="url"],
 input[type="text"],
 input[type="email"],
+input[type="number"],
 input[type="password"] {
   padding: 0.2em 0.4em;
   font-size: 1em;
@@ -294,6 +305,7 @@ select {
 
 /* select is just special like that :shrug: */
 select {
+  font-size: 1em;
   padding: 6px;
 }
 
@@ -309,6 +321,7 @@ input:user-invalid {
 input[type="url"],
 input[type="text"],
 input[type="email"],
+input[type="number"],
 input[type="password"],
 select {
   width: 100%;

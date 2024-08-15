@@ -277,7 +277,7 @@ function get_contact_by_email($email) {
 }
 
 function delete_contact($id) {
-  return exec_query('DELETE FROM `contacts` WHERE id = ? ', [$id]);
+  return exec_query('DELETE FROM `contacts` WHERE id = ?', [$id]);
 }
 
 function list_contacts() {
@@ -356,6 +356,82 @@ function list_views($year, $month) {
 
 function list_all_views() {
   return all('SELECT * FROM `views` ORDER BY `datetime` DESC');
+}
+
+// Menus
+
+function put_menu_item($type, $label, $page_id, $ref, $order, $section_id) {
+  return exec_query('INSERT INTO `menu_items` 
+    (`type`, `label`, `page_id`, `ref`, `order`, `section_id`) 
+    VALUES (?, ?, ?, ?, ?, ?)', [$type, $label, $page_id, $ref, $order, $section_id]);
+}
+
+function put_menu_section($label, $order) {
+  return exec_query('INSERT INTO `menu_sections` 
+    (`label`, `order`) VALUES (?, ?)', [$label, $order]);
+}
+
+function update_menu_item($id, $label, $page_id, $ref) {
+  return exec_query('UPDATE `menu_items` SET `label` = ?, `page_id` = ?, `ref` = ?
+    WHERE `id` = ?', [$label, $page_id, $ref, $id]);
+}
+
+function update_menu_order($id, $order, $section_id) {
+  return exec_query('UPDATE `menu_items` SET `order` = ?, `section_id` = ?
+    WHERE `id` = ?', [$order, $section_id, $id]);
+}
+
+function update_menu_section($id, $label, $order) {
+  return exec_query('UPDATE `menu_sections` SET `label` = ?, `order` = ? 
+    WHERE `id` = ?', [$label, $order, $id]);
+}
+
+function list_menu_items() {
+  return all('SELECT
+    item.id,
+    item.label,
+    item.page_id,
+    item.ref,
+    item.`order`,
+    item.section_id,
+    section.label AS section_label,
+    section.`order` AS section_order,
+    page.slug AS `page_slug`,
+    page.type AS `page_type`,
+    page.title AS `page_title`,
+    page.draft AS `page_draft`
+  FROM 
+    menu_items item
+  LEFT JOIN 
+    menu_sections section ON item.section_id = section.id
+  LEFT JOIN
+    pages page ON item.page_id = page.id
+  ORDER BY
+    section.`order`,
+    section.id,
+    item.`order`,
+    item.id
+  ');
+}
+
+function list_menu_sections() {
+  return all('SELECT * FROM `menu_sections` ORDER BY `order`');
+}
+
+function get_menu_item($id) {
+  return one('SELECT * FROM `menu_items` WHERE id = ?', [$id]);
+}
+
+function get_menu_section($id) {
+  return one('SELECT *, "section" AS `type` FROM `menu_sections` WHERE id = ?', [$id]);
+}
+
+function delete_menu_item($id) {
+  return exec_query('DELETE FROM `menu_items` WHERE id = ?', [$id]);
+}
+
+function delete_menu_section($id) {
+  return exec_query('DELETE FROM `menu_sections` WHERE id = ?', [$id]);
 }
 
 // Uniqueness

@@ -34,19 +34,23 @@ function cast($value) {
 }
 
 function fail($message, $to = null) {
-  global $path;
-  if(!isset($to)) $to = $path;
+  die($message);
+  if(!isset($to)) $to = full_path();
 
   put_flash("error", $message);
   redirect($to);
 }
 
 function complete($message, $to = null) {
-  global $path;
-  if(!isset($to)) $to = $path;
+  if(!isset($to)) $to = full_path();
 
   put_flash("success", $message);
   redirect($to);
+}
+
+function full_path() {
+  global $path, $_SERVER;
+  return "{$path}?{$_SERVER['QUERY_STRING']}";
 }
 
 function redirect($path) {

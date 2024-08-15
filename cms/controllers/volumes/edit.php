@@ -14,7 +14,7 @@ if(isset($_POST['edit'])) {
     description: cast(@$_POST['description']),
     start: cast($_POST['start_at']),
     end: cast($_POST['end_at'])
-  ) or fail("Couldn't add volume.");
+  ) or fail("Couldn't update volume.");
 
   complete("Updated '{$_POST['title']}'.", to: "/volumes");
 }
