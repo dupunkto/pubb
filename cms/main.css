@@ -115,8 +115,8 @@ tr {
 .warn,
 .info {
   padding: 0.2em 0.4em;
-  margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-top: -5.5em;
+  margin-bottom: 3.5em;
   border: 1px solid currentColor;
   cursor: default;
 }
@@ -180,6 +180,7 @@ main > header:not(:first-child) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 1em;
   gap: 0.25em;
 }
