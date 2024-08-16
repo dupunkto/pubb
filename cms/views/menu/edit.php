@@ -66,7 +66,7 @@
     ?>
       <a href="<?= CMS_CANONICAL ?>/menu/delete?type=<?= $type ?>&id=<?= $item['id'] ?>" class="button">Delete</a>
     <?php } else { ?>
-      <span><!-- Dummy element for correct positioning --></span>
+      <span class="no-delete">(Section cannot be deleted; it has linked menu items)</span>
     <?php } ?>
     <div class="group">
       <a href="<?= CMS_CANONICAL ?>/menu" class="button">Cancel</a>
