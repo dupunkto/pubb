@@ -6,6 +6,9 @@ define('CONFIG', STORE . "/config.json");
 
 // Initialize data store if it doesn't exist yet.
 if(!is_dir(STORE)) {
+  define('INITIAL_RUN', true);
+  define('MIGRATIONS_STALE', true);
+
   mkdir(STORE) or die("Failed to initialize data store.");
   mkdir(STORE . "/content") or die("Failed to initialize file store.");
   mkdir(STORE . "/uploads") or die("Failed to initialize upload store.");

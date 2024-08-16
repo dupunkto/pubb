@@ -28,10 +28,8 @@ function establish_connection() {
   }
 }
 
-function migrate() {
-  $migrations = __DIR__ . "/migrations.sql";
-
-  $sql = file_get_contents($migrations);
+function execute($path) {
+  $sql = file_get_contents($path);
   $queries = explode(';', $sql);
 
   foreach ($queries as $query) {

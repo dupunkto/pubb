@@ -12,7 +12,6 @@ if(isset($_POST['add']) and $_POST['type'] == 'page') {
     label: cast($title),
     page_id: cast($_POST['page_id']),
     ref: null,
-    order: 0,
     section_id: null
   ) or fail("Couldn't save menu item.");
 
@@ -25,7 +24,6 @@ if(isset($_POST['add']) and in_array($_POST['type'], ['external', 'listing'])) {
     label: cast($_POST['label']),
     page_id: null,
     ref: cast($_POST['ref']),
-    order: 0,
     section_id: null
   ) or fail("Couldn't save menu item.");
 
@@ -35,7 +33,6 @@ if(isset($_POST['add']) and in_array($_POST['type'], ['external', 'listing'])) {
 if(isset($_POST['add']) and $_POST['type'] == 'section') {
   \store\put_menu_section(
     label: cast($_POST['label']),
-    order: 0,
   ) or fail("Couldn't save section.");
 
   complete("Added section '{$_POST['label']}'.", to: "/menu");

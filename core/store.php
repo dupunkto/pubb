@@ -360,15 +360,15 @@ function list_all_views() {
 
 // Menus
 
-function put_menu_item($type, $label, $page_id, $ref, $order, $section_id) {
+function put_menu_item($type, $label, $page_id, $ref, $section_id) {
   return exec_query('INSERT INTO `menu_items` 
-    (`type`, `label`, `page_id`, `ref`, `order`, `section_id`) 
-    VALUES (?, ?, ?, ?, ?, ?)', [$type, $label, $page_id, $ref, $order, $section_id]);
+    (`type`, `label`, `page_id`, `ref`, `section_id`) 
+    VALUES (?, ?, ?, ?, ?, ?)', [$type, $label, $page_id, $ref, $section_id]);
 }
 
-function put_menu_section($label, $order) {
+function put_menu_section($label) {
   return exec_query('INSERT INTO `menu_sections` 
-    (`label`, `order`) VALUES (?, ?)', [$label, $order]);
+    (`label`) VALUES (?)', [$label]);
 }
 
 function update_menu_item($id, $label, $page_id, $ref) {
@@ -522,4 +522,7 @@ function exec_query($sql, $params) {
 }
 
 // Run migrations on the connected SQL database.
-migrate(DBH);
+if(defined('MIGRATIONS_STALE')) execute(__DIR__ . "/store/migrations.sql");
+
+// Insert seed data when initializing database.
+if(defined('INITIAL_RUN')) execute(__DIR__ . "/store/seeds.sql");

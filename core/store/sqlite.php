@@ -12,6 +12,11 @@ function establish_connection() {
   ];
 
   try {
+    if(!file_exists($database)) {
+      define('INITIAL_RUN', true);
+      define('MIGRATIONS_STALE', true);
+    }
+
     return new PDO($dsn, options: $options);
   }
   catch(PDOException $e) {
@@ -19,13 +24,11 @@ function establish_connection() {
   }
 }
 
-function migrate() {
-  $migrations = __DIR__ . "/migrations.sql";
-  
+function execute($path) {
   $sql = str_replace(
     ["int(11)", "NOT NULL AUTO_INCREMENT", ",\n  PRIMARY KEY (`id`)"],
     ["INTEGER", "PRIMARY KEY AUTOINCREMENT", ""],
-    file_get_contents($migrations)
+    file_get_contents($path)
   );
 
   $queries = explode(';', $sql);

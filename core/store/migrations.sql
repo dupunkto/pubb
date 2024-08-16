@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `label` text NOT NULL,
   `page_id` int(11) DEFAULT NULL,
   `ref` text DEFAULT NULL,
-  `order` int(11) NOT NULL,
+  `order` int(11) NOT NULL DEFAULT 0,
   `section_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
@@ -87,6 +87,6 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
 CREATE TABLE IF NOT EXISTS `menu_sections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` text NOT NULL,
-  `order` int(11) NOT NULL,
+  `order` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
