@@ -43,7 +43,7 @@
     <input 
       type="text" 
       name="site.copyright"
-      placeholder="Copying is an act of love; please copy <3"
+      placeholder="♡ Copying is an act of love. Love is not subject to law. Please copy."
       value="<?= canonical_value("site.copyright") ?>"
     >
   </p>
@@ -216,7 +216,10 @@
         <?php if(FORCE_HTTPS) echo "checked" ?>
         value="true"
       >
-      <span>Force HTTP to HTTPS redirect.</span>
+      <span>
+        Force HTTP to HTTPS redirect. 
+        (<a href="https://wiki.dupunkto.org/HTTPS#cons">Why is this off by default?</a>)
+      </span>
     </label>
   </p>
 
