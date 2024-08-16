@@ -389,6 +389,7 @@ function update_menu_section($id, $label, $order) {
 function list_menu_items() {
   return all('SELECT
     item.id,
+    item.type,
     item.label,
     item.page_id,
     item.ref,
