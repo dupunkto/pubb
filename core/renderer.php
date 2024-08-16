@@ -103,7 +103,10 @@ function feed($pages) {
 
 function page($page, $level = 2) {
   ?>
-    <article class="h-entry">
+    <article 
+      class="h-entry" 
+      <?php if($page['lang']) echo 'lang="' . esc_attr($page['lang']) . '"' ?>
+    >
       <?php if($page['title']) {
         echo "<h$level class='p-name'>{$page['title']}</h$level>";
       } else if($page['type'] == "code") {

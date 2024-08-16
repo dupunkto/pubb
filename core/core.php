@@ -20,7 +20,16 @@ function get_page_by_url($url) {
   if($slug) return \store\get_page_by_slug($slug);
 }
 
-function new_page($slug, $type, $title, $prose, $visibility, $draft = false, $reply_to = null) {
+function new_page(
+  $slug,
+  $type,
+  $title,
+  $prose,
+  $visibility,
+  $draft = false,
+  $reply_to = null,
+  $lang = null
+) {
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($prose, ".".$type);
 
@@ -28,6 +37,7 @@ function new_page($slug, $type, $title, $prose, $visibility, $draft = false, $re
     slug: $slug,
     type: $type,
     title: $title,
+    lang: $lang,
     published: $now,
     updated: $now,
     path: $path,
@@ -38,7 +48,17 @@ function new_page($slug, $type, $title, $prose, $visibility, $draft = false, $re
   );
 }
 
-function edit_page($id, $slug, $type, $title, $prose, $visibility, $draft = false, $reply_to = null) {
+function edit_page(
+  $id, 
+  $slug, 
+  $type, 
+  $title, 
+  $prose, 
+  $visibility, 
+  $draft = false, 
+  $reply_to = null,
+  $lang = null
+) {
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($prose, ".".$type);
 
@@ -47,6 +67,7 @@ function edit_page($id, $slug, $type, $title, $prose, $visibility, $draft = fals
     slug: $slug,
     type: $type,
     title: $title,
+    lang: $lang,
     updated: $now,
     path: $path,
     draft: $draft,
@@ -66,6 +87,7 @@ function new_gist($filename, $code, $caption) {
     slug: $filename,
     type: 'code',
     title: null,
+    lang: null,
     published: $now,
     updated: $now,
     path: $path,
@@ -85,6 +107,7 @@ function edit_gist($id, $filename, $code, $caption) {
     slug: $filename,
     type: 'code',
     title: null,
+    lang: null,
     updated: $now,
     path: $path,
     draft: 0,
@@ -103,6 +126,7 @@ function new_photo($slug, $caption, $path) {
     slug: $slug,
     type: 'photo',
     title: null,
+    lang: null,
     published: $now,
     updated: $now,
     path: $path,
@@ -121,6 +145,7 @@ function update_photo($id, $slug, $caption, $path) {
     slug: $slug,
     type: 'photo',
     title: null,
+    lang: null,
     updated: $now,
     path: $path,
     draft: 0,

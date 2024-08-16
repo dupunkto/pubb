@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `reply_to` text DEFAULT NULL,
   `path` text NOT NULL,
   `draft` int(1) NOT NULL DEFAULT 0,
+  `lang` text DEFAULT NULL,
   -- 'public', 'rss-only', 'hidden'
   `visibility` text NOT NULL,
   `caption` text DEFAULT NULL,

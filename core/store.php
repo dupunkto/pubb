@@ -21,13 +21,14 @@ function put_page(
   $slug,
   $type,
   $title,
+  $lang,
   $published,
   $updated,
   $path,
   $draft,
   $visibility,
   $caption,
-  $reply_to
+  $reply_to,
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
   in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
@@ -38,17 +39,19 @@ function put_page(
     `type`,
     `title`,
     `reply_to`,
+    `lang`,
     `path`,
     `draft`,
     `visibility`,
     `caption`,
     `published`,
     `updated`
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     $slug,
     $type,
     $title,
     $reply_to,
+    $lang,
     $path,
     $draft,
     $visibility,
@@ -63,6 +66,7 @@ function update_page(
   $slug,
   $type,
   $title,
+  $lang,
   $path,
   $draft,
   $visibility,
@@ -79,6 +83,7 @@ function update_page(
     `type` = ?,
     `title` = ?,
     `reply_to` = ?,
+    `lang` = ?,
     `path` = ?,
     `draft` = ?,
     `visibility` = ?,
@@ -89,6 +94,7 @@ function update_page(
     $type,
     $title,
     $reply_to,
+    $lang,
     $path,
     $draft,
     $visibility,
@@ -112,30 +118,31 @@ function delete_page($id) {
 
 function pages_query() {
   return 'SELECT
-    pages.id,
-    pages.slug,
-    pages.type,
-    pages.title,
-    pages.reply_to,
-    pages.path,
-    pages.draft,
-    pages.visibility,
-    pages.caption,
-    pages.published,
-    pages.updated,
-    volumes.id AS volume_id,
-    volumes.slug AS volume_slug,
-    volumes.title AS volume_title,
-    volumes.description AS volume_description,
-    volumes.start_at AS volume_start_at,
-    volumes.end_at AS volume_end_at
+    page.id,
+    page.slug,
+    page.type,
+    page.title,
+    page.lang,
+    page.reply_to,
+    page.path,
+    page.draft,
+    page.visibility,
+    page.caption,
+    page.published,
+    page.updated,
+    volume.id AS volume_id,
+    volume.slug AS volume_slug,
+    volume.title AS volume_title,
+    volume.description AS volume_description,
+    volume.start_at AS volume_start_at,
+    volume.end_at AS volume_end_at
   FROM 
-    pages
+    pages page
   LEFT JOIN
-    volumes ON pages.published BETWEEN volumes.start_at AND volumes.end_at
+    volumes volume ON page.published BETWEEN volume.start_at AND volume.end_at
   ORDER BY 
-    pages.updated DESC,
-    pages.id
+    page.updated DESC,
+    page.id
   ';
 }
 
@@ -169,7 +176,7 @@ function list_photos() {
 }
 
 function last_updated() {
-  $latest_page = one('SELECT `updated` FROM `pages` ORDER BY `updated` DESC', []);
+  $latest_page = one('SELECT `updated` FROM `pages` ORDER BY `updated` DESC');
   return strtotime($latest_page['updated']);
 }
 
@@ -245,7 +252,7 @@ function list_volumes() {
 }
 
 function latest_volume() {
-  return one('SELECT * FROM `volumes` ORDER BY `until` DESC', []);
+  return one('SELECT * FROM `volumes` ORDER BY `until` DESC');
 }
 
 // Contacts
