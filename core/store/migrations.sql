@@ -1,3 +1,9 @@
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `version` int(11) NOT NULL,
+  `executed_at` datetime NOT NULL DEFAULT current_timestamp,
+  PRIMARY KEY (`version`)
+);
+
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(90) NOT NULL,

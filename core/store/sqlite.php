@@ -1,6 +1,9 @@
 <?php
 // Store adapter for SQLite databases.
 
+namespace adapter;
+use PDO;
+
 function establish_connection() {
   $database = STORE . "/data.db";
   $dsn = "sqlite:$database";
@@ -12,11 +15,7 @@ function establish_connection() {
   ];
 
   try {
-    if(!file_exists($database)) {
-      define('INITIAL_RUN', true);
-      define('MIGRATIONS_STALE', true);
-    }
-
+    define('INITIAL_RUN', !file_exists($database));
     return new PDO($dsn, options: $options);
   }
   catch(PDOException $e) {
@@ -35,6 +34,7 @@ function execute($path) {
   
   foreach ($queries as $query) {
     $query = trim($query);
-    if (!empty($query)) DBH->exec($query);
+    if (!empty($query)) DBH->exec($query) !== false 
+      or die("Couldn't execute query '$query'.");
   }
 }

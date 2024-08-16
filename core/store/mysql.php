@@ -1,10 +1,17 @@
 <?php
 // Store adapter for MySQL databases.
 
+namespace adapter;
+use PDO;
+
 required("db.host");
 required("db.user");
 required("db.pass");
 required("db.name");
+
+// TODO(robin): for the MySQL adapter, we cannot simply
+// check for the existance of a file to determine initial run.
+define('INITIAL_RUN', false);
 
 function establish_connection() {
   $host = DB_HOST;
@@ -34,6 +41,7 @@ function execute($path) {
 
   foreach ($queries as $query) {
     $query = trim($query);
-    if (!empty($query)) DBH->exec($query);
+    if (!empty($query)) DBH->exec($query) !== false 
+      or die("Couldn't execute query '$query'.");
   }
 }

@@ -6,7 +6,7 @@ namespace store;
 require __DIR__ . "/store/sqlite.php";
 #require __DIR__ . "/store/mysql.php";
 
-define('DBH', establish_connection());
+define('DBH', \adapter\establish_connection());
 
 // Pages
 
@@ -499,9 +499,40 @@ function path_from_hash($source, $ext) {
   return STORE . "/uploads/" . hash_file("md5", $source) . "." . $ext;
 }
 
+// Migrations
+
+function version() {
+  $latest = one('SELECT * FROM `migrations` ORDER BY `version` DESC');
+  return @$latest['version'] ?? -1;
+}
+
+function is_stale() {
+  if(INITIAL_RUN) return true;
+  $version = version();
+
+  if($version > STORE_VERSION) {
+    die("Mismatched store versions: expected " . STORE_VERSION . ", 
+    but database is already at $version");
+  } else {
+    return $version < STORE_VERSION;
+  }
+}
+
+function migrate() {
+  syslog(LOG_INFO, "Running migrations for version: " . STORE_VERSION);
+
+  \adapter\execute(__DIR__ . "/store/migrations.sql");
+  exec_query('INSERT INTO `migrations` (`version`) VALUES (?)', [STORE_VERSION])
+    or die("Failed to bump store version to " . STORE_VERSION . ".");
+}
+
+function seed() {
+  \adapter\execute(__DIR__ . "/store/seeds.sql");
+}
+
 // SQL helpers
 
-function one($sql, $params) {
+function one($sql, $params = []) {
   return exec_query("$sql LIMIT 1", $params)?->fetch();
 }
 
@@ -521,8 +552,7 @@ function exec_query($sql, $params) {
   }
 }
 
-// Run migrations on the connected SQL database.
-if(defined('MIGRATIONS_STALE')) execute(__DIR__ . "/store/migrations.sql");
-
-// Insert seed data when initializing database.
-if(defined('INITIAL_RUN')) execute(__DIR__ . "/store/seeds.sql");
+// Run migrations on the connected SQL database,
+// and insert seed data when initializing database.
+if(is_stale()) migrate();
+if(INITIAL_RUN) seed();
