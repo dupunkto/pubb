@@ -2,11 +2,6 @@
   <h2>Menu</h2>
 </header>
 
-<?php 
-  $items = \store\list_menu_items();
-  $sections = \store\list_menu_sections();
-?>
-
 <form action="" method="post">
   <div class="bar">
     <h3>Entries</h3>
