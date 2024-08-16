@@ -434,6 +434,10 @@ function delete_menu_section($id) {
   return exec_query('DELETE FROM `menu_sections` WHERE id = ?', [$id]);
 }
 
+function can_delete_menu_section($id) {
+  return all('SELECT * FROM `menu_items` WHERE `section_id` = ?', [$id]) !== [];
+}
+
 // Uniqueness
 
 function unique_slug($table, $seed) {

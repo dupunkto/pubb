@@ -1,6 +1,6 @@
 <header class="bar">
   <h2>
-    Edit entry
+    Edit <?= $item['type'] == 'section' ? "section" : "entry"  ?>
   </h2>
 </header>
 
@@ -60,8 +60,14 @@
   <?php } ?>
 
   <div class="bar">
-    <?php $type = $item['type'] == 'section' ? "section" : "item" ?>
-    <a href="<?= CMS_CANONICAL ?>/menu/delete?type=<?= $type ?>&id=<?= $item['id'] ?>" class="button">Delete</a>
+    <?php 
+      $type = $item['type'] == 'section' ? "section" : "item";
+      if($type != 'section' or \store\can_delete_menu_section($item['id'])) { 
+    ?>
+      <a href="<?= CMS_CANONICAL ?>/menu/delete?type=<?= $type ?>&id=<?= $item['id'] ?>" class="button">Delete</a>
+    <?php } else { ?>
+      <span><!-- Dummy element for correct positioning --></span>
+    <?php } ?>
     <div class="group">
       <a href="<?= CMS_CANONICAL ?>/menu" class="button">Cancel</a>
       <input type="submit" name="edit" value="Save">

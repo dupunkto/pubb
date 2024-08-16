@@ -8,7 +8,9 @@
 ?>
 
 <form action="" method="post">
-  <h3>Entries</h3>
+  <div class="bar">
+    <h3>Entries</h3>
+  </div>
 
   <ul>
     <?php foreach($items as $item) { ?>
@@ -53,7 +55,7 @@
     </div>
 
     <?php if(count($items) > 0) { ?>
-      <input type="submit" name="save-items" value="Save">
+      <input type="submit" name="save-items" value="Save changes">
     <?php } ?>
   </div>
 </form>
@@ -61,7 +63,6 @@
 <form action="" method="post">
   <div class="bar">
     <h3>Sections</h3>
-    <a href="<?= CMS_CANONICAL ?>/menu/add?type=section" class="button">Add section</a>
   </div>
 
   <ul>
@@ -89,9 +90,9 @@
   } ?>
 
   <div class="bar lint">
-    <span><!-- Dummy for correct positioning --></span>
+    <a href="<?= CMS_CANONICAL ?>/menu/add?type=section" class="button">Add section</a>
     <?php if(count($sections) > 0) { ?>
-      <input type="submit" name="save-sections" value="Save">
+      <input type="submit" name="save-sections" value="Save changes">
     <?php } ?>
   </div>
 </form>

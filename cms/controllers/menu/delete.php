@@ -15,7 +15,8 @@ switch($type) {
 
   case "section":
     $item = \store\get_menu_section($id) or fail("Section doesn't exist.", to: "/menu");
-    \store\delete_menu_section($id) or fail("Couldn't delete menu section.", to: "/menu");
+    \store\can_delete_menu_section($id) or fail("Cannot delete section because it is in use.");
+    \store\delete_menu_section($id) or fail("Couldn't delete section.", to: "/menu");
     break;
 
   default:

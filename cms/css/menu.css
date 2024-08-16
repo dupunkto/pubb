@@ -2,6 +2,10 @@ input[type="number"] {
   width: 60px;
 }
 
+/* input[type="submit"] {
+  margin-right: 0.7em;
+} */
+
 .lint {
   margin-top: 0.5em;
   margin-bottom: 3em;
