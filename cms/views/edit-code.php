@@ -7,7 +7,6 @@
       <?php if(isset($caption)) { ?>
         value="<?= $caption ?>"
       <?php } ?>
-      required
     >
     
     <div class="bar">

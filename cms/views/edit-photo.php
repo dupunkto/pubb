@@ -30,7 +30,6 @@
     <?php if(isset($caption)) { ?>
       value="<?= $caption ?>"
     <?php } ?>
-    required
   >
 
   <?php if(isset($store_path)) { ?>

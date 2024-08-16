@@ -184,7 +184,6 @@ function plain_text($page) {
 function render_photo($page) {
   $path = $page['path'];
   $url = is_url($path) ? $path : \urls\photo_url($page);
-  $caption = render_caption($page['caption']);
 
   ?>
     <figure>
@@ -193,17 +192,21 @@ function render_photo($page) {
         src="<?= $url ?>" 
         alt="<?= esc_attr($caption) ?>"
       />
-      <figcaption><?= $caption ?></figcaption>
+      <?php if($page['caption']) { ?>
+        <figcaption><?= render_caption($page['caption']) ?></figcaption>
+      <?php } ?>
     </figure> 
   <?php
 }
 
 function render_code($page) {
   $code = \store\contents($page['path']);
-  $caption = render_caption($page['caption']);
-
   echo '<pre class="code"><code>' . htmlspecialchars($code) . '</code></pre>';
-  echo '<p class="caption">'. $caption . '</p>';
+
+  if($page['caption']) {
+    $caption = render_caption($page['caption']);
+    echo '<p class="caption">'. $caption . '</p>';
+  }
 }
 
 function render_mdn($page) {
