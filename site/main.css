@@ -41,7 +41,15 @@ body, html {
     }
 
     details summary {
-      margin-bottom: 30px
+      margin-bottom: 30px;
+
+      h2 {
+        display: inline;
+        font-weight: normal;
+        font-size: 1em;
+        border-bottom: 0;
+        margin: 0;
+      }
     }
   }
 

@@ -77,7 +77,7 @@ if(\agents\is_blocked()) {
     <?php include "partials/head.php" ?>
     <title><?= $title ?></title>
   </head>
-  <body class="twitter-like">
+  <body class="traditional">
     <header>
       <?php include "partials/header.php" ?>
     </header>
@@ -106,10 +106,7 @@ if(\agents\is_blocked()) {
       ?>
     </main>
     <nav>
-      <details open>
-        <summary>Menu</summary>
-        <?php include "partials/menu.php" ?>
-      </details>
+      <?php include "partials/menu.php" ?>
     </nav>
     <footer>
       <?php include "partials/footer.php" ?>
