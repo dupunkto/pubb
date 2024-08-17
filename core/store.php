@@ -378,7 +378,7 @@ function list_all_views() {
 function put_menu_item($type, $label, $page_id, $ref, $section_id) {
   return exec_query('INSERT INTO `menu_items` 
     (`type`, `label`, `page_id`, `ref`, `section_id`) 
-    VALUES (?, ?, ?, ?, ?, ?)', [$type, $label, $page_id, $ref, $section_id]);
+    VALUES (?, ?, ?, ?, ?)', [$type, $label, $page_id, $ref, $section_id]);
 }
 
 function put_menu_section($label) {
