@@ -20,6 +20,10 @@ $pages = \store\list_public_pages();
     <lastmod><?= date("c", \store\last_updated()) ?></lastmod>
   </url>
   <url>
+    <loc><?= CANONICAL ?>/index</loc>
+    <lastmod><?= date("c", \store\last_updated()) ?></lastmod>
+  </url>
+  <url>
     <loc><?= CANONICAL ?>/code</loc>
     <lastmod><?= date("c", \store\last_updated()) ?></lastmod>
   </url>
