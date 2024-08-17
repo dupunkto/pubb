@@ -91,12 +91,18 @@ body > nav {
   }
 }
 
+body > main {
+  min-height: 600px;
+}
+
 body > aside {
-  background-color: white;
-  padding: 10px;
-  border: 1px solid rgb(171, 170, 170);
-  border-radius: 6px;
-  margin-top: 15px;
+  section {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid rgb(171, 170, 170);
+    border-radius: 6px;
+    margin-top: 15px;
+  }
 
   h3 { margin-top: 0.2em; }
 
@@ -156,7 +162,7 @@ body > footer,
   }
 }
 
-.listing > section,
+.listing .h-feed > section,
 .feed .h-entry,
 .single .h-entry {
   padding: 7px;
