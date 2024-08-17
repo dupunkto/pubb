@@ -74,7 +74,7 @@ if(\agents\is_blocked()) {
     <nav>
       <?php include "partials/menu.php" ?>
     </nav>
-    <main <?php if(isset($pages)) echo 'class="h-entry"' ?>>
+    <main <?php if(isset($pages)) echo 'class="h-feed"' ?>>
       <?php
 
         switch(true) {
