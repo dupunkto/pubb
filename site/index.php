@@ -71,7 +71,7 @@ if(\agents\is_blocked()) {
     <header>
       <?php include "partials/header.php" ?>
     </header>
-    <main <?php if(isset($pages)) echo 'class="h-feed"' ?>>
+    <main <?php if(isset($pages)) echo "class='h-feed $type'" ?>>
       <?php
 
         switch(true) {
