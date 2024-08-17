@@ -21,9 +21,10 @@ switch(true) {
     exit;
 
   case route('@/(all|index|code|photos)$@'):
-    $listing = $params[1];
-    $pages = \core\list_pages($listing);
-    $title = \core\get_listing_title($listing);
+    $index = $params[1];
+    $pages = \core\list_pages($index);
+    $title = \core\get_index_title($index);
+    $type = \core\get_index_type($index);
 
     break;
 
@@ -84,7 +85,7 @@ if(\agents\is_blocked()) {
             break;
 
           case isset($pages) and count($pages) > 0:
-            \renderer\listing($pages);
+            \renderer\index($pages, $type);
             break;
 
           default:

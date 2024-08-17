@@ -40,65 +40,11 @@ function h_card() {
   <?php
 }
 
-function listing($pages) {
-  foreach (group_by($pages, 'volume') as $volume) {
-    ?>
-      <section class="volume">
-        <?php if($volume['id']) { ?>
-          <h2 id="<?= $volume['slug'] ?>">
-            <?= $volume['title'] ?>
-          </h2>
-        <?php } ?>
-
-        <table>
-          <thead>
-            <tr>
-              <th class="p-name">Post<span hidden>s</span></th>
-              <th>Published</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <?php foreach ($volume['items'] as $page) { ?>
-              <tr class="h-entry">
-                <td class="p-title">
-                  <a class="u-url" href="<?= \urls\page_url($page) ?>">
-                    <?= \core\get_page_title($page) ?>
-                  </a>
-                </td>
-                <td>
-                  <time 
-                    class="dt-published" 
-                    datetime="<?= date("Y-m-d", strtotime($page['published'])) ?>"
-                  >
-                    <?= date("M j, Y", strtotime($page['published'])) ?>
-                  </time>
-                </td>
-              </tr>
-            <?php } ?>
-          </tbody>
-        </table>
-      </section>
-    <?php
-  }
-}
-
-function feed($pages) {
-  foreach (group_by($pages, 'volume') as $volume) {
-    ?>
-      <section class="volume">
-        <?php if($volume['id']) { ?>
-          <h2 id="<?= $volume['slug'] ?>">
-            <?= $volume['title'] ?>
-          </h2>
-        <?php } ?>
-
-        <?php foreach ($volume['items'] as $page) {
-          page($page, level: 3);
-        } ?>
-      </section>
-    <?php
-  }
+function index($pages, $type) {
+  match($type) {
+    "listing" => render_listing($pages),
+    "feed" => render_feed($pages),
+  };
 }
 
 function page($page, $level = 2) {
@@ -183,6 +129,67 @@ function plain_text($page) {
 }
 
 // Internal APIs
+
+function render_listing($pages) {
+  foreach (group_by($pages, 'volume') as $volume) {
+    ?>
+      <section class="volume">
+        <?php if($volume['id']) { ?>
+          <h2 id="<?= $volume['slug'] ?>">
+            <?= $volume['title'] ?>
+          </h2>
+        <?php } ?>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="p-name">Post<span hidden>s</span></th>
+              <th>Published</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <?php foreach ($volume['items'] as $page) { ?>
+              <tr class="h-entry">
+                <td class="p-title">
+                  <a class="u-url" href="<?= \urls\page_url($page) ?>">
+                    <?= \core\get_page_title($page) ?>
+                  </a>
+                </td>
+                <td>
+                  <time 
+                    class="dt-published" 
+                    datetime="<?= date("Y-m-d", strtotime($page['published'])) ?>"
+                  >
+                    <?= date("M j, Y", strtotime($page['published'])) ?>
+                  </time>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      </section>
+    <?php
+  }
+}
+
+function render_feed($pages) {
+  foreach (group_by($pages, 'volume') as $volume) {
+    ?>
+      <section class="volume">
+        <?php if($volume['id']) { ?>
+          <h2 id="<?= $volume['slug'] ?>">
+            <?= $volume['title'] ?>
+          </h2>
+        <?php } ?>
+
+        <?php foreach ($volume['items'] as $page) {
+          page($page, level: 3);
+        } ?>
+      </section>
+    <?php
+  }
+}
 
 function render_photo($page) {
   $path = $page['path'];

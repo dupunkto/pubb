@@ -31,7 +31,7 @@
     </p>
   <?php } ?>
 
-  <?php if($item['type'] == 'listing') { ?>
+  <?php if($item['type'] == 'index') { ?>
     <p>
       <label for="ref">Type</label>
       <?php \forms\options("ref", [

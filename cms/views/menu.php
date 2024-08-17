@@ -46,7 +46,7 @@
     <div class="group">
       <a href="<?= CMS_CANONICAL ?>/menu/add?type=page" class="button">Add page</a>
       <a href="<?= CMS_CANONICAL ?>/menu/add?type=external" class="button">Add external URL</a>
-      <a href="<?= CMS_CANONICAL ?>/menu/add?type=listing" class="button">Add listing</a>
+      <a href="<?= CMS_CANONICAL ?>/menu/add?type=index" class="button">Add index</a>
     </div>
 
     <?php if(count($items) > 0) { ?>

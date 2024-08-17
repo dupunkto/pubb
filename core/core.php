@@ -6,10 +6,10 @@ namespace core;
 
 use Exception;
 
-// Listings
+// Indexes
 
-function list_pages($listing) {
-  return match($listing) {
+function list_pages($index) {
+  return match($index) {
     "all" => \store\list_public_pages(),
     "index" => \store\list_index_pages(),
     "code" => \store\list_gists(),
@@ -17,12 +17,21 @@ function list_pages($listing) {
   };
 }
 
-function get_listing_title($listing) {
-  return match($listing) {
+function get_index_title($index) {
+  return match($index) {
     "all" => "All",
     "index" => "Pages",
     "code" => "Code",
     "photos" => "Photos",
+  };
+}
+
+function get_index_type($index) {
+  return match($index) {
+    "all" => LAYOUT_ALL,
+    "index" => LAYOUT_INDEX,
+    "code" => LAYOUT_CODE,
+    "photos" => LAYOUT_PHOTOS,
   };
 }
 

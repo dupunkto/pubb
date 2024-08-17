@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `views` (
 
 CREATE TABLE IF NOT EXISTS `menu_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  -- 'page', 'external', 'listing'
+  -- 'page', 'external', 'index'
   `type` varchar(90) NOT NULL,
   `label` text NOT NULL,
   `page_id` int(11) DEFAULT NULL,

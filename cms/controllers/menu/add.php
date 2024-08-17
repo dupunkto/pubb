@@ -18,7 +18,7 @@ if(isset($_POST['add']) and $_POST['type'] == 'page') {
   complete("Added menu item '{$title}'.", to: "/menu");
 }
 
-if(isset($_POST['add']) and in_array($_POST['type'], ['external', 'listing'])) {
+if(isset($_POST['add']) and in_array($_POST['type'], ['external', 'index'])) {
   \store\put_menu_item(
     type: $_POST['type'],
     label: cast($_POST['label']),
@@ -41,7 +41,7 @@ if(isset($_POST['add']) and $_POST['type'] == 'section') {
 if(!isset($_GET['type'])) redirect("/menu");
 
 $type = $_GET['type'];
-$types = ["page", "external", "listing", "section"];
+$types = ["page", "external", "index", "section"];
 
 if(!in_array($type, $types)) redirect("/menu");
 

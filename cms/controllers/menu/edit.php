@@ -24,7 +24,7 @@ if(isset($_POST['edit']) and $_POST['type'] == 'page') {
   complete("Updated '{$_POST['label']}'.", to: "/menu");
 }
 
-if(isset($_POST['edit']) and in_array($_POST['type'], ['external', 'listing'])) {
+if(isset($_POST['edit']) and in_array($_POST['type'], ['external', 'index'])) {
   \store\update_menu_item(
     id: cast($_POST['id']),
     label: cast($_POST['label']),

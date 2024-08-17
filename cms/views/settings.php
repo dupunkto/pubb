@@ -201,13 +201,13 @@
     ], LAYOUT_SKIN) ?>
   </p>
 
-  <?php $listings = ["all" => "All", "index" => "Pages", "code" => "Gists", "photos" => "Photos"] ?>
+  <?php $indexes = ["all" => "All", "index" => "Pages", "code" => "Gists", "photos" => "Photos"] ?>
 
   <p>
     <label for="layout.homepage">Homepage</label>
 
     <select name="layout.homepage">
-      <?php foreach($listings as $value => $label) { ?>
+      <?php foreach($indexes as $value => $label) { ?>
         <option 
           value="/<?= $value ?>" 
           <?php if(LAYOUT_HOMEPAGE == "/$value") echo "selected" ?>>
@@ -231,7 +231,7 @@
   </p>
 
   <table>
-    <?php foreach($listings as $value => $label) { ?>
+    <?php foreach($indexes as $value => $label) { ?>
       <tr>
         <td>
           <label for="layout.<?= $value ?>"><?= $label ?></label>

@@ -8,7 +8,7 @@
 <form action="" method="post">
   <input type="hidden" name="type" value="<?= $type ?>">
 
-  <?php if(in_array($type, ['external', 'listing', 'section'])) { ?>
+  <?php if(in_array($type, ['external', 'index', 'section'])) { ?>
     <p>
       <label for="label">Label</label>
       <input type="text" name="label" placeholder="Awesome thing(s)">
@@ -22,7 +22,7 @@
     </p>
   <?php } ?>
 
-  <?php if($type == 'listing') { ?>
+  <?php if($type == 'index') { ?>
     <p>
       <label for="ref">Type</label>
       <select name="ref">
