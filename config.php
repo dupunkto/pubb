@@ -34,8 +34,13 @@ fallback('canonical', PREFERED_PROTO . "://" . HOST);
 
 required('author.name');
 optional('author.email');
-optional('author.picture');
 fallback('author.site', CANONICAL);
+
+optional('profile.handle');
+optional('profile.picture');
+optional('profile.bio');
+optional('profile.status');
+optional('profile.mood');
 
 optional('license');
 optional('license.uri');

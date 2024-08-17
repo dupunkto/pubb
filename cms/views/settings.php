@@ -2,22 +2,22 @@
   <h3>Site details</h3>
 
   <p>
-    <label for="site.title">Site title</label>
+    <label for="site.title">Title</label>
     <input 
       type="text" 
       name="site.title" 
-      placeholder="@dreamwastaken"
+      placeholder="Qookies"
       value="<?= canonical_value("site.title") ?>"
       required
     >
   </p>
 
   <p>
-    <label for="site.description">Biography</label>
-    <input 
-      type="text" 
+    <label for="site.description">Description</label>
+    <input
+      type="text"
       name="site.description"
-      placeholder="Verified (€15/year for the domain)"
+      placeholder="The galaxy's finest collection of interstellar cookie recipes. Bat'leth not included."
       value="<?= canonical_value("site.description") ?>"
       required
     >
@@ -48,14 +48,62 @@
     >
   </p>
 
-  <h3>Personal information</h3>
+  <h3>Profile</h3>
 
   <p>
-    <label for="author.name">Name</label>
+    <label for="profile.handle">Handle</label>
+    <input 
+      type="text" 
+      name="profile.handle"
+      placeholder="@ashtyler"
+      value="<?= canonical_value("profile.handle") ?>"
+    >
+  </p>
+
+  <p>
+    <label for="profile.bio">Biography</label>
+    <textarea
+      name="profile.bio"
+      placeholder="Klingon-human artificial hybrid (he/him, 28M). Head of Section 31. Recovering choH'a' patient."
+      rows="3"
+    ><?= canonical_value("profile.bio") ?></textarea>
+  </p>
+
+  <table>
+    <tr>
+      <td>
+        <label for="profile.status">Status</label>
+      </td>
+      <td>
+        <input 
+          type="text" 
+          name="profile.status"
+          placeholder="reading, chilling, studying, sleeping, ..."
+          value="<?= canonical_value("profile.status") ?>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="profile.mood">Mood</label>
+      </td>
+      <td>
+        <input 
+          type="text" 
+          name="profile.mood"
+          placeholder="busy, bored, happy, sad, ..."
+          value="<?= canonical_value("profile.mood") ?>">
+      </td>
+    </tr>
+  </table>
+
+  <h3>Personal details</h3>
+
+  <p>
+    <label for="author.name">Display name</label>
     <input 
       type="text" 
       name="author.name"
-      placeholder="Your name"
+      placeholder="Ash Tyler"
       value="<?= canonical_value("author.name") ?>"
     >
   </p>
@@ -67,7 +115,7 @@
     <input 
       type="email" 
       name="author.email"
-      placeholder="you@example.com"
+      placeholder="a.tyler@starfleet.int"
       value="<?= canonical_value("author.email") ?>"
     >
   </p>
@@ -79,7 +127,7 @@
     <input 
       type="url" 
       name="author.site"
-      placeholder="https://example.com"
+      placeholder="https://staff.startfleet.int/~ash"
       value="<?= canonical_value("author.site") ?>"
     >
   </p>
@@ -95,7 +143,7 @@
     <input 
       type="email" 
       name="notifications.admin"
-      placeholder="you@example.com"
+      placeholder="a.tyler@starfleet.int"
       value="<?= canonical_value("notifications.admin") ?>"
     >
   </p>
@@ -107,7 +155,7 @@
     <input 
       type="email" 
       name="notifications.sender"
-      placeholder="noreply@example.com"
+      placeholder="noreply@starfleet.int"
       value="<?= canonical_value("notifications.sender") ?>"
     >
   </p>

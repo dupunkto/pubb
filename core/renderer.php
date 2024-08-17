@@ -24,22 +24,6 @@ function success($message) {
   render_message("success", $message);
 }
 
-function h_card() {
-  ?>
-    <section class="h-card">
-      <img 
-        class="u-photo" 
-        src="<?= AUTHOR_PICTURE ?>"
-        alt="Profile picture"
-      >
-      <div>
-        <h3 class="p-name"><?= AUTHOR_NAME ?></h3>
-        <p class="p-note"><?= AUTHOR_BIO ?></p>
-      </div>
-    </section>
-  <?php
-}
-
 function index($pages, $type) {
   match($type) {
     "listing" => render_listing($pages),
@@ -69,19 +53,23 @@ function page($page, $level = 1) {
         </a>
       </time>
 
-      <?php if(defined('AUTHOR_NAME') and defined('AUTHOR_PICTURE')) { ?>
         <div class="p-author h-card" hidden>
           <a class="u-url" href="<?= CANONICAL ?>">
-            <img
-              class="u-photo"
-              src="<?= AUTHOR_PICTURE ?>"
-              alt="Profile picture"
-              width="100"
-            >
-            <p class="p-name"><?= AUTHOR_NAME ?></p>
+            <?php if(defined('PROFILE_PICTURE')) { ?>
+              <img
+                class="u-photo"
+                src="<?= PROFILE_PICTURE ?>"
+                alt="Profile picture"
+                width="100"
+              >
+            <?php } ?>
+            <?php if(defined('AUTHOR_NAME')) { ?>
+              <p class="p-name"><?= AUTHOR_NAME ?></p>
+            <?php } if(defined('PROFILE_HANDLE')) { ?>
+              <p class="p-nickname"><?= PROFILE_HANDLE ?></p>
+            <?php } ?>
           </a>
         </div>
-      <?php } ?>
     </article>
   <?php
 }

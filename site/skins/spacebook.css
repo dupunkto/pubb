@@ -14,8 +14,13 @@ body {
   margin: 0 auto;
   width: 810px;
   max-width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  grid-template-areas: 
+    "header header"
+    "nav nav"
+    "profile main"
+    "footer footer";
 }
 
 body > nav, body > header {
@@ -23,7 +28,7 @@ body > nav, body > header {
 }
 
 body > header {
-  order: -2;
+  grid-area: header;
   background: #1d4ed8;
   padding: 15px 10px 14px 16px;
   color: white;
@@ -34,7 +39,7 @@ body > header {
     font-style: normal;
   }
 
-  h1 { 
+  h1 {
     font-size: 2em;
     margin-bottom: 0.1em;
   }
@@ -46,7 +51,7 @@ body > header {
 }
 
 body > nav {
-  order: -1;
+  grid-area: nav;
   background: #60a5fa;
   padding: 3.5px 16px;
   color: white;
@@ -92,78 +97,77 @@ body > nav {
   }
 }
 
-body > main {
+body > main, body > aside {
   background: white;
   color: black;
-  padding: 6px 10px;
   font-size: 80%;
+  padding: 6px 10px;
+}
+
+body > main.feed {
+  grid-area: main;
+  &::before {
+    content: "Latest Blog Entries";
+    display: block;
+    font-weight: bold;
+    margin: 2em 0;
+  }
+}
+
+body > main.single, 
+body > main.listing {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+body:has(.feed) > aside {
+  grid-area: profile;
+  display: block;
+
+  .u-photo {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 55%;
+    float: left;
+    padding: 0 10px 10px 0;
+  }
+
+  .p-name {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 0.7em 0;
+  }
+
+  .p-nickname {
+    margin-left: 0.25em;
+    font-weight: normal;
+    &::before { content: "("; }
+    &::after { content: ")"; }
+  }
+
+  .p-status::before { 
+    content: "Status: ";
+    font-weight: bold;
+  }
+
+  .p-mood::before { 
+    content: "Mood: ";
+    font-weight: bold;
+  }
+
+  .p-note::before { 
+    content: "About me: ";
+    font-weight: bold;
+  }
 }
 
 img {
   max-width: 100%;
 }
 
-.h-feed {
-  article {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    position: relative;
-    margin-bottom: 1em;
-  
-    h1, h2, h3, .e-content, .dt-published {
-      grid-column: 2;
-    }
-  }
-
-  .p-name {
-    margin: 0;
-  }
-
-  article:not(:last-child) time {
-    margin-bottom: 3em;
-  }
-
-  article:first-of-type::before {
-    grid-column: 2;
-    content: "Latest Blog Entries";
-    position: absolute;
-    font-weight: bold;
-    margin-top: 2em;
-  }
-
-  article:first-of-type .e-content {
-    margin-top: 4em;
-  }
-
-  article:first-of-type:has(h1) {
-    .e-content { margin-top: 0; }
-    h1 { margin-top: 4em; }
-  }
-
-  article:first-of-type .h-card {
-    display: block;
-    grid-column: 1;
-    order: -1;
-  
-    .u-photo {
-      aspect-ratio: 1;
-      width: 50%;
-      object-fit: cover;
-    }
-  
-    .p-name {
-      font-weight: bold;
-      font-size: 1.5em;
-      margin: 0.7em 0;
-    }
-  
-    a {
-      display: flex;
-      flex-direction: column-reverse;
-      color: currentColor;
-      text-decoration: none;
-    }
-  }
+.h-feed article {
+  .p-name { margin: 0; }
+  &:not(:last-child) { margin-bottom: 3em; }
 }
 
 .feed time,
@@ -176,6 +180,7 @@ img {
 }
 
 body > footer {
+  grid-area: footer;
   display: flex;
   font-size: max(72%, 12px);
   justify-content: space-between;
@@ -191,7 +196,7 @@ body > footer {
   }
 }
 
-aside {
+main > aside {
   margin-bottom: 1em;
   h2 {
     margin: 25px 0 10px 0;

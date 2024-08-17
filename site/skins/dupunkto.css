@@ -71,7 +71,7 @@ body {
   grid-area: h-card;
   float: left;
   
-  .p-name {
+  .p-name, .p-nickname {
     display: none;
   }
 
@@ -88,4 +88,16 @@ body {
 .mention {
   font-weight: bold;
   text-decoration: none;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td:last-child, th:last-child {
+  text-align: right;
 }

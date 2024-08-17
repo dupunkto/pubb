@@ -101,6 +101,9 @@ if(\agents\is_blocked()) {
     <nav>
       <?php include "partials/menu.php" ?>
     </nav>
+    <aside hidden>
+    <?php include "partials/h-card.php" ?>
+    </aside>
     <footer>
       <?php include "partials/footer.php" ?>
     </footer>
