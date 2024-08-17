@@ -1,0 +1,234 @@
+html {
+  box-sizing: border-box;
+  background-color: rgb(255, 102, 102);
+	background: linear-gradient(-45deg, #F59E0B, #DB2777, #0995ad, #38BDF8);
+	background-size: 400% 400%;
+  background-attachment: fixed;
+  animation: gradient 60s ease infinite;
+  height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, "Ubuntu", "Noto Sans", "Droid Sans", Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+a {
+  color: rgb(255, 102, 102);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+  &:active { color: black; }
+}
+
+@media screen and (min-width: 715px) {
+  body > header, body > main, body > footer {
+    float: left;
+    width: calc(70% - 10px);
+    margin-right: 10px;
+  }
+
+  body > nav, body > aside {
+    float: right;
+    width: calc(30% - 10px);
+    margin-left: 10px;
+  }
+
+  body > aside {
+    display: block;
+  }
+}
+
+body > header {
+  grid-area: header;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid rgb(171, 170, 170);
+  border-top: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  a {
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  h1 { margin-bottom: 2px; }
+  p { margin-top: 0; margin-bottom: 16px; }
+}
+
+body > nav {
+  grid-area: nav;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid rgb(171, 170, 170);
+  border-radius: 6px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+  summary { display: none; }
+
+  h3 {
+    margin-left: 1em;
+  }
+
+  ul {
+    list-style: none;
+  }
+  
+  a {
+    font-weight: 600;
+    font-size: 23px;
+  }
+}
+
+body > aside {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid rgb(171, 170, 170);
+  border-radius: 6px;
+  margin-top: 15px;
+
+  h3 { margin-top: 0.2em; }
+
+  .p-status::before { 
+    content: "Status: ";
+    font-weight: bold;
+  }
+
+  .p-mood::before { 
+    content: "Mood: ";
+    font-weight: bold;
+  }
+
+  .p-note::before { 
+    content: "About me: ";
+    font-weight: bold;
+  }
+
+  .u-photo {
+    border-radius: 6px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 40%;
+    float: right;
+    margin: 0 0 10px 10px;
+  }
+}
+
+body > footer {
+  text-align: center;
+}
+
+body > footer,
+.comment-section {
+  color: white;
+  margin: 1em 0;
+
+  a { 
+    color: currentColor;
+    font-weight: bold;
+    text-decoration: underline dotted;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.feed .h-entry, 
+.single .h-entry {
+  overflow-x: hidden;
+
+  .dt-published a {
+    font-size: 12px;
+    color: rgb(84, 87, 94);
+  }
+  
+  .p-name {
+    margin-top: 0.2em;
+  }
+}
+
+.listing > section,
+.feed .h-entry,
+.single .h-entry {
+  padding: 7px;
+  border: 1px solid rgb(171, 170, 170);
+  background-color: white;
+  border-radius: 6px;
+  margin-top: 15px;
+  box-shadow: 10px 5px rgb(94, 152, 152), 11px 6px rgb(57, 107, 107);
+}
+
+/* List view */
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td:last-child, th:last-child {
+  text-align: right;
+}
+
+/* Comment section */
+
+.comment-section {
+  margin-top: 90px;
+}
+
+/* Forms */
+
+input, button {
+  padding: 6px;
+  font-size: 16px;
+  outline-offset: 1px;
+}
+
+input:active, input:not([type="submit"]):not([type="button"]):focus, button:active {
+  outline: 2px solid #b4d2ff;
+}
+
+input, button {
+  color: black;
+  border-radius: 0;
+  border: 1px solid #a2a2a2;
+}
+
+button, input[type="submit"], input[type="button"] {
+  cursor: pointer;
+}
+
+/* Images */
+
+.h-entry .e-content img {
+  max-width: 300px;
+  width: 100%;
+}
+
+/* Phunky background */
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	33% {
+		background-position: 100% 50%;
+	}
+	66% {
+		background-position: 50% 100%;
+	}
+    100% {
+        background-position: 0% 50%;
+    }
+}
