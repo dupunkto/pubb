@@ -136,25 +136,37 @@ article {
     display: inline;
     margin: 0;
   }
-}
 
-.h-card a {
-  display: flex;
-  gap: 0.5em;
-  align-items: center;
-  color: black;
-  font-weight: bold;
-}
+  .h-card a {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    color: black;
+    font-weight: bold;
 
-.h-card p {
-  margin: 0;
-}
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  .h-card p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
 
-.h-card .u-photo {
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  width: 3.5em;
+    .p-nickname {
+      opacity: 0.5;
+      font-size: 0.8em;
+    }
+  }
+  
+  .h-card .u-photo {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 3.5em;
+  }
 }
 
 /* Forms */

@@ -63,11 +63,13 @@ function page($page, $level = 1) {
                 width="100"
               >
             <?php } ?>
-            <?php if(defined('AUTHOR_NAME')) { ?>
-              <p class="p-name"><?= AUTHOR_NAME ?></p>
-            <?php } if(defined('PROFILE_HANDLE')) { ?>
-              <p class="p-nickname"><?= PROFILE_HANDLE ?></p>
-            <?php } ?>
+            <p>
+              <?php if(defined('AUTHOR_NAME')) { ?>
+                <span class="p-name"><?= AUTHOR_NAME ?></span>
+              <?php } if(defined('PROFILE_HANDLE')) { ?>
+                <span class="p-nickname"><?= PROFILE_HANDLE ?></span>
+              <?php } ?>
+            </p>
           </a>
         </div>
     </article>

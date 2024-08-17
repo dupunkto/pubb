@@ -71,9 +71,7 @@ body {
   grid-area: h-card;
   float: left;
   
-  .p-name, .p-nickname {
-    display: none;
-  }
+  p { display: none; }
 
   .u-photo {
     max-width: 65px;
