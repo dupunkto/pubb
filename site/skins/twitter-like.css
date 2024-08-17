@@ -100,12 +100,14 @@ body > nav {
     width: 20px;
   }
 
-  a[href="/all"]::before { content: "\e1b0"; }
+  a[href="/all"]::before { content: "\f550"; }
+  a[href="/index"]::before { content: "\f52d"; }
   a[href="/photos"]::before { content: "\f030"; }
   a[href="/code"]::before { content: "\f121"; }
+  a[data-title="Home"]::before { content: "\e1b0"; }
   a[data-title="Subscribe"]::before { content: "\f1d8"; }
   a[data-title="Now"]::before { content: "\f133"; }
-  a[data-title="Ideas"]::before { content: "\f0eb"; }
+  a[data-title~="Idea"]::before { content: "\f0eb"; }
   a[data-title~="About"]::before { content: "\f007"; }
 }
 
