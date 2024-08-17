@@ -129,7 +129,7 @@ body:has(.feed) > aside {
     object-fit: cover;
     width: 55%;
     float: left;
-    padding: 0 10px 10px 0;
+    margin: 0 10px 10px 0;
   }
 
   .p-name {
@@ -196,8 +196,9 @@ body > footer {
   }
 }
 
-main > aside {
+.comment-section {
   margin-bottom: 1em;
+
   h2 {
     margin: 25px 0 10px 0;
     background: #BFDBFE;

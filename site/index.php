@@ -71,6 +71,9 @@ if(\agents\is_blocked()) {
     <header>
       <?php include "partials/header.php" ?>
     </header>
+    <nav>
+      <?php include "partials/menu.php" ?>
+    </nav>
     <main class="
       <?= isset($pages) ? "h-feed $type" : "single" ?>
       <?php if(isset($page)) echo $page['type'] ?>
@@ -98,9 +101,6 @@ if(\agents\is_blocked()) {
         
       ?>
     </main>
-    <nav>
-      <?php include "partials/menu.php" ?>
-    </nav>
     <aside hidden>
     <?php include "partials/h-card.php" ?>
     </aside>

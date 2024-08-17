@@ -78,7 +78,7 @@ function page($page, $level = 1) {
 
 function comment_section($page) {
   ?>
-    <aside>
+    <aside class="comment-section">
       <h2>Webmentions</h2>
 
       <ul>
@@ -90,12 +90,11 @@ function comment_section($page) {
 
       <form action="<?= WEBMENTION_ENDPOINT ?>" method="post">
         <p>
-          This post accepts <a href="//indieweb.org/Webmention">Webmentions</a>. 
-          Have you written a reply? Let me know the URL:
+          <p>This post accepts <a href="//webmention.net">webmentions</a>. Have you written a reply? Let me know the URL:
         </p>
 
         <input required name="target" type="hidden" value="<?= \urls\page_url($page) ?>">
-        <input required name="source" type="url" placeholder="https://example.com/your/reply">
+        <input required name="source" type="url">
 
         <input type="submit" value="Send webmention">
       </form>

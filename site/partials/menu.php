@@ -17,8 +17,7 @@
           <?php 
             foreach($section['items'] as $item) { 
               if($item['type'] == 'page') {
-                $page = \store\get_page($item['page_id']);
-                $url = \urls\page_url($page);
+                $url = \urls\page_url(\store\get_page($item['page_id']));
               } else {
                 $url = $item['ref'];
               }
