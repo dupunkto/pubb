@@ -155,6 +155,14 @@ function list_public_pages() {
   return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` = 'public'");
 }
 
+function list_index_pages() {
+  $pages = pages_query();
+
+  return all("SELECT * FROM ($pages) 
+    WHERE `draft` != 1 AND `visibility` = 'public' 
+    AND `type` IN ('md', 'html', 'txt')");
+}
+
 function list_rss_pages() {
   $pages = pages_query();
   return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` != 'hidden'");

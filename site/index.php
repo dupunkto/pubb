@@ -16,25 +16,14 @@ switch(true) {
     exit;
   
   case $path == "/":
-    http_response_code(301);
-    header("Location: " . CANONICAL . "/all");
+    http_response_code(307);
+    header("Location: " . \urls\homepage_url());
     exit;
 
-  case $path == "/all":
-    $pages = \store\list_public_pages();
-    $title = "All pages";
-
-    break;
-
-  case $path == "/code":
-    $pages = \store\list_gists();
-    $title = "Code";
-
-    break;
-
-  case $path == "/photos":
-    $pages = \store\list_photos();
-    $title = "Photos";
+  case route('@/(all|index|code|photos)$@'):
+    $listing = $params[1];
+    $pages = \core\list_pages($listing);
+    $title = \core\get_listing_title($listing);
 
     break;
 

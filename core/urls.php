@@ -3,6 +3,17 @@
 
 namespace urls;
 
+function homepage_url() {
+  if(str_starts_with(LAYOUT_HOMEPAGE, "/")) {
+    return CANONICAL . LAYOUT_HOMEPAGE;
+  } else {
+    $page = \store\get_page((int)LAYOUT_HOMEPAGE) 
+      or die("Invalid value for homepage ID.");
+
+    return page_url($page);
+  }
+}
+
 function page_url($page) {
   return CANONICAL . "/" . $page['slug'];
 }

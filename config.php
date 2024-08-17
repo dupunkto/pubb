@@ -46,6 +46,13 @@ optional('notifications.admin');
 fallback('notifications.sender', "noreply@" . HOST);
 fallback('notifications.webmention', true);
 
+fallback('layout.skin', 'hummingbird');
+fallback('layout.homepage', '/all');
+fallback('layout.all', 'feed');
+fallback('layout.index', 'listing');
+fallback('layout.code', 'listing');
+fallback('layout.photos', 'feed');
+
 fallback('micropub-endpoint', CANONICAL . "/endpoint/micropub");
 fallback('media-endpoint', CANONICAL . "/endpoint/media");
 fallback('webmention-endpoint', CANONICAL . "/endpoint/webmention");

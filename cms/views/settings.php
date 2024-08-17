@@ -130,7 +130,7 @@
   <h3>Blocking</h3>
 
   <p>
-    <label for="noncommercial">Non-commercial</label>
+    <label>Non-commercial</label>
     <span>Blocks big corporations from profiting of of the contents of this site.</span>
 
     <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
@@ -185,6 +185,66 @@
       value="<?= canonical_value("license.uri") ?>"
     >
   </p>
+
+  <h3>Personalisation</h3>
+
+  <p>
+    <label>Skin</label>
+
+    <?php \forms\options("layout.skin", [
+      "hummingbird" => "Hummingbird", 
+      "traditional" => "Traditional",
+      "spacebook" => "Spacebook",
+      "twitter-like" => "Twitter-like",
+      "neopunk" => "neopunk",
+      "guthib" => "GutHib"
+    ], LAYOUT_SKIN) ?>
+  </p>
+
+  <?php $listings = ["all" => "All", "index" => "Pages", "code" => "Gists", "photos" => "Photos"] ?>
+
+  <p>
+    <label for="layout.homepage">Homepage</label>
+
+    <select name="layout.homepage">
+      <?php foreach($listings as $value => $label) { ?>
+        <option 
+          value="/<?= $value ?>" 
+          <?php if(LAYOUT_HOMEPAGE == "/$value") echo "selected" ?>>
+          <?= $label ?>
+        </option>
+      <?php } ?>
+
+      <?php foreach(\store\list_public_pages() as $page) { ?>
+        <option 
+          value="<?= $page['id'] ?>"
+          <?php if(\core\is_homepage($page)) echo "selected" ?>>
+          <?= \core\get_page_title($page) ?>
+        </option>
+      <?php } ?>
+    </select>
+  </p>
+
+  <p>
+    <label>Layout</label>
+    <span>Determines whether these pages render a feed of full-text posts, or a simplified listing linking to the pages themselves.</span>
+  </p>
+
+  <table>
+    <?php foreach($listings as $value => $label) { ?>
+      <tr>
+        <td>
+          <label for="layout.<?= $value ?>"><?= $label ?></label>
+        </td>
+        <td>
+          <?php \forms\options("layout.$value", 
+            ["listing", "feed"], 
+            constant("LAYOUT_" . strtoupper($value))
+          ) ?>
+        </td>
+      </tr>
+    <?php } ?>
+  </table>
 
   <h3>Security</h3>
 

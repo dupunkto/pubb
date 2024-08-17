@@ -6,7 +6,35 @@ namespace core;
 
 use Exception;
 
+// Listings
+
+function list_pages($listing) {
+  return match($listing) {
+    "all" => \store\list_public_pages(),
+    "index" => \store\list_index_pages(),
+    "code" => \store\list_gists(),
+    "photos" => \store\list_photos(),
+  };
+}
+
+function get_listing_title($listing) {
+  return match($listing) {
+    "all" => "All",
+    "index" => "Pages",
+    "code" => "Code",
+    "photos" => "Photos",
+  };
+}
+
 // Pages
+
+function is_homepage($page) {
+  if(str_starts_with(LAYOUT_HOMEPAGE, "/")) {
+    return false;
+  } else {
+    return $page['id'] == (int)LAYOUT_HOMEPAGE;
+  }
+}
 
 function get_page_title($page) {
   if($page['title']) return $page['title'];

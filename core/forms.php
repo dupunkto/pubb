@@ -6,7 +6,13 @@ namespace forms;
 function options($name, $options, $selected) {
   ?>
     <select name="<?= $name ?>">
-      <?php foreach($options as $value => $label) { ?>
+      <?php 
+        foreach($options as $value => $label) {
+          if (is_int($value)) {
+            $value = $label;
+            $label = ucfirst($label);
+          }
+      ?>
         <option value="<?= $value ?>" <?php if($selected == $value) echo "selected" ?>>
           <?= $label ?>
         </option>

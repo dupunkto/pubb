@@ -27,6 +27,7 @@
       <label for="ref">Type</label>
       <select name="ref">
         <option value="/all">All</option>
+        <option value="/index">Pages</option>
         <option value="/code">Gists</option>
         <option value="/photos">Photos</option>
       </select>

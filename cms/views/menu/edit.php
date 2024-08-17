@@ -34,10 +34,13 @@
   <?php if($item['type'] == 'listing') { ?>
     <p>
       <label for="ref">Type</label>
-      <select name="ref">
-        <option value="/code" <?php if($item['ref'] == "/code") echo "selected" ?>>Gists</option>
-        <option value="/photos" <?php if($item['ref'] == "/photos") echo "selected" ?>>Photos</option>
-      </select>
+      <?php \forms\options("ref", [
+        "/all" => "All", 
+        "/index" => "Pages", 
+        "/code" => "Gists", 
+        "/photos" => "Photos"
+      ], $item['ref']);
+      ?>
     </p>
   <?php } ?>
 
