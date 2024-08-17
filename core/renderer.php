@@ -47,7 +47,7 @@ function index($pages, $type) {
   };
 }
 
-function page($page, $level = 2) {
+function page($page, $level = 1) {
   ?>
     <article 
       class="h-entry" 
