@@ -11,20 +11,17 @@ if(isset($_POST['save'])) {
     return str_replace("_", ".", $key);
   }, array_keys($changes));
 
-  // Merge keys into the map and drop any empty values.
+  // Merge keys into the map.
   $changes = array_combine($normalized_keys, $changes);
-  $changes = array_filter($changes, function($value) {
-    return $value !== "";
-  });
 
   // If a new passphrase was provided, we need to rehash it,
   // and change the password.
-  if(isset($changes['passphrase'])) {
+  if(isset($changes['passphrase']) and $changes['passphrase'] != "") {
     if($changes['passphrase'] !== @$changes['confirm'])
       fail("The passphrase did not match the confirmation.");
 
     $passphrase = $changes['passphrase'];
-    $hashed = \auth\hash_passphrase($passphrase);
+    $hashed = \crypto\hash_passphrase($passphrase);
 
     $changes['hashed_passphrase'] = $hashed;
   }
@@ -39,6 +36,12 @@ if(isset($_POST['save'])) {
     or fail("Failed to read existing config.");
 
   $new = array_merge($existing, $changes);
+
+  // Drop any empty values. (Optional, but makes the config
+  // look nicer.)
+  $new = array_filter($new, function($value) {
+    return $value !== "";
+  });
 
   file_put_contents(CONFIG, json_encode($new)) 
     or fail("Failed to save settings.");
