@@ -1,13 +1,7 @@
-@import url("https://roblog.nl/base.css");
-
-body, html {
-  height: 100%;
-  margin: 0;
-}
+@import url("dupunkto.css");
 
 body {
   font-family: sans-serif;
-  font-size: clamp(0.9rem, 2vw, 1rem);
   display: grid;
   grid-template-rows: 1fr 10fr 1fr;
   grid-template-columns: 1fr 4fr;
@@ -83,10 +77,13 @@ article {
 
   time {
     opacity: 0.6;
-    &::before {
-      content: "Published on ";
-    }
+    &::before { content: "Published on "; }
   }
+}
+
+.feed article time {
+  opacity: 1;
+  &::before { display: none;}
 }
 
 .mention {

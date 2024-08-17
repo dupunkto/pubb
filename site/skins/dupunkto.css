@@ -1,0 +1,91 @@
+/* Shared style definitions for hummingbird and traditional skins,
+   based on the {du}punkto branding */
+
+@import url("https://roblog.nl/base.css");
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.feed article {
+  display: grid;
+  align-items: end;
+  margin-left: .7em;
+  grid-template-columns: 65px 10.75ch auto;
+  grid-template-areas:
+    "h-card dt title"
+    "nothing content content";
+
+  time {
+    color: #555;
+    grid-area: dt;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &:has(> .p-name) time::after {
+    content:  "·";
+  }
+
+  & > .p-name {
+    color: #555;
+    grid-area: title;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .e-content {
+    grid-area: content;
+    font-size: 1.15em;
+    margin-bottom: 1.5em;
+
+    & > p:first-child {
+      margin-top: 0;
+      padding-top: .3em;
+      border-top: 1px dotted #ccc;
+    }
+
+    & > pre:first-child {
+      margin-top: 0.3em;
+    }
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.feed .h-card {
+  display: block;
+  grid-area: h-card;
+  float: left;
+  
+  .p-name {
+    display: none;
+  }
+
+  .u-photo {
+    max-width: 65px;
+    margin-left: -0.7em;
+    margin-bottom: -40px;
+    border-radius: 6px;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.mention {
+  font-weight: bold;
+  text-decoration: none;
+}
