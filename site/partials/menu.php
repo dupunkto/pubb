@@ -25,9 +25,10 @@
 
               ?>
                 <li>
-                  <a href="<?= $url ?>" data-title="<?= esc_attr($item['label']) ?>">
-                    <?= $item['label'] ?>
-                  </a>
+                  <a 
+                    href="<?= $url ?>" 
+                    data-title="<?= esc_attr($item['label']) ?>"
+                  ><?= $item['label'] ?></a>
                 </li>
               <?php 
             } 
