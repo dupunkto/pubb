@@ -18,17 +18,20 @@
             foreach($section['items'] as $item) { 
               if($item['type'] == 'page') {
                 $url = \urls\page_url(\store\get_page($item['page_id']));
+                $selected = parse_path($url) == $path;
               } else {
                 $url = $item['ref'];
+                $selected = $url == $path;
               }
 
               ?>
-                <li>
-                  <a 
+                <li
+                  <?php if($selected) echo 'class="selected"' ?>
+                  ><a 
                     href="<?= $url ?>" 
                     data-title="<?= esc_attr($item['label']) ?>"
-                  ><?= $item['label'] ?></a>
-                </li>
+                  ><?= $item['label'] ?></a
+                ></li>
               <?php 
             } 
           ?>

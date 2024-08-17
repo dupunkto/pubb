@@ -169,6 +169,10 @@ function parse_host($url) {
   return strtolower(parse_url($url, PHP_URL_HOST));
 }
 
+function parse_path($url) {
+  return parse_url($url, PHP_URL_PATH);
+}
+
 function parse_mime_type($path) {
   return @MIME_TYPES[parse_ext($path)];
 }
