@@ -5,7 +5,7 @@
 <?php if(!$not_found) { ?>
 <link rel="canonical" href="<?= canonicalize_url(CANONICAL . $path) ?>">
 <?php } ?>
-<link rel="stylesheet" type="text/css" href="<?= CANONICAL . "/main.css" ?>">
+<link rel="stylesheet" type="text/css" href="<?= CANONICAL ?>/skins/<?= LAYOUT_SKIN ?>.css">
 
 <meta name="author" content="<?= esc_attr(AUTHOR_NAME) ?>">
 <meta name="description" content="<?= esc_attr(SITE_DESCRIPTION) ?>">

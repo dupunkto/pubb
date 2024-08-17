@@ -1,0 +1,181 @@
+@import url("https://roblog.nl/base.css");
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  padding: 7px;
+  display: grid;
+  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+    "header nav"
+    "main main"
+    "footer footer";
+  gap: 20px;
+}
+
+body > header {
+  grid-area: header;
+
+  hgroup p {
+    opacity: .7;
+  }
+}
+
+body > main {
+  grid-area: main;
+  height: 100%;
+}
+
+body > nav {
+  grid-area: nav;
+  summary { display: none; }
+  details { text-align: right; }
+
+  h3 { 
+    display: inline; 
+    font-size: 1em;
+    margin: 0;
+    margin-left: 0.4em;
+
+    &::after { content: "—"; }
+  }
+  
+  ul {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline;
+    }
+
+    li:not(:last-child)::after {
+      content:  "·";
+      margin-left: 0.3em;
+    }
+  }
+}
+
+body > footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  text-align: center;
+  font-size: .9em;
+  opacity: .85;
+
+  b {
+    display: none;
+  }
+
+  p {
+    margin: .3em;
+  }
+
+  p:not(.powered-by) {
+    margin-bottom: .5em;
+  }
+
+  small {    
+    font-size: 1.3em;
+  }
+}
+
+article {
+  display: grid;
+  align-items: end;
+  margin-left: .7em;
+  grid-template-columns: 65px 10.75ch auto;
+  grid-template-areas:
+    "h-card dt title"
+    "nothing content content";
+
+  time {
+    color: #555;
+    grid-area: dt;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &:has(> .p-name) time::after {
+    content:  "·";
+  }
+
+  & > .p-name {
+    color: #555;
+    grid-area: title;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .e-content {
+    grid-area: content;
+    font-size: 1.15em;
+
+    & > p:first-child {
+      margin-top: 0;
+      padding-top: .3em;
+      border-top: 1px dotted #ccc;
+    }
+
+    & > pre:first-child {
+      margin-top: 0.3em;
+    }
+
+    &:not(:has(.caption)) > pre:first-child {
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
+.mention {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.code, figure img {
+  margin-bottom: .5em;
+}
+
+.caption, figcaption {
+  opacity: 0.7;
+  font-size: 0.8em;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0;
+}
+
+.h-card {
+  display: block;
+  grid-area: h-card;
+  float: left;
+  
+  .p-name {
+    display: none;
+  }
+
+  .u-photo {
+    max-width: 65px;
+    margin-left: -0.7em;
+    margin-bottom: -40px;
+    border-radius: 6px;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
