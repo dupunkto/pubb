@@ -3,15 +3,8 @@
 	"site.lang": "en",
 	"site.title": "{du}punkto",
 	"site.description": "Improving the world line by line, using code.",
-	"site.copyright": "Copying is an act of love. Please copy.",
 	"author.name": "Robin",
 	"author.picture": "https://roblog.nl/random.jpeg",
-	"author.email": "axcelott@roblog.nl",
-	"notifications.admin": "axcelott@roblog.nl",
-	"notifications.sender": "axcelott@roblog.nl",
-	"notifications.webmention": true,
-	"license": "CC0 1.0",
-  "license.uri": "https:\/\/creativecommons.org\/publicdomain\/zero\/1.0\/",
 	"encryption_key": "317f48e381d6eed8765a0418723ad64f6ac6de528433d2d758ef39750557f6e9",
 	"hashed_passphrase": "f5ac0102a91979ded2570f85804d854c"
 }
