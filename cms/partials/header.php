@@ -3,7 +3,7 @@
 
   <?php if(is_authenticated()) { ?>
     <div class="group">
-      <a href="<?= CANONICAL ?>">View site →</a>
+      <a href="<?= CANONICAL ?>" target="_blank">View site →</a>
       <a href="<?= CMS_CANONICAL ?>/settings">Settings</a>
     </div>
   <?php } ?>
