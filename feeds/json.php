@@ -15,7 +15,7 @@ foreach($pages as $page) {
   $entry = [
     "id" => $page['id'],
     "url" => \urls\page_url($page),
-    "content_html" => render_to_str($page),
+    "content_html" => page_content($page),
     "date_published" => $page['published'] . "Z",
     "date_modified" => $page['updated'] . "Z"
   ];
@@ -26,10 +26,8 @@ foreach($pages as $page) {
   $entries[] = $entry;
 }
 
-function render_to_str($page) {
-  ob_start();
-  \renderer\page_content($page);
-  return ob_get_clean();
+function page_content($page) {
+  return capture('\renderer\page_content', $page);
 }
 
 echo json_encode(array(

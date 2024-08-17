@@ -60,7 +60,7 @@ function page($page, $level = 1) {
       } ?>
 
       <div class="p-summary e-content">
-        <?php page_content($page) ?>
+        <?= shift_headings(capture('\renderer\page_content', $page), $level); ?>
       </div>
 
       <time class="dt-published" datetime="<?= $page['published'] ?>">
@@ -306,4 +306,23 @@ function render_shortcodes($prose) {
   ];
 
   return preg_replace(array_keys($shorts), array_values($shorts), $prose);
+}
+
+function shift_headings($html, $level) {
+  $base_level = 1;
+  $diff = $level - $base_level;
+  $pattern = '/<h([2-6])([^>]*)>(.*?)<\/h\1>/i';
+
+  return preg_replace_callback($pattern, function ($matches) use ($diff) {
+    $level = clamp(2, intval($matches[1]) + $diff, 6);
+    return "<h{$level}{$matches[2]}>{$matches[3]}</h{$level}>";
+  }, $html);
+}
+
+function clamp($min, $value, $max) {
+  switch(true) {
+    case $value < $min: return $min;
+    case $value > $max: return $max;
+    default: return $value;
+  };
 }
