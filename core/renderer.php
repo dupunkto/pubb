@@ -106,7 +106,7 @@ function comment_section($page) {
 
       <form action="<?= WEBMENTION_ENDPOINT ?>" method="post">
         <p>
-          <p>This post accepts <a href="//webmention.net">webmentions</a>. Have you written a reply? Let me know the URL:
+          <p>This page accepts <a href="//webmention.net">webmentions</a>. Have you written a reply? Let me know the URL:
         </p>
 
         <input required name="target" type="hidden" value="<?= \urls\page_url($page) ?>">
