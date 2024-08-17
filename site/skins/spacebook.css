@@ -104,8 +104,12 @@ body > main, body > aside {
   padding: 6px 10px;
 }
 
-body > main.feed {
+body > main {
   grid-area: main;
+}
+
+body.feed > main,
+body.listing > main {
   &::before {
     content: "Latest Blog Entries";
     display: block;
@@ -114,13 +118,7 @@ body > main.feed {
   }
 }
 
-body > main.single, 
-body > main.listing {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-body:has(.feed) > aside {
+body > aside {
   grid-area: profile;
   display: block;
 
@@ -132,10 +130,17 @@ body:has(.feed) > aside {
     margin: 0 10px 10px 0;
   }
 
+  h3 {
+    background: #60A5FA;
+    color: white;
+    padding: 2px 7px;
+    margin-bottom: 0.7em;
+    margin-top: 0;
+  }
+
   .p-name {
     font-weight: bold;
     font-size: 1.5em;
-    margin: 0.7em 0;
   }
 
   .p-nickname {
@@ -196,14 +201,26 @@ body > footer {
   }
 }
 
+.home .dt-published {
+  display: none;
+}
+
+section:not(.volume) {
+  background: #DBEAFE;
+  color: #1E40AF;
+  border: 2px solid #60A5FA;
+  margin-top: 0.7em;
+}
+
+h2 {
+  font-size: 1em;
+  margin: 25px 0 10px 0;
+  background: #BFDBFE;
+  padding: 5px 7px;
+}
+
 .comment-section {
   margin-bottom: 1em;
-
-  h2 {
-    margin: 25px 0 10px 0;
-    background: #BFDBFE;
-    padding: 5px 7px;
-  }
 }
 
 table {
