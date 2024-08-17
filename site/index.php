@@ -67,17 +67,14 @@ if(\agents\is_blocked()) {
     <?php include "partials/head.php" ?>
     <title><?= $title ?></title>
   </head>
-  <body>
+  <body class="<?= \renderer\page_classes() ?>">
     <header>
       <?php include "partials/header.php" ?>
     </header>
     <nav>
       <?php include "partials/menu.php" ?>
     </nav>
-    <main class="
-      <?= isset($pages) ? "h-feed $type" : "single" ?>
-      <?php if(isset($page)) echo $page['type'] ?>
-    ">
+    <main <?php if(isset($pages)) echo 'class="h-entry"' ?>>
       <?php
 
         switch(true) {

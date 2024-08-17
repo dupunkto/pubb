@@ -8,6 +8,22 @@ use Parsedown;
 
 // Public APIs
 
+function page_classes() {
+  global $pages, $type, $page, $not_found;
+
+  $classes[] = isset($pages) ? $type : "single";
+  if($not_found) $classes[] = "404";
+
+  if(isset($page)) {
+    $classes[] = $page['type'];
+    if(\core\is_homepage($page)) {
+      $classes[] = "home";
+    }
+  }
+
+  return implode(" ", $classes);
+}
+
 function info($message) {
   render_message("info", $message);
 }
