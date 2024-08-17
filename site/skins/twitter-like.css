@@ -104,6 +104,9 @@ body > nav {
   a[href="/photos"]::before { content: "\f030"; }
   a[href="/code"]::before { content: "\f121"; }
   a[data-title="Subscribe"]::before { content: "\f1d8"; }
+  a[data-title="Now"]::before { content: "\f133"; }
+  a[data-title="Ideas"]::before { content: "\f0eb"; }
+  a[data-title~="About"]::before { content: "\f007"; }
 }
 
 article {
@@ -116,6 +119,7 @@ article {
   flex-direction: column;
   margin-top: var(--gap);
   font-size: 1.2em;
+  line-height: 1.5;
 
   h1, h2, h3 { margin: 0; }
   h4 { margin: 0.8em 0; }
@@ -191,4 +195,23 @@ input[type="button"] {
 figure img {
   max-width: 300px;
   width: 100%;
+}
+
+/* List view */
+
+table {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid rgb(225, 225, 225);
+  background-color: white;
+  border-radius: 11px;
+  margin-top: var(--gap);
+}
+
+th {
+  text-align: left;
+}
+
+td:last-child, th:last-child {
+  text-align: right;
 }
