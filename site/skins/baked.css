@@ -1,0 +1,157 @@
+@import url("https://roblog.nl/base.css");
+
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 7px;
+}
+
+@media (width >= 1000px) {
+  body {
+    margin-left: 12.5%;
+    margin-right: auto;
+    margin-top: 2.2em;
+  }
+}
+
+body > header {
+  display: none;
+}
+
+.comment-section {
+  display: none;
+}
+
+h1 {
+  line-height: 50px;
+  margin: 23.5px 0;
+}
+
+.e-content > p:first-child {
+  margin-top: 0;
+}
+
+body:not(.home) {
+  & > nav summary {
+    display: none;
+  }
+
+  & > nav ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  & > nav h3,
+  & > nav ul:nth-child(n + 3),
+  & > nav ul li:nth-child(n + 2) {
+    display: none;
+  }
+
+  & > nav li {
+    list-style: none;
+    font-size: 0.8em;
+
+    a {
+      text-transform: lowercase;
+      text-decoration: none;
+    }
+
+    a::before {
+      content: "← Back to ";
+      text-transform: none;
+    }
+  }
+}
+
+.home {
+  max-width: 70ch;
+
+  & > nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  & > nav ul:nth-child(2) {
+    margin-top: 1em;
+  }
+
+  & > footer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  h2 {
+    border: none;
+    padding: 0;
+  }
+
+  p {
+    max-width: 45ch;
+  }
+
+  .dt-published {
+    display: none;
+  }
+}
+
+.single {
+  .dt-published {
+    margin: 2em 0;
+    border-top: 2px solid;
+    border-color: inherit;
+    font-size: 0.9em;
+    display: block;
+    padding-top: 0.7em;
+
+    &::before {
+      content: "Posted by ";
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .home {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    & > main {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    & > nav {
+      margin-top: 1em;
+      text-align: right;
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    /* Make "Menu" label look like regular text */
+    & > nav summary h2 {
+      display: inline;
+      font-weight: normal;
+      font-size: 1em;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  /* Make "Menu" label look like heading */
+  .home > nav summary h2 {
+    display: inline;
+  }
+  .home > nav summary::marker {
+    font-size: 0;
+  }
+}
+
+body > footer {
+  margin: 2em 0;
+  opacity: 0.8;
+  font-size: 0.9em;
+}
+
+.h-feed {
+  margin-top: 1.5em;
+}

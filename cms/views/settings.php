@@ -245,7 +245,9 @@
       "spacebook" => "Spacebook",
       "twitter-like" => "Twitter-like",
       "neopunk" => "neopunk",
-      "guthib" => "GutHib"
+      "guthib" => "GutHib",
+      "baked" => "Baked",
+      "bombastic" => "Bombastic"
     ], LAYOUT_SKIN) ?>
   </p>
 
