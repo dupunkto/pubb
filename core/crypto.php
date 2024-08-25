@@ -11,7 +11,7 @@ function generate_encryption_key() {
 }
 
 function hash_passphrase($passphrase) {
-  $host = parse_url(AUTHOR_MAIN_SITE, PHP_URL_HOST);
+  $host = parse_url(AUTHOR_SITE, PHP_URL_HOST);
   $hash = md5($host . $passphrase . ENCRYPTION_KEY);
 
   return $hash;

@@ -1,6 +1,8 @@
 <?php
 // Authenticates the user using IndieAuth.
 
+include __DIR__ . "/../endpoint/common.php";
+
 session_start() or die("Failed to start session");
 
 function is_authenticated() {
@@ -18,6 +20,11 @@ if(is_authenticated()) {
 
 // Create a new authentication request.
 elseif(!isset($_GET['code'])) {
+    if(isset($_SESSION['state'])) {
+        die("Detected another authentication session already running in this browser session. 
+        Please clear your cookies and try again.");
+    }
+
     $_SESSION['state'] = random_string();
     $_SESSION['code_verifier'] = random_string(44);
     
@@ -40,27 +47,19 @@ elseif(!isset($_GET['code'])) {
 // Validate authentication response and request access token.
 else {
     if(!isset($_GET['state'])) {
-        http_response_code(400);
-        \resp\json_error("Missing 'state' parameter.");
-        exit;
+        json_error(400, "Missing 'state' parameter.");
     }
 
     if($_GET['state'] !== @$_SESSION['state']) {
-        http_response_code(401);
-        \resp\json_error("Mismatched 'state'. This can possibly be caused by running multiple authentication requests in parallel.");
-        exit;
+        json_error(401, "Mismatched 'state'. This can possibly be caused by running multiple authentication requests in parallel.");
     }
 
     if(!isset($_SESSION['code_verifier'])) {
-        http_response_code(403);
-        \resp\json_error("Either you're a hackerboy or I'm a dumb idiot. Or both.");
-        exit;
+        json_error(403, "Either you're a hackerboy or I'm a dumb idiot. Or both.");
     }
 
     if($_GET['iss'] !== ISSUER) {
-        http_response_code(401);
-        \resp\json_error("Mismatched issuer ('iss').");
-        exit;
+        json_error(401, "Mismatched issuer ('iss').");
     }
 
     $response = \http\post(AUTH_ENDPOINT, [
@@ -72,19 +71,19 @@ else {
     ]);
 
     if($response['state'] == "failed") {
-        http_response_code(500);
-        \resp\json_error("Failed to verify authorization code. Got: " . $response['body'] . ".");
-        exit;
+        json_error(500, "Failed to verify authorization code. Got: " . $response['body'] . ".");
     }
 
-    $body = json_decode($response['body']);
+    $body = json_decode($response['body'], associative: true);
 
-    if(@$body['me'] !== AUTHOR_MAIN_SITE) {
-        http_response_code(401);
-        \resp\json_error("You're not 'me'. So either you're a crazy hackerboy or I'm a dumd idiot. Or both.");
-        exit;
+    if(@$body['me'] !== AUTHOR_SITE) {
+        json_error(401, "You're not 'me'. So either you're a crazy hackerboy or I'm a dumd idiot. Or both.");
     }
+
+    unset($_SESSION['state']);
+    unset($_SESSION['code_verifier']);
 
     // Authenticate the user.
     $_SESSION['authenticated'] = true;
+    header("Location: /");
 }

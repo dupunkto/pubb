@@ -104,14 +104,14 @@ if($code !== null) {
   if(!(is_string($code)
       and is_string($redirect_uri)
       and is_string($client_id)
-      and verify_signed_code(ENCRYPTION_KEY, AUTHOR_MAIN_SITE . $redirect_uri . $client_id, $code))
+      and verify_signed_code(ENCRYPTION_KEY, AUTHOR_SITE . $redirect_uri . $client_id, $code))
   ) {
     http_response_code(400);
     echo "Verification failed: given code was invalid.";
     exit;
   }
 
-  $response = ["me" => AUTHOR_MAIN_SITE];
+  $response = ["me" => AUTHOR_SITE];
   $code_parts = explode(":", $code, 3);
 
   if($code_parts[2] !== "") {
@@ -202,7 +202,7 @@ if($submitted_password !== null) {
     exit;
   }
 
-  if(!\auth\verify_password($submitted_password)) {
+  if(!\crypto\verify_passphrase($submitted_password)) {
     syslog(LOG_CRIT, "IndieAuth: login failure from " . $_SERVER['REMOTE_ADDR'] . " to $me");
 
     http_response_code(403);
@@ -224,7 +224,7 @@ if($submitted_password !== null) {
     $scope = implode(' ', $scope);
   }
 
-  $code = create_signed_code(ENCRYPTION_KEY, AUTHOR_MAIN_SITE . $redirect_uri . $client_id, 5 * 60, $scope);
+  $code = create_signed_code(ENCRYPTION_KEY, AUTHOR_SITE . $redirect_uri . $client_id, 5 * 60, $scope);
 
   $final_uri = $redirect_uri;
   if(strpos($redirect_uri, '?') === false) $final_uri .= '?';
@@ -232,7 +232,7 @@ if($submitted_password !== null) {
 
   $parameters = [
     "code" => $code,
-    "me" => AUTHOR_MAIN_SITE,
+    "me" => AUTHOR_SITE,
     "iss" => ISSUER,
   ];
 
