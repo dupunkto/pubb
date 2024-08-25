@@ -229,6 +229,9 @@ function render_mdn($page) {
   $fancy = prerender($contents);
 
   $parser = new Parsedown();
+  $parser->setSafeMode(false);
+  $parser->setMarkupEscaped(false);
+
   echo $parser->text($fancy);
 }
 

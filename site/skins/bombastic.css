@@ -190,18 +190,21 @@ img {
   max-width: 100%;
 }
 
-a:has(img):hover {
-  background-image: linear-gradient(
-    to right,
-    #e91e63,
-    #ffc107,
-    #009688,
-    #673ab7,
-    #e91e63
-  );
+a:has(img) {
+  line-height: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-image: linear-gradient(to right, #951942, #673ab7);
 
   img {
     mix-blend-mode: luminosity;
+    transition: all 0.12s ease-out 0s;
+  }
+}
+
+a:has(img):hover {
+  img {
+    mix-blend-mode: normal;
   }
 }
 
