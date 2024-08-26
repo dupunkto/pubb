@@ -54,11 +54,11 @@ define('AI_AGENTS', [
 ]);
 
 function is_corporate() {
-  return in_array($_SERVER['HTTP_USER_AGENT'], CORPORATE_AGENTS);
+  return deep_contains(CORPORATE_AGENTS, $_SERVER['HTTP_USER_AGENT']);
 }
 
 function is_ai() {
-  return in_array($_SERVER['HTTP_USER_AGENT'], AI_AGENTS);
+  return deep_contains(AI_AGENTS, $_SERVER['HTTP_USER_AGENT']);
 }
 
 function is_blocked() {

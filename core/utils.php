@@ -113,6 +113,10 @@ function drop_empty($array) {
   });
 }
 
+function deep_contains($haystack, $needle) {
+  return count(array_filter($haystack, fn($candidate) => strpos($needle, $candidate) != false)) > 0;
+}
+
 // URL utilities
 
 function normalize_url($url) {
