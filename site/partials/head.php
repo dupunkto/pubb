@@ -7,6 +7,10 @@
 <?php } ?>
 <link rel="stylesheet" type="text/css" href="<?= CANONICAL ?>/skins/<?= LAYOUT_SKIN ?>.css">
 
+<?php if(defined('SITE_FAVICON')) { ?>
+<link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E<?= SITE_FAVICON ?>%3C/text%3E%3C/svg%3E">
+<?php } ?>
+
 <meta name="author" content="<?= esc_attr(AUTHOR_NAME) ?>">
 <meta name="description" content="<?= esc_attr(SITE_DESCRIPTION) ?>">
 <meta name="generator" content="Pubb v<?= PUBB_VERSION ?>">

@@ -26,6 +26,7 @@ required('host');
 required('site.lang');
 required('site.title');
 required('site.description');
+optional('site.favicon');
 optional('site.copyright');
 
 fallback('force-https', false);

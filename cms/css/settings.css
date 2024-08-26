@@ -1,5 +1,5 @@
 input[type="url"],
-input[type="text"], 
+input[type="text"],
 input[type="email"],
 input[type="password"],
 select {
@@ -16,7 +16,7 @@ h3:not(:first-of-type) {
   margin-top: 3em;
 }
 
-p label + span, 
+p label + span,
 td label + span {
   display: block;
   font-size: 0.9em;
@@ -34,4 +34,33 @@ tr {
 
 td select {
   margin: 0;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+}
+
+[name="site.description"] {
+  /* Full width + margin + size of favicon input */
+  width: calc(100% + 1em + 2.1 * 1.8em) !important;
+}
+
+.favicon {
+  float: right;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 1em;
+}
+
+.favicon label {
+  display: block;
+}
+
+.favicon input {
+  font-size: 2.1em !important;
+  height: 1.8em;
+  width: 1.8em !important;
+  margin-top: 7px;
+  margin-bottom: 0;
 }

@@ -1,6 +1,17 @@
 <form action="" method="post">
   <h3>Site details</h3>
 
+  <p class="favicon">
+    <label for="site.favicon">Icon</label>
+    <input 
+      type="text"
+      name="site.favicon"
+      placeholder="✨"
+      pattern="^\X$"
+      value="<?= canonical_value("site.favicon") ?>"
+    >
+  </p>
+
   <p>
     <label for="site.title">Title</label>
     <input 

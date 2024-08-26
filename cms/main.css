@@ -62,8 +62,12 @@ h6 {
 
 hgroup {
   margin-bottom: 1em;
-  h1 { margin-bottom: 0; }
-  p { margin-top: 0; }
+  h1 {
+    margin-bottom: 0;
+  }
+  p {
+    margin-top: 0;
+  }
 }
 
 pre {
@@ -110,7 +114,7 @@ tr {
 
 /* Flash messages */
 
-.success, 
+.success,
 .error,
 .warn,
 .info {
@@ -171,9 +175,10 @@ body > header {
 }
 
 main {
-  max-width: 600px;
+  max-width: 630px;
   margin: 0 auto;
   margin-top: 3em;
+  padding: 0 15px;
 }
 
 main > header:not(:first-child) {
@@ -238,13 +243,14 @@ ul li .actions {
     text-transform: lowercase;
     text-decoration: none;
     cursor: default;
-  
+
     &:hover {
       opacity: 0.8;
     }
   }
 
-  input, select {
+  input,
+  select {
     max-width: min-content;
     flex-shrink: 1;
   }
