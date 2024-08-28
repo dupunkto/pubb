@@ -22,7 +22,7 @@
   <?php if(defined('AUTHOR_EMAIL')) { ?>
     <p class="p-email">
       <a class="u-email" href="mailto:<?= AUTHOR_EMAIL ?>">
-        AUTHOR_EMAIL
+        <?= AUTHOR_EMAIL ?>
       </a>
     </p>
   <?php } ?>
