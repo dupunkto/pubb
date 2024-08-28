@@ -9,7 +9,7 @@ function new_webmention($source, $target) {
   $subject = "New webmention from $source";
   $message = "Your page $target was mentioned on $source!";
 
-  send_to_webmaster($subject, $message);
+  return send_to_webmaster($subject, $message);
 }
 
 function send_mention($page, $contact) {
@@ -21,7 +21,7 @@ function send_mention($page, $contact) {
   $message .= "I mentioned you on this page: \n";
   $message .= "{$title} ({$url})\n\n";
 
-  send_to_contact($contact, $subject, $message);
+  return send_to_contact($contact, $subject, $message);
 }
 
 function send_to_webmaster($subject, $message) {
@@ -31,7 +31,7 @@ function send_to_webmaster($subject, $message) {
   $message .= "This is an automated notification. ";
   $message .= "If you don't want to receive these anymore, you can disable them in the CMS. ";
 
-  deliver(NOTIFICATIONS_ADMIN, "[" . HOST . "] $subject", $message);
+  return deliver(NOTIFICATIONS_ADMIN, "[" . HOST . "] $subject", $message);
 }
 
 function send_to_contact($contact, $subject, $message) {
@@ -42,7 +42,7 @@ function send_to_contact($contact, $subject, $message) {
   $message .= "Cheers!\n";
   $message .= AUTHOR_NAME;
 
-  deliver($contact['email'], $subject, $message);
+  return deliver($contact['email'], $subject, $message);
 }
 
 function deliver($to, $subject, $message) {
@@ -52,5 +52,5 @@ function deliver($to, $subject, $message) {
     "X-Powered-By" => "Pubb (v" . PUBB_VERSION . ")",
   ];
 
-  mail($to, $subject, $message, $headers);
+  return mail($to, $subject, $message, $headers);
 }
