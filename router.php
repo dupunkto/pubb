@@ -23,5 +23,5 @@ function is_builtin() {
 }
 
 function is_https() {
-  return !empty($_SERVER['https']) and $_SERVER['HTTPS'] !== "off";
+  return !empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] !== "off";
 }
