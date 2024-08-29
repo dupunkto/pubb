@@ -258,7 +258,7 @@
       "neopunk" => "neopunk",
       "guthib" => "GutHib",
       "baked" => "Baked",
-      "bombastic" => "Bombastic"
+      "nightspire" => "Night Spire",
     ], LAYOUT_SKIN) ?>
   </p>
 
