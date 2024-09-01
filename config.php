@@ -59,6 +59,9 @@ fallback('layout.index', 'listing');
 fallback('layout.code', 'listing');
 fallback('layout.photos', 'feed');
 
+$_SKIN_PATH = __DIR__ . "/site/skins/" . LAYOUT_SKIN . ".css";
+resolute('layout.rev', md5_file($_SKIN_PATH));
+
 fallback('micropub-endpoint', CANONICAL . "/endpoint/micropub");
 fallback('media-endpoint', CANONICAL . "/endpoint/media");
 fallback('webmention-endpoint', CANONICAL . "/endpoint/webmention");

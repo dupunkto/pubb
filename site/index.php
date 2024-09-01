@@ -49,7 +49,7 @@ switch(true) {
 
 if(@$page['type'] == 'txt') {
   header("Content-Type: text/plain; charset=UTF-8");
-  echo \renderer\plain_text($page);
+  \renderer\plain_text($page);
   exit;
 }
 

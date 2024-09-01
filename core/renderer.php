@@ -130,7 +130,7 @@ function page_content($page) {
 
 function plain_text($page) {
   $contents = \store\contents($page['path']);
-  return prerender_text($contents);
+  echo prerender_text($contents);
 }
 
 // Internal APIs

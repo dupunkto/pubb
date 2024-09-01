@@ -5,7 +5,7 @@
 <?php if(!$not_found) { ?>
 <link rel="canonical" href="<?= canonicalize_url(CANONICAL . $path) ?>">
 <?php } ?>
-<link rel="stylesheet" type="text/css" href="<?= CANONICAL ?>/skins/<?= LAYOUT_SKIN ?>.css">
+<link rel="stylesheet" type="text/css" href="<?= CANONICAL ?>/skins/<?= LAYOUT_SKIN ?>.css?v=<?= LAYOUT_REV ?>">
 
 <?php if(defined('SITE_FAVICON')) { ?>
 <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E<?= SITE_FAVICON ?>%3C/text%3E%3C/svg%3E">
