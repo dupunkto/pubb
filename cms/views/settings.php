@@ -339,7 +339,7 @@
       >
       <span>
         Force HTTP to HTTPS redirect. 
-        (<a href="https://wiki.dupunkto.org/HTTPS#cons">Why is this off by default?</a>)
+        (<a href="https://wiki.dupunkto.org/HTTPSIsOverrated">Why is this off by default?</a>)
       </span>
     </label>
   </p>
