@@ -273,7 +273,7 @@ $csrf_token =
       <?php } ?>
       
       <form action="" method="post">
-        <?php if(strlen($scope) > 0) { ?>
+        <?php if(!empty($scope) and strlen($scope) > 0) { ?>
           <?php if($client_id == CLIENT_ID) { ?>
             <?php foreach(explode(" ", $scope) as $n => $name) { ?>
               <input 
