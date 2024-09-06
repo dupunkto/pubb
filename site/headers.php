@@ -13,10 +13,10 @@ header("Cross-Origin-Opener-Policy: same-origin");
 header("Access-Control-Allow-Origin: *");
 
 // Makes IndieAuth work on sites with *weird* discovery
-header('Link: <' . AUTH_ENDPOINT . '>; rel="authorization_endpoint"');
-header('Link: <' . TOKEN_ENDPOINT . '>; rel="token_endpoint"');
-header('Link: <' . MICROPUB_ENDPOINT . '>; rel="micropub"');
-header('Link: <' . CANONICAL . '>; rel="self"');
+header('Link: <' . AUTH_ENDPOINT . '>; rel="authorization_endpoint"', replace: false);
+header('Link: <' . TOKEN_ENDPOINT . '>; rel="token_endpoint"', replace: false);
+header('Link: <' . MICROPUB_ENDPOINT . '>; rel="micropub"', replace: false);
+header('Link: <' . CANONICAL . '>; rel="self"', replace: false);
 
 // Shameless self-promotion
 header("X-Powered-By: Pubb (v" . PUBB_VERSION . ")");
