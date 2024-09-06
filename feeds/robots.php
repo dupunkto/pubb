@@ -1,6 +1,8 @@
 <?php
 // robots.txt to block unwanted visitors.
 
+require_once __DIR__ . "/../core.php";
+
 header("Content-Type: text/plain; charset=UTF-8");
 
 ?>
