@@ -97,3 +97,6 @@ CREATE TABLE IF NOT EXISTS `menu_sections` (
   `order` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
+
+-- v1: Make `views.agent` nullable
+ALTER TABLE `views` MODIFY `agent` text DEFAULT NULL;
