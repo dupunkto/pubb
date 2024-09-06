@@ -14,6 +14,7 @@ Sitemap: <?= CANONICAL ?>/sitemap.xml
 <?php foreach(CORPORATE_AGENTS as $agent) {
   echo "\nUser-agent: $agent";
 } ?>
+
 Disallow: /
 <?php } ?>
 
@@ -24,5 +25,6 @@ Disallow: /
 <?php foreach(AI_AGENTS as $agent) {
   echo "\nUser-agent: $agent";
 } ?>
+
 Disallow: /
 <?php } ?>
