@@ -7,7 +7,7 @@
       <?php if(isset($slug)) { ?>
         value="<?= $slug ?>"
       <?php } ?>
-      pattern="[a-z0-9](-?[a-z0-9])*"
+      pattern="[@~]?[a-z0-9](-?[a-z0-9])*"
       required
     >
     
@@ -66,7 +66,7 @@
     <?php } ?>
   </header>
 
-  <textarea 
+  <textarea
     autofocus 
     required 
     placeholder="Write anything. Write everything." 
