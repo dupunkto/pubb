@@ -163,6 +163,11 @@ body > aside {
     font-weight: bold;
   }
 
+  .p-note::before {
+    content: "About me: ";
+    font-weight: bold;
+  }
+
   .p-note {
     clear: both;
   }
