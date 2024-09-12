@@ -187,9 +187,15 @@ main {
   --border-width: 3px;
   --gradient-height: 900px;
 
-  position: relative;
   width: 100%;
   float: left;
+}
+
+.feed article, 
+.single main, 
+.listing main {
+  position: relative;
+  margin-bottom: 1em;
   padding: 1em;
 
   &::before {
@@ -197,6 +203,17 @@ main {
     position: absolute;
     border-top: var(--border-width) solid var(--border-color);
     z-index: -2;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--gradient-height);
+    background: linear-gradient(
+      to bottom,
+      var(--gradient-color) 0%,
+      #ffffff00 100%
+    );
+    mask-image: linear-gradient(to bottom, #000 0%, #ffffff00 100%);
   }
 
   &::after {
@@ -211,27 +228,13 @@ main {
   }
 }
 
-main::before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--gradient-height);
-  background: linear-gradient(
-    to bottom,
-    var(--gradient-color) 0%,
-    #ffffff00 100%
-  );
-  mask-image: linear-gradient(to bottom, #000 0%, #ffffff00 100%);
-}
-
 main h1:first-child {
   font-size: 1.5em;
 }
 
 main h1:first-child,
+main h2:first-child,
+main h3:first-child,
 main p:first-child {
   margin-top: 0;
 }
