@@ -35,15 +35,27 @@ body {
   --gradient-height: 800px;
 
   font-family: "Nanum Gothic Coding", system-ui;
-  font-size: 1.4em;
+  font-size: 1.3em;
   line-height: 1.5;
   width: 88%;
   margin: 0 auto;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 1350px) {
   body > nav {
+    float: right;
+    max-width: 320px;
+  }
+
+  body > aside {
+    display: block;
     float: left;
+    max-width: 360px;
+  }
+
+  main {
+    max-width: calc(100% - 2 * (340px + 1em));
+    margin: 0 1em;
   }
 }
 
@@ -73,22 +85,99 @@ body > nav summary h2 {
 }
 
 body > nav {
-  /* max-width: 20ch; */
-  max-width: 360px;
   width: 100%;
   background: #ffe3ff;
   color: #390239;
   padding: 1em;
-  margin-right: 1em;
   margin-bottom: 1em;
 }
 
-@media (max-width: 1435px) {
-  body > nav {
-    float: none;
-    width: 100%;
-    margin-right: 0;
-    max-width: 55ch;
+body > aside {
+  width: 100%;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.6em;
+    padding: 0 0.5em;
+    background: #ff9fdf;
+    color: #160016;
+  }
+
+  .p-name {
+    font-size: 1.2em;
+  }
+
+  .p-nickname::before { content: "(" }
+  .p-nickname::after { content: ")" }
+
+  .u-photo {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 53%;
+    float: left;
+    margin: 0 10px 10px 0;
+  }
+
+  .p-mood, .p-status {
+    margin-top: 0;
+  }
+
+  .p-mood::before {
+    content: "Mood: ";
+    font-weight: bold;
+  }
+
+  .p-status::before {
+    content: "Status: ";
+    font-weight: bold;
+  }
+
+  .p-note {
+    clear: both;
+  }
+
+  .p-email, .p-im {
+    font-size: 0.0000001px;
+    display: inline;
+  }
+
+  .u-email, .u-im {
+    display: inline-block;
+
+    &::before {
+      display: inline-block;
+      transition: 
+        background 100ms ease-in-out, 
+        color 100ms ease-in-out;
+
+      font-size: 1.17rem;
+      background: #ffe3ff;
+      color: #562356;
+      padding: 0.1em 0.5em;
+      margin-top: 0.5em;
+      margin-right: 0.15em;
+      margin-bottom: 0.15em;
+    }
+
+    &:hover {
+      background: none;
+      box-shadow: none;
+
+      &::before {
+        background: #322032;
+        color: #fedcfe;
+      }
+    }
+  }
+
+  .u-email::before {
+    content: "✉️ Send message";
+  }
+  
+  .u-im::before {
+    content: "💬 Instant message";
   }
 }
 
@@ -99,7 +188,6 @@ main {
   --gradient-height: 900px;
 
   position: relative;
-  max-width: 55ch;
   width: 100%;
   float: left;
   padding: 1em;

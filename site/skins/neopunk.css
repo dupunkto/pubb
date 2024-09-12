@@ -31,12 +31,14 @@ a {
 
 @media screen and (min-width: 715px) {
   body > header, body > main, body > footer {
+    clear: left;
     float: left;
     width: calc(70% - 10px);
     margin-right: 10px;
   }
 
   body > nav, body > aside {
+    clear: right;
     float: right;
     width: calc(30% - 10px);
     margin-left: 10px;
@@ -136,7 +138,8 @@ body > footer {
 }
 
 body > footer,
-.comment-section {
+.comment-section,
+.info {
   color: white;
   margin: 1em 0;
 
