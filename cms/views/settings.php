@@ -276,7 +276,7 @@
         </option>
       <?php } ?>
 
-      <?php foreach(\store\list_public_pages() as $page) { ?>
+      <?php foreach(\store\list_regular_pages() as $page) { ?>
         <option 
           value="<?= $page['id'] ?>"
           <?php if(\core\is_homepage($page)) echo "selected" ?>>
