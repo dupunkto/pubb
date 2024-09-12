@@ -41,7 +41,31 @@ body {
   margin: 0 auto;
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 700px) {
+  body > nav {
+    float: left;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 900px) {
+  body > nav {
+    float: left;
+    max-width: 300px;
+  }
+
+  main {
+    float: left;
+    margin-left: 1em;
+    max-width: calc(100% - (1em + 300px));
+  }
+}
+
+@media (min-width: 1300px) {
+  body {
+    max-width: 135ch;
+  }
+
   body > nav {
     float: right;
     max-width: 320px;
@@ -109,8 +133,12 @@ body > aside {
     font-size: 1.2em;
   }
 
-  .p-nickname::before { content: "(" }
-  .p-nickname::after { content: ")" }
+  .p-nickname::before {
+    content: "(";
+  }
+  .p-nickname::after {
+    content: ")";
+  }
 
   .u-photo {
     aspect-ratio: 1;
@@ -120,7 +148,8 @@ body > aside {
     margin: 0 10px 10px 0;
   }
 
-  .p-mood, .p-status {
+  .p-mood,
+  .p-status {
     margin-top: 0;
   }
 
@@ -138,19 +167,19 @@ body > aside {
     clear: both;
   }
 
-  .p-email, .p-im {
+  .p-email,
+  .p-im {
     font-size: 0.0000001px;
     display: inline;
   }
 
-  .u-email, .u-im {
+  .u-email,
+  .u-im {
     display: inline-block;
 
     &::before {
       display: inline-block;
-      transition: 
-        background 100ms ease-in-out, 
-        color 100ms ease-in-out;
+      transition: background 100ms ease-in-out, color 100ms ease-in-out;
 
       font-size: 1.17rem;
       background: #ffe3ff;
@@ -175,7 +204,7 @@ body > aside {
   .u-email::before {
     content: "✉️ Send message";
   }
-  
+
   .u-im::before {
     content: "💬 Instant message";
   }
@@ -191,8 +220,8 @@ main {
   float: left;
 }
 
-.feed article, 
-.single main, 
+.feed article,
+.single main,
 .listing main {
   position: relative;
   margin-bottom: 1em;
