@@ -59,7 +59,7 @@ function flatten($separator, $array) {
   $values = array_values($array);
   
   return array_map(function($key, $value) use ($separator) {
-    return $key . $seperator . $value;
+    return $key . $separator . $value;
   }, $keys, $values);
 }
 
