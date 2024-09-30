@@ -9,6 +9,7 @@ html {
   color: #ffeaff;
   font-size: 1rem;
   box-sizing: border-box;
+  height: 100%;
 
   --tile: url("/assets/spoopy.jpg");
   --gradient-from: #14022f;
