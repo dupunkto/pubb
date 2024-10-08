@@ -37,14 +37,14 @@ a {
     margin-right: 10px;
   }
 
-  body > nav, body > aside {
+  body > nav, body > aside.left {
     clear: right;
     float: right;
     width: calc(30% - 10px);
     margin-left: 10px;
   }
 
-  body > aside {
+  body > aside.left {
     display: block;
   }
 }
@@ -97,7 +97,7 @@ body > main {
   min-height: 600px;
 }
 
-body > aside {
+body > aside.left {
   section {
     background-color: white;
     padding: 10px;

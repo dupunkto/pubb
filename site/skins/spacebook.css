@@ -97,7 +97,7 @@ body > nav {
   }
 }
 
-body > main, body > aside {
+body > main, body > aside.left {
   background: white;
   color: black;
   font-size: 80%;
@@ -118,7 +118,7 @@ body.listing > main {
   }
 }
 
-body > aside {
+body > aside.left {
   grid-area: profile;
   display: block;
 

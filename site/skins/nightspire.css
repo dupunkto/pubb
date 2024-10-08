@@ -72,22 +72,54 @@ body {
 @media (min-width: 1300px) {
   body {
     max-width: 135ch;
+    display: grid;
+    column-gap: 1em;
+    grid-auto-rows: min-content;
+    grid-template-columns: 360px 1fr 320px;
+    grid-template-rows: auto auto 100fr auto;
+    grid-template-areas: 
+      "header header header"
+      "left main nav"
+      "left main right"
+      "footer footer footer";
+  }
+
+  body > header {
+    grid-area: header;
   }
 
   body > nav {
-    float: right;
-    max-width: 320px;
-  }
-
-  body > aside {
-    display: block;
-    float: left;
-    max-width: 360px;
+    grid-area: nav;
   }
 
   main {
-    max-width: calc(100% - 2 * (340px + 1em));
-    margin: 0 1em;
+    grid-area: main;
+  }
+
+  body > aside.right {
+    display: block;
+    grid-area: right;
+  }
+
+  body > aside.left {
+    display: block;
+    grid-area: left;
+  }
+
+  body > footer {
+    grid-area: footer;
+  }
+
+  body > nav,
+  body > aside,
+  main {
+    height: fit-content;
+  }
+
+  body > nav,
+  main {
+    margin: 0 !important;
+    max-width: initial;
   }
 }
 
@@ -124,7 +156,13 @@ body > nav {
   margin-bottom: 1em;
 }
 
-body > aside {
+body > aside.right {
+  width: 100%;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+
+body > aside.left {
   width: 100%;
   font-size: 0.9em;
   margin-bottom: 1em;

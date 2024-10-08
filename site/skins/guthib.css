@@ -60,7 +60,7 @@ body > nav {
     grid-column: 2;
   }
 
-  body > aside {
+  body > aside.left {
     display: block;
   }
 
@@ -75,7 +75,7 @@ body > main {
   min-height: 70vh;
 }
 
-body > aside {
+body > aside.left {
   padding: 10px;
   top: 88px;
   position: absolute;

@@ -17,7 +17,7 @@
     <input 
       type="text" 
       name="site.title" 
-      placeholder="Qookies"
+      placeholder="Oblivously"
       value="<?= canonical_value("site.title") ?>"
       required
     >
@@ -28,7 +28,7 @@
     <input
       type="text"
       name="site.description"
-      placeholder="The galaxy's finest collection of interstellar cookie recipes. Bat'leth not included."
+      placeholder="Because fuck social norms."
       value="<?= canonical_value("site.description") ?>"
       required
     >
@@ -66,7 +66,7 @@
     <input 
       type="text" 
       name="profile.handle"
-      placeholder="@ashtyler"
+      placeholder="@dreamwastaken"
       value="<?= canonical_value("profile.handle") ?>"
     >
   </p>
@@ -75,7 +75,7 @@
     <label for="profile.bio">Biography</label>
     <textarea
       name="profile.bio"
-      placeholder="Klingon-human artificial hybrid (he/him, 28M). Head of Section 31. Recovering choH'a' patient."
+      placeholder="Influcener or something. I don't know, who cares anyway??"
       rows="3"
     ><?= canonical_value("profile.bio") ?></textarea>
   </p>
@@ -114,7 +114,7 @@
     <input 
       type="text" 
       name="author.name"
-      placeholder="Ash Tyler"
+      placeholder="Charlie Spring"
       value="<?= canonical_value("author.name") ?>"
     >
   </p>
@@ -126,7 +126,7 @@
     <input 
       type="email" 
       name="author.email"
-      placeholder="a.tyler@starfleet.int"
+      placeholder="dummy@<?= HOST ?>"
       value="<?= canonical_value("author.email") ?>"
     >
   </p>
@@ -138,7 +138,7 @@
     <input 
       type="url" 
       name="author.site"
-      placeholder="https://staff.startfleet.int/~ash"
+      placeholder="<?= CANONICAL ?>"
       value="<?= canonical_value("author.site") ?>"
     >
   </p>
@@ -154,7 +154,7 @@
     <input 
       type="email" 
       name="notifications.admin"
-      placeholder="a.tyler@starfleet.int"
+      placeholder="dummy@<?= HOST ?>"
       value="<?= canonical_value("notifications.admin") ?>"
     >
   </p>
@@ -166,7 +166,7 @@
     <input 
       type="email" 
       name="notifications.sender"
-      placeholder="noreply@starfleet.int"
+      placeholder="noreply@<?= HOST ?>"
       value="<?= canonical_value("notifications.sender") ?>"
     >
   </p>
@@ -306,6 +306,51 @@
       </tr>
     <?php } ?>
   </table>
+
+  <h3>Advanced</h3>
+
+  <p>
+    <label>Sidebars</label>
+    <span>All HTML is supported. Depending on the skin, the sidebars may or may not be visible. (leave empty to hide sidebars)</span>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <td><label for="layout.left-sidebar">Left sidebar</label></td>
+        <td><label for="layout.right-sidebar">Right sidebar</label></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <textarea
+            name="layout.left-sidebar"
+            placeholder="<p>Hello, World!</p>"
+            rows="6"
+          ><?= canonical_value("layout.left-sidebar") ?></textarea>
+        </td>
+        <td>
+          <textarea
+            name="layout.right-sidebar"
+            placeholder="<p>Hello, Computer!</p>"
+            rows="6"
+          ><?= canonical_value("layout.right-sidebar") ?></textarea>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <label for="layout.custom-css">Custom CSS</label>
+    <textarea
+      name="layout.custom-css"
+      placeholder="body {
+  display: flex;
+}"
+      rows="4"
+    ><?= canonical_value("layout.custom-css") ?></textarea>
+  </p>
 
   <h3>Security</h3>
 

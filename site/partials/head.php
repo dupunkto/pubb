@@ -66,3 +66,9 @@
 <!-- Webmention & Pingback -->
 <link rel="webmention" href="<?= WEBMENTION_ENDPOINT ?>">
 <link rel="pingback" href="<?= PINGBACK_ENDPOINT ?>">
+
+<?php if(defined('LAYOUT_CUSTOM_CSS')) { ?>
+<style>
+<?= LAYOUT_CUSTOM_CSS ?>
+</style>
+<?php } ?>
