@@ -26,10 +26,16 @@
 
   <?php if(defined('AUTHOR_EMAIL')) { ?>
     <p class="p-email">
-      <a class="u-email" href="mailto:<?= AUTHOR_EMAIL ?>">
-        <?= AUTHOR_EMAIL ?>
+      <a class="u-email" href="<?= CANONICAL ?>/email">
+        <?php [$local, $host] = explode('@', AUTHOR_EMAIL) ?>
+        <?= $local ?><b hidden>.fuckspambots</b>@<?= $host ?>
       </a>
     </p>
+
+    <small hidden>
+      In text-based browsers, the email above might include <q>.fuckspambots</q>.
+      You probably know what to do with that part of the email.
+    </small>
   <?php } ?>
 
   <?php if(defined('AUTHOR_IM_NICK') and defined('AUTHOR_IM_URL')) { ?>

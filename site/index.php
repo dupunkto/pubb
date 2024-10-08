@@ -20,6 +20,11 @@ switch(true) {
     header("Location: " . \urls\homepage_url());
     exit;
 
+  case $path == "/email" and defined('AUTHOR_EMAIL'):
+    http_response_code(302);
+    header("Location: mailto:" . AUTHOR_EMAIL);
+    exit;
+
   case route('@/(all|index|code|photos)$@'):
     $index = $params[1];
     $pages = \core\list_pages($index);
