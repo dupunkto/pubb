@@ -351,6 +351,13 @@ label {
   margin-bottom: 4px;
 }
 
+.dt-published {
+  display: block;
+  font-size: 0.8em;
+  opacity: 0.95;
+  text-align: right;
+}
+
 .single .dt-published::before {
   content: "Last modified on ";
 }
