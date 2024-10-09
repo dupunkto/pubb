@@ -49,13 +49,6 @@ body {
   }
 }
 
-@media (max-width: 900px) {
-  body > footer {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-  }
-}
-
 @media (min-width: 900px) {
   body > nav {
     float: left;
