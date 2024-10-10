@@ -291,6 +291,7 @@ function render_tagged_contacts($prose) {
 
 function render_shortcodes($prose) { 
   $shorts = [
+    '/---/' => "<hr>",
     '/--/' => "—",
     '/\.\.\./' => "…",
     '/\(TM\)/' => '™',
