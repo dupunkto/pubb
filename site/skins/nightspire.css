@@ -316,8 +316,15 @@ h1 {
   font-size: 2em;
 }
 
-hr {
+main hr, 
+aside hr {
   border-color: var(--border-color);
+}
+
+main blockquote {
+  border-left: 3px solid var(--border-color);
+  margin-left: 0.2em;
+  padding-left: 0.6em;
 }
 
 .comment-section {
