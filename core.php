@@ -23,4 +23,5 @@ require __DIR__ . "/core/utf8.php";
 require __DIR__ . "/core/utils.php";
 
 // Vendorerd
+require __DIR__ . "/vendor/microformats.php";
 require __DIR__ . "/vendor/parsedown.php";
