@@ -316,6 +316,10 @@ h1 {
   font-size: 2em;
 }
 
+hr {
+  border-color: var(--border-color);
+}
+
 .comment-section {
   background: #ffe3ff;
   color: #390239;
