@@ -266,7 +266,7 @@ $csrf_token =
       <?php if($client_id !== CLIENT_ID) { ?>
         <p>
           You're logging in to
-          <a href="<?= htmlspecialchars($client_id) ?>">
+          <a href="<?= esc_attr($client_id) ?>">
             <strong><?= htmlspecialchars($client_id) ?></strong>
           </a>
         </p>
@@ -280,7 +280,7 @@ $csrf_token =
                 id="scope_<?= $n ?>" 
                 type="hidden" 
                 name="scopes[]" 
-                value="<?= htmlspecialchars($name) ?>" 
+                value="<?= esc_attr($name) ?>" 
               >
             <?php } ?>
           <?php } else { ?>
@@ -294,7 +294,7 @@ $csrf_token =
                     id="scope_<?= $n ?>" 
                     type="checkbox" 
                     name="scopes[]" 
-                    value="<?= htmlspecialchars($checkbox) ?>" 
+                    value="<?= esc_attr($checkbox) ?>" 
                     checked
                   >
                   <label for="scope_<?= $n ?>">

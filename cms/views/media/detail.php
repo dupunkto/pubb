@@ -22,7 +22,7 @@
         <td>Slug</td>
         <td>
           <span onclick="editSlug()" class="slug" hidden><?= $asset['slug'] ?></span>
-          <input onblur="blurSlug()" type="text" name="slug" value="<?= $asset['slug'] ?>">
+          <input onblur="blurSlug()" type="text" name="slug" value="<?= esc_attr($asset['slug']) ?>">
         </td>
       </tr>
       <tr>

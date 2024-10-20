@@ -5,7 +5,7 @@
       name="caption"
       placeholder="Caption"
       <?php if(isset($caption)) { ?>
-        value="<?= $caption ?>"
+        value="<?= esc_attr($caption) ?>"
       <?php } ?>
     >
     
@@ -15,7 +15,7 @@
         name="filename"
         placeholder="main.c"
         <?php if(isset($filename)) { ?>
-          value="<?= $filename ?>"
+          value="<?= esc_attr($filename) ?>"
         <?php } ?>
         pattern="[a-zA-Z0-9_\-\.]+\.[a-zA-Z0-9_]+"
         required

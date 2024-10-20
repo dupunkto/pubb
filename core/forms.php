@@ -13,7 +13,7 @@ function options($name, $options, $selected) {
             $label = ucfirst($label);
           }
       ?>
-        <option value="<?= $value ?>" <?php if($selected == $value) echo "selected" ?>>
+        <option value="<?= esc_attr($value) ?>" <?php if($selected == $value) echo "selected" ?>>
           <?= $label ?>
         </option>
       <?php } ?>

@@ -5,7 +5,7 @@
       name="slug"
       placeholder="Slug"
       <?php if(isset($slug)) { ?>
-        value="<?= $slug ?>"
+        value="<?= esc_attr($slug) ?>"
       <?php } ?>
       pattern="[@~]?[a-z0-9](-?[a-z0-9])*"
       required
@@ -17,7 +17,7 @@
         name="title"
         placeholder="Title"
         <?php if(isset($title)) { ?>
-          value="<?= $title ?>"
+          value="<?= esc_attr($title) ?>"
         <?php } ?>
       >
 
@@ -51,7 +51,7 @@
     </div>
 
     <?php if(isset($reply) and $reply) { ?>
-      <input type="hidden" name="reply" value="<?= $reply ?>">
+      <input type="hidden" name="reply" value="<?= esc_attr($reply) ?>">
 
       <p>
         In reply to

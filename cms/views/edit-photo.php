@@ -18,7 +18,7 @@
     name="slug"
     placeholder="Slug"
     <?php if(isset($slug)) { ?>
-      value="<?= $slug ?>"
+      value="<?= esc_attr($slug) ?>"
     <?php } ?>
     required
   >
@@ -28,12 +28,12 @@
     name="caption"
     placeholder="Caption"
     <?php if(isset($caption)) { ?>
-      value="<?= $caption ?>"
+      value="<?= esc_attr($caption) ?>"
     <?php } ?>
   >
 
   <?php if(isset($store_path)) { ?>
-    <input type="hidden" name="path" value="<?= $store_path ?>">
+    <input type="hidden" name="path" value="<?= esc_attr($store_path) ?>">
     <img src="<?= \urls\photo_url(["path" => $store_path]) ?>">
   <?php } else { ?>
     <input type="file" name="photo" accept="image/*" required>
