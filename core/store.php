@@ -361,6 +361,12 @@ function put_view($path, $referer, $agent, $datetime) {
     [$path, $referer, $agent, $datetime]);
 }
 
+function view_count($page_id) {
+  return one("SELECT COUNT(*) as 'count' FROM `views` v
+    JOIN `pages` p ON p.id = ? WHERE v.path = CONCAT('/', p.slug)", 
+    [$page_id])['count'];
+}
+
 function list_views($year, $month) {
   $start = "$year-$month-01 00:00:00";
   $end = date("Y-m-d H:i:s", strtotime("$year-$month-01 +1 month"));

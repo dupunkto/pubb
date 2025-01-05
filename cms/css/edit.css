@@ -47,3 +47,14 @@ textarea {
 .reply {
   font-weight: bold;
 }
+
+.views {
+  --offset: 30px;
+  text-align: right;
+  margin-right: 7px;
+  margin-top: calc(-1 * var(--offset));
+  margin-bottom: var(--offset);
+  height: 0;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
