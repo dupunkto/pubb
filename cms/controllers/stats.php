@@ -36,18 +36,19 @@ $views = match($span) {
 };
 
 $paths = count_by($views, 'path');
-$data = json_encode($paths);
 
-$pages = array_reduce(array_keys($paths), function($acc, $path) use ($paths) {
+$pages = [];
+
+foreach($paths as $path => $amount) {
   $slug = strip_prefix($path, "/");
   $page = \store\get_page_by_slug($slug);
 
   if($page) {
-    $page['views'] = $paths[$path];
-    $acc[$page['id']] = $page;
+    $page['views'] = $amount;
+    $pages[$page['id']] = $page;
   }
+}
 
-  return $acc;
-}, []);
+$data = json_encode($pages);
 
 include $view;
