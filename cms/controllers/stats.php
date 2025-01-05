@@ -38,6 +38,7 @@ $views = match($span) {
 $paths = count_by($views, 'path');
 
 $pages = [];
+$misses = [];
 
 foreach($paths as $path => $amount) {
   $slug = strip_prefix($path, "/");
@@ -46,6 +47,8 @@ foreach($paths as $path => $amount) {
   if($page) {
     $page['views'] = $amount;
     $pages[$page['id']] = $page;
+  } else {
+    $misses[$path] = $amount;
   }
 }
 

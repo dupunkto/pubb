@@ -123,4 +123,12 @@
       <li><?= \core\get_page_title($page) ?> <span><?= $page['views'] ?></span></li>
     <?php } ?>
   </ul>
+
+  <h3>Misses</h3>
+
+  <ul>
+    <?php foreach($misses as $path => $amount) { ?>
+      <li><?= $path ?> <span><?= $amount ?></span></li>
+    <?php } ?>
+  </ul>
 <?php } ?>
