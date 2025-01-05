@@ -42,6 +42,8 @@ $pages = [];
 $counts = [];
 $misses = [];
 
+$indexes = ["all", "index", "code", "photos"];
+
 foreach($paths as $path => $amount) {
   $slug = strip_prefix($path, "/");
   $page = \store\get_page_by_slug($slug);
@@ -49,6 +51,10 @@ foreach($paths as $path => $amount) {
   if($page) {
     $page['views'] = $amount;
     $pages[$page['id']] = $page;
+  }
+
+  if($page || in_array($slug, $indexes)) {
+    $counts[$path] = $amount;
   } else {
     $misses[$path] = $amount;
   }
