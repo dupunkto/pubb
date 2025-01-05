@@ -65,13 +65,15 @@ function flatten($separator, $array) {
 
 function count_by($array, $key) {
   $keys = array_column($array, $key);
-
-  return array_reduce($keys, function($acc, $key) {
+  $array = array_reduce($keys, function($acc, $key) {
     if (isset($acc[$key])) $acc[$key]++;
     else $acc[$key] = 1;
 
     return $acc;
   }, []);
+
+  arsort($array); // Ew, in-place mutation.
+  return $array;
 }
 
 function group_by($items, $prefix) {
