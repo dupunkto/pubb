@@ -124,6 +124,14 @@
     <?php } ?>
   </ul>
 
+  <h3>Top agents</h3>
+
+  <ul>
+    <?php foreach($agents as $agent => $amount) { ?>
+      <li><?= $agent ?> <span><?= $amount ?></span></li>
+    <?php } ?>
+  </ul>
+
   <h3>Misses</h3>
 
   <ul>

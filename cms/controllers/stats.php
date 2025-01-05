@@ -35,6 +35,7 @@ $views = match($span) {
   "monthly" => \store\list_views($year, $month),
 };
 
+$agents = count_by($views, 'agent');
 $paths = count_by($views, 'path');
 
 $pages = [];
