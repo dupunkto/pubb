@@ -2,16 +2,16 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5em;
+}
 
-  hgroup {
-    background: light-dark(#f1f1f1, #2b2b33);
-    border-radius: 7px;
-    padding: 0.75em;
+section hgroup {
+  background: light-dark(#f1f1f1, #2b2b33);
+  border-radius: 7px;
+  padding: 0.75em;
+}
 
-    h3 {
-      margin: 0;
-    }
-  }
+section hgroup h3 {
+  margin: 0;
 }
 
 ul li {

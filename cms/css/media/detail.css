@@ -21,11 +21,11 @@ td:last-child {
 
 td a {
   text-decoration: none;
+}
 
-  cite {
-    font-style: normal;
-    font-weight: bold;
-  }
+td a cite {
+  font-style: normal;
+  font-weight: bold;
 }
 
 td a:not(:last-of-type)::after {

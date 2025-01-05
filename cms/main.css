@@ -63,12 +63,14 @@ h6 {
 
 hgroup {
   margin-bottom: 1em;
-  h1 {
-    margin-bottom: 0;
-  }
-  p {
-    margin-top: 0;
-  }
+}
+
+hgroup h1 {
+  margin-bottom: 0;
+}
+
+hgroup p {
+  margin-top: 0;
 }
 
 pre {
@@ -164,15 +166,15 @@ body > header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-  h1 {
-    margin: 0;
-    font-size: 1em;
-  }
+body > header h1 {
+  margin: 0;
+  font-size: 1em;
+}
 
-  .group {
-    gap: 1.25em;
-  }
+body > header .group {
+  gap: 1.25em;
 }
 
 main {
@@ -233,28 +235,28 @@ ul li:has(.actions) {
 ul li .actions {
   display: flex;
   gap: 0.2em;
+}
 
-  a {
-    background: black;
-    color: white;
-    padding: 0.5em 0.75em;
-    margin-left: 0.25em;
-    font-size: 0.8em;
-    line-height: 1.5;
-    text-transform: lowercase;
-    text-decoration: none;
-    cursor: default;
+ul li .actions a {
+  background: black;
+  color: white;
+  padding: 0.5em 0.75em;
+  margin-left: 0.25em;
+  font-size: 0.8em;
+  line-height: 1.5;
+  text-transform: lowercase;
+  text-decoration: none;
+  cursor: default;
+}
 
-    &:hover {
-      opacity: 0.8;
-    }
-  }
+ul li .actions a:hover {
+  opacity: 0.8;
+}
 
-  input,
-  select {
-    max-width: min-content;
-    flex-shrink: 1;
-  }
+ul li .actions input,
+ul li .actions select {
+  max-width: min-content;
+  flex-shrink: 1;
 }
 
 .group {

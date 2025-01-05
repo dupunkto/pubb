@@ -14,10 +14,10 @@ ul a {
   cursor: default !important;
   margin: 0 !important;
   padding: 0 !important;
+}
 
-  &:hover {
-    opacity: 1;
-  }
+ul a:hover {
+  opacity: 1;
 }
 
 img {
@@ -26,8 +26,8 @@ img {
   object-fit: cover;
   width: 100%;
   height: auto;
+}
 
-  &:hover {
-    filter: brightness(0.9);
-  }
+img:hover {
+  filter: brightness(0.9);
 }
