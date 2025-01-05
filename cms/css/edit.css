@@ -18,12 +18,25 @@ textarea {
 
 .options {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   font-size: 0.9em;
   font-weight: normal;
   gap: 1em;
   margin-top: 0.25em;
   margin-bottom: 1.5em;
+}
+
+@media(min-width: 630px) {
+  .options {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media(max-width: 630px) {
+  .options .button {
+    order: 100;
+  }
 }
 
 .options select {
