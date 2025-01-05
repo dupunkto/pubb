@@ -39,6 +39,7 @@ $agents = count_by($views, 'agent');
 $paths = count_by($views, 'path');
 
 $pages = [];
+$counts = [];
 $misses = [];
 
 foreach($paths as $path => $amount) {
@@ -53,6 +54,6 @@ foreach($paths as $path => $amount) {
   }
 }
 
-$data = json_encode($pages);
+$data = json_encode($counts);
 
 include $view;
