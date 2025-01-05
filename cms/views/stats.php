@@ -54,8 +54,6 @@
     } ?>.
   </p>
 <?php } else { ?>
-  <h3 hidden>Per path</h3>
-
   <canvas class="chart">
     <p>Your browser doesn't seem to support rendering to a canvas.</p>
 
@@ -116,18 +114,20 @@
     });
   </script>
 
-  <h3>Per post</h3>
+  <h3>Top pages</h3>
 
   <ul>
-    <?php foreach($pages as $id => $page) { ?>
-      <li><?= \core\get_page_title($page) ?> <span><?= $page['views'] ?></span></li>
+    <?php foreach(take($pages, 7) as $id => $page) { ?>
+      <?php if(!\core\is_homepage($page)) { ?>
+        <li><?= \core\get_page_title($page) ?> <span><?= $page['views'] ?></span></li>
+      <?php } ?>
     <?php } ?>
   </ul>
 
   <h3>Top agents</h3>
 
   <ul>
-    <?php foreach($agents as $agent => $amount) { ?>
+    <?php foreach(take($agents, 5) as $agent => $amount) { ?>
       <li><?= $agent ?> <span><?= $amount ?></span></li>
     <?php } ?>
   </ul>

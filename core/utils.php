@@ -95,6 +95,10 @@ function group_by($items, $prefix) {
   return $grouped;
 }
 
+function take($array, $amount) {
+  return array_slice($array, 0, $amount);
+}
+
 function unprefix_keys($array, $prefix) {
   $filtered = [];
   $prefix = $prefix."_";
