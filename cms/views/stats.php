@@ -31,8 +31,8 @@
 
 <section>
   <hgroup>
-    <h3>Views</h3>
-    <p><?= count($views) ?></p>
+    <h3>Hits</h3>
+    <p><?= array_sum($counts) ?></p>
   </hgroup>
 
   <hgroup>
@@ -132,7 +132,7 @@
     <?php } ?>
   </ul>
 
-  <h3>Misses</h3>
+  <h3>Misses <small>(<?= array_sum($misses) ?>)</small></h3>
 
   <ul>
     <?php foreach($misses as $path => $amount) { ?>
