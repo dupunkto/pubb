@@ -49,9 +49,10 @@ textarea {
 }
 
 .views {
-  --offset: 30px;
+  --offset: 35px;
+  font-family: monospace;
   text-align: right;
-  margin-right: 7px;
+  margin-right: 12px;
   margin-top: calc(-1 * var(--offset));
   margin-bottom: var(--offset);
   height: 0;
