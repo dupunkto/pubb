@@ -1,7 +1,7 @@
 /* Shared style definitions for hummingbird and traditional skins,
    based on the {du}punkto branding */
 
-@import url("https://roblog.nl/base.css");
+@import url("https://cdn.geheimesite.nl/punkt.css");
 
 body, html {
   height: 100%;
