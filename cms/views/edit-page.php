@@ -72,7 +72,9 @@
     placeholder="Write anything. Write everything." 
     name="prose"><?php if(isset($prose)) echo $prose ?></textarea>
 
-  <p class="views"><?= \store\view_count($id) ?> views</p>
+  <?php if(isset($id)) { ?>
+    <p class="views"><?= \store\view_count($id) ?> views</p>
+  <?php } ?>
 
   <p class="options">
     <?php if(isset($id)) { ?>
