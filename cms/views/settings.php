@@ -352,6 +352,23 @@
     ><?= canonical_value("layout.custom-css") ?></textarea>
   </p>
 
+  <p>
+    <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
+    <input type="hidden" name="feeds.ensure-compatibility" value="false" />
+
+    <label>
+      <input 
+        type="checkbox"
+        name="feeds.ensure-compatibility"
+        <?php if(FEEDS_ENSURE_COMPATIBILITY) echo "checked" ?>
+        value="true"
+      >
+      <span>
+        Ensure compatibility with legacy feed readers
+      </span>
+    </label>
+  </p>
+
   <h3>Security</h3>
 
   <p>
