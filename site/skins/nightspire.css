@@ -485,3 +485,7 @@ body > footer {
     margin: 0.2em 0;
   }
 }
+
+pre.code {
+  overflow: auto;
+}
