@@ -21,7 +21,7 @@ An earlier version of this projects exists, named [neopub/untitled](https://git.
 - [x] Comment section
 - [x] IndieAuth
 - [x] RSS-only postings
-- [x] [@mentions](https://roblog.nl/blog/mentions)
+- [x] [@mentions](https://geheimesite.nl/mentions)
 - [x] Volumes
 - [x] Skins
 - [ ] OpenHeart
