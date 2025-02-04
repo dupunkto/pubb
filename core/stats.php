@@ -16,5 +16,13 @@ function record_view($path) {
 }
 
 function allowed_to_track() {
-   return !isset($_SERVER['HTTP_DNT']) || $_SERVER['HTTP_DNT'] != 1;
+   return !has_do_not_track() && !has_global_privacy_control();
+}
+
+function has_do_not_track() {
+  return isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1;
+}
+
+function has_global_privacy_control() {
+  return isset($_SERVER['HTTP_SEC_GPC']) && $_SERVER['HTTP_SEC_GPC'] == 1;
 }
