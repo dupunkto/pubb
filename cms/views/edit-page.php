@@ -70,7 +70,7 @@
     autofocus 
     required 
     placeholder="Write anything. Write everything." 
-    name="prose"><?php if(isset($prose)) echo $prose ?></textarea>
+    name="prose"><?php if(isset($prose)) echo htmlspecialchars($prose) ?></textarea>
 
   <?php if(isset($id)) { ?>
     <p class="views"><?= \store\view_count($id) ?> views</p>
