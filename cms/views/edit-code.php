@@ -40,5 +40,5 @@
 int main() {
    printf("Hello, World!");
    return 0;
-}' name="code"><?php if(isset($code)) echo $code ?></textarea>
+}' name="code"><?php if(isset($code)) echo htmlspecialchars($code) ?></textarea>
 </form>
