@@ -59,7 +59,7 @@ function canonical_value($key) {
 
   // Pre-escaping the value like this is dirty, but I cannot be bothered
   // to explicitly escape it everywhere. Sowwy!
-  return is_fallback($key) ? null : esc_attr(value($key));
+  return is_fallback($key) ? null : esc_attr(value($key) ?? "");
 }
 
 include $view;
