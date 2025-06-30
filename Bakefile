@@ -10,3 +10,7 @@ export PHP_CLI_SERVER_WORKERS=2
 serve() {
   php -S 0.0.0.0:$PORT $ENTRYPOINT
 }
+
+deploy() {
+  echo 'h obliviously.eu && git pull' | ssh s11
+}
