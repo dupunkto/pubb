@@ -11,7 +11,6 @@ use Exception;
 function list_index_pages($index) {
   return match($index) {
     "all" => \store\list_public_pages(),
-    "index" => \store\list_index_pages(),
     "code" => \store\list_gists(),
     "photos" => \store\list_photos(),
   };

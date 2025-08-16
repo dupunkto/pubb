@@ -42,7 +42,7 @@ $pages = [];
 $counts = [];
 $misses = [];
 
-$indexes = ["all", "index", "code", "photos"];
+$indexes = ["all", "code", "photos"];
 
 foreach($paths as $path => $amount) {
   $slug = strip_prefix($path, "/");

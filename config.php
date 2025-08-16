@@ -55,7 +55,6 @@ fallback('notifications.webmention', true);
 fallback('layout.skin', 'hummingbird');
 fallback('layout.homepage', '/all');
 fallback('layout.all', 'feed');
-fallback('layout.index', 'listing');
 fallback('layout.code', 'listing');
 fallback('layout.photos', 'feed');
 

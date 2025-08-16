@@ -101,7 +101,6 @@ body > nav {
   }
 
   a[href="/all"]::before { content: "\f550"; }
-  a[href="/index"]::before { content: "\f52d"; }
   a[href="/photos"]::before { content: "\f030"; }
   a[href="/code"]::before { content: "\f121"; }
   a[data-title="Home"]::before { content: "\e1b0"; }

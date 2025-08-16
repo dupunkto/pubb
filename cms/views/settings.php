@@ -262,7 +262,7 @@
     ], LAYOUT_SKIN) ?>
   </p>
 
-  <?php $indexes = ["all" => "All", "index" => "Pages", "code" => "Gists", "photos" => "Photos"] ?>
+  <?php $indexes = ["all" => "All", "code" => "Gists", "photos" => "Photos"] ?>
 
   <p>
     <label for="layout.homepage">Homepage</label>

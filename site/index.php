@@ -25,7 +25,7 @@ switch(true) {
     header("Location: mailto:" . AUTHOR_EMAIL);
     exit;
 
-  case route('@/(all|index|code|photos)$@'):
+  case route('@/(all|code|photos)$@'):
     $index = $params[1];
     $pages = \core\list_index_pages($index);
     $title = \core\get_index_title($index);

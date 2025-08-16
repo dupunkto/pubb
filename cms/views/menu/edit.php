@@ -36,7 +36,6 @@
       <label for="ref">Type</label>
       <?php \forms\options("ref", [
         "/all" => "All", 
-        "/index" => "Pages", 
         "/code" => "Gists", 
         "/photos" => "Photos"
       ], $item['ref']);
