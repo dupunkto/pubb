@@ -8,7 +8,7 @@ use Exception;
 
 // Indexes
 
-function list_pages($index) {
+function list_index_pages($index) {
   return match($index) {
     "all" => \store\list_public_pages(),
     "index" => \store\list_index_pages(),
@@ -33,6 +33,15 @@ function get_index_type($index) {
     "code" => LAYOUT_CODE,
     "photos" => LAYOUT_PHOTOS,
   };
+}
+
+// Categories
+
+function list_categories() {
+  $titles = array_map('ucfirst', PAGES_CATEGORIES);
+  $slugs = array_map('strtolower', PAGES_CATEGORIES);
+
+  return array_merge(["" => "None"], array_combine($slugs, $titles));
 }
 
 // Pages
@@ -63,6 +72,7 @@ function new_page(
   $title,
   $prose,
   $visibility,
+  $category = null,
   $draft = false,
   $reply_to = null,
   $lang = null
@@ -80,8 +90,9 @@ function new_page(
     path: $path,
     draft: $draft,
     visibility:  $visibility,
+    category: $category,
     reply_to: $reply_to,
-    caption: null,
+    caption: null
   );
 }
 
@@ -91,7 +102,8 @@ function edit_page(
   $type, 
   $title, 
   $prose, 
-  $visibility, 
+  $visibility,
+  $category = null,
   $draft = false, 
   $reply_to = null,
   $lang = null
@@ -109,8 +121,9 @@ function edit_page(
     path: $path,
     draft: $draft,
     visibility: $visibility,
+    category: $category,
     reply_to: $reply_to,
-    caption: null,
+    caption: null
   );
 }
 
@@ -130,8 +143,9 @@ function new_gist($filename, $code, $caption) {
     path: $path,
     draft: 0,
     visibility: 'public',
+    category: null,
     reply_to: null,
-    caption: $caption,
+    caption: $caption
   );
 }
 
@@ -149,6 +163,7 @@ function edit_gist($id, $filename, $code, $caption) {
     path: $path,
     draft: 0,
     visibility: 'public',
+    category: null,
     reply_to: null,
     caption: $caption,
   );
@@ -169,6 +184,7 @@ function new_photo($slug, $caption, $path) {
     path: $path,
     draft: 0,
     visibility: 'public',
+    category: null,
     reply_to: null,
     caption: $caption,
   );
@@ -187,6 +203,7 @@ function update_photo($id, $slug, $caption, $path) {
     path: $path,
     draft: 0,
     visibility: 'public',
+    category: null,
     reply_to: null,
     caption: $caption,
   );

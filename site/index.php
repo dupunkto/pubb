@@ -27,7 +27,7 @@ switch(true) {
 
   case route('@/(all|index|code|photos)$@'):
     $index = $params[1];
-    $pages = \core\list_pages($index);
+    $pages = \core\list_index_pages($index);
     $title = \core\get_index_title($index);
     $type = \core\get_index_type($index);
 

@@ -1,8 +1,8 @@
 <?php
 // Core Pubb APIs live here.
 
-define('PUBB_VERSION', "0.1a");
-define('STORE_VERSION', 1);
+define('PUBB_VERSION', "0.1b");
+define('STORE_VERSION', 2);
 
 require __DIR__ . "/config.php";
 require __DIR__ . "/init.php";

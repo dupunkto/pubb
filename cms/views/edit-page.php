@@ -97,5 +97,11 @@
       "html" => "HTML",
       "txt" => "Plain text"
     ], @$type) ?>
+
+    <label for="category">Category:</label>
+
+    <?php
+      \forms\options("category", \core\list_categories(), @$category);
+    ?>
   </p>
 </form>

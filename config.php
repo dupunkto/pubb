@@ -59,6 +59,8 @@ fallback('layout.index', 'listing');
 fallback('layout.code', 'listing');
 fallback('layout.photos', 'feed');
 
+fallback('pages.categories', []);
+
 fallback('feeds.ensure-compatibility', false);
 
 $_SKIN_PATH = __DIR__ . "/site/skins/" . LAYOUT_SKIN . ".css";

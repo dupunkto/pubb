@@ -11,7 +11,8 @@ if(isset($_POST['save'])) {
     prose: cast($_POST['prose']),
     draft: $draft,
     visibility: cast($_POST['visibility']),
-    reply_to: cast(@$_POST['reply'])
+    reply_to: cast(@$_POST['reply']),
+    category: cast(@$_POST['category'])
   );
   
   if($saved and !$draft) {

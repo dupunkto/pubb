@@ -12,7 +12,8 @@ if(isset($_POST['save'])) {
     prose: cast($_POST['prose']),
     draft: $draft,
     visibility: cast($_POST['visibility']),
-    reply_to: cast(@$_POST['reply'])
+    reply_to: cast(@$_POST['reply']),
+    category: cast(@$_POST['category'])
   );
 
   if($updated and !$draft) { 
@@ -40,5 +41,6 @@ $prose = \store\contents($page['path']);
 $draft = $page['draft'];
 $visibility = $page['visibility'];
 $reply = $page['reply_to'];
+$category = $page['category'];
 
 include path_join($views, "edit-page.php");

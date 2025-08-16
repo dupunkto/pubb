@@ -103,3 +103,6 @@ ALTER TABLE `views` RENAME COLUMN `agent` TO `agent.old`;
 ALTER TABLE `views` ADD COLUMN `agent` text DEFAULT NULL;
 UPDATE `views` SET `agent` = `agent.old`;
 ALTER TABLE `views` DROP COLUMN `agent.old`;
+
+-- v2: Add category column to pages
+ALTER TABLE `pages` ADD COLUMN `category` varchar(90) DEFAULT NULL;

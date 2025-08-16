@@ -27,8 +27,9 @@ function put_page(
   $path,
   $draft,
   $visibility,
+  $category,
   $caption,
-  $reply_to,
+  $reply_to
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
   in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
@@ -43,10 +44,11 @@ function put_page(
     `path`,
     `draft`,
     `visibility`,
+    `category`,
     `caption`,
     `published`,
     `updated`
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     $slug,
     $type,
     $title,
@@ -55,6 +57,7 @@ function put_page(
     $path,
     $draft,
     $visibility,
+    $category,
     $caption,
     $published,
     $updated
@@ -70,9 +73,10 @@ function update_page(
   $path,
   $draft,
   $visibility,
+  $category,
   $updated,
   $caption,
-  $reply_to,
+  $reply_to
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
   in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
@@ -87,6 +91,7 @@ function update_page(
     `path` = ?,
     `draft` = ?,
     `visibility` = ?,
+    `category` = ?,
     `caption` = ?,
     `updated` = ?
   WHERE id = ?', [
@@ -98,6 +103,7 @@ function update_page(
     $path,
     $draft,
     $visibility,
+    $category,
     $caption,
     $updated,
     $id
@@ -127,6 +133,7 @@ function pages_query() {
     page.path,
     page.draft,
     page.visibility,
+    page.category,
     page.caption,
     page.published,
     page.updated,
@@ -181,6 +188,11 @@ function list_gists() {
 function list_photos() {
   $pages = pages_query();
   return all("SELECT * FROM ($pages) WHERE `type` = 'photo'");
+}
+
+function list_pages_by_category($category) {
+  $pages = pages_query();
+  return all("SELECT * FROM ($pages) WHERE `category` = ? AND `draft` != 1 AND `visibility` = 'public'", [strtolower($category)]);
 }
 
 function last_updated() {
