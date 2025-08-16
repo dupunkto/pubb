@@ -160,6 +160,11 @@ body > aside.left {
     font-weight: bold;
   }
 
+  .p-mood::before { 
+    content: "Song: ";
+    font-weight: bold;
+  }
+
   .p-note::before { 
     content: "About me: ";
     font-weight: bold;

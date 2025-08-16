@@ -24,6 +24,10 @@
     <p class="p-note"><?= PROFILE_BIO ?></p>
   <?php } ?>
 
+  <?php if(defined('PROFILE_SONG')) { ?>
+    <p class="p-song"><?= PROFILE_SONG ?></p>
+  <?php } ?>
+
   <?php if(defined('AUTHOR_EMAIL')) { ?>
     <p class="p-email">
       <a class="u-email" href="<?= CANONICAL ?>/email">

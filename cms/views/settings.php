@@ -105,6 +105,18 @@
           value="<?= canonical_value("profile.mood") ?>">
       </td>
     </tr>
+    <tr>
+      <td>
+        <label for="profile.song">Song</label>
+      </td>
+      <td>
+        <input 
+          type="text" 
+          name="profile.song"
+          placeholder="My Happy Ending — Avril Lavigne"
+          value="<?= canonical_value("profile.song") ?>">
+      </td>
+    </tr>
   </table>
 
   <h3>Personal details</h3>

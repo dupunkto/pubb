@@ -197,6 +197,11 @@ body > aside.left {
     font-weight: bold;
   }
 
+  .p-song::before {
+    content: "🎧 ";
+    font-weight: bold;
+  }
+
   .p-status::before {
     content: "Status: ";
     font-weight: bold;

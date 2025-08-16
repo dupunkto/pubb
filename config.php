@@ -42,6 +42,7 @@ optional('profile.picture');
 optional('profile.bio');
 optional('profile.status');
 optional('profile.mood');
+optional('profile.song');
 
 optional('license');
 optional('license.uri');
