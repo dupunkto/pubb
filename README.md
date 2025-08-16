@@ -24,6 +24,8 @@ An earlier version of this projects exists, named [neopub/untitled](https://git.
 - [x] [@mentions](https://geheimesite.nl/mentions)
 - [x] Volumes
 - [x] Skins
+- [x] Categories
+- [x] Extendable with custom entities
 - [ ] OpenHeart
 - [ ] ActivityPub
 - [ ] CLI
