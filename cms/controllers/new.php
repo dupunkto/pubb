@@ -10,7 +10,7 @@ if(isset($_POST['save'])) {
     title: cast($_POST['title']),
     prose: cast($_POST['prose']),
     draft: $draft,
-    visibility: cast($_POST['visibility']),
+    visibility: (int)cast($_POST['visibility']),
     reply_to: cast(@$_POST['reply']),
     category: cast(@$_POST['category'])
   );

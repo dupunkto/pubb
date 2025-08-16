@@ -148,6 +148,24 @@ function edit_page(
   );
 }
 
+// Visibility levels
+
+function list_visibilities() {
+  return [
+    10 => "Private",
+    20 => "Hidden", 
+    30 => "Close Friends",
+    40 => "RSS-Only",
+    50 => "Public"
+  ];
+}
+
+function visibility_to_level(string $s): int {
+  $normalize = fn($x) => str_replace([' ', '_'], '-', strtolower($x));
+  $labels = array_map($normalize, list_visibilities());
+  return array_search($normalize($s), $labels, true);
+}
+
 // Gists
 
 function new_gist($filename, $code, $caption) {
@@ -163,7 +181,7 @@ function new_gist($filename, $code, $caption) {
     updated: $now,
     path: $path,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     category: null,
     reply_to: null,
     caption: $caption
@@ -183,7 +201,7 @@ function edit_gist($id, $filename, $code, $caption) {
     updated: $now,
     path: $path,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     category: null,
     reply_to: null,
     caption: $caption,
@@ -204,7 +222,7 @@ function new_photo($slug, $caption, $path) {
     updated: $now,
     path: $path,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     category: null,
     reply_to: null,
     caption: $caption,
@@ -223,7 +241,7 @@ function update_photo($id, $slug, $caption, $path) {
     updated: $now,
     path: $path,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     category: null,
     reply_to: null,
     caption: $caption,

@@ -14,9 +14,6 @@ define('DBH', \adapter\establish_connection());
 // referenced file in the `path` column.
 define('TYPES', ["md", "html", "txt", "photo", "code"]);
 
-// The visibility of a page determines where it'll be rendered.
-define('VISIBILITY', ["public", "rss-only", "hidden"]);
-
 function put_page(
   $slug,
   $type,
@@ -32,7 +29,7 @@ function put_page(
   $reply_to
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
-  in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
+  is_int($visibility) or die("visibility $visibility must be an integer");
   in_store($path) or die("path $path not in store");
 
   return exec_query('INSERT INTO `pages` (
@@ -79,7 +76,7 @@ function update_page(
   $reply_to
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
-  in_array($visibility, VISIBILITY) or die("visibility $visibility does not exist");
+  is_int($visibility) or die("visibility $visibility must be an integer");
   in_store($path) or die("path $path not in store");
 
   return exec_query('UPDATE `pages` SET
@@ -159,12 +156,12 @@ function list_all_pages() {
 
 function list_public_pages() {
   $pages = pages_query();
-  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` = 'public'");
+  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` = 50");
 }
 
 function list_rss_pages() {
   $pages = pages_query();
-  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` != 'hidden'");
+  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` >= 30");
 }
 
 function list_regular_pages() {
@@ -185,7 +182,7 @@ function list_photos() {
 function list_pages_by_category($slug) {
   $pages = pages_query();
   return all("SELECT * FROM ($pages)
-    WHERE `category` = ? AND `draft` != 1 AND `visibility` = 'public'", [$slug]);
+    WHERE `category` = ? AND `draft` != 1 AND `visibility` = 50", [$slug]);
 }
 
 function last_updated() {

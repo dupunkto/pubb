@@ -41,7 +41,7 @@ if(isset($_FILES['photo'])) {
     updated: $published,
     path: $path,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     caption: $content,
     reply_to: $reply_to,
   ) or json_error(500, "Something went wrong while saving your photo.");
@@ -66,7 +66,7 @@ if(isset($_FILES['photo'])) {
     updated: $published,
     path: $url,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     caption: $content,
     reply_to: $reply_to,
   ) or json_error(500, "Something went wrong while saving your photo.");
@@ -88,7 +88,7 @@ if(isset($_FILES['photo'])) {
     updated: $published,
     path: $path,
     draft: 0,
-    visibility: 'public',
+    visibility: 50,
     caption: null,
     reply_to: $reply_to,
   ) or json_error(500, "Something went wrong while saving your post.");

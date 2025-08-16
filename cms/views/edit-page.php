@@ -84,11 +84,7 @@
 
     <label for="type">Visibility:</label>
 
-    <?php \forms\options("visibility", [
-      "public" => "Public", 
-      "rss-only" => "RSS-only",
-      "hidden" => "Hidden"
-    ], @$visibility) ?>
+    <?php \forms\options("visibility", \core\list_visibilities(), @$visibility, ints: true) ?>
 
     <label for="type">Render as:</label>
 
