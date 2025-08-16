@@ -465,6 +465,76 @@ function can_delete_menu_section($id) {
   return all('SELECT * FROM `menu_items` WHERE `section_id` = ?', [$id]) == [];
 }
 
+function list_records($schema) {
+  return all("SELECT * FROM `c_{$schema}` ORDER BY updated_at DESC");
+}
+
+function get_record($schema, $id) {
+  return one("SELECT * FROM `c_{$schema}` WHERE id = ?", [$id]);
+}
+
+function put_record($schema, $data) {
+  $fields = array_keys($data);
+  $today = date("Y-m-d H:i:s");
+
+  $placeholders = array_fill(0, count($fields), '?');
+  $sql = "INSERT INTO `c_{$schema}` (`" . implode('`, `', $fields) . "`, `created_at`, `updated_at`) 
+    VALUES (" . implode(', ', $placeholders) . ", ?, ?)";
+
+  $values = array_merge(array_values($data), [$today, $today]);
+  
+  return exec_query($sql, $values);
+}
+
+function update_record($schema, $id, $data) {  
+  $set_clause = implode(' = ?, ', array_keys($data)) . ' = ?';
+  $sql = "UPDATE `c_{$schema}` SET {$set_clause}, `updated_at` = ? WHERE id = ?";
+  $values = array_merge(array_values($data), [date("Y-m-d H:i:s"), $id]);
+  
+  return exec_query($sql, $values);
+}
+
+function delete_record($schema, $id) {
+  return exec_query("DELETE FROM `c_{$schema}` WHERE id = ?", [$id]);
+}
+
+// Schemas
+
+function migrate_schema($name, $schema) {
+  $table_name = "c_{$name}";
+  $today = date("Y-m-d H:i:s");
+  
+  if(\adapter\table_exists($table_name)) {
+    die("Automatic schema migrations have not yet been implemented. Please migrate the database manually.");
+  }
+
+  $columns = ["id" => "INTEGER PRIMARY KEY AUTOINCREMENT"];
+
+  foreach ($schema['fields'] as $field => $definition) {
+    $type = match($definition['type']) {
+      'text', 'email', 'url', 'select' => 'VARCHAR(255)',
+      'textarea' => 'TEXT',
+      'number' => 'DECIMAL(10,2)',
+      'boolean' => 'BOOLEAN',
+      'date' => 'DATE',
+      'time' => 'TIME',
+      'datetime' => 'DATETIME',
+      default => 'TEXT'
+    };
+
+    $required = isset($definition['required']) ? " NOT NULL" : "";
+    $columns[$field] = "{$type}{$required}";
+  }
+
+  $columns['created_at'] = "DATETIME DEFAULT CURRENT_TIMESTAMP";
+  $columns['updated_at'] = "DATETIME DEFAULT CURRENT_TIMESTAMP";
+
+  $columns = implode(", ", array_map(fn($c, $t) => "`$c` $t", array_keys($columns), $columns));
+  
+  return exec_query("CREATE TABLE $table_name ($columns)", [])
+    or die("Could not perform table migrations for schema '{$name}'.");
+}
+
 // Uniqueness
 
 function unique_slug($table, $seed) {
@@ -472,7 +542,7 @@ function unique_slug($table, $seed) {
   $num = 1;
   $try = $slug;
   while(slug_taken($table, $try)) $try = $slug . "-" . $num++;
-  return dbg($try);
+  return $try;
 }
 
 function slug_taken($table, $slug) {

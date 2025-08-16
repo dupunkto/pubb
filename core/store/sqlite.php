@@ -38,3 +38,9 @@ function execute($path) {
       or die("Couldn't execute query '$query'.");
   }
 }
+
+function table_exists($table_name) {
+  $stmt = DBH->prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?");
+  $stmt->execute([$table_name]);
+  return $stmt->fetch() != false;
+}

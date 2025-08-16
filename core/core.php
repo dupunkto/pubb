@@ -258,6 +258,14 @@ function upload_photo($upload) {
   return $path;
 }
 
+// Records
+
+function get_record_title($schema, $record) {
+  // Assumes the first field of the schema contains the title/name
+  // and otherwise falls back to the 'id' field (which always exists).
+  return $record[array_keys($schema['fields'])[0] ?? 'id'];
+}
+
 // @mentions
 
 function record_mention($page, $source) { 

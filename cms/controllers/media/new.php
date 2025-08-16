@@ -10,12 +10,11 @@ if(isset($_GET['from'])) {
 
 if(isset($_POST['save'])) {
   if(isset($_POST['path'])) {
-    $stored_at = cast(dbg($_POST['path']));
-  } 
+    $stored_at = cast($_POST['path']);
+  }
   else if(isset($_FILES['photo'])) {
     try {
-      dbg($_FILES['photo']);
-      $stored_at = dbg(\core\upload_photo($_FILES['photo']));
+      $stored_at = \core\upload_photo($_FILES['photo']);
     } 
     catch(Exception $e) {
       fail($e->getMessage());

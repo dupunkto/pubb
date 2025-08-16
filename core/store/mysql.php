@@ -45,3 +45,9 @@ function execute($path) {
       or die("Couldn't execute query '$query'.");
   }
 }
+
+function table_exists($table_name) {
+  $stmt = DBH->prepare("SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = ?");
+  $stmt->execute([$table_name]);
+  return $stmt->fetch() != false;
+}

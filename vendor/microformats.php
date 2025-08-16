@@ -4,7 +4,6 @@
 // Vendored because I hate PHP package management.
 // Sorry!
 
-
 namespace microformats;
 
 use DOMDocument;
@@ -88,8 +87,6 @@ function fetch($url, $convertClassic = true, &$curlInfo=null) {
 
 	# ensure the final URL is used to resolve relative URLs
 	$url = $info['url'];
-
-	dbg($html);
 
 	return parse($html, $url, $convertClassic);
 }

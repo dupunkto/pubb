@@ -33,6 +33,18 @@ function replace_prefix($str, $old, $new) {
   }
 }
 
+function strip_suffix($str, $suffix) {
+  return replace_suffix($str, $suffix, "");
+}
+
+function replace_suffix($str, $old, $new) {
+  if (str_ends_with($str, $old)) {
+    return substr($str, 0, strlen($str) - strlen($old)) . $new;
+  } else {
+    return $str;
+  }
+}
+
 // HTML utilities
 
 function wrap($element, $str) {
@@ -128,6 +140,12 @@ function drop_empty($array) {
 
 function deep_contains($haystack, $needle) {
   return $needle and count(array_filter($haystack, fn($candidate) => strpos($needle, $candidate) != false)) > 0;
+}
+
+function assoc($term) {
+  if (is_object($term)) $term = get_object_vars($term);
+  if (is_array($term)) return array_map(__FUNCTION__, $term);
+  return $term;
 }
 
 // URL utilities
