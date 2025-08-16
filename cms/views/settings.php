@@ -262,7 +262,13 @@
     ], LAYOUT_SKIN) ?>
   </p>
 
-  <?php $indexes = ["all" => "All", "code" => "Gists", "photos" => "Photos"] ?>
+  <?php
+    $indexes = array_merge([
+      "all" => "All",
+      "code" => "Gists",
+      "photos" => "Photos"
+    ], \core\list_categories());
+  ?>
 
   <p>
     <label for="layout.homepage">Homepage</label>

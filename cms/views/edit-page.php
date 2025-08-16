@@ -101,7 +101,8 @@
     <label for="category">Category:</label>
 
     <?php
-      \forms\options("category", \core\list_categories(), @$category);
+      $categories = array_merge(["" => "None"], \core\list_categories());
+      \forms\options("category", $categories, @$category);
     ?>
   </p>
 </form>

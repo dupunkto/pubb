@@ -34,13 +34,26 @@ function get_index_type($index) {
   };
 }
 
+function list_category_pages($slug) {
+  return \store\list_pages_by_category($slug);
+}
+
+function get_category_title($slug) {
+  $categories = list_categories();
+  return $categories[$slug] ?? ucfirst($slug);
+}
+
+function get_category_type($slug) {
+  return constant("LAYOUT_" . strtoupper($slug));
+}
+
 // Categories
 
 function list_categories() {
   $titles = array_map('ucfirst', PAGES_CATEGORIES);
   $slugs = array_map('strtolower', PAGES_CATEGORIES);
 
-  return array_merge(["" => "None"], array_combine($slugs, $titles));
+  return array_combine($slugs, $titles);
 }
 
 // Pages

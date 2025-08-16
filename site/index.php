@@ -33,6 +33,14 @@ switch(true) {
 
     break;
 
+  case route('@/(.*)$@') and in_array($params[1], PAGES_CATEGORIES):
+    $category = $params[1];
+    $pages = \core\list_category_pages($category);
+    $title = \core\get_category_title($category);
+    $type = \core\get_category_type($category);
+
+    break;
+
   case route('@/(.*)$@'):
     $slug = $params[1];
     $page = \store\get_page_by_slug($slug);

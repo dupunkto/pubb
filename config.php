@@ -60,6 +60,10 @@ fallback('layout.photos', 'feed');
 
 fallback('pages.categories', []);
 
+foreach(PAGES_CATEGORIES as $category) {
+  fallback("layout.$category", 'listing');
+}
+
 fallback('feeds.ensure-compatibility', false);
 
 $_SKIN_PATH = __DIR__ . "/site/skins/" . LAYOUT_SKIN . ".css";
