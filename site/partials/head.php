@@ -22,7 +22,7 @@
 <link rel="sitemap" type="application/xml" title="Sitemap" href="<?= CANONICAL ?>/sitemap.xml">
 
 <!-- RSS, because it's amazing -->
-<link rel="alternate" type="application/rss+xml" title="<?= esc_attr(SITE_TITLE) ?> (RSS)" href="<?= CANONICAL ?>/atom.xml">
+<link rel="alternate" type="application/rss+xml" title="<?= esc_attr(SITE_TITLE) ?> (RSS)" href="<?= CANONICAL ?>/rss.xml">
 <link rel="alternate" type="application/atom+xml" title="<?= esc_attr(SITE_TITLE) ?> (Atom)" href="<?= CANONICAL ?>/atom.xml">
 <link rel="alternate" type="application/feed+json" title="<?= esc_attr(SITE_TITLE) ?> (JSON)" href="<?= CANONICAL ?>/feed.json">
 
