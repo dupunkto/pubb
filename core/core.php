@@ -8,6 +8,15 @@ use Exception;
 
 // Indexes
 
+function list_indexes() {
+  return array_merge(
+    ["all" => "All"],
+    \core\list_categories(),
+    ["code" => "Gists"],
+    ["photos" => "Photos"]
+  );
+}
+
 function list_index_pages($index) {
   return match($index) {
     "all" => \store\list_public_pages(),

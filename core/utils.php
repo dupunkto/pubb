@@ -99,6 +99,13 @@ function take($array, $amount) {
   return array_slice($array, 0, $amount);
 }
 
+function prefix_keys($array, $prefix) {
+  return array_combine(
+    array_map(fn($k) => "$prefix$k", array_keys($array)),
+    array_values($array)
+  );
+}
+
 function unprefix_keys($array, $prefix) {
   $filtered = [];
   $prefix = $prefix."_";

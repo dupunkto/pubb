@@ -34,11 +34,11 @@
   <?php if($item['type'] == 'index') { ?>
     <p>
       <label for="ref">Type</label>
-      <?php \forms\options("ref", [
-        "/all" => "All", 
-        "/code" => "Gists", 
-        "/photos" => "Photos"
-      ], $item['ref']);
+      <?php 
+        $indexes = \core\list_indexes();
+        $options = prefix_keys($indexes, "/");
+
+        \forms\options("ref", $options, $item['ref']);
       ?>
     </p>
   <?php } ?>

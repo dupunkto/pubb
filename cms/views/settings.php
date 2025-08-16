@@ -275,12 +275,7 @@
   </p>
 
   <?php
-    $indexes = array_merge(
-      ["all" => "All"],
-      \core\list_categories(),
-      ["code" => "Gists"],
-      ["photos" => "Photos"]
-    );
+    $indexes = \core\list_indexes();
   ?>
 
   <p>

@@ -25,12 +25,12 @@
   <?php if($type == 'index') { ?>
     <p>
       <label for="ref">Type</label>
-      <select name="ref">
-        <option value="/all">All</option>
-        <option value="/index">Pages</option>
-        <option value="/code">Gists</option>
-        <option value="/photos">Photos</option>
-      </select>
+      <?php 
+        $indexes = \core\list_indexes();
+        $options = prefix_keys($indexes, "/");
+
+        \forms\options("ref", $options, $item['ref']);
+      ?>
     </p>
   <?php } ?>
 
