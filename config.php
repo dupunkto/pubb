@@ -9,6 +9,7 @@ if(!is_dir(STORE)) {
   mkdir(STORE) or die("Failed to initialize data store.");
   mkdir(STORE . "/content") or die("Failed to initialize file store.");
   mkdir(STORE . "/uploads") or die("Failed to initialize upload store.");
+  mkdir(STORE . "/schemas") or die("Failed to initialize schema store.");
   copy(__DIR__ . "/config.example.json", CONFIG);
 }
 
