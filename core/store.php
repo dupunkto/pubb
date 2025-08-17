@@ -182,7 +182,8 @@ function list_photos() {
 function list_pages_by_category($slug) {
   $pages = pages_query();
   return all("SELECT * FROM ($pages)
-    WHERE `category` = ? AND `draft` != 1 AND `visibility` = 50", [$slug]);
+    WHERE `category` = ? AND `type` IN ('md', 'html', 'txt')
+    AND `draft` != 1 AND `visibility` = 50", [$slug]);
 }
 
 function last_updated() {
