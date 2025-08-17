@@ -1,16 +1,20 @@
 <form method="post">
   <header>
-    <input
-      type="text"
-      name="slug"
-      placeholder="Slug"
-      <?php if(isset($slug)) { ?>
-        value="<?= esc_attr($slug) ?>"
-      <?php } ?>
-      pattern="[@~]?[a-z0-9](-?[a-z0-9])*"
-      required
-    >
-    
+    <div class="lint">
+      <input
+        type="text"
+        name="slug"
+        placeholder="Slug"
+        <?php if(isset($slug)) { ?>
+          value="<?= esc_attr($slug) ?>"
+        <?php } ?>
+        pattern="[@~]?[a-z0-9](-?[a-z0-9])*"
+        required
+      >
+      <?php if(count(\core\list_categories()) > 1) {
+        \forms\options("category", \core\list_categories(), @$category);
+      } ?>
+    </div>
     <div class="bar">
       <input
         type="text"
@@ -86,19 +90,12 @@
 
     <?php \forms\options("visibility", \core\list_visibilities(), @$visibility, ints: true) ?>
 
-    <label for="type">Render as:</label>
+    <label for="type">Render&nbsp;as:</label>
 
     <?php \forms\options("type", [
       "md" => "Markdown", 
       "html" => "HTML",
       "txt" => "Plain text"
     ], @$type) ?>
-
-    <label for="category">Category:</label>
-
-    <?php
-      $categories = array_merge(["" => "None"], \core\list_categories());
-      \forms\options("category", $categories, @$category);
-    ?>
   </p>
 </form>

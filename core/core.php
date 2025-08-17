@@ -59,8 +59,14 @@ function get_category_type($slug) {
 // Categories
 
 function list_categories() {
-  $titles = array_map('ucfirst', PAGES_CATEGORIES);
-  $slugs = array_map('strtolower', PAGES_CATEGORIES);
+  $categories = PAGES_CATEGORIES;
+  
+  if (!in_array('regular', array_map('strtolower', $categories))) {
+    array_unshift($categories, 'regular');
+  }
+  
+  $titles = array_map('ucfirst', $categories);
+  $slugs = array_map('strtolower', $categories);
 
   return array_combine($slugs, $titles);
 }

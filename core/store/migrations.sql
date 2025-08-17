@@ -105,7 +105,7 @@ UPDATE `views` SET `agent` = `agent.old`;
 ALTER TABLE `views` DROP COLUMN `agent.old`;
 
 -- v2: Add category column to pages
-ALTER TABLE `pages` ADD COLUMN `category` varchar(90) DEFAULT NULL;
+ALTER TABLE `pages` ADD COLUMN `category` varchar(90) DEFAULT 'regular';
 
 -- v3: Replace visibility column with integer levels
 ALTER TABLE `pages` ADD COLUMN `visibility_level` int(11) DEFAULT 50;

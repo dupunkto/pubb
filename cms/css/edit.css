@@ -2,7 +2,8 @@ input[name="title"] {
   font-size: 1.3em;
 }
 
-input[name="slug"] {
+input[name="slug"],
+select[name="category"] {
   font-size: 1em;
   margin-bottom: 0.2em;
 }
@@ -14,6 +15,17 @@ textarea {
   height: 100%;
   height: 650px;
   resize: none;
+}
+
+.lint {
+  display: flex;
+  gap: 0.1em;
+}
+
+.lint select {
+  font-size: 0.8em;
+  flex-shrink: 5;
+  flex-grow: 0;
 }
 
 .options {
