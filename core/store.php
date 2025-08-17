@@ -179,11 +179,11 @@ function list_photos() {
   return all("SELECT * FROM ($pages) WHERE `type` = 'photo'");
 }
 
-function list_pages_by_category($slug) {
+function list_pages_by_category($slug, $visibility = 50) {
   $pages = pages_query();
   return all("SELECT * FROM ($pages)
     WHERE `category` = ? AND `type` IN ('md', 'html', 'txt')
-    AND `draft` != 1 AND `visibility` = 50", [$slug]);
+    AND `draft` != 1 AND `visibility` >= ?", [$slug, $visibility]);
 }
 
 function last_updated() {
