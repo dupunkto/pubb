@@ -16,7 +16,7 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
   <subtitle><?= SITE_DESCRIPTION ?></subtitle>
   <language><?= SITE_LANG ?></language>
   <id><?= CANONICAL ?></id>
-  <updated><?= \store\last_updated() ?>Z</updated>
+  <updated><?= date(DATE_RFC3339, \store\last_updated()) ?></updated>
   <link rel="self" href="<?= CANONICAL ?>/atom.xml" type="application/rss+xml" />
 
   <author>
@@ -42,7 +42,7 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
             elseif($page['type'] == "code") wrap("title", $page['slug']);
           ?>
           <id><?= $page['id'] ?></id>
-          <updated><?= $page['updated'] ?>Z</updated>
+          <updated><?= date(DATE_RFC3339, strtotime($page['updated'])) ?></updated>
           <link rel="alternate" href="<?= \urls\page_url($page) ?>"/>
           <content>
             <![CDATA[ <?php \renderer\page_content($page); ?> ]]>
