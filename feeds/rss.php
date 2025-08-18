@@ -20,15 +20,15 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
     <lastBuildDate>
       <?php
         $last_updated = \store\last_updated();
-        echo date("r", strtotime($last_updated));
+        echo date("r", $last_updated);
       ?>
     </lastBuildDate>
     <generator>Pubb v<?= PUBB_VERSION ?></generator>
     <atom:link rel="self" href="<?= CANONICAL ?>/rss.xml" type="application/rss+xml" />
 
     <?php if(defined('AUTHOR_NAME') and defined('AUTHOR_EMAIL')) {
-      echo "<managingEditor>AUTHOR_EMAIL (AUTHOR_NAME)</managingEditor>";
-      echo "<webMaster>AUTHOR_EMAIL (AUTHOR_NAME)</webMaster>";
+      echo "<managingEditor>" .AUTHOR_EMAIL. "(" .AUTHOR_NAME. ")</managingEditor>";
+      echo "<webMaster>" .AUTHOR_EMAIL. "(" .AUTHOR_NAME. ")</webMaster>";
     } ?>
 
     <?php
