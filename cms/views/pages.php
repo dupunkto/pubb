@@ -14,6 +14,10 @@
       <a href="<?= CMS_CANONICAL ?>/edit?id=<?= $page['id'] ?>">
         <?= \core\get_page_title($page) ?>
         <?php if($page['draft']) echo wrap("small", "— draft") ?>
+
+        <?php if($page['visibility'] < 50) { ?>
+          <span class="level"><?= \core\level_to_visibility($page['visibility']) ?></span>
+        <?php } ?>
       </a>
     </li>
   <?php } ?>

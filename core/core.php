@@ -175,6 +175,10 @@ function visibility_to_level($str) {
   return array_search($normalize($str), $labels, true);
 }
 
+function level_to_visibility($lvl) {
+  return list_visibilities()[$lvl];
+}
+
 // Gists
 
 function new_gist($filename, $code, $caption) {

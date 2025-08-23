@@ -403,3 +403,10 @@ textarea {
   margin-left: auto;
   margin-right: 0.5em;
 }
+
+.level {
+  background: light-dark(#1c1b22, #141318);
+  padding: 2px 6px;
+  font-size: 0.8em;
+  float: right;
+}
