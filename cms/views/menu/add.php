@@ -29,7 +29,7 @@
         $indexes = \core\list_indexes();
         $options = prefix_keys($indexes, "/");
 
-        \forms\options("ref", $options, $item['ref']);
+        \forms\options("ref", $options, null);
       ?>
     </p>
   <?php } ?>
