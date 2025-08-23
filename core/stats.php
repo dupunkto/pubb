@@ -11,6 +11,7 @@ function record_view($path) {
     path: $path, 
     referer: @$_SERVER['HTTP_REFERER'],
     agent: @$_SERVER['HTTP_USER_AGENT'],
+    client_ip: @$_SERVER['REMOTE_ADDR'],
     datetime: date("Y-m-d H:i:s")
   );
 }

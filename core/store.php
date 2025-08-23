@@ -358,9 +358,9 @@ function get_mention($origin, $page_id, $contact_id) {
 
 // Views
 
-function put_view($path, $referer, $agent, $datetime) { 
+function put_view($path, $referer, $agent, $client_ip, $datetime) { 
   return exec_query('INSERT INTO `views` 
-    (`path`, `referer`, `agent`, `datetime`) VALUES (?, ?, ?, ?)',
+    (`path`, `referer`, `agent`, `client_ip`, `datetime`) VALUES (?, ?, ?, ?, ?)',
     [$path, $referer, $agent, $datetime]);
 }
 
