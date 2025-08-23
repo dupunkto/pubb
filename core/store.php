@@ -161,7 +161,7 @@ function list_public_pages() {
 
 function list_rss_pages() {
   $pages = pages_query();
-  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` >= 30");
+  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` >= 40");
 }
 
 function list_regular_pages() {

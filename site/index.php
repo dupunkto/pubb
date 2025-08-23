@@ -45,7 +45,7 @@ switch(true) {
     $slug = $params[1];
     $page = \store\get_page_by_slug($slug);
 
-    if($page) {
+    if($page && $page['visibility'] >= 20) {
       $title = \core\get_page_title($page);
       break;
     }
