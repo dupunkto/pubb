@@ -1,7 +1,7 @@
 <header class="bar">
   <h2>Contacts</h2>
   <div class="group">
-    <a href="<?= CMS_CANONICAL ?>/contacts/close-friends" class="button">Manage Close Friends</a>
+    <a href="<?= CMS_CANONICAL ?>/contacts/close-friends" class="button">★ &nbsp;Close Friends</a>
     <a href="<?= CMS_CANONICAL ?>/contacts/add" class="button">Add contact</a>
   </div>
 </header>

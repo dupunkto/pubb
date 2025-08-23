@@ -25,7 +25,7 @@
   </p>
 
   <div class="bar">
-    <a href="<?= CMS_CANONICAL ?>/contacts/close-friends/delete?id=<?= $contact_id ?>" class="button">Revoke access</a>
+    <a href="<?= CMS_CANONICAL ?>/contacts/close-friends/delete?id=<?= $contact_id ?>&from=/contacts/close-friends" class="button">Revoke access</a>
     <div class="group">
       <a href="<?= CMS_CANONICAL ?>/contacts/close-friends" class="button">Cancel</a>
       <input type="submit" name="edit" value="Save">

@@ -388,3 +388,18 @@ textarea {
   top: 3.5em;
   left: 0;
 }
+
+.back {
+  text-transform: lowercase;
+
+  &::before {
+    content: "← ";
+  }
+}
+
+.token {
+  font-family: monospace;
+  opacity: 0.7;
+  margin-left: auto;
+  margin-right: 0.5em;
+}

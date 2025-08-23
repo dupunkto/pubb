@@ -1,8 +1,6 @@
 <header class="bar">
   <h2>Close Friends</h2>
-  <div class="group">
-    <a href="<?= CMS_CANONICAL ?>/contacts/close-friends/add" class="button">Add friend</a>
-  </div>
+  <a href="<?= CMS_CANONICAL ?>/contacts" class="back">Back to contacts</a>
 </header>
 
 <?php $friends = \store\list_friends() ?>
@@ -11,7 +9,7 @@
   <?php foreach($friends as $friend) { ?>
     <li>
       <strong>@<?= $friend['handle'] ?></strong>
-      <code><?= $friend['token'] ?></code>
+      <code class="token"><?= $friend['token'] ?></code>
       
       <span class="actions">
         <a href="<?= CMS_CANONICAL ?>/contacts/close-friends/edit?id=<?= $friend['contact_id'] ?>">
