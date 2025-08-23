@@ -6,9 +6,12 @@ require_once __DIR__ . "/../core.php";
 
 include __DIR__ . "/caching.php";
 
+
 header("Content-Type: application/feed+json; charset=UTF-8");
 
-$pages = \store\list_rss_pages();
+$clearance = \access\clearance('rss-only');
+$pages = \store\list_pages($clearance);
+
 $entries = [];
 
 foreach($pages as $page) {

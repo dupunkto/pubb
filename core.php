@@ -12,6 +12,7 @@ require __DIR__ . "/core/store.php";
 require __DIR__ . "/core/http.php";
 require __DIR__ . "/core/crypto.php";
 require __DIR__ . "/core/mailer.php";
+require __DIR__ . "/core/access.php";
 require __DIR__ . "/core/stats.php";
 require __DIR__ . "/core/forms.php";
 require __DIR__ . "/core/renderer.php";

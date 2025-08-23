@@ -21,10 +21,15 @@
 <!-- Sitemap, because kinda nice -->
 <link rel="sitemap" type="application/xml" title="Sitemap" href="<?= CANONICAL ?>/sitemap.xml">
 
+<?php 
+  $token = \access\token();
+  $q = $token ? "?token={$token}" : "";
+?>
+
 <!-- RSS, because it's amazing -->
-<link rel="alternate" type="application/rss+xml" title="<?= esc_attr(SITE_TITLE) ?> (RSS)" href="<?= CANONICAL ?>/rss.xml">
-<link rel="alternate" type="application/atom+xml" title="<?= esc_attr(SITE_TITLE) ?> (Atom)" href="<?= CANONICAL ?>/atom.xml">
-<link rel="alternate" type="application/feed+json" title="<?= esc_attr(SITE_TITLE) ?> (JSON)" href="<?= CANONICAL ?>/feed.json">
+<link rel="alternate" type="application/rss+xml" title="<?= esc_attr(SITE_TITLE) ?> (RSS)" href="<?= CANONICAL ?>/rss.xml<?= $q ?>">
+<link rel="alternate" type="application/atom+xml" title="<?= esc_attr(SITE_TITLE) ?> (Atom)" href="<?= CANONICAL ?>/atom.xml<?= $q ?>">
+<link rel="alternate" type="application/feed+json" title="<?= esc_attr(SITE_TITLE) ?> (JSON)" href="<?= CANONICAL ?>/feed.json<?= $q ?>">
 
 <!-- Google, please don't mess with my lovingly crafted HTML -->
 <meta name="googlebot" content="notranslate" />

@@ -32,6 +32,7 @@ optional('site.copyright');
 
 fallback('force-https', false);
 fallback('prefered-proto', FORCE_HTTPS ? "https" : "http");
+fallback('secure', PREFERED_PROTO == "https");
 fallback('canonical', PREFERED_PROTO . "://" . HOST);
 
 required('author.name');

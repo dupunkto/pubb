@@ -18,8 +18,10 @@ function list_indexes() {
 }
 
 function list_index_pages($index) {
+  $c = \access\clearance('public');
+
   return match($index) {
-    "all" => \store\list_public_pages(),
+    "all" => \store\list_pages($c),
     "code" => \store\list_gists(),
     "photos" => \store\list_photos(),
   };
@@ -44,7 +46,8 @@ function get_index_type($index) {
 }
 
 function list_category_pages($slug) {
-  return \store\list_pages_by_category($slug);
+  $c = \access\clearance('public');
+  return \store\list_pages_by_category($slug, $c);
 }
 
 function get_category_title($slug) {
@@ -166,10 +169,10 @@ function list_visibilities() {
   ];
 }
 
-function visibility_to_level(string $s): int {
+function visibility_to_level($str) {
   $normalize = fn($x) => str_replace([' ', '_'], '-', strtolower($x));
   $labels = array_map($normalize, list_visibilities());
-  return array_search($normalize($s), $labels, true);
+  return array_search($normalize($str), $labels, true);
 }
 
 // Gists

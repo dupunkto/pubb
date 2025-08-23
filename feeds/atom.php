@@ -32,7 +32,8 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
   </generator>
 
   <?php
-    $pages = \store\list_rss_pages();
+    $clearance = \access\clearance('rss-only');
+    $pages = \store\list_pages($clearance);
 
     foreach($pages as $page) {
       ?>

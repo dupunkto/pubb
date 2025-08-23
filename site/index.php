@@ -43,12 +43,17 @@ switch(true) {
 
   case route('@/(.*)$@'):
     $slug = $params[1];
+    $c = \core\visibility_to_level('hidden');
     $page = \store\get_page_by_slug($slug);
 
-    if($page && $page['visibility'] >= 20) {
+    if($page && $page['visibility'] >= $c) {
       $title = \core\get_page_title($page);
       break;
     }
+
+    // Set $page to null to avoid accidentally leaking
+    // contents of restricted/private pages later on.
+    else $page = null;
 
   default:
     http_response_code(404);
