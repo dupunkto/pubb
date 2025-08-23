@@ -395,7 +395,7 @@ function get_mention($origin, $page_id, $contact_id) {
 function put_view($path, $referer, $agent, $client_ip, $datetime) { 
   return exec_query('INSERT INTO `views` 
     (`path`, `referer`, `agent`, `client_ip`, `datetime`) VALUES (?, ?, ?, ?, ?)',
-    [$path, $referer, $agent, $datetime]);
+    [$path, $referer, $agent, $client_ip, $datetime]);
 }
 
 function view_count($page_id) {
