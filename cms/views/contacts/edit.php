@@ -54,7 +54,14 @@
   </p>
 
   <div class="bar">
-    <a href="<?= CMS_CANONICAL ?>/contacts/delete?id=<?= $id ?>" class="button">Delete</a>
+    <div class="group">
+      <a href="<?= CMS_CANONICAL ?>/contacts/delete?id=<?= $id ?>" class="button">Delete</a>
+      <?php if($is_friend) { ?>
+        <a href="<?= CMS_CANONICAL ?>/contacts/close-friends/delete?id=<?= $id ?>" class="button">Remove as friend</a>
+      <?php } else { ?>
+        <a href="<?= CMS_CANONICAL ?>/contacts/close-friends/add?id=<?= $id ?>" class="button">Add to close friends</a>
+      <?php } ?>
+    </div>
     <div class="group">
       <a href="<?= CMS_CANONICAL ?>/contacts" class="button">Cancel</a>
       <input type="submit" name="edit" value="Save">

@@ -117,3 +117,15 @@ UPDATE `pages` SET `visibility_level` = CASE
 END;
 ALTER TABLE `pages` DROP COLUMN `visibility`;
 ALTER TABLE `pages` RENAME COLUMN `visibility_level` TO `visibility`;
+
+-- v4: Add close friends.
+CREATE TABLE IF NOT EXISTS `friends` (
+  `contact_id` int(11) NOT NULL,
+  `token` varchar(7) NOT NULL,
+  `clearance` int(11) NOT NULL DEFAULT 30,
+  UNIQUE(`token`),
+  PRIMARY KEY (`contact_id`)
+);
+
+-- v5: Add client_ip column to views
+ALTER TABLE `views` ADD COLUMN `client_ip` text DEFAULT NULL;

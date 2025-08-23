@@ -5,6 +5,7 @@ if(!isset($_GET['id'])) redirect("/contacts");
 
 $id = $_GET['id'];
 $contact = \store\get_contact($id) or redirect("/contacts");
+$is_friend = !!\store\get_friend($id);
 
 if(isset($_POST['edit'])) {
   $handle = strip_prefix($_POST['handle'], "@");

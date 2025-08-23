@@ -1,6 +1,9 @@
 <header class="bar">
   <h2>Contacts</h2>
-  <a href="<?= CMS_CANONICAL ?>/contacts/add" class="button">Add contact</a>
+  <div class="group">
+    <a href="<?= CMS_CANONICAL ?>/contacts/close-friends" class="button">Manage Close Friends</a>
+    <a href="<?= CMS_CANONICAL ?>/contacts/add" class="button">Add contact</a>
+  </div>
 </header>
 
 <?php $contacts = \store\list_contacts() ?>

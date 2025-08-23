@@ -302,6 +302,45 @@ function list_contacts() {
   return all('SELECT * FROM `contacts`');
 }
 
+// Friends
+
+function put_friend($contact_id, $token, $clearance = 30) {
+  get_contact($contact_id) or die("contact with ID $contact_id does not exist");
+  
+  return exec_query('INSERT INTO `friends` (`contact_id`, `token`, `clearance`) 
+    VALUES (?, ?, ?)', [$contact_id, $token, $clearance]);
+}
+
+function get_friend($contact_id) {
+  return one('SELECT * FROM `friends` WHERE `contact_id` = ?', [$contact_id]);
+}
+
+function get_friend_by_token($token) {
+  return one('SELECT * FROM `friends` WHERE `token` = ?', [$token]);
+}
+
+function list_friends() {
+  return all('SELECT 
+    f.contact_id,
+    f.token,
+    f.clearance,
+    c.handle,
+    c.domain,
+    c.email
+  FROM `friends` f 
+  JOIN `contacts` c ON c.id = f.contact_id
+  ORDER BY c.handle');
+}
+
+function update_token($contact_id, $token) {
+  return exec_query('UPDATE `friends` SET `token` = ? WHERE `contact_id` = ?', 
+    [$token, $contact_id]);
+}
+
+function remove_friend($contact_id) {
+  return exec_query('DELETE FROM `friends` WHERE `contact_id` = ?', [$contact_id]);
+}
+
 // Mentions
 
 define('ORIGINS', ["incoming", "outgoing"]);
