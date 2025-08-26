@@ -405,7 +405,7 @@ textarea {
 }
 
 .level {
-  background: light-dark(#1c1b22, #141318);
+  background: light-dark(#fbfbfb, #141318);
   padding: 2px 6px;
   font-size: 0.8em;
   float: right;
