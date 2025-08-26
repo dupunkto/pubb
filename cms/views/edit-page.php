@@ -59,7 +59,7 @@
           target="_blank"
           class="reply"
         >
-          <?= parse_host($reply) ?>
+          <?= url_host($reply) ?>
         </a>
       </p>
     <?php } ?>

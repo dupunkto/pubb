@@ -34,7 +34,7 @@
       <tr>
         <td>Internal reference</td>
         <td>
-          <code><?= filename($asset['path']) ?></code>
+          <code><?= path_name($asset['path']) ?></code>
         </td>
       </tr>
       <tr>

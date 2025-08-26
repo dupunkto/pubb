@@ -12,7 +12,7 @@ $_NODE = match($_SERVER['HTTP_HOST']) {
 };
 
 function serve_file($path) {
-  $mime_type = parse_mime_type($path) ?? "text/html";
+  $mime_type = path_mime($path) ?? "text/html";
 
   header("Content-Type: {$mime_type}");
   include $path;

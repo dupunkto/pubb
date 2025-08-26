@@ -18,7 +18,7 @@
             foreach($section['items'] as $item) { 
               if($item['type'] == 'page') {
                 $url = \urls\page_url(\store\get_page($item['page_id']));
-                $selected = parse_path($url) == $path;
+                $selected = url_path($url) == $path;
               } else {
                 $url = $item['ref'];
                 $selected = $url == $path;

@@ -25,7 +25,7 @@
         $url = htmlspecialchars($mention['source'])
       ?>
         <li>
-          <a href="<?= $url ?>"><?= parse_host($url) ?></a>
+          <a href="<?= $url ?>"><?= url_host($url) ?></a>
 
           <?php if($mention['contact_id']) { ?>
             <a href="//<?= $mention['contact_domain'] ?>">
@@ -65,7 +65,7 @@
           </a>
         <?php } else { ?>
           <a href="<?= esc_attr($mention['source']) ?>">
-            <?= parse_host($mention['source']) ?>
+            <?= url_host($mention['source']) ?>
           </a>
         <?php } ?>
 

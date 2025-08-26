@@ -9,7 +9,7 @@ $asset = \store\get_asset($id) or fail("Asset doesn't exist.", to: "/media");
 
 if(count(\store\duplicates($asset)) == 0) {
   \store\delete_file($asset['path']) 
-    or fail("Deleted asset, but failed to delete underlying file with reference " . filename($asset['path']) . " from data store. There might still be working URLs to this asset.");
+    or fail("Deleted asset, but failed to delete underlying file with reference " . path_name($asset['path']) . " from data store. There might still be working URLs to this asset.");
 }
 
 complete("Deleted #{$asset['id']}.", to: "/media");

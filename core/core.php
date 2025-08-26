@@ -262,7 +262,7 @@ function update_photo($id, $slug, $caption, $path) {
 }
 
 function upload_photo($upload) {
-  $ext = parse_ext($upload['name'], "jpg");
+  $ext = path_ext($upload['name'], "jpg");
   $tmp_file = $upload['tmp_name'];
 
   if($upload['error'] != UPLOAD_ERR_OK) {
@@ -300,7 +300,7 @@ function get_record_title($schema, $record) {
 // @mentions
 
 function record_mention($page, $source) { 
-  $domain = parse_host($source);
+  $domain = url_host($source);
   $contact = \store\get_contact_by_domain($domain);
 
   \store\put_mention(

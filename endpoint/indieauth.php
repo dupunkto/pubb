@@ -27,7 +27,7 @@ function create_signed_code($key, $message, $ttl = 31536000, $appended_data = ""
   $expires = time() + $ttl;
   $body = $message . $expires . $appended_data;
   $signature = hash_hmac("sha256", $body, $key);
-  return dechex($expires) . ":" . $signature . ":" . base64_url_encode($appended_data);
+  return dechex($expires) . ":" . $signature . ":" . \crypto\base64_url_encode($appended_data);
 }
 
 function verify_signed_code($key, $message, $code) {
@@ -39,7 +39,7 @@ function verify_signed_code($key, $message, $code) {
   if(time() > $expires) {
       return false;
   }
-  $body = $message . $expires . base64_url_decode($code_parts[2]);
+  $body = $message . $expires . \crypto\base64_url_decode($code_parts[2]);
   $signature = hash_hmac("sha256", $body, $key);
   return hash_equals($signature, $code_parts[1]);
 }
@@ -115,7 +115,7 @@ if($code !== null) {
   $code_parts = explode(":", $code, 3);
 
   if($code_parts[2] !== "") {
-      $response['scope'] = base64_url_decode($code_parts[2]);
+      $response['scope'] = \crypto\base64_url_decode($code_parts[2]);
   }
 
   // Check what kind of response the client wants.
