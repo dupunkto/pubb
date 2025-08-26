@@ -27,7 +27,7 @@ unset($slug);
   <head>
     <?php include __DIR__ . "/partials/head.php" ?>
     <title>pebble</title>
-    <style><?php include $stylesheet ?></style>
+    <style><?php if(file_exists($stylesheet)) include $stylesheet ?></style>
   </head>
   <body data-instant-intensity="mousedown">
     <?php include __DIR__ . "/partials/header.php" ?>
