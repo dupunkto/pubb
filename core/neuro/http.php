@@ -8,7 +8,7 @@ function request($uri, $headers = [], $options = []) {
 
   curl_setopt_array($ch, [
     CURLOPT_URL => $uri,
-    CURLOPT_USERAGENT => CANONICAL,
+    CURLOPT_USERAGENT => "Neuro/" . NEURO_VERSION,
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_TIMEOUT => 5,
 
