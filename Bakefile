@@ -12,5 +12,5 @@ serve() {
 }
 
 deploy() {
-  echo 'h obliviously.eu && git pull' | ssh s11
+  echo 'h obliviously.eu && git pull && git submodule update' | ssh s11
 }
