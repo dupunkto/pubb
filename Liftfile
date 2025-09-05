@@ -1,0 +1,10 @@
+name: pubb
+type: static
+host: nov
+src: .
+target: pubb.dupunkto.org
+exclude:
+- README.md
+- .tool-versions
+- config.example.json
+- data*

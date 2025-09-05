@@ -12,5 +12,9 @@ serve() {
 }
 
 deploy() {
+  # The deployment on the old shared hosting uses a git clone that we need to update.
   echo 'h obliviously.eu && git pull && git submodule update' | ssh s11
+
+  # The new deployments on the {du}punkto server use normal FTP/SCP uploads.
+  lift deploy
 }
