@@ -61,7 +61,7 @@ fallback('layout.all', 'feed');
 fallback('layout.code', 'listing');
 fallback('layout.photos', 'feed');
 
-fallback('pages.categories', []);
+fallback('pages.categories', ["regular"]);
 
 foreach(PAGES_CATEGORIES as $category) {
   fallback("layout.$category", 'listing');

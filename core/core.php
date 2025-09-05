@@ -64,10 +64,6 @@ function get_category_type($slug) {
 function list_categories() {
   $categories = PAGES_CATEGORIES;
   
-  if (!in_array('regular', array_map('strtolower', $categories))) {
-    array_unshift($categories, 'regular');
-  }
-  
   $titles = array_map('ucfirst', $categories);
   $slugs = array_map('strtolower', $categories);
 
