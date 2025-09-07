@@ -271,6 +271,7 @@
       "guthib" => "GutHib",
       "baked" => "Baked",
       "nightspire" => "Night Spire",
+      "forest" => "Forest",
     ], LAYOUT_SKIN) ?>
   </p>
 
