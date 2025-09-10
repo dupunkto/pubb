@@ -26,6 +26,7 @@ An earlier version of this projects exists, named [neopub/untitled](https://git.
 - [x] Skins
 - [x] Categories
 - [x] Extendable with custom entities
+- [x] Access control (Close Friends)
 - [ ] OpenHeart
 - [ ] ActivityPub
 - [ ] CLI
@@ -37,10 +38,11 @@ I've also build a cozy little CMS to power this website engine. The CMS is inspi
 - Clean editor
 - Asset management
 - Contact management
+- Menu editor
 - Moderating webmentions
 - Basic statistics
 
-### CLI
+### CLI (concept)
 
     pub < post.txt
     pub -i image.png
@@ -58,8 +60,6 @@ I'm also thinking about other things, but I've shelved them until I have a worki
 - Git integration? I could add an optional git module that would version-manage the data store. I'm not sure whether this is possible using PHP, but it would definitely be cool.
 
 - [#hashtags](https://personal-web.org). The difficulty is that some sort of central service is needed. I'm not sure how ActivityPub handles it, but might be interesting to look into when I build the ActivityPub functionality?
-
-- Access control? Only allowing certain subscribers to see some posts. This would work by giving each subscriber an unique token, which would be stored in a cookie and appended to the query params of the RSS feed.
 
 - Previewing drafts, maybe implemented using the same foundation as access control?
 
