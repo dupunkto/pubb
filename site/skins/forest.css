@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inconsolata:wght@200..900&display=swap");
 
 :root {
   color-scheme: dark;
@@ -110,98 +110,98 @@ body {
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
-      }
 
-      h3 {
-        margin: 0 0 15px 0;
-        padding: 0.4em 0.8em;
-        background: #5a6d4c;
-        color: #e8e6e0;
-        border-radius: 0 0 3px 3px;
-        width: 60%;
-        text-align: center;
-      }
-
-      .p-name {
-        font-size: 1.2em;
-        font-weight: 600;
-      }
-
-      .p-nickname {
-        &::before {
-          content: "(";
-        }
-        &::after {
-          content: ")";
-        }
-      }
-
-      .u-photo {
-        order: -1;
-        aspect-ratio: 1;
-        object-fit: cover;
-        width: 60%;
-        margin: 0 10px 0 0;
-        border-radius: 3px 3px 0 0;
-        border: 4px solid #5a6d4c;
-      }
-
-      .p-mood,
-      .p-status,
-      .p-note,
-      .p-song {
-        margin-top: 0;
-        margin-bottom: 0.5em;
-
-        &::before {
-          font-weight: 800;
-        }
-      }
-
-      .p-mood::before {
-        content: "Mood: ";
-      }
-
-      .p-song::before {
-        content: "Music: ";
-      }
-
-      .p-status::before {
-        content: "Status: ";
-      }
-
-      .p-note::before {
-        content: "About me: ";
-      }
-
-      .p-email {
-        font-size: 0;
-        margin-top: 10px;
-
-        a:hover {
-          padding: 0;
-          margin: 0;
-        }
-      }
-
-      .u-im {
-        display: none;
-      }
-
-      .u-email {
-        &::before {
-          font-size: initial;
-          display: inline-block;
-          content: "Send message";
+        h3 {
+          margin: 0 0 15px 0;
+          padding: 0.4em 0.8em;
           background: #5a6d4c;
           color: #e8e6e0;
-          padding: 0.4em 0.8em;
-          font-weight: 900;
-          border-radius: 2px;
+          border-radius: 0 0 3px 3px;
+          width: 60%;
+          text-align: center;
         }
 
-        &:hover::before {
-          background: #3d4832;
+        .p-name {
+          font-size: 1.2em;
+          font-weight: 600;
+        }
+
+        .p-nickname {
+          &::before {
+            content: "(";
+          }
+          &::after {
+            content: ")";
+          }
+        }
+
+        .u-photo {
+          order: -1;
+          aspect-ratio: 1;
+          object-fit: cover;
+          width: 60%;
+          margin: 0 10px 0 0;
+          border-radius: 3px 3px 0 0;
+          border: 4px solid #5a6d4c;
+        }
+
+        .p-mood,
+        .p-status,
+        .p-note,
+        .p-song {
+          margin-top: 0;
+          margin-bottom: 0.5em;
+
+          &::before {
+            font-weight: 800;
+          }
+        }
+
+        .p-mood::before {
+          content: "Mood: ";
+        }
+
+        .p-song::before {
+          content: "Music: ";
+        }
+
+        .p-status::before {
+          content: "Status: ";
+        }
+
+        .p-note::before {
+          content: "About me: ";
+        }
+
+        .p-email {
+          font-size: 0;
+          margin-top: 10px;
+
+          a:hover {
+            padding: 0;
+            margin: 0;
+          }
+        }
+
+        .u-im {
+          display: none;
+        }
+
+        .u-email {
+          &::before {
+            font-size: initial;
+            display: inline-block;
+            content: "Send message";
+            background: #5a6d4c;
+            color: #e8e6e0;
+            padding: 0.4em 0.8em;
+            font-weight: 900;
+            border-radius: 2px;
+          }
+
+          &:hover::before {
+            background: #3d4832;
+          }
         }
       }
     }
@@ -471,6 +471,13 @@ table {
   }
 }
 
+tt,
+code,
+kbd,
+samp {
+  font-family: "Inconsolata", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+}
+
 pre.code {
   overflow: auto;
   background: #242a1e;
@@ -478,7 +485,6 @@ pre.code {
   color: #e8e6e0;
   border-radius: 2px;
   padding: 1em;
-  font-family: "Source Code Pro", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
 }
 
 @media (max-width: 1000px) {
@@ -506,27 +512,27 @@ pre.code {
 
       .h-card {
         display: block;
-      }
 
-      h3,
-      .u-photo {
-        max-width: 85vw;
-        width: 150px;
-      }
+        h3,
+        .u-photo {
+          max-width: 85vw;
+          width: 150px;
+        }
 
-      .u-photo {
-        clear: both;
-        float: left;
-        border-radius: 0 0 3px 3px;
-        margin-right: 20px;
-      }
+        .u-photo {
+          clear: both;
+          float: left;
+          border-radius: 0 0 3px 3px;
+          margin-right: 20px;
+        }
 
-      h3 {
-        font-size: 1em;
-        float: left;
-        margin-bottom: 0;
-        margin-right: 20px;
-        border-radius: 3px 3px 0 0;
+        h3 {
+          font-size: 1em;
+          float: left;
+          margin-bottom: 0;
+          margin-right: 20px;
+          border-radius: 3px 3px 0 0;
+        }
       }
     }
   }
