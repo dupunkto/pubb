@@ -2,6 +2,10 @@
 // Development server. Contains certain routes that
 // the production server doesn't need, as they're configured in Apache.
 
+error_reporting(E_ALL & ~E_DEPRECATED);
+ini_set("display_errors", 1);
+ini_set("display_startup_errors", 1);
+
 require_once __DIR__ . "/core.php";
 require_once __DIR__ . "/router.php";
 
