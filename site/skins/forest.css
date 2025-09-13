@@ -255,6 +255,29 @@ main {
     margin-top: 0;
   }
 
+  .h-entry {
+    display: grid;
+    grid-template-areas: "title dt" "content content";
+
+    .p-name {
+      grid-area: title;
+      font-size: 1.5em;
+    }
+
+    .dt-published {
+      grid-area: dt;
+      display: block;
+      font-size: 0.8em;
+      opacity: 0.8;
+      text-align: right;
+      color: #6b7c5b;
+    }
+
+    .e-content {
+      grid-area: content;
+    }
+  }
+
   blockquote {
     border-left: 3px solid var(--border-color);
     margin-left: 5px;
@@ -280,6 +303,7 @@ main {
   position: relative;
   background: #1f241a;
   border-radius: 3px;
+  padding: 25px;
 
   .comment-section {
     color: #c5d1b8;
@@ -304,30 +328,6 @@ main {
 
   &:last-child {
     border-bottom: none;
-  }
-}
-
-.h-entry {
-  padding: 25px;
-  display: grid;
-  grid-template-areas: "title dt" "content content";
-
-  .p-name {
-    grid-area: title;
-    font-size: 1.5em;
-  }
-
-  .dt-published {
-    grid-area: dt;
-    display: block;
-    font-size: 0.8em;
-    opacity: 0.8;
-    text-align: right;
-    color: #6b7c5b;
-  }
-
-  .e-content {
-    grid-area: content;
   }
 }
 
