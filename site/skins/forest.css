@@ -27,13 +27,13 @@ body {
   font-family: "Crimson Text", serif;
   font-size: 1.2em;
   line-height: 1.6;
-  padding: 1em;
+  padding: 20px;
   margin: 0 auto;
   max-width: 1250px;
   display: grid;
   gap: 20px;
   grid-auto-rows: min-content;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: auto auto 1fr auto;
   grid-template-areas:
     "nav header"
@@ -75,7 +75,7 @@ body {
     width: 100%;
     background: #242a1e;
     color: #c5d1b8;
-    padding: 0.75em 1.5em;
+    padding: 12.5px 25px;
     border-radius: 2px;
     align-self: center;
     overflow: scroll;
@@ -113,7 +113,7 @@ body {
 
         h3 {
           margin: 0 0 15px 0;
-          padding: 0.4em 0.8em;
+          padding: 10px 15px;
           background: #5a6d4c;
           color: #e8e6e0;
           border-radius: 0 0 3px 3px;
@@ -150,7 +150,7 @@ body {
         .p-note,
         .p-song {
           margin-top: 0;
-          margin-bottom: 0.5em;
+          margin-bottom: 10px;
 
           &::before {
             font-weight: 800;
@@ -194,7 +194,7 @@ body {
             content: "Send message";
             background: #5a6d4c;
             color: #e8e6e0;
-            padding: 0.4em 0.8em;
+            padding: 10px 15px;
             font-weight: 900;
             border-radius: 2px;
           }
@@ -208,9 +208,9 @@ body {
 
     hr {
       border: none;
-      height: 1px;
+      height: 2.5px;
       background: linear-gradient(to right, transparent, var(--border-color), transparent);
-      margin: 1.5em 0;
+      margin: 20px 0;
     }
   }
 
@@ -218,18 +218,12 @@ body {
     grid-area: footer;
     width: 100%;
     font-size: 0.9em;
-    padding-top: 4em;
-    margin-bottom: 1em;
+    padding-top: 60px;
+    margin-bottom: 15px;
     color: #f2ffea;
 
     p {
-      margin: 0.2em 0;
-
-      &:has(small) {
-        display: flex;
-        flex-direction: row;
-        gap: 1ch;
-      }
+      margin: 5px 0;
     }
 
     small {
@@ -263,20 +257,20 @@ main {
 
   blockquote {
     border-left: 3px solid var(--border-color);
-    margin-left: 0.2em;
-    padding-left: 1em;
+    margin-left: 5px;
+    padding-left: 10px;
     background: rgba(90, 109, 76, 0.1);
     margin-right: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 0 2px 2px 0;
   }
 
   hr {
     border: none;
-    height: 1px;
+    height: 2.5px;
     background: linear-gradient(to right, transparent, var(--border-color), transparent);
-    margin: 1.5em 0;
+    margin: 20px 0;
   }
 }
 
@@ -289,7 +283,7 @@ main {
 
   .comment-section {
     color: #c5d1b8;
-    padding: 1em 1.25em;
+    padding: 20px 20px;
     border-top: 1px solid #3a4232;
     font-size: 0.85em;
 
@@ -314,7 +308,7 @@ main {
 }
 
 .h-entry {
-  padding: 1.5em;
+  padding: 25px;
   display: grid;
   grid-template-areas: "title dt" "content content";
 
@@ -363,7 +357,7 @@ h6 {
 
 a {
   color: #a8bd9a;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 3px;
   text-decoration-color: #7a8e6d;
   text-decoration-thickness: 2px;
 
@@ -406,17 +400,16 @@ img {
 label {
   font-weight: 600;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   color: #3d4a2f;
 }
 
 input {
   width: 100%;
   max-width: 100%;
-  padding: 0.6em;
-  margin: 0;
+  padding: 10px;
+  margin: 0 0 7.5px 0;
   font-size: 1em;
-  margin-bottom: 7px;
   border: 2px solid #3a4232;
   border-radius: 2px;
   background: #242a1e;
@@ -436,7 +429,7 @@ input[type="submit"] {
   background: #5a6d4c;
   color: #e8e6e0;
   border: 2px solid #4a5d3c;
-  padding: 0.6em 1.2em;
+  padding: 10px 20px;
   font-family: inherit;
   font-size: 0.95em;
   font-weight: 600;
@@ -451,11 +444,11 @@ input[type="submit"] {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1em 0;
+  margin: 20px 0;
 
   td,
   th {
-    padding: 0.5em 0.3em;
+    padding: 10px 5px;
     text-align: left;
     border-bottom: 1px solid #3a4232;
 
@@ -484,10 +477,10 @@ pre.code {
   border: 1px solid #3a4232;
   color: #e8e6e0;
   border-radius: 2px;
-  padding: 1em;
+  padding: 20px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 850px) {
   body {
     grid-template-columns: auto 1fr;
     grid-template-areas:
@@ -500,7 +493,7 @@ pre.code {
     padding-top: 10px;
 
     header {
-      margin-right: 1em;
+      margin-right: 10px;
     }
 
     nav {
@@ -508,29 +501,33 @@ pre.code {
     }
 
     > aside.left {
-      margin-top: 1em;
+      margin-top: 10px;
+      font-size: 0;
+
+      > :not(.h-card) {
+        display: none;
+      }
 
       .h-card {
+        margin-bottom: 0;
         display: block;
+        font-size: 0.9rem;
 
         h3,
         .u-photo {
-          max-width: 85vw;
+          margin: 0 0 0 10px;
           width: 150px;
+          max-width: 100%;
+          float: right;
         }
 
         .u-photo {
           clear: both;
-          float: left;
           border-radius: 0 0 3px 3px;
-          margin-right: 20px;
         }
 
         h3 {
-          font-size: 1em;
-          float: left;
-          margin-bottom: 0;
-          margin-right: 20px;
+          font-size: 1rem;
           border-radius: 3px 3px 0 0;
         }
       }
