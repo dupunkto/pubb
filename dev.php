@@ -46,7 +46,7 @@ switch(true) {
   case route('@/sitemap.xml$@'): include __DIR__ . "/feeds/sitemap.php"; exit;
   case route('@/robots.txt$@'): include __DIR__ . "/feeds/robots.php"; exit;
 
-  case route('@/endpoint/(\w+)$@'):
+  case route('@/endpoint/(indieauth|micropub|webmention)$@'):
     // Here be dragons.
     // But it's development, so who cares. Nobody is gonna
     // run the dev server in prod anyway. Right... right???!
