@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 PORT=4000
-ENTRYPOINT="dev.php"
+ENTRYPOINT="index.php"
 
 # Configure the PHP server to start two
 # concurrent threads.
 export PHP_CLI_SERVER_WORKERS=2
 
 serve() {
-  php -S 0.0.0.0:$PORT $ENTRYPOINT
+  ENV=dev php -S 0.0.0.0:$PORT $ENTRYPOINT
 }
 
 deploy() {

@@ -38,6 +38,7 @@ define('AI_AGENTS', [
   "Omgili",
   "omgili",
   "Claude-Web",
+  "Claude-User",
   "ClaudeBot",
   "PerplexityBot",
   "Bytespider",

@@ -15,7 +15,7 @@ $params = [];
 
 function route($pattern) {
   global $path, $params;
-  return preg_match($pattern, $path, $params);
+  return preg_match("@$pattern@", $path, $params);
 }
 
 function is_builtin() {

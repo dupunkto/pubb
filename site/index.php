@@ -25,7 +25,7 @@ switch(true) {
     header("Location: mailto:" . AUTHOR_EMAIL);
     exit;
 
-  case route('@/(all|code|photos)$@'):
+  case route('/(all|code|photos)$'):
     $index = $params[1];
     $pages = \core\list_index_pages($index);
     $title = \core\get_index_title($index);
@@ -33,7 +33,7 @@ switch(true) {
 
     break;
 
-  case route('@/(.*)$@') and in_array($params[1], PAGES_CATEGORIES):
+  case route('/(.*)$') and in_array($params[1], PAGES_CATEGORIES):
     $category = $params[1];
     $pages = \core\list_category_pages($category);
     $title = \core\get_category_title($category);
@@ -41,7 +41,7 @@ switch(true) {
 
     break;
 
-  case route('@/(.*)$@'):
+  case route('/(.*)$'):
     $slug = $params[1];
     $c = \core\visibility_to_level('hidden');
     $page = \store\get_page_by_slug($slug);
