@@ -1,13 +1,21 @@
 RewriteEngine On
 RewriteBase /
 
-# <Files *.php>
-#   Require all denied
-# </Files>
+<Files *.php>
+  Require all denied
+</Files>
 
-# <Files /index.php>
-#   Require all granted
-# </Files>
+<Files index.php>
+  Require all granted
+</Files>
+
+<Files feeds/*.php>
+  Require all granted
+</Files>
+
+<Files endpoint/*.php>
+  Require all granted
+</Files>
 
 RewriteRule ^$ /index.php [L]
 RewriteRule ^rss.xml$ /feeds/rss.php [L]
@@ -33,8 +41,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/cms/$1 -f
 RewriteRule ^(.*)$ /cms/$1 [L,QSA]
 
-# ErrorDocument 404 /index.php
-# FallbackResource /index.php
+ErrorDocument 404 /index.php
+FallbackResource /index.php
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
