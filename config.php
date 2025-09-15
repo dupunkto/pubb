@@ -1,7 +1,7 @@
 <?php
 // Dynamic configuration based on the JSON store.
 
-define('STORE', getenv("DATA") ?: __DIR__ . "/data");
+define('STORE', getenv("STORE") ?: __DIR__ . "/data");
 define('CONFIG', STORE . "/config.json");
 
 // Initialize data store if it doesn't exist yet.
