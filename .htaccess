@@ -9,41 +9,30 @@ RewriteBase /
   Require all granted
 </Files>
 
-<Files feeds/*.php>
-  Require all granted
+<Files *.db>
+  Require all denied
 </Files>
 
-<Files endpoint/*.php>
-  Require all granted
+<Files *.json>
+  Require all denied
 </Files>
 
-RewriteRule ^$ /index.php [L]
-RewriteRule ^rss.xml$ /feeds/rss.php [L]
-RewriteRule ^atom.xml$ /feeds/atom.php [L]
-RewriteRule ^feed.json$ /feeds/json.php [L]
-RewriteRule ^sitemap.xml$ /feeds/sitemap.php [L]
-RewriteRule ^robots.txt$ /feeds/robots.php [L]
-RewriteRule ^endpoint/(\w+)$ /endpoint/$1.php [L]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [END]
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/data/$1 -f
 RewriteRule ^(assets/.*)$ /data/$1 [L,QSA]
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/data/$1 -f
 RewriteRule ^(uploads/.*)$ /data/$1 [L,QSA]
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/site/$1 -f
 RewriteRule ^(.*)$ /site/$1 [L,QSA]
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/cms/$1 -f
 RewriteRule ^(.*)$ /cms/$1 [L,QSA]
 
 ErrorDocument 404 /index.php
 FallbackResource /index.php
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php [L]
