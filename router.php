@@ -13,6 +13,10 @@ $path = "/" . trim($path, "/");
 
 $params = [];
 
+function host($hostname) {
+  return $_SERVER['HTTP_HOST'] == $hostname;
+}
+
 function route($pattern) {
   global $path, $params;
   return preg_match("@$pattern@", $path, $params);
