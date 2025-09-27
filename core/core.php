@@ -134,9 +134,8 @@ function edit_page(
   $reply_to = null,
   $lang = null
 ) {
-  $changed = \store\page_changed($id, $prose);
+  $updated = \store\page_changed($id, $prose);
   $path = \store\write_file($prose, ".".$type);
-  $updated = $changed ? date("Y-m-d H:i:s") : $page['updated'];
 
   return \store\update_page(
     id: $id,
@@ -199,9 +198,8 @@ function new_gist($filename, $code, $caption) {
 }
 
 function edit_gist($id, $filename, $code, $caption) {
-  $changed = \store\page_changed($id, $code);
+  $updated = \store\page_changed($id, $code);
   $path = \store\write_file($code, $filename);
-  $updated = $changed ? date("Y-m-d H:i:s") : $page['updated'];
 
   return \store\update_page(
     id: $id,

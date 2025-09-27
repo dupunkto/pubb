@@ -107,8 +107,12 @@ function update_page(
   ]);
 }
 
-function page_changed($id, $prose) {
-  return contents(get_page($id)['path']) != $prose;
+function page_changed($id, $new) {
+  $page = get_page($id);
+  $now = date("Y-m-d H:i:s");
+  $existing = contents($page['path']);
+
+  return $new == $existing ? $page['updated'] : $now;
 }
 
 function get_page($id) {
