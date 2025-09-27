@@ -123,19 +123,20 @@ function new_page(
 }
 
 function edit_page(
-  $id, 
-  $slug, 
-  $type, 
-  $title, 
-  $prose, 
+  $id,
+  $slug,
+  $type,
+  $title,
+  $prose,
   $visibility,
   $category = null,
-  $draft = false, 
+  $draft = false,
   $reply_to = null,
   $lang = null
 ) {
-  $now = date("Y-m-d H:i:s");
+  $changed = \store\page_changed($id, $prose);
   $path = \store\write_file($prose, ".".$type);
+  $updated = $changed ? date("Y-m-d H:i:s") : $page['updated'];
 
   return \store\update_page(
     id: $id,
@@ -143,7 +144,7 @@ function edit_page(
     type: $type,
     title: $title,
     lang: $lang,
-    updated: $now,
+    updated: $updated,
     path: $path,
     draft: $draft,
     visibility: $visibility,
@@ -198,8 +199,9 @@ function new_gist($filename, $code, $caption) {
 }
 
 function edit_gist($id, $filename, $code, $caption) {
-  $now = date("Y-m-d H:i:s");
+  $changed = \store\page_changed($id, $code);
   $path = \store\write_file($code, $filename);
+  $updated = $changed ? date("Y-m-d H:i:s") : $page['updated'];
 
   return \store\update_page(
     id: $id,
@@ -207,7 +209,7 @@ function edit_gist($id, $filename, $code, $caption) {
     type: 'code',
     title: null,
     lang: null,
-    updated: $now,
+    updated: $updated,
     path: $path,
     draft: 0,
     visibility: 50,

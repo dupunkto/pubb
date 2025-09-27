@@ -107,6 +107,10 @@ function update_page(
   ]);
 }
 
+function page_changed($id, $prose) {
+  return contents(get_page($id)['path']) != $prose;
+}
+
 function get_page($id) {
   return one('SELECT * FROM `pages` WHERE `id` = ?', [$id]);
 }
