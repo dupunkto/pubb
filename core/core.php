@@ -316,7 +316,7 @@ function send_mentions($page) {
   $pattern = '/@([a-zA-Z0-9]+)/';
   $content = \store\contents($page['path']);
   
-  if (preg_match_all($pattern, $content, $handles)) {
+  if(preg_match_all($pattern, $content, $handles)) {
     foreach($handles[1] as $handle) 
       send_mention($page, $handle);
   }

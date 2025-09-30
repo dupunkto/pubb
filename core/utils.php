@@ -26,7 +26,7 @@ function relative_to($path, $parent) {
   $absolute = realpath($path);
   $parent = realpath($parent);
 
-  if (strpos($absolute, $parent) !== 0) return false;
+  if(strpos($absolute, $parent) !== 0) return false;
 
   $relative = substr($absolute, strlen($parent));
   $relative = ltrim($relative, DIRECTORY_SEPARATOR);

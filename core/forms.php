@@ -8,7 +8,7 @@ function options($name, $options, $selected, $ints = false) {
     <select name="<?= $name ?>">
       <?php 
         foreach($options as $value => $label) {
-          if (is_int($value) and !$ints) {
+          if(is_int($value) and !$ints) {
             $value = $label;
             $label = ucfirst($label);
           }
