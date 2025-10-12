@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inconsolata:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inconsolata:wdth,wght@50..200,200..900&display=swap");
 
 :root {
   color-scheme: dark;
@@ -22,9 +22,7 @@ html {
 }
 
 body {
-  --gradient-color: #e8e2d5;
-  --gradient-height: 800px;
-  font-family: "Crimson Text", serif;
+  font-family: "Crimson Pro", serif;
   font-size: 1.2em;
   line-height: 1.6;
   padding: 20px;
@@ -48,6 +46,7 @@ body {
     h1 {
       margin: 0;
       color: #c5d1b8;
+      font-weight: 900;
 
       a {
         text-decoration: none;
@@ -209,7 +208,7 @@ body {
     hr {
       border: none;
       height: 2.5px;
-      background: linear-gradient(to right, transparent, var(--border-color), transparent);
+      background: linear-gradient(to right, transparent, #4a6b3a, transparent);
       margin: 20px 0;
     }
   }
@@ -236,10 +235,6 @@ main {
   grid-area: main;
   height: fit-content;
   max-width: initial;
-  --border-color: #4a6b3a;
-  --gradient-color: #f0eddb;
-  --border-width: 2px;
-  --gradient-height: 900px;
   width: 100%;
   margin: 0;
 
@@ -249,37 +244,8 @@ main {
     margin-top: 0;
   }
 
-  h2:first-child,
-  h3:first-child,
-  p:first-child {
-    margin-top: 0;
-  }
-
-  .h-entry {
-    display: grid;
-    grid-template-areas: "title dt" "content content";
-
-    .p-name {
-      grid-area: title;
-      font-size: 1.5em;
-    }
-
-    .dt-published {
-      grid-area: dt;
-      display: block;
-      font-size: 0.8em;
-      opacity: 0.8;
-      text-align: right;
-      color: #6b7c5b;
-    }
-
-    .e-content {
-      grid-area: content;
-    }
-  }
-
   blockquote {
-    border-left: 3px solid var(--border-color);
+    border-left: 3px solid #4a6b3a;
     margin-left: 5px;
     padding-left: 10px;
     background: rgba(90, 109, 76, 0.1);
@@ -292,7 +258,7 @@ main {
   hr {
     border: none;
     height: 2.5px;
-    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    background: linear-gradient(to right, transparent, #4a6b3a, transparent);
     margin: 20px 0;
   }
 }
@@ -303,31 +269,93 @@ main {
   position: relative;
   background: #1f241a;
   border-radius: 3px;
-  padding: 25px;
+  padding: 30px 25px 40px 25px;
+}
 
-  .comment-section {
-    color: #c5d1b8;
-    padding: 20px 20px 20px 0;
-    border-top: 1px solid #3a4232;
-    font-size: 0.85em;
+.feed article {
+  border-radius: 0;
+  border-bottom: 2px dotted #5a6d4c;
 
-    h2 {
-      margin-top: 0;
-      color: #c5d1b8;
+  &:first-child {
+    border-radius: 3px 3px 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 3px 3px;
+    border-bottom: none;
+  }
+}
+
+.feed article,
+.single main {
+  &.h-entry,
+  .h-entry {
+    display: grid;
+    grid-template-areas: "title dt" "content content";
+    row-gap: 10px;
+
+    .p-name {
+      grid-area: title;
+      margin: 0;
+      font-size: 1.4em;
+      font-weight: 900;
+      color: #b0c5a3;
     }
 
-    form {
-      width: fit-content;
+    .dt-published {
+      grid-area: dt;
+      display: block;
+      font-size: 0.8em;
+      opacity: 0.8;
+      text-align: right;
+      color: #6b7c5b;
+      align-content: center;
+    }
+
+    .e-content {
+      grid-area: content;
+
+      > *:first-child {
+        margin-top: 0;
+      }
+
+      > *:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
 
 .feed article,
+.single main,
 .listing main {
-  border-bottom: 2px dotted #5a6d4c;
+  .comment-section {
+    color: #c5d1b8;
+    padding: 20px 0;
+    border-top: 1px solid #3a4232;
+    font-size: 0.85em;
+    margin-top: 20px;
 
-  &:last-child {
-    border-bottom: none;
+    h2 {
+      margin: 0;
+      color: #c5d1b8;
+    }
+
+    ul:not(:has(> *)) {
+      margin: 0;
+    }
+
+    form {
+      width: fit-content;
+
+      p:first-of-type {
+        margin: 0;
+      }
+
+      p {
+        margin-top: 0;
+      }
+    }
   }
 }
 
@@ -511,7 +539,7 @@ pre.code {
       .h-card {
         margin-bottom: 0;
         display: block;
-        font-size: 0.9rem;
+        font-size: 1rem;
 
         h3,
         .u-photo {
@@ -529,6 +557,7 @@ pre.code {
         h3 {
           font-size: 1rem;
           border-radius: 3px 3px 0 0;
+          padding: 5px 10px;
         }
       }
     }
