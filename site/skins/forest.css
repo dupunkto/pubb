@@ -89,6 +89,15 @@ body {
       padding: 0;
       display: flex;
       gap: 15px;
+
+      .selected a {
+        background: #5a6d4c;
+        color: #e8e6e0;
+        padding: 3px 5px 4px;
+        margin: -3px -5px -4px;
+        text-decoration: none;
+        border-radius: 2px;
+      }
     }
   }
 
@@ -269,7 +278,7 @@ main {
   position: relative;
   background: #1f241a;
   border-radius: 3px;
-  padding: 30px 25px 40px 25px;
+  padding: 20px 25px 40px 25px;
 }
 
 .feed article {
@@ -384,6 +393,7 @@ h6 {
 }
 
 a {
+  display: inline-block;
   color: #a8bd9a;
   text-underline-offset: 3px;
   text-decoration-color: #7a8e6d;
