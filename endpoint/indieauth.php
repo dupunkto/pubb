@@ -323,5 +323,6 @@ $csrf_token =
           </p>
         <?php } ?>
       </form>
+    </main>
   </body>
 </html>
