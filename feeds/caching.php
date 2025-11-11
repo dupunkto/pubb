@@ -15,7 +15,7 @@ function equal($name, $value) {
   return !empty($_HEADERS[$name]) and $_HEADERS[$name] == $value;
 }
 
-$last_modified = date("r", strtotime($last_updated));
+$last_modified = date("r", $last_updated);
 $etag = md5($last_modified);
 
 header("Last-Modified: $last_modified");
