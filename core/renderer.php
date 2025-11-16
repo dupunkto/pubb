@@ -130,7 +130,7 @@ function page_content($page) {
 
 function plain_text($page) {
   $contents = \store\contents($page['path']);
-  echo prerender_text($contents);
+  echo prerender_text(evaluate($contents));
 }
 
 // Internal APIs
@@ -242,7 +242,7 @@ function render_html($page) {
 
 function render_textual($page) {
   $contents = \store\contents($page['path']);
-  echo '<pre>' . htmlspecialchars(render_shortcodes($contents)) . '</pre>';
+  return wrap('pre', render_shortcodes(evaluate($contents)));
 }
 
 function render_caption($caption) {
@@ -258,10 +258,21 @@ function render_message($kind, $message) {
 }
 
 function prerender($prose) {
+  $prose = evaluate($prose);
   $prose = prerender_html($prose);
   $prose = prerender_text($prose);
 
   return $prose;
+}
+
+// Inline PHP code support is experimental functionality that has to
+// be explicitly enabled by setting `renderer.allow-eval` to `true`
+// in config. This is a very powerful (but inherently dangerous) feature.
+// Use with caution; here be dragons.
+function evaluate($contents) {
+  return RENDERER_ALLOW_EVAL
+    ? capture(fn($c) => eval('?>' . $c . '<?php'), $contents)
+    : $contents;
 }
 
 function prerender_html($prose) {

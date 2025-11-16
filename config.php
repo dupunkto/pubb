@@ -68,6 +68,7 @@ foreach(PAGES_CATEGORIES as $category) {
 }
 
 fallback('feeds.ensure-compatibility', false);
+fallback('renderer.allow-eval', false);
 
 $_SKIN_PATH = __DIR__ . "/site/skins/" . LAYOUT_SKIN . ".css";
 resolute('layout.rev', md5_file($_SKIN_PATH));
