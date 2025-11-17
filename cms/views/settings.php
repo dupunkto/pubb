@@ -385,23 +385,27 @@
   </p>
 
   <h3>Security</h3>
+  
+  <?php if(is_fallback("auth-endpoint")) { ?>
+    <p>
+      <label for="passphrase">Passphrase</label>
+      <span>If you want to change the passphrase, please enter a new one and then confirm it by typing it again. (leave empty to keep current passphrase)</span>
 
-  <p>
-    <label for="passphrase">Passphrase</label>
-    <span>If you want to change the passphrase, please enter a new one and then confirm it by typing it again. (leave empty to keep current passphrase)</span>
+      <input 
+        type="password" 
+        name="passphrase"
+        placeholder="Enter a passphrase..."
+      >
 
-    <input 
-      type="password" 
-      name="passphrase"
-      placeholder="Enter a passphrase..."
-    >
-
-    <input 
-      type="password" 
-      name="confirm"
-      placeholder="Confirm passphrase..."
-    >
-  </p>
+      <input 
+        type="password" 
+        name="confirm"
+        placeholder="Confirm passphrase..."
+      >
+    </p>
+  <?php } else { ?>
+    <p style="opacity: 0.5">The builtin authentication endpoint has been disabled, authentication is externally managed.</p>
+  <?php } ?>
   
   <p>
     <!-- Needed because browsers are stupid and don't send the checkbox if unchecked -->
