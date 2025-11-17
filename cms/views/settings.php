@@ -322,6 +322,27 @@
     <?php } ?>
   </table>
 
+  <p>
+    <label>Feeds</label>
+    <span>Select categories to be included in RSS, Atom and JSON feeds.</span>
+  </p>
+
+  <input type="hidden" name="feeds.categories[]" value="" />
+
+  <p>
+    <?php foreach(\core\list_categories() as $slug => $title) { ?>
+      <label>
+        <input
+          type="checkbox"
+          name="feeds.categories[]"
+          value="<?= $slug ?>"
+          <?php if(in_array($slug, FEEDS_CATEGORIES)) echo "checked" ?>
+        >
+        <span><?= $title ?></span>
+      </label>
+    <?php } ?>
+  </p>
+
   <h3>Advanced</h3>
 
   <p>
@@ -372,7 +393,7 @@
     <input type="hidden" name="feeds.ensure-compatibility" value="false" />
 
     <label>
-      <input 
+      <input
         type="checkbox"
         name="feeds.ensure-compatibility"
         <?php if(FEEDS_ENSURE_COMPATIBILITY) echo "checked" ?>

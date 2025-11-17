@@ -67,6 +67,7 @@ foreach(PAGES_CATEGORIES as $category) {
   fallback("layout.$category", 'listing');
 }
 
+fallback("feeds.categories", PAGES_CATEGORIES);
 fallback('feeds.ensure-compatibility', false);
 fallback('renderer.allow-eval', false);
 

@@ -35,7 +35,7 @@ echo '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
       $clearance = \access\clearance('rss-only');
       $pages = \store\list_pages($clearance);
 
-      foreach($pages as $page) {
+      foreach(\core\filter_feeds($pages) as $page) {
         ?>
           <item>
             <?php 

@@ -14,7 +14,7 @@ $pages = \store\list_pages($clearance);
 
 $entries = [];
 
-foreach($pages as $page) {
+foreach(\core\filter_feeds($pages) as $page) {
   $entry = [
     "id" => $page['id'],
     "url" => \urls\page_url($page),

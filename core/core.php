@@ -175,6 +175,10 @@ function level_to_visibility($lvl) {
   return list_visibilities()[$lvl];
 }
 
+function filter_feeds($pages) {
+  return array_filter($pages, fn($p) => in_array($p['category'], FEEDS_CATEGORIES));
+}
+
 // Gists
 
 function new_gist($filename, $code, $caption) {
