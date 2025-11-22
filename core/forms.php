@@ -4,7 +4,7 @@
 namespace forms;
 
 function options($name, $options, $selected, $ints = false, $reverse = false) {
-  if($reverse) $options = array_reverse($options);
+  if($reverse) $options = array_reverse($options, true);
   ?>
     <select name="<?= $name ?>">
       <?php 
