@@ -24,12 +24,16 @@ function options($name, $options, $selected, $ints = false, $reverse = false) {
 
 function schema_form($schema, $data = []) {
   foreach($schema['fields'] as $field => $definition) {
-    ?>
-      <p>
-        <label for="<?= $field ?>"><?= $definition['label'] ?? ucfirst($field) ?></label>
-        <?php schema_field($field, $definition, $data[$field] ?? '') ?>
-      </p>
-    <?php
+    if(@$definition['hidden']) {
+      schema_field($field, $definition, $data[$field] ?? '');
+    } else {
+      ?>
+        <p>
+          <label for="<?= $field ?>"><?= $definition['label'] ?? ucfirst($field) ?></label>
+          <?php schema_field($field, $definition, $data[$field] ?? '') ?>
+        </p>
+      <?php
+    }
   }
 }
 
@@ -50,6 +54,8 @@ function schema_field($field, $definition, $value = '') {
       $value = str_replace(' ', 'T', $value);
     }
   }
+
+  if(@$definition['hidden']) $type = 'hidden';
     
   switch($type) {
     case 'textarea':
