@@ -280,7 +280,7 @@ function prerender_html($prose) {
 }
 
 function prerender_text($prose) {
-  return render_shortcodes($prose);
+  return fix_comments(render_shortcodes($prose));
 }
 
 function render_tagged_contacts($prose) {
@@ -326,6 +326,10 @@ function render_shortcodes($prose) {
   ];
 
   return preg_replace(array_keys($shorts), array_values($shorts), $prose);
+}
+
+function fix_comments($prose) {
+  return str_replace('—>', '-->', str_replace('<!—', '<!--', $prose));
 }
 
 function shift_headings($html, $level) {
