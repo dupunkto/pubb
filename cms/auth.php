@@ -20,9 +20,13 @@ if(is_authenticated()) {
 
 // Create a new authentication request.
 elseif(!isset($_GET['code'])) {
+
+  // Invalidate potentially running sessions.
   if(isset($_SESSION['state'])) {
-      die("Detected another authentication session already running in this browser session. 
-      Please clear your cookies and try again.");
+    unset($_SESSION['state']);
+    unset($_SESSION['code_verifier']);
+
+    header("Location: " . $_SERVER['REQUEST_URI']);
   }
 
   $_SESSION['state'] = random_string();
@@ -79,8 +83,8 @@ else {
       json_error(401, "You're not 'me'. So either you're a crazy hackerboy or I'm a dumd idiot. Or both.");
   }
 
- unset($_SESSION['state']);
- unset($_SESSION['code_verifier']);
+  unset($_SESSION['state']);
+  unset($_SESSION['code_verifier']);
 
   // Authenticate the user.
   $_SESSION['authenticated'] = true;
