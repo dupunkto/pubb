@@ -86,7 +86,7 @@ fallback('pingback-endpoint',
 fallback('cms.host', "cms." . HOST);
 fallback('cms.canonical', PREFERED_PROTO . "://" . CMS_HOST);
 
-resolute('issuer', CANONICAL . "/");
+resolute('issuer', CMS_CANONICAL . "/");
 resolute('client-id', ISSUER);
 resolute('redirect-uri', CMS_CANONICAL . "/auth");
 resolute('supported-scopes', ["create", "update", "delete", "media"]);
