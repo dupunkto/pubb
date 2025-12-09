@@ -8,6 +8,11 @@ header("Content-Type: text/plain; charset=UTF-8");
 ?>
 Sitemap: <?= CANONICAL ?>/sitemap.xml
 
+<?php if(NOROBOTS) { ?>
+User-agent: *
+Disallow: /
+<?php exit; } ?>
+
 <?php if(NONCOMMERCIAL) { ?>
 # This site is non-commercial and doesn't want anything
 # to do with the Corporate Web.
