@@ -409,7 +409,7 @@ label {
   content: "Last modified on ";
 }
 
-input {
+input, button, a.button {
   width: 100%;
   max-width: 100%;
   padding: 0.5em;
@@ -422,6 +422,7 @@ input {
   }
 }
 
+a.button,
 button,
 input[type="button"],
 input[type="submit"] {
@@ -444,6 +445,9 @@ input[type="submit"] {
     animation: active-press 0.25s;
   }
 }
+
+a.button { text-decoration: none }
+a.button:hover { box-shadow: none }
 
 input[type="radio"], input[type="checkbox"] {
   width: fit-content !important;
