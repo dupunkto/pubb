@@ -65,7 +65,7 @@ switch(true) {
 
 \stats\record_view($path);
 
-if(@$page['type'] == 'txt') {
+if(@$page['type'] == 'txt' or @$_GET['format'] == 'txt') {
   header("Content-Type: text/plain; charset=UTF-8");
   \renderer\plain_text($page);
   exit;
