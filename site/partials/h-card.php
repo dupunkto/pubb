@@ -25,7 +25,7 @@
   <?php } ?>
 
   <?php if(defined('PROFILE_SONG')) { ?>
-    <p class="p-song"><?= PROFILE_SONG ?></p>
+    <p class="p-song"><?= str_replace(" - ", " — ", PROFILE_SONG) ?></p>
   <?php } ?>
 
   <?php if(defined('AUTHOR_EMAIL')) { ?>
