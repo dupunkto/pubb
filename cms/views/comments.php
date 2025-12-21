@@ -16,7 +16,7 @@
         Comments on
         <a href="<?= \urls\page_url($page) ?>">
           <cite>
-            <?= $page['title'] ?? $page['published'] ?>
+            <?= \core\get_page_title($page) ?>
           </cite>
         </a>
       </h4>
@@ -69,7 +69,11 @@
           </a>
         <?php } ?>
 
-        in <cite><?= $mention['page_title'] ?></cite>
+        in <cite><?=
+          // This should ideally be using \core\get_page_title, but that's
+          // annoying with the query so this'll do for now.
+          $mention['page_title'] ?? str_replace("-", " ", $mention['page_slug']) 
+        ?></cite>
       </span>
 
       <span class="actions">
