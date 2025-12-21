@@ -84,7 +84,7 @@ function get_page_title($page) {
   if($page['title']) return $page['title'];
   else if($page['type'] == 'code') return $page['slug'];
   else if($page['caption']) return $page['caption'];
-  else return ucfirst(str_replace("-", " ", $page['slug']));
+  else return str_replace("-", " ", $page['slug']);
 }
 
 function get_page_by_url($url) {
