@@ -343,6 +343,20 @@
     <?php } ?>
   </p>
 
+  <p>
+    <input type="hidden" name="feeds.updated-top" value="false" />
+
+    <label>
+      <input
+        type="checkbox"
+        name="feeds.updated-top"
+        <?php if(FEEDS_UPDATED_TOP) echo "checked" ?>
+        value="true"
+      >
+      <span>Updated posts rise to the top</span>
+    </label>
+  </p>
+
   <h3>Advanced</h3>
 
   <p>

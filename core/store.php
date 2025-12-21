@@ -128,7 +128,9 @@ function delete_page($id) {
 }
 
 function pages_query() {
-  return 'SELECT
+  $sort_field = FEEDS_UPDATED_TOP ? 'updated' : 'published';
+
+  return "SELECT
     page.id,
     page.slug,
     page.type,
@@ -148,14 +150,14 @@ function pages_query() {
     volume.description AS volume_description,
     volume.start_at AS volume_start_at,
     volume.end_at AS volume_end_at
-  FROM 
+  FROM
     pages page
   LEFT JOIN
     volumes volume ON page.published BETWEEN volume.start_at AND volume.end_at
-  ORDER BY 
-    page.updated DESC,
+  ORDER BY
+    page.$sort_field DESC,
     page.id
-  ';
+  ";
 }
 
 function list_all_pages() {

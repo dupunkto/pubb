@@ -69,6 +69,7 @@ foreach(PAGES_CATEGORIES as $category) {
 
 fallback("feeds.categories", PAGES_CATEGORIES);
 fallback('feeds.ensure-compatibility', false);
+fallback('feeds.updated-top', true);
 fallback('renderer.allow-eval', false);
 fallback("visibilities.reverse", false);
 
