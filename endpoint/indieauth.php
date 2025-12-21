@@ -311,7 +311,7 @@ $csrf_token =
         <p>
           <label>
               Password<br />
-              <input type="password" name="password" id="password">
+              <input type="password" name="password" id="password" autofocus>
           </label>
         </p>
 
