@@ -72,6 +72,7 @@ function update_page(
   $visibility,
   $category,
   $updated,
+  $published,
   $caption,
   $reply_to
 ) {
@@ -90,7 +91,8 @@ function update_page(
     `visibility` = ?,
     `category` = ?,
     `caption` = ?,
-    `updated` = ?
+    `updated` = ?,
+    `published` = ?
   WHERE id = ?', [
     $slug,
     $type,
@@ -103,6 +105,7 @@ function update_page(
     $category,
     $caption,
     $updated,
+    $published,
     $id
   ]);
 }
@@ -113,6 +116,13 @@ function page_changed($id, $new) {
   $existing = contents($page['path']);
 
   return $new == $existing ? $page['updated'] : $now;
+}
+
+function page_published($id, $draft) {
+  $page = get_page($id);
+  $now = date("Y-m-d H:i:s");
+
+  return $page['draft'] && !$draft ? $now : $page['published'];
 }
 
 function get_page($id) {

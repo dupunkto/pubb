@@ -135,6 +135,7 @@ function edit_page(
   $lang = null
 ) {
   $updated = \store\page_changed($id, $prose);
+  $published = \store\page_published($id, $draft);
   $path = \store\write_file($prose, ".".$type);
 
   return \store\update_page(
@@ -144,6 +145,7 @@ function edit_page(
     title: $title,
     lang: $lang,
     updated: $updated,
+    published: $published,
     path: $path,
     draft: $draft,
     visibility: $visibility,
@@ -203,6 +205,7 @@ function new_gist($filename, $code, $caption) {
 
 function edit_gist($id, $filename, $code, $caption) {
   $updated = \store\page_changed($id, $code);
+  $published = \store\page_published($id, false);
   $path = \store\write_file($code, $filename);
 
   return \store\update_page(
@@ -212,6 +215,7 @@ function edit_gist($id, $filename, $code, $caption) {
     title: null,
     lang: null,
     updated: $updated,
+    published: $published,
     path: $path,
     draft: 0,
     visibility: 50,
@@ -244,6 +248,7 @@ function new_photo($slug, $caption, $path) {
 
 function update_photo($id, $slug, $caption, $path) {
   $now = date("Y-m-d H:i:s");
+  $published = \store\page_published($id, false);
 
   return \store\update_page(
     id: $id,
@@ -252,6 +257,7 @@ function update_photo($id, $slug, $caption, $path) {
     title: null,
     lang: null,
     updated: $now,
+    published: $published,
     path: $path,
     draft: 0,
     visibility: 50,
