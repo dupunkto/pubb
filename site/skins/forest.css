@@ -7,8 +7,8 @@
   --dark-2: #1f241a;
   --dark-3: #242a1e;
   --dark-4: #3a4232;
-  --mid: #4a6b3a;
-  --gray: #5a6d4c;
+  --mid-1: #4a6b3a;
+  --mid-2: #5a6d4c;
   --light-1: #a8bd9a;
   --light-2: #c5d1b8;
   --white: #e8e6e0;
@@ -84,7 +84,7 @@ body {
     width: 100%;
     background: var(--dark-3);
     color: var(--light-2);
-    padding: 12.5px 25px;
+    padding: 0;
     border-radius: 2px;
     align-self: center;
     overflow-x: scroll;
@@ -96,17 +96,22 @@ body {
     ul {
       margin-block: 0;
       list-style: none;
-      padding: 0;
+      padding: 12.5px 20px;
       display: flex;
       gap: 15px;
+      width: min-content;
 
       .selected a {
-        background: var(--gray);
+        background: var(--mid-2);
         color: var(--white);
-        padding: 3px 5px 4px;
-        margin: -3px -5px -4px;
         text-decoration: none;
-        border-radius: 2px;
+        border-radius: 3px;
+        box-shadow:
+          5px 4px 0px 0px var(--mid-2),
+          5px -3px 0px 0px var(--mid-2),
+          -5px -3px 0px 0px var(--mid-2),
+          -5px 4px 0px 0px var(--mid-2),
+          -5px 4px 0px 0px var(--mid-2);
       }
     }
   }
@@ -132,7 +137,7 @@ body {
         h3 {
           margin: 0 0 15px 0;
           padding: 10px 15px;
-          background: var(--gray);
+          background: var(--mid-2);
           color: var(--white);
           border-radius: 0 0 3px 3px;
           width: 60%;
@@ -160,7 +165,7 @@ body {
           width: 60%;
           margin: 0 10px 0 0;
           border-radius: 3px 3px 0 0;
-          border: 4px solid var(--gray);
+          border: 4px solid var(--mid-2);
         }
 
         .p-mood,
@@ -198,6 +203,7 @@ body {
           a:hover {
             padding: 0;
             margin: 0;
+            box-shadow: none;
           }
         }
 
@@ -210,7 +216,7 @@ body {
             font-size: initial;
             display: inline-block;
             content: "Send message";
-            background: var(--gray);
+            background: var(--mid-2);
             color: var(--white);
             padding: 10px 15px;
             font-weight: 900;
@@ -257,10 +263,10 @@ main {
   }
 
   blockquote {
-    border-left: 3px solid var(--mid);
+    border-left: 3px solid var(--mid-1);
     margin-left: 5px;
     padding-left: 10px;
-    background: color-mix(in srgb, var(--gray) 10%, transparent);
+    background: color-mix(in srgb, var(--mid-2) 10%, transparent);
     margin-right: 0;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -268,7 +274,7 @@ main {
   }
 
   hr {
-    border-color: var(--gray);
+    border-color: var(--mid-2);
     margin: 20px 0;
   }
 }
@@ -284,7 +290,7 @@ main {
 
 .feed article {
   border-radius: 0;
-  border-bottom: 2px dotted var(--gray);
+  border-bottom: 2px dotted var(--mid-2);
 
   &:first-child {
     border-radius: 3px 3px 0 0;
@@ -318,7 +324,7 @@ main {
       font-size: 0.8em;
       opacity: 0.8;
       text-align: right;
-      color: var(--gray);
+      color: var(--mid-2);
       align-content: center;
     }
 
@@ -389,7 +395,7 @@ h6 {
 }
 
 ::selection {
-  background: var(--mid);
+  background: var(--mid-1);
   color: var(--white);
 }
 
@@ -398,16 +404,20 @@ a {
   display: inline-block;
   color: var(--light-1);
   text-underline-offset: 3px;
-  text-decoration-color: var(--gray);
+  text-decoration-color: var(--mid-2);
   text-decoration-thickness: 2px;
 
   &:hover {
-    background: var(--gray);
+    background: var(--mid-2);
     color: var(--white);
-    padding: 3px 5px 4px;
-    margin: -3px -5px -4px;
     text-decoration: none;
     border-radius: 2px;
+    box-shadow:
+      5px 4px 0px 0px var(--mid-2),
+      5px -3px 0px 0px var(--mid-2),
+      -5px -3px 0px 0px var(--mid-2),
+      -5px 4px 0px 0px var(--mid-2),
+      -5px 4px 0px 0px var(--mid-2);
   }
 
   &:has(img) {
@@ -458,17 +468,17 @@ input {
 
   &:focus-visible {
     outline: none;
-    border-color: var(--gray);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gray) 30%, transparent);
+    border-color: var(--mid-2);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--mid-2) 30%, transparent);
   }
 }
 
 button,
 input[type="button"],
 input[type="submit"] {
-  background: var(--gray);
+  background: var(--mid-2);
   color: var(--white);
-  border: 2px solid var(--mid);
+  border: 2px solid var(--mid-1);
   padding: 10px 20px;
   font-family: inherit;
   font-size: 0.95em;
@@ -477,7 +487,7 @@ input[type="submit"] {
   cursor: pointer;
 
   &:hover {
-    background: var(--mid);
+    background: var(--mid-1);
   }
 }
 
@@ -500,7 +510,7 @@ table {
   th {
     font-weight: 600;
     color: var(--light-2);
-    background: color-mix(in srgb, var(--gray) 10%, transparent);
+    background: color-mix(in srgb, var(--mid-2) 10%, transparent);
   }
 }
 
@@ -538,6 +548,10 @@ pre.code {
 
     nav {
       margin: 0;
+
+      ul {
+        padding: 12.5px 15px;
+      }
     }
 
     > aside.left {
