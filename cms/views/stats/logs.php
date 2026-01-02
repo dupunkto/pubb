@@ -33,9 +33,9 @@
     <tbody>
       <?php foreach($views as $view) { ?>
         <tr>
-          <td><?= htmlspecialchars($view['client_ip']) ?></td>
+          <td><a href="https://iplookup.flagfox.net/?ip=<?= htmlspecialchars($view['client_ip']) ?>"><?= htmlspecialchars($view['client_ip']) ?></a></td>
           <td><?= htmlspecialchars($view['datetime']) ?></td>
-          <td><?= htmlspecialchars($view['path']) ?></td>
+          <td><a href="<?= CANONICAL ?><?= htmlspecialchars($view['path']) ?>"><?= htmlspecialchars($view['path']) ?></a></td>
           <td><?= htmlspecialchars($view['agent']) ?></td>
         </tr>
       <?php } ?>
