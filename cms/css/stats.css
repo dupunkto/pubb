@@ -54,6 +54,7 @@ form select {
   padding: 0.75em;
   text-align: left;
   border-bottom: 1px solid light-dark(#e0e0e0, #333);
+  text-wrap: nowrap;
 }
 
 .views-table th {
