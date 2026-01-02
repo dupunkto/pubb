@@ -26,6 +26,9 @@
         View monthly
       </a>
     <?php } ?>
+    <a href="<?= CMS_CANONICAL . "/stats/logs" ?>" class="button">
+      Logs
+    </a>
   </div>
 </header>
 

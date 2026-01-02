@@ -22,3 +22,45 @@ ul li {
   margin-bottom: 0.25em;
   background: light-dark(#f1f1f1, #2b2b33);
 }
+
+form {
+  margin: 1.5em 0;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+form select {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5em;
+  border: 1px solid light-dark(#ccc, #444);
+  background: light-dark(#fff, #1a1a1f);
+  color: inherit;
+  border-radius: 4px;
+}
+
+.views-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+.views-table th,
+.views-table td {
+  padding: 0.75em;
+  text-align: left;
+  border-bottom: 1px solid light-dark(#e0e0e0, #333);
+}
+
+.views-table th {
+  background: light-dark(#f5f5f5, #2b2b33);
+  font-weight: 600;
+}
+
+.views-table tbody tr:hover {
+  background: light-dark(#fafafa, #222228);
+}

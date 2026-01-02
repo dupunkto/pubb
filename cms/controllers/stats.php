@@ -16,9 +16,9 @@ function month_query($year, $month, $diff) {
   ]);
 }
 
-$span = isset($_GET['total']) ? "total" : "monthly";
+$span = isset($_GET['total']) ? 'total' : 'monthly';
 
-if($span == "monthly") {
+if($span == 'monthly') {
   if(!isset($_GET['y']) and !isset($_GET['m'])) goto_month(date("Y"), date("m"));
   else if(!isset($_GET['y'])) goto_month(date("Y"), $_GET['m']);
   else if(!isset($_GET['m'])) goto_month($_GET['y'], "01");

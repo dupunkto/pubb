@@ -436,6 +436,10 @@ function list_all_views() {
   return all('SELECT * FROM `views` ORDER BY `datetime` DESC');
 }
 
+function list_views_by_path($path) {
+  return all('SELECT * FROM `views` WHERE `path` = ? ORDER BY `datetime` DESC', [$path]);
+}
+
 // Menus
 
 function put_menu_item($type, $label, $page_id, $ref, $section_id) {
