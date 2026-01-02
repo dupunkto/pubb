@@ -1,0 +1,14 @@
+.views-table {
+  width: 100%;
+  max-width: 80vw;
+  position: absolute;
+  left: 10vw;
+  right: 10vw;
+  margin-top: 1em;
+}
+
+.views-table th,
+.views-table td {
+  text-align: left;
+  text-wrap: nowrap;
+}

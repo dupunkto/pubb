@@ -409,10 +409,3 @@ textarea {
   font-size: 0.8em;
   float: right;
 }
-
-.views-table {
-  max-width: 80vw;
-  position: absolute;
-  left: 10vw;
-  right: 10vw;
-}
