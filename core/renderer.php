@@ -284,8 +284,7 @@ function prerender_text($prose) {
 }
 
 function render_tagged_contacts($prose) {
-  $pattern = '/@([a-zA-Z0-9]+)/';
-  $replacement = '<a href="$1" class="mention">$1</a>';
+  $pattern = '/@([a-zA-Z0-9_]+)/';
 
   $callback = function($matches) {
     $contact = \store\get_contact_by_handle($matches[1]);

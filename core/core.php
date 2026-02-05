@@ -323,7 +323,7 @@ function record_mention($page, $source) {
 }
 
 function send_mentions($page) {
-  $pattern = '/@([a-zA-Z0-9]+)/';
+  $pattern = '/@([a-zA-Z0-9_]+)/';
   $content = \store\contents($page['path']);
   
   if(preg_match_all($pattern, $content, $handles)) {
