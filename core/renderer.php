@@ -310,7 +310,7 @@ function render_shortcodes($prose) {
     '/:go:/' => '→',
     '/:x:/' => '×',
     '/:love:/' => '♡',
-    '/:hot:/' => '🔥',
+    '/:fire:/' => '🔥',
     '/:sparkles:/' => '✨',
     '/:rocket:/' => '🚀',
     '/:email:/' => '✉️',
