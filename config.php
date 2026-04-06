@@ -71,6 +71,7 @@ fallback("feeds.categories", PAGES_CATEGORIES);
 fallback('feeds.ensure-compatibility', false);
 fallback('feeds.updated-top', true);
 fallback('renderer.allow-eval', false);
+fallback('renderer.expose-visibility', false);
 fallback("visibilities.reverse", false);
 
 $_SKIN_PATH = __DIR__ . "/site/skins/" . LAYOUT_SKIN . ".css";

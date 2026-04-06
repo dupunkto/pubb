@@ -405,6 +405,31 @@ label {
   text-align: right;
 }
 
+.p-visibility {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  margin: 0;
+  padding: 5px 10px;
+  background: #ffa6ff;
+  color: #390239;
+  text-transform: uppercase;
+  font-size: 0.5em;
+  font-weight: lighter;
+}
+
+.v-30 {
+  padding: 0 10px;
+  font-size: 1em;
+  background: #1cd14f;
+  color: white;
+}
+
+.v-40 {
+  background: #ff2889;
+  color: white;
+}
+
 .single .dt-published::before {
   content: "Last modified on ";
 }

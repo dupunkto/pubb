@@ -69,25 +69,36 @@ function page($page, $level = 1) {
         </a>
       </time>
 
-        <div class="p-author h-card" hidden>
-          <a class="u-url" href="<?= CANONICAL ?>">
-            <?php if(defined('PROFILE_PICTURE')) { ?>
-              <img
-                class="u-photo"
-                src="<?= PROFILE_PICTURE ?>"
-                alt="Profile picture"
-                width="100"
-              >
+      <?php if($page['visibility'] < \core\visibility_to_level('public')
+          && RENDERER_EXPOSE_VISIBILITY) { ?>
+        <p class="p-visibility v-<?= esc_attr($page['visibility']) ?>">
+          <?= match($page['visibility']) {
+            \core\visibility_to_level('rss') => "",
+            \core\visibility_to_level('close-friends') => "★",
+            default => \core\level_to_visibility($page['visibility'])
+          } ?>
+        </p>
+      <?php } ?>
+
+      <address class="p-author h-card" hidden>
+        <a class="u-url" href="<?= CANONICAL ?>">
+          <?php if(defined('PROFILE_PICTURE')) { ?>
+            <img
+              class="u-photo"
+              src="<?= PROFILE_PICTURE ?>"
+              alt="Profile picture"
+              width="100"
+            >
+          <?php } ?>
+          <p>
+            <?php if(defined('AUTHOR_NAME')) { ?>
+              <span class="p-name"><?= AUTHOR_NAME ?></span>
+            <?php } if(defined('PROFILE_HANDLE')) { ?>
+              <span class="p-nickname"><?= PROFILE_HANDLE ?></span>
             <?php } ?>
-            <p>
-              <?php if(defined('AUTHOR_NAME')) { ?>
-                <span class="p-name"><?= AUTHOR_NAME ?></span>
-              <?php } if(defined('PROFILE_HANDLE')) { ?>
-                <span class="p-nickname"><?= PROFILE_HANDLE ?></span>
-              <?php } ?>
-            </p>
-          </a>
-        </div>
+          </p>
+        </a>
+      </address>
     </article>
   <?php
 }
