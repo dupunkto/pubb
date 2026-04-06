@@ -15,7 +15,7 @@
 
   <div class="bar">
     <div class="group">
-      <a href="<?= CMS_CANONICAL ?>/schemas/delete?id=<?= $id ?>" class="button">Delete</a>
+      <a href="<?= CMS_CANONICAL ?>/schemas/delete?name=<?= $name ?>&id=<?= $id ?>" class="button">Delete</a>
     </div>
     <div class="group">
       <a href="<?= CMS_CANONICAL ?>/schemas?name=<?= $name ?>" class="button">Cancel</a>
