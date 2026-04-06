@@ -13,8 +13,13 @@
 
   <?php \forms\schema_form($schema, isset($errors) ? $_POST : $record) ?>
 
-  <div class="group">
-    <a href="<?= CMS_CANONICAL ?>/schemas?name=<?= $name ?>" class="button">Cancel</a>
-    <input type="submit" name="edit" value="Save">
+  <div class="bar">
+    <div class="group">
+      <a href="<?= CMS_CANONICAL ?>/schemas/delete?id=<?= $id ?>" class="button">Delete</a>
+    </div>
+    <div class="group">
+      <a href="<?= CMS_CANONICAL ?>/schemas?name=<?= $name ?>" class="button">Cancel</a>
+      <input type="submit" name="edit" value="Save">
+    </div>
   </div>
 </form>
