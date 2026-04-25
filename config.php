@@ -115,7 +115,7 @@ function resolute($key, $value) {
   $key = normalize_key($key);
   
   if(defined($key)) {
-    die("Resolute key '$key' cannot be manually assigned.");
+    die("Resolute key '$key' cannot be overridden.");
   } else {
     define($key, $value);
   }
