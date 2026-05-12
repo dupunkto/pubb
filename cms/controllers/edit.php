@@ -13,7 +13,8 @@ if(isset($_POST['save'])) {
     draft: $draft,
     visibility: (int)cast($_POST['visibility']),
     reply_to: cast(@$_POST['reply']),
-    category: cast(@$_POST['category'])
+    category: cast(@$_POST['category']),
+    song: cast(@$_POST['song'])
   );
 
   if($updated and !$draft) { 
@@ -42,5 +43,6 @@ $draft = $page['draft'];
 $visibility = $page['visibility'];
 $reply = $page['reply_to'];
 $category = $page['category'];
+$song = @$page['song'];
 
 include path_join($views, "edit-page.php");

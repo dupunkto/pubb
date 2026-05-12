@@ -28,6 +28,7 @@ function put_page(
   $slug,
   $type,
   $title,
+  $reply_to,
   $lang,
   $published,
   $updated,
@@ -36,14 +37,14 @@ function put_page(
   $visibility,
   $category,
   $caption,
-  $reply_to
+  $song,
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
   is_int($visibility) or die("visibility $visibility must be an integer");
   in_store($path) or die("path $path not in store");
 
   return exec_query('INSERT INTO `pages` (
-    `slug`, 
+    `slug`,
     `type`,
     `title`,
     `reply_to`,
@@ -53,9 +54,10 @@ function put_page(
     `visibility`,
     `category`,
     `caption`,
+    `song`,
     `published`,
     `updated`
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
     $slug,
     $type,
     $title,
@@ -66,6 +68,7 @@ function put_page(
     $visibility,
     $category,
     $caption,
+    $song,
     $published,
     $updated
   ]);
@@ -84,7 +87,8 @@ function update_page(
   $updated,
   $published,
   $caption,
-  $reply_to
+  $reply_to,
+  $song = null
 ) {
   in_array($type, TYPES) or die("type $type does not exist");
   is_int($visibility) or die("visibility $visibility must be an integer");
@@ -101,6 +105,7 @@ function update_page(
     `visibility` = ?,
     `category` = ?,
     `caption` = ?,
+    `song` = ?,
     `updated` = ?,
     `published` = ?
   WHERE id = ?', [
@@ -114,6 +119,7 @@ function update_page(
     $visibility,
     $category,
     $caption,
+    $song,
     $updated,
     $published,
     $id

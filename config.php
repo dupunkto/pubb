@@ -73,6 +73,7 @@ fallback('feeds.updated-top', true);
 fallback('renderer.allow-eval', false);
 fallback('renderer.expose-visibility', false);
 fallback("editor.reverse-visibilities", false);
+fallback("editor.show-song", false);
 
 $_SKIN_PATH = __DIR__ . "/site/skins/" . LAYOUT_SKIN . ".css";
 resolute('layout.rev', md5_file($_SKIN_PATH));

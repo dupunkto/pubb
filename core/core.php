@@ -101,7 +101,8 @@ function new_page(
   $category = null,
   $draft = false,
   $reply_to = null,
-  $lang = null
+  $lang = null,
+  $song = null
 ) {
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($prose, ".".$type);
@@ -110,6 +111,7 @@ function new_page(
     slug: $slug,
     type: $type,
     title: $title,
+    reply_to: $reply_to,
     lang: $lang,
     published: $now,
     updated: $now,
@@ -117,8 +119,8 @@ function new_page(
     draft: $draft,
     visibility:  $visibility,
     category: $category,
-    reply_to: $reply_to,
-    caption: null
+    caption: null,
+    song: $song,
   );
 }
 
@@ -132,7 +134,8 @@ function edit_page(
   $category = null,
   $draft = false,
   $reply_to = null,
-  $lang = null
+  $lang = null,
+  $song = null
 ) {
   $updated = \store\page_changed($id, $prose);
   $published = \store\page_published($id, $draft);
@@ -151,7 +154,8 @@ function edit_page(
     visibility: $visibility,
     category: $category,
     reply_to: $reply_to,
-    caption: null
+    caption: null,
+    song: $song
   );
 }
 
@@ -191,6 +195,7 @@ function new_gist($filename, $code, $caption) {
     slug: $filename,
     type: 'code',
     title: null,
+    reply_to: null,
     lang: null,
     published: $now,
     updated: $now,
@@ -198,8 +203,8 @@ function new_gist($filename, $code, $caption) {
     draft: 0,
     visibility: 50,
     category: null,
-    reply_to: null,
-    caption: $caption
+    caption: $caption,
+    song: null
   );
 }
 
@@ -212,6 +217,7 @@ function edit_gist($id, $filename, $code, $caption) {
     id: $id,
     slug: $filename,
     type: 'code',
+    reply_to: null,
     title: null,
     lang: null,
     updated: $updated,
@@ -220,8 +226,8 @@ function edit_gist($id, $filename, $code, $caption) {
     draft: 0,
     visibility: 50,
     category: null,
-    reply_to: null,
     caption: $caption,
+    song: null,
   );
 }
 
@@ -234,6 +240,7 @@ function new_photo($slug, $caption, $path) {
     slug: $slug,
     type: 'photo',
     title: null,
+    reply_to: null,
     lang: null,
     published: $now,
     updated: $now,
@@ -241,8 +248,8 @@ function new_photo($slug, $caption, $path) {
     draft: 0,
     visibility: 50,
     category: null,
-    reply_to: null,
     caption: $caption,
+    song: null,
   );
 }
 
@@ -255,6 +262,7 @@ function update_photo($id, $slug, $caption, $path) {
     slug: $slug,
     type: 'photo',
     title: null,
+    reply_to: null,
     lang: null,
     updated: $now,
     published: $published,
@@ -262,8 +270,8 @@ function update_photo($id, $slug, $caption, $path) {
     draft: 0,
     visibility: 50,
     category: null,
-    reply_to: null,
     caption: $caption,
+    song: null,
   );
 }
 

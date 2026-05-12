@@ -10,6 +10,7 @@
       pattern="[@~]?[a-z0-9](-?[a-z0-9])*"
       required
     >
+
     <div class="bar">
       <input
         type="text"
@@ -48,6 +49,17 @@
         >
       </p>
     </div>
+
+    <?php if(EDITOR_SHOW_SONG) { ?>
+      <input
+        type="text"
+        name="song"
+        placeholder="My Happy Ending - Avril Lavigne"
+        <?php if(isset($song)) { ?>
+          value="<?= esc_attr($song) ?>"
+        <?php } ?>
+      >
+    <?php } ?>
 
     <?php if(isset($reply) and $reply) { ?>
       <input type="hidden" name="reply" value="<?= esc_attr($reply) ?>">

@@ -12,7 +12,8 @@ if(isset($_POST['save'])) {
     draft: $draft,
     visibility: (int)cast($_POST['visibility']),
     reply_to: cast(@$_POST['reply']),
-    category: cast(@$_POST['category'])
+    category: cast(@$_POST['category']),
+    song: cast(@$_POST['song'])
   );
   
   if($saved and !$draft) {
