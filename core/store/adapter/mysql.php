@@ -1,23 +1,17 @@
 <?php
-// Store adapter for MySQL databases.
+// Adapter for MySQL databases.
 
 namespace adapter;
 use PDO;
 
-required("db.host");
-required("db.user");
-required("db.pass");
-required("db.name");
-
-// TODO(robin): for the MySQL adapter, we cannot simply
-// check for the existance of a file to determine initial run.
-define('INITIAL_RUN', false);
-
 function establish_connection() {
-  $host = DB_HOST;
-  $user = DB_USER;
-  $pass = DB_PASS;
-  $name = DB_NAME;
+  global $_DATABASE;
+
+  $host = $_DATABASE['host'];
+  $user = $_DATABASE['user'];
+  $pass = $_DATABASE['pass'];
+  $port = $_DATABASE['port'] ?? 3306;
+  $name = ltrim($_DATABASE['path'], "/");
 
   $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -25,7 +19,7 @@ function establish_connection() {
     PDO::ATTR_EMULATE_PREPARES   => false,
   ];
 
-  $dsn = "mysql:host=$host;dbname=$name;charset=utf8mb4";
+  $dsn = "mysql:host=$host;port=$port;dbname=$name;charset=utf8mb4";
 
   try {
     return new PDO($dsn, $user, $pass, $options);
@@ -33,6 +27,10 @@ function establish_connection() {
   catch(PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
   }
+}
+
+function initial_run() {
+  return !table_exists('migrations');
 }
 
 function execute($path) {
@@ -47,7 +45,10 @@ function execute($path) {
 }
 
 function table_exists($table_name) {
-  $stmt = DBH->prepare("SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = ?");
+  $stmt = DBH->prepare("SELECT table_name
+    FROM information_schema.tables
+    WHERE table_schema = DATABASE() AND table_name = ?");
+
   $stmt->execute([$table_name]);
   return $stmt->fetch() != false;
 }

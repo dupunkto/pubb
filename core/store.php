@@ -3,10 +3,20 @@
 
 namespace store;
 
-require __DIR__ . "/store/sqlite.php";
-#require __DIR__ . "/store/mysql.php";
+$_URL = getenv("DATABASE_URL") ?: "sqlite://" . STORE . "/data.db";
 
-define('DBH', \adapter\establish_connection());
+if(str_starts_with($_URL, "sqlite://")) {
+  $_DATABASE = ['scheme' => 'sqlite', 'path' => substr($_URL, strlen("sqlite://"))];
+}
+else {
+  $_DATABASE = parse_url($_URL) or die("Syntax error in database connection string.");
+}
+
+switch($_DATABASE['scheme']) {
+  case 'mysql': require __DIR__ . "/store/adapter/mysql.php"; break;
+  case 'postgres': require __DIR__ . "/store/adapter/postgres.php"; break;
+  case 'sqlite': require __DIR__ . "/store/adapter/sqlite.php"; break;
+}
 
 // Pages
 
@@ -658,28 +668,34 @@ function version() {
   return @$latest['version'] ?? -1;
 }
 
-function is_stale() {
-  if(INITIAL_RUN) return true;
-  $version = version();
-
-  if($version > STORE_VERSION) {
-    die("Mismatched store versions: expected " . STORE_VERSION . ", 
-    but database is already at $version");
-  } else {
-    return $version < STORE_VERSION;
-  }
-}
-
-function migrate() {
-  syslog(LOG_INFO, "Running migrations for version: " . STORE_VERSION);
-
-  \adapter\execute(__DIR__ . "/store/migrations.sql");
-  exec_query('INSERT INTO `migrations` (`version`) VALUES (?)', [STORE_VERSION])
-    or die("Failed to bump store version to " . STORE_VERSION . ".");
-}
-
 function seed() {
   \adapter\execute(__DIR__ . "/store/seeds.sql");
+}
+
+function migrate($from, $to) {
+  if($from == $to) return; // Skip migrations altogether if store is up-to-date.
+  syslog(LOG_INFO, "Running migrations for version: " . $to);
+
+  $pending = [];
+  $migrations = glob(__DIR__ . "/store/migrations/v*.sql") ?: [];
+
+  foreach ($migrations as $path) {
+    $version = (int)substr(basename($path), 1); // The int cast stops at '_'.
+    if ($version > $from && $version <= $to) $pending[$version] = $path;
+  }
+
+  ksort($pending, SORT_NUMERIC);
+
+  foreach ($pending as $version => $path) {
+    syslog(LOG_INFO, "Migrating store schema to v$version");
+    \adapter\execute($path);
+
+    // NOTE(robin): if the STORE_VERSION value is higher than any migration file
+    // (aka the migration file has not been committed or is missing), this function
+    // will run on EVERY REQUEST, because the database never catches up. Bad?
+    exec_query('INSERT INTO `migrations` (`version`) VALUES (?)', [$version])
+      or die("Failed to bump store version to v" . $version . ".");
+  }
 }
 
 // SQL helpers
@@ -704,7 +720,27 @@ function exec_query($sql, $params) {
   }
 }
 
+// Initialize database connection
+
+define('DBH', \adapter\establish_connection());
+
+if(!defined('INITIAL_RUN')) {
+  define('INITIAL_RUN', \adapter\initial_run());
+}
+
 // Run migrations on the connected SQL database,
 // and insert seed data when initializing database.
-if(is_stale()) migrate();
+
+$latest_store_version = STORE_VERSION;
+$current_store_version = INITIAL_RUN ? -1 : version();
+
+if($current_store_version > $latest_store_version) {
+  die("Mismatched store versions: expected v" . STORE_VERSION . ", 
+  but store is already at v$version");
+}
+
+if($current_store_version < $latest_store_version) {
+  migrate(from: $current_store_version, to: $latest_store_version);
+}
+
 if(INITIAL_RUN) seed();

@@ -97,35 +97,3 @@ CREATE TABLE IF NOT EXISTS `menu_sections` (
   `order` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
-
--- v1: Make `views.agent` nullable
-ALTER TABLE `views` RENAME COLUMN `agent` TO `agent.old`;
-ALTER TABLE `views` ADD COLUMN `agent` text DEFAULT NULL;
-UPDATE `views` SET `agent` = `agent.old`;
-ALTER TABLE `views` DROP COLUMN `agent.old`;
-
--- v2: Add category column to pages
-ALTER TABLE `pages` ADD COLUMN `category` varchar(90) DEFAULT 'regular';
-
--- v3: Replace visibility column with integer levels
-ALTER TABLE `pages` ADD COLUMN `visibility_level` int(11) DEFAULT 50;
-UPDATE `pages` SET `visibility_level` = CASE 
-  WHEN `visibility` = 'public' THEN 50
-  WHEN `visibility` = 'rss-only' THEN 40
-  WHEN `visibility` = 'hidden' THEN 20
-  ELSE 50
-END;
-ALTER TABLE `pages` DROP COLUMN `visibility`;
-ALTER TABLE `pages` RENAME COLUMN `visibility_level` TO `visibility`;
-
--- v4: Add close friends.
-CREATE TABLE IF NOT EXISTS `friends` (
-  `contact_id` int(11) NOT NULL,
-  `token` varchar(7) NOT NULL,
-  `clearance` int(11) NOT NULL DEFAULT 30,
-  UNIQUE(`token`),
-  PRIMARY KEY (`contact_id`)
-);
-
--- v5: Add client_ip column to views
-ALTER TABLE `views` ADD COLUMN `client_ip` text DEFAULT NULL;

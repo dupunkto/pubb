@@ -1,12 +1,17 @@
 <?php
-// Store adapter for SQLite databases.
+// Adapter for MySQL databases.
 
 namespace adapter;
 use PDO;
 
 function establish_connection() {
-  $database = STORE . "/data.db";
-  $dsn = "sqlite:$database";
+  global $_DATABASE;
+
+  $host = $_DATABASE['host'];
+  $user = $_DATABASE['user'];
+  $pass = $_DATABASE['pass'];
+  $port = $_DATABASE['port'] ?? 5432;
+  $name = ltrim($_DATABASE['path'], "/");
 
   $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -14,24 +19,24 @@ function establish_connection() {
     PDO::ATTR_EMULATE_PREPARES   => false,
   ];
 
+  $dsn = "pgsql:host=$host;port=$port;dbname=$name;charset=utf8mb4";
+
   try {
-    define('INITIAL_RUN', !file_exists($database));
-    return new PDO($dsn, options: $options);
+    return new PDO($dsn, $user, $pass, $options);
   }
   catch(PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
   }
 }
 
-function execute($path) {
-  $sql = str_replace(
-    ["int(11)", "NOT NULL AUTO_INCREMENT", ",\n  PRIMARY KEY (`id`)"],
-    ["INTEGER", "PRIMARY KEY AUTOINCREMENT", ""],
-    file_get_contents($path)
-  );
+function initial_run() {
+  return !table_exists('migrations');
+}
 
+function execute($path) {
+  $sql = file_get_contents($path);
   $queries = explode(';', $sql);
-  
+
   foreach ($queries as $query) {
     $query = trim($query);
     if(!empty($query)) DBH->exec($query) !== false 
@@ -40,7 +45,12 @@ function execute($path) {
 }
 
 function table_exists($table_name) {
-  $stmt = DBH->prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?");
+  $stmt = DBH->prepare("SELECT table_name
+    FROM information_schema.tables
+    WHERE table_catalog = current_database()
+      AND table_schema = 'public'
+      AND table_name = ?");
+
   $stmt->execute([$table_name]);
   return $stmt->fetch() != false;
 }
