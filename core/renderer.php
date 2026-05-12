@@ -59,15 +59,15 @@ function page($page, $level = 1) {
         echo "<h$level class='p-name'><code>{$page['slug']}</code></h$level>";
       } ?>
 
+      <div class="p-summary e-content">
+        <?= shift_headings(capture('\renderer\page_content', $page), $level); ?>
+      </div>
+
       <?php if(isset($page['song'])) { ?>
         <p class="p-song">
           <?= esc_inner(str_replace(" - ", " — ", $page['song'])) ?>
         </p>
       <?php } ?>
-
-      <div class="p-summary e-content">
-        <?= shift_headings(capture('\renderer\page_content', $page), $level); ?>
-      </div>
 
       <time class="dt-published" datetime="<?= $page['published'] ?>">
         <a class="u-url" href="<?= \urls\page_url($page) ?>">
