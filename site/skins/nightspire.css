@@ -335,6 +335,7 @@ main blockquote {
 .h-entry .p-song {
   color: #ffa6ff;
   font-size: 0.8em;
+  margin-bottom: -1.5em; /* To make it in-line with timestamp */
 
   &::before {
     content: "🎧 ";
