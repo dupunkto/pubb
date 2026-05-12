@@ -332,6 +332,16 @@ main blockquote {
   padding-left: 0.6em;
 }
 
+.h-entry .p-song {
+  color: #ffa6ff;
+  font-size: 0.8em;
+
+  &::before {
+    content: "🎧 ";
+    font-weight: bold;
+  }
+}
+
 .comment-section {
   background: #ffe3ff;
   color: #390239;

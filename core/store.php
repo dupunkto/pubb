@@ -168,6 +168,7 @@ function pages_query() {
     page.visibility,
     page.category,
     page.caption,
+    page.song,
     page.published,
     page.updated,
     volume.id AS volume_id,
