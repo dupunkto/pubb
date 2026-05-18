@@ -32,7 +32,7 @@ if(isset($_FILES['photo'])) {
   $path = \store\copy_file($tmp_file) 
     or json_error(500, "Something went wrong while saving your photo.");
 
-  \store\put_page(
+  \store\create_page(
     slug: $slug,
     type: 'photo',
     path: $path,
@@ -57,7 +57,7 @@ if(isset($_FILES['photo'])) {
 
   $slug = \store\unique_slug('assets', 'external');
 
-  \store\put_page(
+  \store\create_page(
     slug: $slug,
     type: 'photo',
     path: $path,
@@ -79,7 +79,7 @@ if(isset($_FILES['photo'])) {
 
   $path = \store\write_file($content, "md");
 
-  \store\put_page(
+  \store\create_page(
     slug: $slug,
     type: 'photo',
     path: $path,

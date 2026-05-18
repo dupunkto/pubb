@@ -2,7 +2,7 @@
 // Add volume.
 
 if(isset($_POST['add'])) {
-  \store\put_volume(
+  \store\create_volume(
     slug: cast($_POST['slug']),
     title: cast($_POST['title']),
     description: cast(@$_POST['description']),

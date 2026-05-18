@@ -24,7 +24,7 @@ switch($_DATABASE['scheme']) {
 // referenced file in the `path` column.
 define('TYPES', ["md", "html", "txt", "photo", "code"]);
 
-function put_page(
+function create_page(
   $slug,
   $type,
   $title,
@@ -225,7 +225,7 @@ function last_updated() {
 
 // Assets
 
-function put_asset($slug, $path, $uploaded_as, $uploaded_at) {
+function create_asset($slug, $path, $uploaded_as, $uploaded_at) {
   return exec_query('INSERT INTO `assets` (`slug`, `path`, `uploaded_as`, `uploaded_at`) 
     VALUES (?, ?, ?, ?)', [$slug, $path, $uploaded_as, $uploaded_at]);
 }
@@ -266,7 +266,7 @@ function linked_pages($asset) {
 
 // Volumes
 
-function put_volume($slug, $title, $description, $start, $end) {  
+function create_volume($slug, $title, $description, $start, $end) {  
   return exec_query('INSERT INTO `volumes`
     (`slug`, `title`, `description`, `start_at`, `end_at`)
     VALUES (?, ?, ?, ?, ?)', [$slug, $title, $description, $start, $end]);
@@ -300,7 +300,7 @@ function latest_volume() {
 
 // Contacts
 
-function put_contact($handle, $domain, $email, $notify) {
+function create_contact($handle, $domain, $email, $notify) {
   return exec_query('INSERT INTO `contacts` (`handle`, `domain`, `email`, `notify`) 
     VALUES (?, ?, ?, ?)', [$handle, $domain, $email, $notify]);
 }
@@ -336,7 +336,7 @@ function list_contacts() {
 
 // Friends
 
-function put_friend($contact_id, $token, $clearance = 30) {
+function create_friend($contact_id, $token, $clearance = 30) {
   get_contact($contact_id) or die("contact with ID $contact_id does not exist");
   
   return exec_query('INSERT INTO `friends` (`contact_id`, `token`, `clearance`) 
@@ -377,7 +377,7 @@ function remove_friend($contact_id) {
 
 define('ORIGINS', ["incoming", "outgoing"]);
 
-function put_mention($origin, $contact_id, $page_id, $source) {
+function create_mention($origin, $contact_id, $page_id, $source) {
   in_array($origin, ORIGINS) or die("type $origin does not exist");
   get_page($page_id)         or die("page with ID $page_id does not exist");
   get_contact($contact_id)   or die("contact with ID $contact_id does not exist");
@@ -429,7 +429,7 @@ function get_mention($origin, $page_id, $contact_id) {
 
 // Views
 
-function put_view($path, $referer, $agent, $client_ip, $datetime) { 
+function create_view($path, $referer, $agent, $client_ip, $datetime) { 
   return exec_query('INSERT INTO `views` 
     (`path`, `referer`, `agent`, `client_ip`, `datetime`) VALUES (?, ?, ?, ?, ?)',
     [$path, $referer, $agent, $client_ip, $datetime]);
@@ -459,13 +459,13 @@ function list_views_by_path($path) {
 
 // Menus
 
-function put_menu_item($type, $label, $page_id, $ref, $section_id) {
+function create_menu_item($type, $label, $page_id, $ref, $section_id) {
   return exec_query('INSERT INTO `menu_items` 
     (`type`, `label`, `page_id`, `ref`, `section_id`) 
     VALUES (?, ?, ?, ?, ?)', [$type, $label, $page_id, $ref, $section_id]);
 }
 
-function put_menu_section($label) {
+function create_menu_section($label) {
   return exec_query('INSERT INTO `menu_sections` 
     (`label`) VALUES (?)', [$label]);
 }
@@ -546,7 +546,7 @@ function get_record($schema, $id) {
   return one("SELECT * FROM `c_{$schema}` WHERE id = ?", [$id]);
 }
 
-function put_record($schema, $data) {
+function create_record($schema, $data) {
   $fields = array_keys($data);
   $today = date("Y-m-d H:i:s");
 

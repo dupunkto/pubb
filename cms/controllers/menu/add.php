@@ -7,7 +7,7 @@ if(isset($_POST['add']) and $_POST['type'] == 'page') {
 
   $title = \core\get_page_title($page);
 
-  \store\put_menu_item(
+  \store\create_menu_item(
     type: $_POST['type'],
     label: cast($title),
     page_id: cast($_POST['page_id']),
@@ -19,7 +19,7 @@ if(isset($_POST['add']) and $_POST['type'] == 'page') {
 }
 
 if(isset($_POST['add']) and in_array($_POST['type'], ['external', 'index'])) {
-  \store\put_menu_item(
+  \store\create_menu_item(
     type: $_POST['type'],
     label: cast($_POST['label']),
     page_id: null,
@@ -31,7 +31,7 @@ if(isset($_POST['add']) and in_array($_POST['type'], ['external', 'index'])) {
 }
 
 if(isset($_POST['add']) and $_POST['type'] == 'section') {
-  \store\put_menu_section(
+  \store\create_menu_section(
     label: cast($_POST['label']),
   ) or fail("Couldn't save section.");
 

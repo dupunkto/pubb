@@ -7,7 +7,7 @@ namespace stats;
 function record_view($path) {
   if(!allowed_to_track()) return;
 
-  \store\put_view(
+  \store\create_view(
     path: $path, 
     referer: @$_SERVER['HTTP_REFERER'],
     agent: @$_SERVER['HTTP_USER_AGENT'],

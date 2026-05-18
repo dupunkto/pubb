@@ -4,7 +4,7 @@
 if(isset($_POST['add'])) {
   $handle = strip_prefix($_POST['handle'], "@");
 
-  \store\put_contact(
+  \store\create_contact(
     handle: $handle,
     domain: cast($_POST['domain']),
     email: cast($_POST['email']),

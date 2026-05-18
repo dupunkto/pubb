@@ -19,7 +19,7 @@ if(isset($_POST['add'])) {
     fail("@{$contact['handle']} is already in your close friends.");
   }
   
-  \store\put_friend(
+  \store\create_friend(
     contact_id: $contact['id'],
     token: $token,
     clearance: 30

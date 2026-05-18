@@ -16,7 +16,7 @@ if(isset($_POST['add'])) {
   $errors = \schemas\validate_record($schema, $data);
   
   if(empty($errors)) {
-    \store\put_record($name, $data) 
+    \store\create_record($name, $data) 
       or fail("Couldn't add {$name}.");
 
     $title = \core\get_record_title($schema, $data);

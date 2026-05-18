@@ -107,7 +107,7 @@ function new_page(
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($prose, ".".$type);
 
-  return \store\put_page(
+  return \store\create_page(
     slug: $slug,
     type: $type,
     title: $title,
@@ -191,7 +191,7 @@ function new_gist($filename, $code, $caption) {
   $now = date("Y-m-d H:i:s");
   $path = \store\write_file($code, $filename);
 
-  return \store\put_page(
+  return \store\create_page(
     slug: $filename,
     type: 'code',
     title: null,
@@ -236,7 +236,7 @@ function edit_gist($id, $filename, $code, $caption) {
 function new_photo($slug, $caption, $path) {
   $now = date("Y-m-d H:i:s");
 
-  return \store\put_page(
+  return \store\create_page(
     slug: $slug,
     type: 'photo',
     title: null,
@@ -317,7 +317,7 @@ function record_mention($page, $source) {
   $domain = url_host($source);
   $contact = \store\get_contact_by_domain($domain);
 
-  \store\put_mention(
+  \store\create_mention(
     origin: 'incoming',
     page_id: $page['id'],
     contact_id: $contact ? $contact['id'] : null,
@@ -347,7 +347,7 @@ function send_mention($page, $handle) {
   if(get_sent_mention($page, $contact)) return true;
 
   if(\mailer\send_mention($page, $contact)) { 
-    \store\put_mention(
+    \store\create_mention(
       origin: 'outgoing',
       page_id: $page['id'],
       contact_id: $contact['id'],

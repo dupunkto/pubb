@@ -12,7 +12,7 @@ if(isset($_POST['upload'])) {
       $slug = \store\unique_slug('assets', $upload['name']);
       $stored_at = \core\upload_photo($upload);
 
-      \store\put_asset(
+      \store\create_asset(
         slug: $slug,
         path: $stored_at,
         uploaded_as: $upload['name'],
