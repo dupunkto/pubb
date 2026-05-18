@@ -54,7 +54,7 @@
       <input
         type="text"
         name="song"
-        placeholder="My Happy Ending - Avril Lavigne"
+        placeholder="Song"
         <?php if(isset($song)) { ?>
           value="<?= esc_attr($song) ?>"
         <?php } ?>
