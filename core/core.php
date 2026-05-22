@@ -20,11 +20,13 @@ function list_indexes() {
 function list_index_pages($index) {
   $c = \access\clearance('public');
 
-  return match($index) {
+  $pages = match($index) {
     "all" => \store\list_pages($c),
     "code" => \store\list_gists(),
     "photos" => \store\list_photos(),
   };
+
+  return filter_listings($pages);
 }
 
 function get_index_title($index) {
@@ -47,7 +49,8 @@ function get_index_type($index) {
 
 function list_category_pages($slug) {
   $c = \access\clearance('public');
-  return \store\list_pages_by_category($slug, $c);
+  $pages = \store\list_pages_by_category($slug, $c);
+  return filter_listings($pages);
 }
 
 function get_category_title($slug) {
@@ -181,7 +184,14 @@ function level_to_visibility($lvl) {
   return list_visibilities()[$lvl];
 }
 
+function filter_listings($pages) {
+  if(!defined('FEEDS_RESET_FROM')) return $pages;
+  $cutoff = strtotime(FEEDS_RESET_FROM);
+  return array_filter($pages, fn($p) => strtotime($p['published']) >= $cutoff);
+}
+
 function filter_feeds($pages) {
+  $pages = filter_listings($pages);
   return array_filter($pages, fn($p) => in_array($p['category'], FEEDS_CATEGORIES));
 }
 

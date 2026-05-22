@@ -357,6 +357,18 @@
     <?php } ?>
   </p>
 
+  <?php if(FEATURES_SHOW_ERAS) { ?>
+    <p style="flex-direction: row">
+      <label for="start_at">New era started on</label>
+      <input
+        type="date" 
+        name="feeds.reset-from"
+        id="feeds.reset-from"
+        value="<?= canonical_value("feeds.reset-from") ?>"
+      >
+    </p>
+  <?php } ?>
+
   <h3>Advanced</h3>
 
   <p>

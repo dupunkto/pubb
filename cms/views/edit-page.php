@@ -50,7 +50,7 @@
       </p>
     </div>
 
-    <?php if(EDITOR_SHOW_SONG) { ?>
+    <?php if(FEATURES_SHOW_SONG) { ?>
       <input
         type="text"
         name="song"
