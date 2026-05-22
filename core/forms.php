@@ -1,17 +1,24 @@
 <?php
-// Collection of shorthands for rendering common form components.
+// Common form components.
 
 namespace forms;
 
-function options($name, $options, $selected, $ints = false, $reverse = false) {
+function options(
+  $name,
+  $options,
+  $selected = null,
+  $flat = false,
+  $reverse = false,
+  $capitalize = true
+) {
   if($reverse) $options = array_reverse($options, true);
   ?>
-    <select name="<?= $name ?>">
+    <select name="<?= $name ?>" id="<?= $name ?>">
       <?php 
         foreach($options as $value => $label) {
-          if(is_int($value) and !$ints) {
+          if(is_int($value) and !$flat) {
             $value = $label;
-            $label = ucfirst($label);
+            if($capitalize) $label = ucfirst($label);
           }
       ?>
         <option value="<?= esc_attr($value) ?>" <?php if($selected == $value) echo "selected" ?>>

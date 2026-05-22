@@ -95,7 +95,7 @@
 
     <label for="type">Visibility:</label>
 
-    <?php \forms\options("visibility", \core\list_visibilities(), @$visibility, ints: true, reverse: !EDITOR_REVERSE_VISIBILITIES) ?>
+    <?php \forms\options("visibility", \core\list_visibilities(), @$visibility, flat: true, reverse: !EDITOR_REVERSE_VISIBILITIES) ?>
 
     <label for="type">Format:</label>
 
