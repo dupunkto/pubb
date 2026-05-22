@@ -186,8 +186,15 @@ function level_to_visibility($lvl) {
 
 function filter_listings($pages) {
   if(!defined('FEEDS_RESET_FROM')) return $pages;
+
+  // One of the perks of being a close friend is having
+  // permission to view everything from the previous eras.
+  $v = visibility_to_level('close-friends');
   $cutoff = strtotime(FEEDS_RESET_FROM);
-  return array_filter($pages, fn($p) => strtotime($p['published']) >= $cutoff);
+
+  return array_filter($pages, fn($p) =>
+    $p['visibility'] <= $v || strtotime($p['published']) >= $cutoff
+  );
 }
 
 function filter_feeds($pages) {
