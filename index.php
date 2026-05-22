@@ -48,7 +48,12 @@ switch(true) {
   case route('/feed.json$'): include __DIR__ . "/feeds/json.php"; exit;
   case route('/sitemap.xml$'): include __DIR__ . "/feeds/sitemap.php"; exit;
   case route('/robots.txt$'): include __DIR__ . "/feeds/robots.php"; exit;
+  case route('/security.txt$'): include __DIR__ . "/feeds/security.php"; exit;
   case route('/endpoint/(\w+)$'): include __DIR__ . "/endpoint/{$params[1]}.php"; exit;
+
+  // Well-known URIs
+  case route('/.well-known/webfinger$'): include __DIR__ . "/endpoint/webfinger.php"; exit;
+  case route('/.well-known/security.txt$'): include __DIR__ . "/feeds/security.php"; exit;
 
   // Depending on the environment, run either the site or CMS router.
   default:

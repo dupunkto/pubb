@@ -32,7 +32,7 @@ function page_content($page) {
   return capture('\renderer\page_content', $page);
 }
 
-echo json_encode(array(
+echo json_encode([
   "version" => "https://jsonfeed.org/version/1.1",
   "title" => SITE_TITLE,
   "description" => SITE_DESCRIPTION,
@@ -41,4 +41,4 @@ echo json_encode(array(
   "home_page_url" => CANONICAL . "/",
   "feed_url" => CANONICAL . "/feed.json",
   "items" => $entries
-));
+]);
