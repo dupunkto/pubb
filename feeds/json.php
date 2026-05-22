@@ -6,7 +6,6 @@ require_once __DIR__ . "/../core.php";
 
 include __DIR__ . "/caching.php";
 
-
 header("Content-Type: application/feed+json; charset=UTF-8");
 
 $clearance = \access\clearance('rss-only');
@@ -14,7 +13,7 @@ $pages = \store\list_pages($clearance);
 
 $entries = [];
 
-foreach(\core\filter_feeds($pages) as $page) {
+foreach(\core\filter_feeds($pages, $clearance) as $page) {
   $entry = [
     "id" => $page['id'],
     "url" => \urls\page_url($page),
