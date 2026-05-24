@@ -187,13 +187,26 @@ function pages_query() {
   ";
 }
 
+function pages_filter($visibility) {
+  $where = "`draft` != 1 AND `visibility` >= $visibility";
+
+  if(defined('FEEDS_RESET_FROM')) {
+    $cutoff = cast_date(FEEDS_RESET_FROM, "Y-m-d H:i:s");
+    $where .= " AND `published` > '$cutoff'";
+  }
+
+  return $where;
+}
+
 function list_all_pages() {
   return all(pages_query());
 }
 
 function list_pages($visibility = 50) {
   $pages = pages_query();
-  return all("SELECT * FROM ($pages) WHERE `draft` != 1 AND `visibility` >= ?", [$visibility]);
+  $where = pages_filter($visibility);
+
+  return all("SELECT * FROM ($pages) WHERE $where");
 }
 
 function list_regular_pages() {
@@ -213,9 +226,10 @@ function list_photos() {
 
 function list_pages_by_category($slug, $visibility = 50) {
   $pages = pages_query();
+  $where = pages_filter($visibility);
+
   return all("SELECT * FROM ($pages)
-    WHERE `category` = ? AND `type` IN ('md', 'html', 'txt')
-    AND `draft` != 1 AND `visibility` >= ?", [$slug, $visibility]);
+    WHERE $where AND `category` = ? AND `type` IN ('md', 'html', 'txt')", [$slug]);
 }
 
 function last_updated() {

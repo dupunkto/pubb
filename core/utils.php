@@ -53,3 +53,9 @@ function random_string($length = 12) {
   $x = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return substr(str_shuffle(str_repeat($x, ceil($length/strlen($x)))), 1, $length);
 }
+
+// Date utilities
+
+function cast_date($str, $fmt) {
+  return date($fmt, strtotime($str));
+}

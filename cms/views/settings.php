@@ -358,8 +358,8 @@
   </p>
 
   <?php if(FEATURES_SHOW_ERAS) { ?>
-    <p style="flex-direction: row">
-      <label for="start_at">New era started on</label>
+    <p style="flex-direction: row; margin-top: 1.5em">
+      <label for="start_at" style="font-weight: normal">Only show posts after</label>
       <input
         type="date" 
         name="feeds.reset-from"

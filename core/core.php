@@ -11,7 +11,7 @@ use Exception;
 function list_indexes() {
   return array_merge(
     ["all" => "All"],
-    \core\list_categories(),
+    list_categories(),
     ["code" => "Gists"],
     ["photos" => "Photos"]
   );
@@ -20,13 +20,11 @@ function list_indexes() {
 function list_index_pages($index) {
   $c = \access\clearance('public');
 
-  $pages = match($index) {
+  return match($index) {
     "all" => \store\list_pages($c),
     "code" => \store\list_gists(),
     "photos" => \store\list_photos(),
   };
-
-  return filter_listings($pages, $c);
 }
 
 function get_index_title($index) {
@@ -49,8 +47,7 @@ function get_index_type($index) {
 
 function list_category_pages($slug) {
   $c = \access\clearance('public');
-  $pages = \store\list_pages_by_category($slug, $c);
-  return filter_listings($pages, $c);
+  return \store\list_pages_by_category($slug, $c);
 }
 
 function get_category_title($slug) {
@@ -184,19 +181,7 @@ function level_to_visibility($lvl) {
   return list_visibilities()[$lvl];
 }
 
-function filter_listings($pages, $c) {
-  if(!defined('FEEDS_RESET_FROM')) return $pages;
-
-  // One of the perks of being a close friend is having
-  // permission to view everything from the previous eras.
-  if($c <= visibility_to_level('close-friends')) return $pages;
-
-  $cutoff = strtotime(FEEDS_RESET_FROM);
-  return array_filter($pages, fn($p) => strtotime($p['published']) >= $cutoff);
-}
-
 function filter_feeds($pages, $c) {
-  $pages = filter_listings($pages, $c);
   return array_filter($pages, fn($p) => in_array($p['category'], FEEDS_CATEGORIES));
 }
 
