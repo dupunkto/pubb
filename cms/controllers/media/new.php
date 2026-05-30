@@ -14,7 +14,7 @@ if(isset($_POST['save'])) {
   }
   else if(isset($_FILES['photo'])) {
     try {
-      $stored_at = \core\upload_photo($_FILES['photo']);
+      $stored_at = \core\upload_asset($_FILES['photo']);
     } 
     catch(Exception $e) {
       fail($e->getMessage());
@@ -27,6 +27,7 @@ if(isset($_POST['save'])) {
     slug: cast($_POST['slug']),
     caption: cast($_POST['caption']),
     path: $stored_at,
+    visibility: cast($_POST['visibility']),
   ) or fail("Failed to save post.");
 
   complete("Saved post.", to: "/media");

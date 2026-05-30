@@ -5,8 +5,8 @@
 
 <?php
   $pages = isset($_GET['type']) ?
-    \store\list_pages_by_category($_GET['type'], 0) :
-    \store\list_regular_pages() ?>
+    \store\list_pages_by_category($_GET['type'], visibility: 0, draft: true) :
+    \store\list_regular_pages(visibility: 0, draft: true) ?>
 
 <ul>
   <?php foreach($pages as $page) { ?>

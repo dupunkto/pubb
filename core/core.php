@@ -23,7 +23,7 @@ function list_index_pages($index) {
   return match($index) {
     "all" => \store\list_pages($c),
     "code" => \store\list_gists(),
-    "photos" => \store\list_photos(),
+    "photos" => \store\list_photos($c),
   };
 }
 
@@ -233,7 +233,7 @@ function edit_gist($id, $filename, $code, $caption) {
 
 // Assets
 
-function new_photo($slug, $caption, $path) {
+function new_photo($slug, $caption, $path, $visibility = 50) {
   $now = date("Y-m-d H:i:s");
 
   return \store\create_page(
@@ -246,14 +246,14 @@ function new_photo($slug, $caption, $path) {
     updated: $now,
     path: $path,
     draft: 0,
-    visibility: 50,
+    visibility: $visibility,
     category: null,
     caption: $caption,
     song: null,
   );
 }
 
-function update_photo($id, $slug, $caption, $path) {
+function update_photo($id, $slug, $caption, $path, $visibility = 50) {
   $now = date("Y-m-d H:i:s");
   $published = \store\page_published($id, false);
 
@@ -268,14 +268,14 @@ function update_photo($id, $slug, $caption, $path) {
     published: $published,
     path: $path,
     draft: 0,
-    visibility: 50,
+    visibility: $visibility,
     category: null,
     caption: $caption,
     song: null,
   );
 }
 
-function upload_photo($upload) {
+function upload_asset($upload) {
   $ext = path_ext($upload['name'], "jpg");
   $tmp_file = $upload['tmp_name'];
 

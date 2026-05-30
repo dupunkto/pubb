@@ -6,7 +6,7 @@
   </p>
 </header>
 
-<?php $posts = \store\list_photos() ?>
+<?php $posts = \store\list_photos(visibility: 0, draft: true) ?>
 
 <h3>Posts</h3>
 

@@ -10,7 +10,7 @@ if(isset($_POST['upload'])) {
   foreach($uploads as $upload) {
     try {
       $slug = \store\unique_slug('assets', $upload['name']);
-      $stored_at = \core\upload_photo($upload);
+      $stored_at = \core\upload_asset($upload);
 
       \store\create_asset(
         slug: $slug,

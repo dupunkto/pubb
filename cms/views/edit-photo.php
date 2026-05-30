@@ -38,4 +38,9 @@
   <?php } else { ?>
     <input type="file" name="photo" accept="image/*" required>
   <?php } ?>
+
+  <p class="options">
+    <label for="visibility">Visibility:</label>
+    <?php \forms\options("visibility", \core\list_visibilities(), @$visibility, flat: true, reverse: !EDITOR_REVERSE_VISIBILITIES) ?>
+  </p>
 </form>

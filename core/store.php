@@ -187,8 +187,9 @@ function pages_query() {
   ";
 }
 
-function pages_filter($visibility) {
-  $where = "`draft` != 1 AND `visibility` >= $visibility";
+function pages_filter($visibility = 50, $draft = false) {
+  $where = "`visibility` >= $visibility";
+  if(!$draft) $where .= " AND `draft` != 1";
 
   if(defined('FEEDS_RESET_FROM')) {
     $cutoff = cast_date(FEEDS_RESET_FROM, "Y-m-d H:i:s");
@@ -202,16 +203,26 @@ function list_all_pages() {
   return all(pages_query());
 }
 
-function list_pages($visibility = 50) {
+function list_pages($visibility = 50, $draft = false) {
   $pages = pages_query();
-  $where = pages_filter($visibility);
+  $where = pages_filter($visibility, $draft);
 
   return all("SELECT * FROM ($pages) WHERE $where");
 }
 
-function list_regular_pages() {
+function list_regular_pages($visibility = 50, $draft = false) {
   $pages = pages_query();
+  $where = pages_filter($visibility, $draft);
+
   return all("SELECT * FROM ($pages) WHERE `type` IN ('md', 'html', 'txt')");
+}
+
+function list_pages_by_category($slug, $visibility = 50, $draft = false) {
+  $pages = pages_query();
+  $where = pages_filter($visibility, $draft);
+
+  return all("SELECT * FROM ($pages)
+    WHERE $where AND `category` = ? AND `type` IN ('md', 'html', 'txt')", [$slug]);
 }
 
 function list_gists() {
@@ -219,17 +230,11 @@ function list_gists() {
   return all("SELECT * FROM ($pages) WHERE `type` = 'code'");
 }
 
-function list_photos() {
+function list_photos($visibility = 50, $draft = false) {
   $pages = pages_query();
-  return all("SELECT * FROM ($pages) WHERE `type` = 'photo'");
-}
+  $where = pages_filter($visibility, $draft);
 
-function list_pages_by_category($slug, $visibility = 50) {
-  $pages = pages_query();
-  $where = pages_filter($visibility);
-
-  return all("SELECT * FROM ($pages)
-    WHERE $where AND `category` = ? AND `type` IN ('md', 'html', 'txt')", [$slug]);
+  return all("SELECT * FROM ($pages) WHERE $where AND `type` = 'photo'");
 }
 
 function last_updated() {

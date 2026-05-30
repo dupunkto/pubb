@@ -10,6 +10,7 @@ $title = "Edit post";
 $slug = $post['slug'];
 $caption = $post['caption'];
 $store_path = $post['path'];
+$visibility = $post['visibility'];
 
 if(isset($_POST['save'])) {
   \core\update_photo(
@@ -17,6 +18,7 @@ if(isset($_POST['save'])) {
     slug: cast($_POST['slug']),
     caption: cast($_POST['caption']),
     path: cast($_POST['path']),
+    visibility: cast($_POST['visibility']),
   ) or fail("Failed to save post.");
 
   complete("Saved post.", to: "/media");
