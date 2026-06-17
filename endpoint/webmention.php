@@ -51,7 +51,7 @@ if(!$page) {
 // contains a link to 'target'.
 
 $response = \http\get($_POST['source']);
-$source = $reponse['body'];
+$source = $response['body'];
 
 if(!stristr($source, $_POST['target'])) {
   http_response_code(400);
