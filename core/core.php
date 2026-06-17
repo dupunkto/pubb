@@ -275,6 +275,20 @@ function update_photo($id, $slug, $caption, $path, $visibility = 50) {
   );
 }
 
+function get_photo_slideshow($page) {
+  $paths = array_column(
+    \store\all('SELECT `path` FROM `page_photos` WHERE `page_id` = ? ORDER BY `order` ASC', [$page['id']]),
+    'path'
+  );
+
+  if (!in_array($page['path'], $paths))
+    array_unshift($paths, $page['path']);
+
+  return $paths;
+}
+
+// Assets
+
 function upload_asset($upload) {
   $ext = path_ext($upload['name'], "jpg");
   $tmp_file = $upload['tmp_name'];

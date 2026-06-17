@@ -218,20 +218,18 @@ function render_feed($pages) {
 }
 
 function render_photo($page) {
-  $path = $page['path'];
-  $url = is_url($path) ? $path : \urls\photo_url($page);
+  $photos = \core\get_photo_slideshow($page);
 
   ?>
     <figure>
-      <img 
-        class="u-photo" 
-        src="<?= $url ?>" 
-        alt="<?= esc_attr($caption) ?>"
-      />
-      <?php if($page['caption']) { ?>
+      <?php foreach ($photos as $path): ?>
+        <?php $url = is_url($path) ? $path : \urls\photo_url(['path' => $path]) ?>
+        <img class="u-photo" src="<?= esc_attr($url) ?>" alt="" />
+      <?php endforeach ?>
+      <?php if ($page['caption']): ?>
         <figcaption><?= render_caption($page['caption']) ?></figcaption>
-      <?php } ?>
-    </figure> 
+      <?php endif ?>
+    </figure>
   <?php
 }
 

@@ -245,7 +245,7 @@ function last_updated() {
 // Assets
 
 function create_asset($slug, $path, $uploaded_as, $uploaded_at) {
-  return exec_query('INSERT INTO `assets` (`slug`, `path`, `uploaded_as`, `uploaded_at`) 
+  return exec_query('INSERT INTO `assets` (`slug`, `path`, `uploaded_as`, `uploaded_at`)
     VALUES (?, ?, ?, ?)', [$slug, $path, $uploaded_as, $uploaded_at]);
 }
 
@@ -259,6 +259,10 @@ function get_asset($id) {
 
 function get_asset_by_slug($slug) {
   return one('SELECT * FROM `assets` WHERE `slug` = ?', [$slug]);
+}
+
+function get_asset_by_path($path) {
+  return one('SELECT * FROM `assets` WHERE `path` = ? ORDER BY `id`', [path]);
 }
 
 function delete_asset($id) {
@@ -279,8 +283,46 @@ function duplicates($asset) {
     [$asset['path'], $asset['id']]);
 }
 
-function linked_pages($asset) {
-  return all('SELECT * FROM `pages` WHERE `path` = ?', [$asset['path']]);
+function linked_assets($path) {
+  return all('SELECT * FROM `assets` WHERE `path` = ? ORDER BY `id`', [$path]);
+}
+
+function linked_pages($path) {
+  $as_cover = all('SELECT * FROM `pages` WHERE `path` = ?', [$path]);
+
+  $as_slideshow = all('SELECT p.* FROM `pages` p
+    JOIN `page_photos` pp ON pp.page_id = p.id WHERE pp.path = ?', [$path]);
+
+  return array_merge($as_cover, $as_slideshow);
+}
+
+function in_use($path) {
+  return one('SELECT 1 FROM `assets` WHERE `path` = ?', [$path])
+    || one('SELECT 1 FROM `pages` WHERE `path` = ?', [$path])
+    || one('SELECT 1 FROM `page_photos` WHERE `path` = ?', [$path]);
+}
+
+// Photo pages
+
+function add_page_photo($page_id, $path, $order = 0) {
+  return exec_query(
+    'INSERT INTO `page_photos` (`page_id`, `path`, `order`) VALUES (?, ?, ?)',
+    [$page_id, $path, $order]
+  );
+}
+
+function remove_page_photo($page_id, $path) {
+  return exec_query(
+    'DELETE FROM `page_photos` WHERE `page_id` = ? AND `path` = ?',
+    [$page_id, $path]
+  );
+}
+
+function set_page_photo_order($page_id, $path, $order) {
+  return exec_query(
+    'UPDATE `page_photos` SET `order` = ? WHERE `page_id` = ? AND `path` = ?',
+    [$order, $page_id, $path]
+  );
 }
 
 // Volumes
