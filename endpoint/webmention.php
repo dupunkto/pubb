@@ -20,7 +20,7 @@ if(!isset($_POST['target'])) {
 
 $source_scheme = parse_url($_POST['source'], PHP_URL_SCHEME);
 
-if(in_array($source_scheme, ["http", "https"])) {
+if(!in_array($source_scheme, ["http", "https"])) {
   http_response_code(400);
   echo "The URL scheme for the source URL is invalid.";
   exit;
@@ -53,7 +53,7 @@ if(!$page) {
 $response = \http\get($_POST['source']);
 $source = $reponse['body'];
 
-if(stristr($source, $_POST['target'])) {
+if(!stristr($source, $_POST['target'])) {
   http_response_code(400);
   echo "Your page doesn't actually mention mine.";
   exit;
