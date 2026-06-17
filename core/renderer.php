@@ -112,7 +112,11 @@ function page($page, $level = 1) {
 function comment_section($page) {
   ?>
     <aside class="comment-section">
-      <h2>Webmentions</h2>
+      <h2 id="webmentions">Webmentions</h2>
+
+      <?php if(str_starts_with(@$_SERVER['HTTP_REFERER'] ?? '', WEBMENTION_ENDPOINT)) { ?>
+        <p class="notice">Thanks! Your webmention was received.</p>
+      <?php } ?>
 
       <ul>
         <?php foreach(\store\list_mentions("incoming", $page['id']) as $mention) { ?>

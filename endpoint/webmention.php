@@ -66,5 +66,4 @@ http_response_code(202);
 
 // Redirect to target page, useful in case of sending 
 // a webmention via the form in the comment section.
-header('Link: ' . $target);
-
+header('Location: ' . $target . '#webmentions');
