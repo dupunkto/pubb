@@ -12,6 +12,8 @@
       alt="Profile picture"
     >
   <?php } ?>
+
+  <a class="u-url u-uid" rel="me" href="<?= AUTHOR_SITE ?>" hidden><?= AUTHOR_SITE ?></a>
   
   <?php if(defined('PROFILE_STATUS')) { ?>
     <p class="p-status"><?= PROFILE_STATUS ?></p>
