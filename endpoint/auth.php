@@ -40,14 +40,14 @@ if(!isset($values['scope'])) {
 }
 
 $their_site = normalize_url($values['me']);
-$our_site = normalize_url($site_domain);
+$our_site = normalize_url(AUTHOR_SITE);
 
 if($their_site !== $our_site) {
     http_response_code(403);
     echo "Mismatching 'me' value in authentication token.";
     
-    echo "Expected: " . strtolower($values['me']);
-    echo "Got: " . strtolower($site_domain);
+    echo "Expected: " . strtolower(AUTHOR_SITE);
+    echo "Got: " . strtolower($values['me']);
     exit;
 }
 
