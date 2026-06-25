@@ -22,28 +22,6 @@ if(!defined('ENCRYPTION_KEY') or !defined('HASHED_PASSPHRASE')) {
   exit; 
 }
 
-// Signed codes always have an time-to-live, by default 1 year (31536000 seconds).
-function create_signed_code($key, $message, $ttl = 31536000, $appended_data = "") {
-  $expires = time() + $ttl;
-  $body = $message . $expires . $appended_data;
-  $signature = hash_hmac("sha256", $body, $key);
-  return dechex($expires) . ":" . $signature . ":" . \crypto\base64_url_encode($appended_data);
-}
-
-function verify_signed_code($key, $message, $code) {
-  $code_parts = explode(":", $code, 3);
-  if(count($code_parts) !== 3) {
-      return false;
-  }
-  $expires = hexdec($code_parts[0]);
-  if(time() > $expires) {
-      return false;
-  }
-  $body = $message . $expires . \crypto\base64_url_decode($code_parts[2]);
-  $signature = hash_hmac("sha256", $body, $key);
-  return hash_equals($signature, $code_parts[1]);
-}
-
 function filter_input_regexp($type, $variable, $regexp, $flags = null) {
   $options = ['options' => ['regexp' => $regexp]];
   if($flags !== null) $options['flags'] = $flags;
@@ -104,7 +82,7 @@ if($code !== null) {
   if(!(is_string($code)
       and is_string($redirect_uri)
       and is_string($client_id)
-      and verify_signed_code(ENCRYPTION_KEY, AUTHOR_SITE . $redirect_uri . $client_id, $code))
+      and \crypto\verify_signed_code(ENCRYPTION_KEY, AUTHOR_SITE . $redirect_uri . $client_id, $code))
   ) {
     http_response_code(400);
     echo "Verification failed: given code was invalid.";
@@ -120,22 +98,23 @@ if($code !== null) {
     exit;
   }
 
-  // PKCE: when the code was bound to a challenge, prove possession of the
-  // verifier the challenge was derived from.
+  // PKCE: a supplied verifier must match the bound challenge. A missing
+  // verifier is fatal only in strict mode; otherwise it is tolerated so proxy
+  // token endpoints that drop it (e.g. tokens.indieauth.com) can still redeem.
   if(isset($payload['challenge']) and $payload['challenge'] != null) {
     $verifier = filter_input(INPUT_POST, "code_verifier", FILTER_UNSAFE_RAW);
 
-    if(!is_string($verifier)) {
+    if(is_string($verifier)) {
+      $hash = \crypto\base64_url_encode(hash("sha256", $verifier, true));
+
+      if(!hash_equals($payload['challenge'], $hash)) {
+        http_response_code(400);
+        echo "Verification failed: given code verifier was invalid.";
+        exit;
+      }
+    } elseif(ENFORCE_PKCE) {
       http_response_code(400);
       echo "Verification failed: malformed code verifier.";
-      exit;
-    }
-
-    $hash = \crypto\base64_url_encode(hash("sha256", $verifier, true));
-
-    if(!hash_equals($payload['challenge'], $hash)) {
-      http_response_code(400);
-      echo "Verification failed: given code verifier was invalid.";
       exit;
     }
   }
@@ -239,7 +218,7 @@ $submitted_password = filter_input(INPUT_POST, "password", FILTER_UNSAFE_RAW);
 if($submitted_password !== null) {
   $csrf_token = filter_input(INPUT_POST, "_csrf", FILTER_UNSAFE_RAW);
 
-  if($csrf_token === null or !verify_signed_code(ENCRYPTION_KEY, $client_id . $redirect_uri . $state, $csrf_token)) {
+  if($csrf_token === null or !\crypto\verify_signed_code(ENCRYPTION_KEY, $client_id . $redirect_uri . $state, $csrf_token)) {
     http_response_code(400);
     echo "The CSRF token was invalid. Usually this means you took too long to log in. Please try again.";
     exit;
@@ -268,7 +247,7 @@ if($submitted_password !== null) {
   }
 
   $payload = json_encode(['me' => AUTHOR_SITE, 'scope' => $scope, 'challenge' => $code_challenge]);
-  $code = create_signed_code(ENCRYPTION_KEY, AUTHOR_SITE . $redirect_uri . $client_id, 5 * 60, $payload);
+  $code = \crypto\create_signed_code(ENCRYPTION_KEY, AUTHOR_SITE . $redirect_uri . $client_id, 5 * 60, $payload);
 
   $final_uri = $redirect_uri;
   if(strpos($redirect_uri, '?') === false) $final_uri .= '?';
@@ -293,8 +272,8 @@ if($submitted_password !== null) {
 // probably show it. We hide the scope options when we're logging in
 // to our own CMS.
 
-$csrf_token = 
-  create_signed_code(ENCRYPTION_KEY, $client_id . $redirect_uri . $state, 2 * 60);
+$csrf_token =
+  \crypto\create_signed_code(ENCRYPTION_KEY, $client_id . $redirect_uri . $state, 2 * 60);
 
 ?><!DOCTYPE html>
 <html>

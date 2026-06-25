@@ -86,7 +86,7 @@ fallback('micropub-endpoint', CANONICAL . "/endpoint/micropub");
 fallback('media-endpoint', CANONICAL . "/endpoint/media");
 fallback('webmention-endpoint', CANONICAL . "/endpoint/webmention");
 fallback('auth-endpoint', CANONICAL . "/endpoint/indieauth");
-fallback('token-endpoint', "https://tokens.indieauth.com/token");
+fallback('token-endpoint', CANONICAL . "/endpoint/token" );
 fallback('pingback-endpoint',
   "https://webmention.io/webmention?forward=" . WEBMENTION_ENDPOINT);
 
@@ -96,6 +96,7 @@ fallback('cms.canonical', PREFERED_PROTO . "://" . CMS_HOST);
 fallback('issuer', CANONICAL . "/");
 fallback('client-id', ISSUER);
 resolute('redirect-uri', CMS_CANONICAL . "/auth");
+fallback('enforce-pkce', TOKEN_ENDPOINT != "https://tokens.indieauth.com/token");
 resolute('supported-scopes', ["create", "update", "delete", "media"]);
 
 // Helpers
