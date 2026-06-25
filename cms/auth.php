@@ -73,8 +73,8 @@ else {
       "code_verifier" => $_SESSION['code_verifier'],
   ]);
 
-  if($response['state'] == "failed") {
-      json_error(500, "Failed to verify authorization code. Got: " . $response['body'] . ".");
+  if($response['state'] == "failed" || $response["status"] >= 400) {
+      json_error(500, "Failed to verify authorization code. Got: " . $response['body'] . "");
   }
 
   $body = json_decode($response['body'], associative: true);
