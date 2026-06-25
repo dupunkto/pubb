@@ -32,7 +32,7 @@ elseif(!isset($_GET['code'])) {
   $_SESSION['state'] = random_string();
   $_SESSION['code_verifier'] = random_string(44);
     
-  $code_challenge = \crypto\base64_url_encode(hash('sha256', $_SESSION['code_verifier']));
+  $code_challenge = \crypto\base64_url_encode(hash('sha256', $_SESSION['code_verifier'], true));
         
   $scopes = implode(" ", SUPPORTED_SCOPES);
   $query = http_build_query([
@@ -74,7 +74,7 @@ else {
   ]);
 
   if($response['state'] == "failed" || $response["status"] >= 400) {
-      json_error(500, "Failed to verify authorization code. Got: " . $response['body'] . "");
+      json_error(500, "Failed to verify authorization code. Got: " . $response['body']);
   }
 
   $body = json_decode($response['body'], associative: true);
