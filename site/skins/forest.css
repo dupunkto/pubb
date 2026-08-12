@@ -400,7 +400,6 @@ h6 {
 }
 
 a {
-  text-wrap: nowrap;
   display: inline-block;
   color: var(--light-1);
   text-underline-offset: 3px;
