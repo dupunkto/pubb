@@ -399,6 +399,10 @@ h6 {
   color: var(--white);
 }
 
+nav a {
+  text-wrap: nowrap;
+}
+
 a {
   display: inline-block;
   color: var(--light-1);
