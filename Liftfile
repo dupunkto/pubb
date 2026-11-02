@@ -1,6 +1,6 @@
 name: pubb
 type: static
-host: nov.dupunk.to
+runner: nov.dupunk.to
 src: .
 target: pubb.dupunkto.org
 exclude:
