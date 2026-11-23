@@ -1,6 +1,6 @@
 name: pubb
 type: static
-runner: nov.dupunk.to
+cluster: dupunk.to
 src: .
 target: pubb.dupunkto.org
 exclude:
